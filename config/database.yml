@@ -9,9 +9,4 @@ default: &default
 
 development:
   <<: *default
-  database: shop_development
-
-test:
-  <<: *default
-  database: shop_test
-
+  database: moto_development

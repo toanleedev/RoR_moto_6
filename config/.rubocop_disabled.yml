@@ -1,0 +1,7 @@
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false

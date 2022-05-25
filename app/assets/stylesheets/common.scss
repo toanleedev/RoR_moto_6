@@ -1,3 +1,15 @@
-// p {
-//   color: red;
-// }
+@import 'bootstrap';
+@import 'font-awesome';
+
+html,
+body {
+  height: 100%;
+}
+
+.main {
+  min-height: calc(100% - 72px);
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -20,6 +20,33 @@ gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'slim-rails'
 
+gem 'bootstrap'
+
+gem 'bootstrap_form'
+
+gem 'sprockets-rails'
+
+gem 'popper_js'
+
+gem 'leaflet-rails'
+
+gem 'rails-i18n'
+
+gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-google-oauth2'
+# accept localhost dev
+gem 'omniauth-rails_csrf_protection'
+
+gem 'font-awesome-rails'
+
+# use ENV
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,23 +1,47 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  language:
+    vi: 'Vietnamese'
+    en: 'English'
+  header:
+    home: 'Home'
+    about: 'About'
+    rent: 'Motorbike rental'
+    account: 'Account'
+    sign_out: 'Sign out'
+    language: 'Language'
+    language_path: 'US-Flag.png'
+  title:
+    sign_up: 'Sign up'
+    login: 'Login'
+  button:
+    login_with_facebook: 'Login with Facebook'
+    login_with_google: 'Login with Google'
+  users:
+    title:
+      profile: 'My Profile'
+    sidebar:
+      account: 'Account'
+      address: 'Address'
+      change_password: 'Change password'
+      order: 'Order rental'
+    form:
+      name: 'Name'
+      email: 'Email'
+      first_name: 'First name'
+      last_name: 'Last name'
+      phone_number: 'Phone number'
+      birth: 'Date of birth'
+      gender:
+        title: 'Gender'
+        male: 'Male'
+        female: 'Female'
+        other: 'Other'
+      address: 'Address'
+      password: 'Password'
+      password_confirmation: 'Confirmation Password'
+      remember: 'Remember me'
+      forgot_password: 'Forgot your password?'
+      current_password: 'Current Password'
+      current_password_message: 'We need your current password to confirm your changes'
+    action:
+      update: 'Update account'

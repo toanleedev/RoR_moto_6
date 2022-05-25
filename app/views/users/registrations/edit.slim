@@ -1,0 +1,43 @@
+- provide :title, current_user.first_name
+.container
+  .row
+    .col-md-3.col-sm-12
+      = render "users/shared/sidebar"
+    .col-md-9.py-4.col-sm-12
+      h3.border-bottom.pb-4.mb-3 = t("users.title.profile")
+      .row
+        .col-8
+          = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+            = render "users/shared/error_messages", resource: resource
+            = f.email_field :email, autofocus: true, autocomplete: "email"
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              div
+                | Currently waiting confirmation for: #{resource.unconfirmed_email}
+            .row
+              .col
+                = f.text_field :first_name, placeholder: "First name", autocomplete: "first_name", label: t("users.form.first_name")
+              .col
+                = f.text_field :last_name, placeholder: "Last name", autocomplete: "last_name", label: t("users.form.last_name")
+            = f.phone_field :phone, label: t("users.form.phone_number")
+            = f.date_select :birth, label: t("users.form.birth")
+            = f.form_group :gender, label: { text: t("users.form.gender.title"), class: 'd-block' } do
+              = f.radio_button :gender, 1, label: t("users.form.gender.male"), inline: true
+              = f.radio_button :gender, 2, label: t("users.form.gender.female"), inline: true
+              = f.radio_button :gender, 0, label: t("users.form.gender.other"), inline: true
+            = f.password_field :current_password, autocomplete: "current-password", label: t("users.form.current_password"), help: t("users.form.current_password_message")
+            = f.submit t("users.action.update"), class: "btn btn-primary"
+        .col-4
+          .text-center
+            = avatar_for(current_user.photo_url, 100)
+            .mt-4
+              input#formFile.form-control.form-control-sm type="file"
+              .form-text File size: maximum 1 MB
+        
+      / = f.password_field :password, label: t("users.form.password"), help: "Leave blank if you don't want to change it"
+      / = f.password_field :password_confirmation, label: t("users.form.password_confirmation")
+      / h3 Cancel my account
+      / p
+      /   | Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+      / = link_to "Back", :back
+
+

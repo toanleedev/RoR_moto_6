@@ -1,0 +1,32 @@
+inherit_from:
+  - ./config/.rubocop_disabled.yml
+
+Style/Encoding:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/MethodLength:
+  Max: 50
+
+AllCops:
+  Include:
+    - foo.unusual_extension
+    - 'config/routes.rb'
+    - '**/*.rb'
+    - '**/*.gemfile'
+    - '**/*.gemspec'
+    - '**/*.rake'
+    - '**/*.ru'
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+    - 'test/**/*.rb'
+    - 'config/**/*'

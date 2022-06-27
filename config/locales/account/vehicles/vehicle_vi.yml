@@ -1,0 +1,6 @@
+vi:
+  account:
+    vehicles:
+      vehicle:
+        price: '%{price}₫/<span class="fs-6">ngày</span>'
+        edit: Cập nhật

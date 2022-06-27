@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title = full_title(yield(:title))
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = csrf_meta_tags
+    = stylesheet_link_tag "https://unpkg.com/aos@next/dist/aos.css"
+    = content_for :head
+    script src="https://unpkg.com/aos@next/dist/aos.js"
+  body class="#{params[:controller]}.#{params[:action]}"
+    = render 'shared/admin_header'
+    .container-fluid
+      .row
+        = render "shared/admin_navigation"  
+        main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" data-aos="fade-left"
+          div class="pt-3 pb-2 mb-3 border-bottom"
+            = yield :page_header
+          .wrapper
+            = yield
+    = toastr_flash

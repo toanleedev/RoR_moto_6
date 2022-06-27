@@ -1,0 +1,8 @@
+vi:
+  admin:
+    vehicle_options:
+      edit:
+        home: Admin
+        vehicle_option: Cài đặt lựa chọn xe
+        title: Chỉnh sửa cài đặt lựa chọn
+        edit: Chỉnh sửa

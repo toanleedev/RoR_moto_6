@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  host: 127.0.0.1
+  pool: 5
+  username: root
+  password: password
+  reconnect: false
+  encoding: utf8
+
+development:
+  <<: *default
+  database: moto_development

@@ -1,0 +1,15 @@
+#exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        #carouselExample.carousel.slide data-bs-ride="carousel" data-bs-interval="false"
+          .carousel-inner
+            - if @vehicle.vehicle_images.present?
+              - @vehicle.vehicle_images.each_with_index do |image, index|
+                .carousel-item class="#{index.zero? ? 'active' : ''}"
+                  = cl_image_tag(image.image_path, height: 400, class: "d-block mx-auto")
+      .modal-footer
+        button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+          | Close

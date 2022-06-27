@@ -1,0 +1,8 @@
+vi:
+  admin:
+    vehicle_options:
+      form:
+        key: Khóa
+        name_vi: Tên lựa chọn
+        name_en: Tên lựa chọn (Tiếng anh)
+        submit: Lưu

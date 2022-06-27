@@ -2,6 +2,20 @@ en:
   language:
     vi: 'Vietnamese'
     en: 'English'
+  number:
+    currency:
+      format:
+        format: '%n %u'
+        unit: 'VNĐ'
+        delimiter: ','
+        separator: '.'
+        precision: '.'
+  time:
+    formats:
+      default: '%FT%T'
+  image:
+    invalid: 'Must be a valid image format!'
+    min: 'Should be less than 3MB!'
   header:
     home: 'Home'
     about: 'About'
@@ -10,19 +24,22 @@ en:
     sign_out: 'Sign out'
     language: 'Language'
     language_path: 'US-Flag.png'
-  title:
-    sign_up: 'Sign up'
-    login: 'Login'
   button:
-    login_with_facebook: 'Login with Facebook'
-    login_with_google: 'Login with Google'
+
   users:
     title:
+      sign_up: 'Sign up'
+      login: 'Login'
       profile: 'My Profile'
+      address: 'My Addresses'
+      paper: 'My Papers'
+      new_address: 'New Address'
+      edit_address: 'Update Address'
+      order: 'My Order'
     sidebar:
       account: 'Account'
-      address: 'Address'
-      change_password: 'Change password'
+      address: 'Addresses'
+      paper: 'Papers'
       order: 'Order rental'
     form:
       name: 'Name'
@@ -42,6 +59,27 @@ en:
       remember: 'Remember me'
       forgot_password: 'Forgot your password?'
       current_password: 'Current Password'
+      update_password_message: "Leave blank if you don't want to change it"
       current_password_message: 'We need your current password to confirm your changes'
+      or: 'Or'
+      no_account_message: "Don't have an account?"
+      login_with_facebook: 'Log in with Facebook'
+      login_with_google: 'Log in with Google'
+      signup_with_facebook: 'Sign up with Facebook'
+      signup_with_google: 'Sign up with Google'
     action:
       update: 'Update account'
+      submit: 'Submit'
+      cancel: 'Cancel'
+  address:
+    action:
+      update: 'Update address'
+      create: 'Create address'
+  account:
+    papers:
+      index:
+        title: 'User paper'
+      edit:
+        title: 'Edit paper'
+      new:
+        title: 'New paper'

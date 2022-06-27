@@ -1,47 +1,22 @@
 vi:
-  language:
-    vi: 'Tiếng Việt'
-    en: 'Tiếng Anh'
-  header:
-    home: 'Trang chủ'
-    about: 'Giới thiệu'
-    rent: 'Thuê xe máy'
-    account: 'Tài khoản'
-    sign_out: 'Đăng xuất'
-    language: 'Ngôn ngữ'
-    language_path: 'VN-Flag.png'
-  title:
-    sign_up: 'Đăng ký'
-    login: 'Đăng nhập'
-  button:
-    login_with_facebook: 'Đăng nhập với Facebook'
-    login_with_google: 'Đăng nhập với Google'
-  users:
-    title:
-      profile: 'Hồ sơ của tôi'
-    sidebar:
-      account: 'Tài khoản'
-      address: 'Địa chỉ'
-      change_password: 'Đổi mật khẩu'
-      order: 'Đơn thuê'
-    form:
-      name: 'Tên'
-      email: 'Email'
-      first_name: 'Tên'
-      last_name: 'Họ'
-      phone_number: 'Số điện thoại'
-      birth: 'Ngày sinh'
-      gender:
-        title: 'Giới tính'
-        male: 'Nam'
-        female: 'Nữ'
-        other: 'Khác'
-      address: 'Địa chỉ'
-      password: 'Mật khẩu'
-      password_confirmation: 'Nhập lại mật khẩu'
-      remember: 'Nhớ mật khẩu'
-      forgot_password: 'Quên mật khẩu?'
-      current_password: 'Mật khẩu hiện tại'
-      current_password_message: 'Chúng tôi cần mật khẩu hiện tại của bạn để xác nhận các thay đổi'
-    action:
-      update: 'Cập nhật thông tin'
+  number:
+    currency:
+      format:
+        format: '%n %u'
+        unit: 'đồng'
+        separator: '.'
+        delimiter: ','
+        precision: '.'
+  time:
+    formats:
+      default: '%FT%T'
+  common:
+    or: Hoặc
+    and: Và
+  message:
+    success:
+      create: Tạo mới thành công
+      update: Cập nhật thành công
+    failure:
+      create: Tạo mới thất bại. Vui lòng thử lại.
+      update: Cập nhật thất bại. Vui lòng thử lại.

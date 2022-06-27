@@ -1,0 +1,7 @@
+vi:
+  shared:
+    sidebar:
+      account: 'Tài khoản'
+      address: 'Địa chỉ'
+      paper: 'Giấy tờ'
+      order: 'Danh sách chuyến'

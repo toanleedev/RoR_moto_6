@@ -3,11 +3,14 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title = full_title(yield(:title))
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
-  body
-    = render'layouts/header'
+    = stylesheet_link_tag "https://unpkg.com/aos@next/dist/aos.css"
+    = content_for :head
+    script src="https://unpkg.com/aos@next/dist/aos.js"
+  body class="#{params[:controller]}##{params[:action]}"
+    = render 'layouts/header'
     main.main
       = yield
       = toastr_flash

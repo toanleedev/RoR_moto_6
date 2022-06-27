@@ -1,0 +1,6 @@
+.col-md-6
+  = bootstrap_form_for([:admin, @vehicle_option], layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8") do |f|
+    = f.select :key, [[t('.brand'), 'BRAND'], [t('.type'), 'TYPE'], [t('.engine'), 'ENGINE']], {label: t('.key')}
+    = f.text_field :name_vi, label: t(".name_vi")
+    = f.text_field :name_en, label: t(".name_en")
+    = f.primary t(".submit")

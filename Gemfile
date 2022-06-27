@@ -24,6 +24,8 @@ gem 'bootstrap'
 
 gem 'bootstrap_form'
 
+gem 'bootstrap-table-rails'
+
 gem 'sprockets-rails'
 
 gem 'popper_js'
@@ -47,15 +49,27 @@ gem 'font-awesome-rails'
 # use ENV
 gem 'figaro'
 
+# upload image
+gem 'carrierwave'
+
+gem 'cloudinary'
+
+gem 'rubocop-rails'
+
+# use draw chart
+gem 'chartkick'
+gem 'groupdate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'rouge'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
+  gem 'web-console', '~> 4.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

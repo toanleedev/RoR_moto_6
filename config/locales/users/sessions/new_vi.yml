@@ -1,0 +1,13 @@
+vi:
+  users:
+    sessions:
+      new:
+        title: Đăng nhập
+        email: Email
+        password: Mật khẩu
+        remember: Lưu mật khẩu
+        forgot_password: Quên mật khẩu
+        submit: Đăng nhập
+        sign_in_google: Đăng nhập với Google
+        no_account_message: Chưa có tài khoản?
+        sign_up: Đăng ký

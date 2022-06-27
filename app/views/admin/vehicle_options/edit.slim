@@ -1,0 +1,14 @@
+- provide :title, t(".edit")
+
+= content_for :page_header
+  h2 = t ".edit"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item
+        = link_to t('.vehicle_option'), admin_vehicle_options_path
+      li.breadcrumb-item.active = t ".edit"
+.row
+  .col-md-12
+    = render 'form', vehicle_option: @vehicle_option

@@ -1,0 +1,18 @@
+.d-flex.align-items-center.mt-3.mb-3.pb-3.border-bottom
+  = avatar_for(current_user.photo_url)
+  span.fw-bold.ms-3 = current_user.full_name
+.user-sidebar
+  = fa_icon "user", class: 'user-sidebar__icon', style: 'width: 25px;color: #1F5CB8'
+  = link_to t(".account"), edit_user_registration_path, class: 'user-sidebar__link'
+.user-sidebar
+  = fa_icon "location-arrow", class: 'user-sidebar__icon', style: 'width: 25px;color: #009F75'
+  = link_to t(".address"), account_addresses_path, class: 'user-sidebar__link'
+.user-sidebar
+  = fa_icon "address-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #438eeb'
+  = link_to t(".paper"), account_papers_path, class: 'user-sidebar__link'
+.user-sidebar
+  = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
+  = link_to t(".order"), edit_user_registration_path, class: 'user-sidebar__link'
+.user-sidebar
+  = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+  = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'

@@ -1,0 +1,10 @@
+vi:
+  account:
+    addresses:
+      form:
+        province: 'Tỉnh/ Thành Phố'
+        district: 'Quận/ Huyện'
+        ward: 'Phường/ Xã'
+        street: Số nhà, Tên đường
+        submit: Lưu
+        cancel: Quay Lại

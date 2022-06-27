@@ -1,0 +1,13 @@
+vi:
+  layouts:
+    header:
+      home: 'Trang chủ'
+      about: 'Giới thiệu'
+      rent: 'Thuê xe máy'
+      account: 'Tài khoản'
+      sign_out: 'Đăng xuất'
+      sign_in: 'Đăng nhập'
+      sign_up: 'Đăng ký'
+      language_path: 'VN-Flag.png'
+      vi: 'Tiếng Việt'
+      en: 'Tiếng Anh'

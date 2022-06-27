@@ -1,0 +1,14 @@
+vi:
+  admin:
+    vehicle_options:
+      index:
+        title: Thông tin lựa chọn
+        home: Admin
+        vehicle_option: Cài đặt lựa chọn xe
+        new: Thêm mới
+        id: id
+        key: Khóa
+        name_vi: Tên lựa chọn
+        name_en: Tên lựa chọn (Tiếng anh)
+        action: Hành động
+        edit: Sửa

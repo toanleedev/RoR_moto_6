@@ -1,0 +1,21 @@
+nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+  .position-sticky.pt-3
+    ul.nav.flex-column
+      li.nav-item
+        = link_to admin_dashboard_path, class: "nav-link #{active_link("admin/admin")}" do
+          = fa_icon "home", class: 'me-2'
+          | Dashboard
+      li.nav-item
+        = link_to admin_users_path, class: "nav-link #{active_link("admin/users")}" do
+          = fa_icon "user", class: 'me-2'
+          | Users
+      li.nav-item
+        a class="nav-link" data-bs-toggle="collapse" data-bs-target="#vehicle_option_collapse" aria-controls="vehicle_option_collapse" aria-expanded="true"
+          = fa_icon "car", class: 'me-2'
+          = t ".vehicle"
+        .collapse.show#vehicle_option_collapse
+          ul.list-unstyled.fw-normal.small
+            li
+              = link_to t('.vehicle_option'), admin_vehicle_options_path, class: "ms-4 px-3 py-2 d-block text-decoration-none nav-link #{active_link("admin/vehicle_options")}"
+            li
+              = link_to t('.vehicle_brand'), admin_vehicle_brands_path, class: "ms-4 px-3 py-2 d-block text-decoration-none nav-link #{active_link("admin/vehicle_brands")}"

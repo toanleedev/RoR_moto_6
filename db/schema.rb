@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_22_094334) do
+ActiveRecord::Schema.define(version: 2022_06_26_140445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,14 @@ ActiveRecord::Schema.define(version: 2022_05_22_094334) do
     t.text "card_back_url"
     t.string "driver_number"
     t.text "driver_front_url"
-    t.text "driver_back_url"
-    t.boolean "is_verified", default: false
     t.datetime "verified_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_card_verified"
+    t.datetime "card_verified_at"
+    t.boolean "is_driver_verified"
+    t.datetime "driver_verified_at"
+    t.text "other_license_url"
     t.index ["user_id"], name: "index_papers_on_user_id"
   end
 
@@ -50,12 +53,7 @@ ActiveRecord::Schema.define(version: 2022_05_22_094334) do
     t.datetime "birth"
     t.string "phone"
     t.integer "gender"
-    t.string "activation_digest"
-    t.boolean "is_activated", default: false
-    t.datetime "activated_at"
     t.boolean "is_partner", default: false
-    t.string "remember_digest"
-    t.boolean "is_block", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_05_22_094334) do
     t.datetime "locked_at"
     t.string "provider"
     t.string "uid"
+    t.boolean "is_admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -90,16 +89,26 @@ ActiveRecord::Schema.define(version: 2022_05_22_094334) do
     t.index ["vehicle_id"], name: "index_vehicle_images_on_vehicle_id"
   end
 
+  create_table "vehicle_options", force: :cascade do |t|
+    t.string "key"
+    t.string "name_vi"
+    t.string "name_en"
+  end
+
   create_table "vehicles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "title"
     t.text "description"
-    t.string "brand"
-    t.string "type"
     t.decimal "price"
-    t.integer "status", default: 0, comment: "0 1 2 4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "brand_id"
+    t.bigint "type_id"
+    t.bigint "engine_id"
+    t.datetime "year_produce"
+    t.string "name"
+    t.index ["brand_id"], name: "index_vehicles_on_brand_id"
+    t.index ["engine_id"], name: "index_vehicles_on_engine_id"
+    t.index ["type_id"], name: "index_vehicles_on_type_id"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
@@ -107,4 +116,7 @@ ActiveRecord::Schema.define(version: 2022_05_22_094334) do
   add_foreign_key "papers", "users"
   add_foreign_key "vehicle_images", "vehicles"
   add_foreign_key "vehicles", "users"
+  add_foreign_key "vehicles", "vehicle_options", column: "brand_id"
+  add_foreign_key "vehicles", "vehicle_options", column: "engine_id"
+  add_foreign_key "vehicles", "vehicle_options", column: "type_id"
 end

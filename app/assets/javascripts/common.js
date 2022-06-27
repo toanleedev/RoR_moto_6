@@ -5,4 +5,5 @@ $(document).ready(function () {
       return new bootstrap.Toast(toastEl).show(); // No need for options; use the default options
     });
   });
+  AOS.init();
 });

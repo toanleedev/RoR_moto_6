@@ -1,0 +1,23 @@
+vi:
+  account:
+    papers:
+      index:
+        title: Thông tin giấy tờ
+        message_not_paper: 'Bạn chưa có thông tin giấy tờ, vui lòng tạo mới '
+        here: Tại đây
+        card_number: Số CMND/CCCD
+        card_front_url: Mặt trước CMND/CCCD
+        card_back_url: Mặt sau CMND/CCCD
+        driver_number: Số bằng lái xe
+        driver_front_url: Mặt trước bằng lái xe
+        submit: Lưu
+      new:
+        title: Cung cấp thông tin giấy tờ
+        message_not_paper: 'Bạn chưa có thông tin giấy tờ, vui lòng tạo mới '
+        here: Tại đây
+        card_number: Số CMND/CCCD
+        card_front_url: Mặt trước CMND/CCCD
+        card_back_url: Mặt sau CMND/CCCD
+        driver_number: Số bằng lái xe
+        driver_front_url: Mặt trước bằng lái xe
+        submit: Lưu

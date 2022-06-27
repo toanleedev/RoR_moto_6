@@ -1,0 +1,30 @@
+= bootstrap_form_for([:account, @vehicle]) do |f|
+  .row
+    .col-md-6
+      = f.select :brand_id, @vehicle_brands, {label: t('.vehicle_brand'), include_blank: t('.select_value')}
+      = f.text_field :name, label: t('.name')
+      = f.text_area :description, label: t('.description')
+      / = f.date_field :year_produce, label: t('.year_produce'), discard_day: true, discard_month: true, start_year: 2000, end_year: Time.now.year
+      = f.select :type_id, @vehicle_types, {label: t('.vehicle_type'), include_blank: t('.select_value')}
+      = f.select :engine_id, @vehicle_engines, {label: t('.vehicle_engine'), include_blank: t('.select_value')}
+    .col-md-6
+      = f.text_field :price, label: t('.price'), class: 'basicAutoComplete', autocomplete: "off"
+      = f.fields_for :images do |p|
+        = p.file_field :image_path, multiple: true, name: "images[image_path][]", onchange: "preview(event)"
+      - if @vehicle.vehicle_images.present?
+        .row#gallery
+          - @vehicle.vehicle_images.each_with_index do |image, index|
+            .col-md-4.col-sm-6.position-relative
+              = link_to account_vehicle_destroy_image_path(@vehicle, image.id),
+                method: 'delete', data: {confirm: t('.sure_delete')}, class: 'position-absolute' do
+                  = fa_icon 'trash'
+              div data-bs-toggle="modal" data-bs-target="#exampleModal"
+                = cl_image_tag(image.image_path, height: 120, width: 120, class: 'border mb-3',
+                  data: { bs_target: "#carouselExample", bs_slide_to: "#{index}"})
+  = f.primary t(".submit")
+= render 'modal'
+
+javascript:
+  function preview(event) {
+    //frame.src = URL.createObjectURL(event.target.files[0]);
+  }

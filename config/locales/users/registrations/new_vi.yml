@@ -1,0 +1,14 @@
+vi:
+  users:
+    registrations:
+      new:
+        title: Đăng ký
+        email: Email
+        first_name: Tên
+        last_name: Họ
+        password: Mật khẩu
+        password_confirmation: Xác nhận mật khẩu
+        submit: Đăng ký
+        sign_up_google: Đăng ký với Google
+        already_account: Đã có tài khoản?
+        sign_in: Đăng nhập

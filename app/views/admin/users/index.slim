@@ -1,0 +1,30 @@
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+= content_for :page_header
+  h2 = t ".users"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item.active = t ".dashboard"
+
+table.table.table-sm data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-checkbox-header="true"
+  thead
+    tr
+      th data-field="state" data-checkbox="true"
+      th scope="col" data-sortable="true" = t '.fullname'
+      th scope="col"  = t '.email'
+      th scope="col"  = t '.phone'
+      th scope="col"  = t '.birth'
+      th scope="col"  = t '.sign_in_count'
+      th scope="col"  = t '.is_partner'
+  tbody
+    - @users.each_with_index do |user, index|
+      tr
+        th
+        td = user.full_name
+        td = user.email
+        td = user.phone
+        td = user.birth.strftime("%F") unless user.birth.blank?
+        td = user.sign_in_count
+        td = user.is_partner

@@ -6,29 +6,29 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       span.navbar-toggler-icon
     #navbarText.collapse.navbar-collapse
       ul.navbar-nav.mb-2.mb-lg-0.align-items-center.ms-auto
-        = link_to t('header.home'), root_path, class: "nav-item nav-link"
-        = link_to t('header.rent'), root_path, class: "nav-item nav-link"
-        = link_to t('header.about'), root_path, class: "nav-item nav-link me-4"
+        = link_to t('.home'), root_path, class: "nav-item nav-link"
+        = link_to t('.rent'), root_path, class: "nav-item nav-link"
+        = link_to t('.about'), root_path, class: "nav-item nav-link me-3"
         - if user_signed_in?
           .dropdown
-            .dropdown-toggle.pointer#dropdownUser data-bs-toggle="dropdown"
-              = image_tag "#{current_user.photo_url || 'default-avatar.png'}", width: 40, class: 'rounded-circle'
-              span.ms-2 = current_user.full_name
+            .dropdown-toggle.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
+              = avatar_for(current_user.photo_url, 40)
+              span.m-2 = current_user.first_name
             ul.dropdown-menu.dropdown-menu-end aria-labelledby="dropdownUser"
               li
-                = link_to t("header.account"), edit_user_registration_path, class: "dropdown-item"
+                = link_to t(".account"), edit_user_registration_path, class: "dropdown-item"
               li
                 hr.dropdown-divider
               li
-                = link_to t("header.sign_out"), destroy_user_session_path, method: :delete, class: "dropdown-item"
+                = link_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "dropdown-item"
         - else
-          = link_to "#{t('title.login')}", new_user_session_path, class: "nav-item btn btn-outline-primary me-2"
-          = link_to "#{t('title.sign_up')}", new_user_registration_path, class: "nav-item btn btn-primary"
+          = link_to "#{t('.sign_in')}", new_user_session_path, class: "nav-item btn btn-outline-primary me-2"
+          = link_to "#{t('.sign_up')}", new_user_registration_path, class: "nav-item btn btn-primary"
         .nav-item.dropdown
           a#navbarDropdown.nav-link.dropdown-toggle data-bs-toggle="dropdown" href="#" role="button" 
-            = image_tag "#{t"header.language_path"}"
+            = image_tag "#{t".language_path"}"
           ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
             li
-              = link_to "#{t('language.en')}", {locale:"en"}, class: 'dropdown-item'
+              = link_to "#{t('.en')}", {locale:"en"}, class: 'dropdown-item'
             li
-               = link_to "#{t('language.vi')}", {locale:"vi"}, class: 'dropdown-item'
+               = link_to "#{t('.vi')}", {locale:"vi"}, class: 'dropdown-item'

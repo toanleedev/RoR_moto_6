@@ -30,3 +30,6 @@ AllCops:
     - 'bin/{rails,rake}'
     - 'test/**/*.rb'
     - 'config/**/*'
+
+Style/Documentation:
+  Enabled: false

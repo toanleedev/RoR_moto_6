@@ -1,0 +1,5 @@
+vi:
+  account:
+    vehicles:
+      edit:
+        title: Chỉnh sửa thông tin xe

@@ -1,0 +1,21 @@
+vi:
+  users:
+    registrations:
+      edit:
+        title: Cập nhật thông tin
+        email: Email
+        first_name: Tên
+        last_name: Họ
+        phone: Số điện thoại
+        birth: Ngày sinh
+        gender: Giới tính
+        male: Nam
+        female: Nữ
+        other: Khác
+        password: Mật khẩu
+        password_confirmation: Xác nhận mật khẩu
+        current_password: Mật khẩu hiện tại
+        update_password_message: Để trống nếu bạn không muốn thay đổi mật khẩu
+        current_password_message: Chúng tôi cần mật khẩu hiện tại của bạn để xác nhận các thay đổi
+        file_size_message: 'Kích thước file: tối đa 1MB'
+        submit: Lưu

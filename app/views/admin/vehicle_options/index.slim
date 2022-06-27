@@ -1,0 +1,45 @@
+- provide :title, t(".vehicle_option")
+
+= content_for :head
+  script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"
+
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+= content_for :page_header
+  h2 = t ".title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item.active = t ".vehicle_option"
+.row
+  .col-md-12
+    #toolbar
+      = link_to t('.new'), new_admin_vehicle_option_path, class: 'btn btn-primary'
+      button#remove.btn.btn-danger.ms-2 disabled=true
+        = fa_icon 'trash'
+    table#table
+      thead
+        tr
+          th data-field="state" data-checkbox="true"
+          th data-field="id"
+            = t '.id'
+          th data-field="key"
+            = t '.key'
+          th data-field="name_vi"
+            = t '.name_vi'
+          th data-field="name_en"
+            = t '.name_en'
+          th data-field="id" data-formatter="actionFormatter"
+            = t '.action'
+
+javascript:
+  function actionFormatter(e) {
+    return `<a href='vehicle_options/${e}/edit' class='btn btn-link'>
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href='vehicle_options/${e}' class='btn btn-link color-red' data-confirm="Are you sure?" data-method="delete">
+              <i class="fa fa-trash"></i>
+            </a>
+            `
+  }

@@ -1,0 +1,8 @@
+vi:
+  static_pages:
+    search:
+      title: Bạn cần thuê xe?
+      start_date: Ngày nhận xe
+      end_date: Ngày trả xe
+      submit: Tìm xe giá tốt
+      search: Chọn địa điểm

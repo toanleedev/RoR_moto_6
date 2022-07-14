@@ -8,3 +8,4 @@
 //= require chartkick
 //= require Chart.bundle
 //= require bootstrap-table/bootstrap-table
+//= require moment

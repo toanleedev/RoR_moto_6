@@ -1,1 +1,8 @@
-h1 Home page
+.background-wrapper
+  .container.position-relative
+    .row
+      .col-6.pt-5
+        h1.text-white.display-4.fw-bold = t ".title"
+        p.h4.text-white.text-muted = t ".sub_title"
+      .col-6
+        = render 'search'

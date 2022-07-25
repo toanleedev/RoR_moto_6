@@ -1,0 +1,5 @@
+vi:
+  searches:
+    vehicle:
+      price: '%{price}₫/<span class="fs-6">ngày</span>'
+      detail: Chi tiết

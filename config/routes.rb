@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     namespace :account do
-      resources :addresses
+      resources :addresses do
+        member do
+          patch 'default_address'
+        end
+      end
       resources :papers
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
@@ -30,5 +34,7 @@ Rails.application.routes.draw do
       end
       resources :vehicle_options
     end
+
+    resources :searches, path: 'search'
   end
 end

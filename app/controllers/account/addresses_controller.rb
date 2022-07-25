@@ -1,7 +1,7 @@
 module Account
   class AddressesController < ApplicationController
     layout 'account'
-    before_action :take_address, only: %i[edit update destroy]
+    before_action :take_address, only: %i[edit update destroy default_address]
     before_action :authenticate_user!
 
     def index
@@ -34,6 +34,17 @@ module Account
 
     def update
       if @address.update address_params
+        flash[:notice] = 'Update address success'
+        redirect_to account_addresses_path
+      else
+        flash[:alert] = 'Update address failure'
+        redirect_to request.referrer
+      end
+    end
+
+    def default_address
+      binding.pry
+      if @address.user.update(address_default_id: params[:id])
         flash[:notice] = 'Update address success'
         redirect_to account_addresses_path
       else

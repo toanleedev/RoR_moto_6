@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   before_save :downcase_email
   validate :avatar_size
   has_many :addresses, dependent: :destroy
+  belongs_to :address_default, class_name: 'Address'
   has_one :paper, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   validates :email, presence: true

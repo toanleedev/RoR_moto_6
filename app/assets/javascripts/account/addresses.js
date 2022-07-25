@@ -37,9 +37,13 @@ $(document).on('turbolinks:load', function () {
       success: function (response) {
         response.forEach((province) => {
           $('#address_province').append(
-            `<option value="${province.name.replace('Tỉnh ', '')}" data-code="${
-              province.code
-            }">${province.name.replace('Tỉnh ', '')}</option>`
+            `<option value="${province.name.replace(
+              /Tỉnh |Thành phố /g,
+              ''
+            )}" data-code="${province.code}">${province.name.replace(
+              /Tỉnh |Thành phố /g,
+              ''
+            )}</option>`
           );
         });
         if (userProvince) {

@@ -1,0 +1,10 @@
+vi:
+  searches:
+    form_search:
+      filter: Bộ lọc tìm kiếm
+      start_date: Từ ngày
+      end_date: Đến ngày
+      name: Nhập dòng xe, thương hiệu
+      brand: Chọn hãng xe
+      type: Chọn loại xe
+      submit: Tìm kiếm

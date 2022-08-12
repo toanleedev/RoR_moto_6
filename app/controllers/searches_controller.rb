@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
 
   def index
     @vehicles = SearchFilter.new(params).filter
+    @time_now = Time.new.strftime('%Y-%m-%dT%k:%M')
   end
 
   private

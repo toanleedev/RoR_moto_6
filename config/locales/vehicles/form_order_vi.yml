@@ -1,0 +1,5 @@
+vi:
+  vehicles:
+    form_order:
+      start_date: Ngày nhận xe
+      end_date: Ngày trả xe

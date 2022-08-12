@@ -2,7 +2,7 @@
 
 class AddDeviseToUsers < ActiveRecord::Migration[6.0]
   def self.up
-   :users do |t|
+    change_table :users do |t|
       ## Database change_table  authenticatable
       t.string :encrypted_password, null: false, default: ""
 

@@ -1,0 +1,48 @@
+= content_for :head do
+
+.sticky-top.top-20
+  = bootstrap_form_tag url: '/checkout/confirm', enforce_utf8: false do |f|
+    .row.mb-4
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 Thời gian cho thuê
+          .divider
+          .row
+            .col-md-6.position-relative
+              = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
+                data: {toggle: 'datetimepicker', target: '#start_date'}
+            .col-md-6.position-relative
+              = f.text_field :end_date, label: t('.end_date'), class: 'datetimepicker-input',
+                data: {toggle: 'datetimepicker', target: '#end_date'}
+    .row.mb-4
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 Dịch vụ tùy chọn
+          .divider
+    .row
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 Chi tiết giá
+          .divider
+          = f.submit "Đặt xe", class: 'w-100 btn btn-primary'
+javascript:
+  $(function () {
+    $('#start_date').datetimepicker({
+      locale: 'vi',
+      defaultDate: moment.now(),
+      minDate: moment(),
+      sideBySide: true,
+    });
+    $('#end_date').datetimepicker({
+      locale: 'vi',
+      useCurrent: false,
+      sideBySide: true,
+    });
+    $("#start_date").on("change.datetimepicker", function (e) {
+      $('#end_date').datetimepicker('minDate', e.date);
+    });
+    $("#end_date").on("change.datetimepicker", function (e) {
+      $('#start_date').datetimepicker('maxDate', e.date);
+    });
+  })
+  

@@ -41,5 +41,9 @@ Rails.application.routes.draw do
     namespace :checkout do
       post 'confirm', action: :confirm
     end
+    resources :orders
+    if Rails.env.production? || Rails.env.development?
+      get '*path' => redirect('/404.html')
+    end
   end
 end

@@ -31,4 +31,19 @@ module ApplicationHelper
       )
     end
   end
+
+  def vehicle_image(vehicle, size = 150, alt = 'vehicle image')
+    if vehicle.vehicle_images.exists?
+      cl_image_tag(
+        vehicle.vehicle_images.first.image_path,
+        height: size,
+        width: size,
+        crop: :fill,
+        class: 'rounded-start'
+      )
+    else
+      image_link = "https://via.placeholder.com/#{size}"
+      image_tag(image_link, alt: alt, class: 'img-fluid')
+    end
+  end
 end

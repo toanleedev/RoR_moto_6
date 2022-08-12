@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_26_140445) do
+ActiveRecord::Schema.define(version: 2022_07_27_152016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,33 @@ ActiveRecord::Schema.define(version: 2022_06_26_140445) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "count_rental_days"
+    t.decimal "amount", precision: 18
+    t.string "message"
+    t.integer "status", default: 0
+    t.string "confirmation_token"
+    t.boolean "is_confirmed", default: false
+    t.boolean "is_home_delivery", default: false
+    t.string "delivery_address"
+    t.boolean "is_prepaid", default: false
+    t.decimal "prepaid_discount", precision: 18
+    t.string "payment", default: "cash", null: false
+    t.string "payment_info"
+    t.boolean "is_paid", default: false
+    t.decimal "discount", precision: 18
+    t.bigint "vehicle_id", null: false
+    t.bigint "renter_id"
+    t.bigint "owner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_orders_on_owner_id"
+    t.index ["renter_id"], name: "index_orders_on_renter_id"
+    t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
   end
 
   create_table "papers", force: :cascade do |t|
@@ -75,6 +102,8 @@ ActiveRecord::Schema.define(version: 2022_06_26_140445) do
     t.string "provider"
     t.string "uid"
     t.boolean "is_admin"
+    t.bigint "address_default_id"
+    t.index ["address_default_id"], name: "index_users_on_address_default_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -113,7 +142,11 @@ ActiveRecord::Schema.define(version: 2022_06_26_140445) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "orders", "users", column: "owner_id"
+  add_foreign_key "orders", "users", column: "renter_id"
+  add_foreign_key "orders", "vehicles"
   add_foreign_key "papers", "users"
+  add_foreign_key "users", "addresses", column: "address_default_id"
   add_foreign_key "vehicle_images", "vehicles"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_options", column: "brand_id"

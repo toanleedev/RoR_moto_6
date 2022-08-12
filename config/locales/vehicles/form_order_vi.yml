@@ -3,3 +3,9 @@ vi:
     form_order:
       start_date: Ngày nhận xe
       end_date: Ngày trả xe
+      is_home_delivery: Giao xe tại nhà
+      unit_price: Đơn giá
+      rental_time: Thời gian thuê xe
+      total: Tổng
+      add_service: Dịch vụ tùy chọn
+      price_detail: Chi tiết giá

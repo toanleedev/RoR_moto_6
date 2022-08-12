@@ -1,22 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_action :set_locale
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update) do |u|
-      u.permit(USER_ATTRIBUTES)
-    end
-
-    devise_parameter_sanitizer.permit(
-      :sign_up,
-      keys: %i[
-        first_name
-        last_name
-        email
-        password
-        password_confirmation
-      ]
-    )
-
+    devise_parameter_sanitizer.permit(:account_update, keys: USER_ATTRIBUTES)
+    devise_parameter_sanitizer.permit(:sign_up, keys: USER_REGISTER_ATTRIBUTES)
+    devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
     # Delete the key value pairs from params hash if value is empty
     params.delete_if { |_key, value| value.blank? }
   end
@@ -35,9 +27,14 @@ class ApplicationController < ActionController::Base
     photo_url_cache
     remove_photo_url
   ].freeze
-  before_action :set_locale
-  protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  USER_REGISTER_ATTRIBUTES = %w[
+    first_name
+    last_name
+    email
+    password
+    password_confirmation
+  ].freeze
 
   private
 

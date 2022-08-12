@@ -1,10 +1,12 @@
 class CheckoutController < ApplicationController
   def index
-    @order_params = params
   end
 
   def confirm
+    # check params lai cho nay
     @vehicle_params = params
-    render 'index', locals: @vehicle_params
+    @order = Order.new
+    @vehicle = Vehicle.includes(:brand, :type, :engine).find_by(id: params[:vehicle_id])
+    render 'confirm', locals: { vehicle: @vehicle }, collection: @order
   end
 end

@@ -35,7 +35,6 @@
 #  address_default_id     :bigint
 #
 class User < ActiveRecord::Base
-  # :timeoutable
   devise :database_authenticatable,
          :confirmable,
          :registerable,
@@ -48,13 +47,13 @@ class User < ActiveRecord::Base
          omniauth_providers: %i[facebook google_oauth2]
   mount_uploader :photo_url, PictureUploader
   before_save :downcase_email
-  validate :avatar_size
   has_many :addresses, dependent: :destroy
   belongs_to :address_default, class_name: 'Address'
   has_one :paper, dependent: :destroy
   has_many :vehicles, dependent: :destroy
+
+  validate :avatar_size
   validates :email, presence: true
-  validates :phone, presence: true
   validates :first_name, presence: true,
                          length: { minimum: 2 }
   validates :last_name, presence: true,

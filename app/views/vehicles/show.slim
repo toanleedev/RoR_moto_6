@@ -1,3 +1,5 @@
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
 .bg-light
   .container
     .row.py-4.gx-4

@@ -9,3 +9,5 @@
 //= require Chart.bundle
 //= require bootstrap-table/bootstrap-table
 //= require moment
+//= require moment/vi.js
+//= require tempusdominus-bootstrap-4.js

@@ -32,6 +32,7 @@
 #  provider               :string
 #  uid                    :string
 #  is_admin               :boolean
+#  address_default_id     :bigint
 #
 class User < ActiveRecord::Base
   # :timeoutable

@@ -3,7 +3,7 @@
   .row
     .col-md-6
       = f.datetime_field :start_date, label: t('.start_date'),
-        value: params[:start_date] || @time_now
+        value: params[:start_date], min: @time_now
     .col-md-6
       = f.datetime_field :end_date, label: t('.end_date'),
         value: params[:end_date]

@@ -36,5 +36,10 @@ Rails.application.routes.draw do
     end
 
     resources :searches, path: 'search'
+    resources :vehicles, only: [:show]
+    # resources :checkout
+    namespace :checkout do
+      post 'confirm', action: :confirm
+    end
   end
 end

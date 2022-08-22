@@ -10,11 +10,13 @@ vi:
   date:
     formats:
       default: '%Y-%m-%d'
-      short: '%b %d'
-      long: '%B %d, %Y'
+      long: '%d %b, %Y'
+      short: '%d %b'
   time:
     formats:
-      default: '%FT%T'
+      default: '%d/%m/%Y %H:%M'
+      long: '%d/%m/%Y %H:%M'
+      short: '%d %b %H:%M'
   common:
     or: Hoặc
     and: Và

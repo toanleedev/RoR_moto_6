@@ -47,10 +47,12 @@ class User < ActiveRecord::Base
          omniauth_providers: %i[facebook google_oauth2]
   mount_uploader :photo_url, PictureUploader
   before_save :downcase_email
-  has_many :addresses, dependent: :destroy
   belongs_to :address_default, class_name: 'Address'
   has_one :paper, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :vehicles, dependent: :destroy
+  has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
+  has_many :rental_orders, class_name: 'Order', foreign_key: 'owner_id'
 
   validate :avatar_size
   validates :email, presence: true

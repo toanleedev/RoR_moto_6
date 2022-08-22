@@ -1,0 +1,16 @@
+vi:
+  account:
+    orders:
+      order:
+        title: Địa chỉ của tôi
+        show: Xem thông tin
+        contact: Liên hệ chủ xe
+        amount: 'Tổng số tiền: <span class="h4 text-primary">%{amount}₫</span>'
+        open: Chờ xác nhận
+        accepted: Đã xác nhận
+        processing: Đang thực hiện
+        pending: Chờ
+        completed: Hoàn thành
+        canceled: Đã hủy
+        refunding: Đang hoàn tiền
+        refunded: Đã hoàn tiền

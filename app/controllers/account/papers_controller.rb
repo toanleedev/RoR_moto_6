@@ -13,17 +13,17 @@ module Account
     def create
       paper = Paper.new paper_params
       if paper.save
-        flash[:notice] = 'Them thanh cong'
+        flash[:notice] = t('message.success.create')
       else
-        flash[:notice] = 'Them that bai'
+        flash[:alert] = t('message.failure.create')
       end
     end
 
     def update
       if current_user.paper.update paper_params
-        flash[:notice] = 'Cap nhat thanh cong'
+        flash[:notice] = t('message.success.update')
       else
-        flash[:notice] = 'Cap nhat that bai'
+        flash[:alert] = t('message.failure.update')
       end
       redirect_to request.referrer
     end

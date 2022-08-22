@@ -1,18 +1,24 @@
-.d-flex.align-items-center.mt-3.mb-3.pb-3.border-bottom
+.d-flex.align-items-center.mt-3
   = avatar_for(current_user.photo_url)
   span.fw-bold.ms-3 = current_user.full_name
-.user-sidebar
+.divider
+.user-sidebar class="#{active_class('registrations')}"
   = fa_icon "user", class: 'user-sidebar__icon', style: 'width: 25px;color: #1F5CB8'
   = link_to t(".account"), edit_user_registration_path, class: 'user-sidebar__link'
-.user-sidebar
+.user-sidebar class="#{active_class('account/addresses')}"
   = fa_icon "location-arrow", class: 'user-sidebar__icon', style: 'width: 25px;color: #009F75'
   = link_to t(".address"), account_addresses_path, class: 'user-sidebar__link'
-.user-sidebar
+.user-sidebar class="#{active_class('account/papers')}"
   = fa_icon "address-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #438eeb'
   = link_to t(".paper"), account_papers_path, class: 'user-sidebar__link'
-.user-sidebar
+.user-sidebar class="#{active_class('account/orders')}"
   = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
-  = link_to t(".order"), edit_user_registration_path, class: 'user-sidebar__link'
-.user-sidebar
+  = link_to t(".order"), account_orders_path, class: 'user-sidebar__link'
+.divider
+p.fw-bold = t('.partner')
+.user-sidebar class="#{active_class('account/rental_orders')}"
+  = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+  = link_to t(".rental_order"), account_rental_orders_path, class: 'user-sidebar__link'
+.user-sidebar class="#{active_class('account/vehicles')}"
   = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
   = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'

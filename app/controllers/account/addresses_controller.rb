@@ -43,7 +43,6 @@ module Account
     end
 
     def default_address
-      binding.pry
       if @address.user.update(address_default_id: params[:id])
         flash[:notice] = 'Update address success'
         redirect_to account_addresses_path

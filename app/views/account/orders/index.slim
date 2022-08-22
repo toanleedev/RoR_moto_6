@@ -1,0 +1,16 @@
+- provide :title, t(".title")
+
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+.nav.nav-tabs
+  li.nav-item
+    = link_to t('.all'), account_orders_path,
+      class: "nav-link #{params[:status].present? ? '' : 'active'}"
+  li.nav-item
+    = link_to t('.pending'), account_orders_path(status: 'pending'),
+      class: "nav-link #{params[:status] === 'pending' ? 'active' : ''}"
+  li.nav-item
+    = link_to t('.done'), account_orders_path(status: 'done'),
+      class: "nav-link #{params[:status] === 'done' ? 'active' : ''}"
+ul.list-group.list-group-flush
+  = render @orders

@@ -46,4 +46,8 @@ module ApplicationHelper
       image_tag(image_link, alt: alt, class: 'img-fluid')
     end
   end
+
+  def active_class controller
+    return 'active' if controller == params[:controller]
+  end
 end

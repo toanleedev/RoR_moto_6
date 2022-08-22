@@ -26,4 +26,18 @@
 #  updated_at         :datetime         not null
 #
 class Order < ActiveRecord::Base
+  belongs_to :owner, class_name: 'User'
+  belongs_to :renter, class_name: 'User'
+  belongs_to :vehicle
+
+  enum status: {
+    open: 0,
+    accepted: 1,
+    processing: 2,
+    pending: 3,
+    completed: 4,
+    canceled: 5,
+    refunding: 6,
+    refunded: 7
+  }
 end

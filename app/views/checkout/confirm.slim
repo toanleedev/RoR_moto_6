@@ -3,11 +3,14 @@
 .bg-light
   .container-sm.max-width-768
     = bootstrap_form_with(model: @order) do |f|
-      = f.hidden_field :start_date
-      = f.hidden_field :end_date
-      = f.hidden_field :count_rental_days
-      = f.hidden_field :vehicle_id
-      = f.hidden_field :end_date
+      = f.hidden_field :start_date, value: params[:start_date]
+      = f.hidden_field :end_date, value: params[:end_date]
+      = f.hidden_field :count_rental_days, value: params[:rental_time]
+      = f.hidden_field :vehicle_id, value: vehicle.id
+      = f.hidden_field :is_home_delivery, value: params[:is_home_delivery]
+      = f.hidden_field :owner_id, value: vehicle.user.id
+      = f.hidden_field :delivery_address
+      = f.hidden_field :amount, value: params[:total]
 
       .row.py-4.gx-4
         .col-md-12
@@ -35,27 +38,24 @@
             div
               h5.text-uppercase Phương thức thanh toán
               = f.form_group :payment
-                = f.radio_button :payment, 0, label: "Trả sau", checked: true
-                = f.radio_button :payment, 1, label: "Thanh toán qua Paypal"
-                = f.radio_button :payment, 2, label: "Thanh toán qua Momo"
+                = f.radio_button :payment, 'cash', label: "Trả sau", checked: true
+                = f.radio_button :payment, 'paypal', label: "Thanh toán qua Paypal"
+                = f.radio_button :payment, 'momo', label: "Thanh toán qua Momo"
             .divider
             div
               h5.text-uppercase Chi tiết giá
               .divider
               .price-row
-                = f.hidden_field :unit_price, value: vehicle.price
                 span = t('.unit_price')
                 span = vehicle.price
               .price-row.is_home_delivery_price_js style="display: none"
                 span = t('.is_home_delivery')
                 span 50000
               .price-row.text-muted
-                = f.hidden_field :rental_time
                 span = t('.rental_time')
                 span.rental_time_js ×#{params[:rental_time]} ngày
               .divider
               .price-row.mb-3
-                = f.hidden_field :amount
                 span = t('.total')
                 span #{params[:total]}
               .price-row.mb-3

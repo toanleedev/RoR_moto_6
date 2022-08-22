@@ -22,16 +22,18 @@ Rails.application.routes.draw do
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
+      resources :orders do
+        member do
+          patch 'cancel'
+        end
+      end
+      resources :rental_orders
     end
 
     get '/admin', to: redirect('/admin/dashboard')
     namespace :admin do
       get 'dashboard', to: 'admin#index'
       resources :users
-      scope :options do
-        resources :vehicle_brands
-        resources :vehicle_types
-      end
       resources :vehicle_options
     end
 

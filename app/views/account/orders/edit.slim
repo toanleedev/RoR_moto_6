@@ -1,0 +1,28 @@
+- provide :title, t(".title")
+= content_for :head do
+  = javascript_include_tag 'orders', 'data-turbolinks-track': 'reload'
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+
+= bootstrap_form_with(model: [:account, @order], layout: :horizontal, label_col: "col-md-3", control_col: "col-md-9") do |f|
+  .row.mb-3
+    .col-2
+      = vehicle_image(@order.vehicle)
+    .col-10
+      p.fw-bold = vehicle_title(@order.vehicle)
+      p = @order.vehicle.price
+  = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
+    data: {toggle: 'datetimepicker', target: '#start_date', init: h(@order.start_date)},
+    autocomplete: "off", value: '', id: 'start_date', wrapper: {class: 'mb-3 position-relative'}
+  = f.text_field :end_date, label: t('.end_date'), class: 'datetimepicker-input',
+    data: {toggle: 'datetimepicker', target: '#end_date', init: h(@order.end_date)},
+    autocomplete: "off", value: '', id: 'end_date', wrapper: {class: 'mb-3 position-relative'}
+  = f.form_group do
+    = f.check_box :is_home_delivery, label: t('.is_home_delivery')
+  = f.text_area :delivery_address, label: t('.delivery_address'), wrapper: {class: 'mb-3 delivery_address_js'}
+  = f.static_control :count_rental_days, label: t('.count_rental_days')
+  = f.static_control :amount, label: t('.amount')
+  = f.hidden_field :vehicle_price, value: @order.vehicle.price
+  = f.form_group do
+    = f.submit t('.submit'), class: 'btn btn-primary me-2'
+    = link_to t('.back'), :back, class: 'btn btn-outline-primary'

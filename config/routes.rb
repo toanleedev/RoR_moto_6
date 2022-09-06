@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get 'dashboard', to: 'admin#index'
       resources :users
       resources :vehicle_options
+      resources :orders
     end
 
     resources :searches, path: 'search'

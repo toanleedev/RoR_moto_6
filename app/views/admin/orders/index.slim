@@ -1,0 +1,60 @@
+- provide :title, t(".title")
+
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+= content_for :page_header
+  h2 = t ".title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item.active = t ".vehicle_option"
+.row
+  .col-md-12
+    #toolbar
+      / = link_to t('.new'), new_admin_vehicle_option_path, class: 'btn btn-primary'
+      button#remove.btn.btn-danger.ms-2 disabled=true
+        = fa_icon 'trash'
+    table#table
+      thead
+        tr
+          th data-field="state" data-checkbox="true"
+          th data-field="renter_id" data-formatter="userFormat"
+            = t '.renter_id'
+          th data-field="owner_id" data-formatter="userFormat"
+            = t '.owner_id'
+          th data-field="vehicle_id"
+            = t '.vehicle_id'
+          th data-field="start_date" data-formatter="dateFormat"
+            = t '.start_date'
+          th data-field="end_date" data-formatter="dateFormat"
+            = t '.end_date'
+          th data-field="count_rental_days"
+            = t '.days'
+          th data-field="is_home_delivery"
+            = t '.is_home_delivery'
+          th data-field="payment"
+            = t '.payment'
+          th data-field="amount"
+            = t '.amount'
+          th data-field="status" data-formatter="statusFormat"
+            = t '.status'
+  = render 'canvas'
+
+javascript:
+  function userFormat(value) {
+    return `
+    <a class="link-primary pointer user_canvas_js" data-id="${value}"
+      data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
+      ${value}
+    </a>`
+  }
+  function dateFormat(value) {
+    return moment(value).format('DD/MM/YYYY HH:mm')
+  }
+
+  function statusFormat(value) {
+    return `<span class="badge bg-primary">${value}</span>`
+  }
+

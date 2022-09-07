@@ -22,6 +22,21 @@ $(document).on('turbolinks:load', function () {
   });
 
   function renderCanvasInfo(data) {
-    $('.canvas_name').html(data.first_name);
+    var canvasInfo = $('.canvas-info-js');
+
+    const htmls = `
+      <div>
+        <p>${data.full_name}</p>
+        <p>${data.email}</p>
+        <p>${data.phone}</p>
+        <p>Số lần đăt: </p>
+        <p>Số xe sở hữu: </p>
+        <p></p>
+
+        <a class="btn btn-primary" href="/admin/users/${data.id}">Xem chi tiết</a>
+      </div>
+    `
+    
+    canvasInfo.html(htmls)
   }
 });

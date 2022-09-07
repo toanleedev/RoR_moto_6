@@ -62,10 +62,13 @@ gem 'groupdate'
 
 gem 'ransack'
 
+# Pagination
 gem 'kaminari'
 
 gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails'
+
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

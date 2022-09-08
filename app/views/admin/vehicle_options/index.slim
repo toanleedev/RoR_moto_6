@@ -1,9 +1,7 @@
 - provide :title, t(".vehicle_option")
 
-= content_for :head
-  script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"
-
 = content_for :head do
+  script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
 = content_for :page_header
   h2 = t ".title"

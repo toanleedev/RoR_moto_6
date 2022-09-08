@@ -2,6 +2,8 @@
 
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
+  link href="https://unpkg.com/bootstrap-table@1.21.0/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet"
 = content_for :page_header
   h2 = t ".title"
   nav
@@ -39,6 +41,8 @@
             = t '.amount'
           th data-field="status" data-formatter="statusFormat"
             = t '.status'
+          th data-field="id" data-formatter="actionFormatter"
+            = t '.action'
   = render 'canvas'
 
 javascript:
@@ -58,3 +62,9 @@ javascript:
     return `<span class="badge bg-primary">${value}</span>`
   }
 
+  function actionFormatter(e) {
+    return `
+      <a class='btn btn-link'>
+        <i class="fa fa-edit"></i>
+      </a>`
+  }

@@ -4,6 +4,8 @@ $(document).on('turbolinks:load', function () {
     pagination: true,
     search: true,
     toolbar: '#toolbar',
+    fixedColumns: true,
+    fixedRightNumber: +2,
   });
   //
   $(document).on('click', '.user_canvas_js', async function () {
@@ -28,15 +30,11 @@ $(document).on('turbolinks:load', function () {
       <div>
         <p>${data.full_name}</p>
         <p>${data.email}</p>
-        <p>${data.phone}</p>
-        <p>Số lần đăt: </p>
-        <p>Số xe sở hữu: </p>
-        <p></p>
 
         <a class="btn btn-primary" href="/admin/users/${data.id}">Xem chi tiết</a>
       </div>
-    `
-    
-    canvasInfo.html(htmls)
+    `;
+
+    canvasInfo.html(htmls);
   }
 });

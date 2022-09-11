@@ -33,7 +33,7 @@ module ApplicationHelper
   end
 
   def vehicle_image(vehicle, size = 150, alt = 'vehicle image')
-    if vehicle.vehicle_images.exists?
+    if vehicle.vehicle_images.any?
       cl_image_tag(
         vehicle.vehicle_images.first.image_path,
         height: size,
@@ -47,7 +47,19 @@ module ApplicationHelper
     end
   end
 
-  def active_class controller
+  def active_class(controller)
     return 'active' if controller == params[:controller]
+  end
+
+  def custom_account_order_path(is_rental_page = nil, status = nil)
+    if is_rental_page.nil?
+      account_orders_path
+
+      account_orders_path(status: status) if status.present?
+    else
+      account_rental_orders_path
+
+      account_rental_orders_path(status: status) if status.present?
+    end
   end
 end

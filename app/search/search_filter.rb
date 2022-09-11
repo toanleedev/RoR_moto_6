@@ -19,19 +19,19 @@ class SearchFilter < BaseFilter
       records =
         records.joins(user: [:address_default]).where('addresses.province LIKE ?', "%#{@province}%")
     end
-    if @name.present?
+    if @name.present? # a long comment that makes it too long
       records = records.where('name ILIKE ?', "%#{@name}%")
     end
 
-    if @brand.present?
+    if @brand.present? # a long comment that makes it too long
       records = records.where(brand_id: @brand)
     end
 
-    if @type.present?
+    if @type.present? # a long comment that makes it too long
       records = records.where(type_id: @type)
     end
 
-    if @engine.present?
+    if @engine.present? # a long comment that makes it too long
       records = records.where(engine_id: @engine)
     end
 

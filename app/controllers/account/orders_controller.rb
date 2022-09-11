@@ -3,7 +3,7 @@ module Account
     before_action :set_order, only: %i[edit show update cancel]
 
     def index
-      @orders = current_user.orders.includes(:vehicle).order('orders.created_at DESC')
+      @orders = OrdersFilter.new(params, current_user).filter
     end
 
     def cancel

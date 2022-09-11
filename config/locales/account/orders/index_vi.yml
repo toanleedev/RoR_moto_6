@@ -4,5 +4,9 @@ vi:
       index:
         title: Danh sách chuyến
         all: Tất cả
-        pending: Chờ
+        open: Chờ xác nhận
+        accepted: Đã xác nhận
+        pending: Hoãn
+        processing: Đang tiến hành
         done: Hoàn thành
+        cancel: Đã hủy

@@ -6,7 +6,7 @@ class BaseFilter
 
   attr_reader :page, :per_page
 
-  def initialize(options = {})
+  def initialize(options = {}, current_user)
     @page = [options[:page].to_i, DEFAULT_PAGE].find(&:positive?)
     @per_page = [options[:per_page].to_i, DEFAULT_PER_PAGE].find(&:positive?)
   end

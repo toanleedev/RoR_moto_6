@@ -18,7 +18,7 @@ vi:
         open: Chờ xác nhận
         accepted: Đã xác nhận
         processing: Đang thực hiện
-        pending: Chờ
+        pending: Hoãn lại
         completed: Hoàn thành
         canceled: Đã hủy
         refunding: Đang hoàn tiền

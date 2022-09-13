@@ -8,5 +8,6 @@ vi:
         accepted: Đã xác nhận
         pending: Hoãn
         processing: Đang tiến hành
-        done: Hoàn thành
-        cancel: Đã hủy
+        canceled: Đã hủy
+        completed: Hoàn tất
+        empty_message: Không có dữ liệu để hiển thị

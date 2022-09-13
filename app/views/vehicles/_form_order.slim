@@ -6,7 +6,7 @@
     .row.mb-4
       .col
         .bg-white.p-3.shadow-sm.rounded
-          h4 Thời gian cho thuê
+          h4 = t('.form_title')
           .divider
           .row
             .col-md-6.position-relative
@@ -22,7 +22,9 @@
         .bg-white.p-3.shadow-sm.rounded
           h4 = t('.add_service')
           .divider
-          = f.check_box :is_home_delivery, label: t('.is_home_delivery')
+          = f.check_box :is_home_delivery, label: t('.is_home_delivery'), checked: true
+          = f.text_area :delivery_address, label: t('.delivery_address'),
+            wrapper: {class: 'mb-3 delivery_address_js'}
     .row
       .col
         .bg-white.p-3.shadow-sm.rounded
@@ -45,4 +47,4 @@
             span = t('.total')
             span.total_js 0
           .divider
-          = f.submit "Đặt xe", class: 'w-100 btn btn-primary'
+          = f.submit t('.submit'), class: 'w-100 btn btn-primary'

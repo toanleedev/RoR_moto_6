@@ -2,7 +2,7 @@
 
 class BaseFilter
   DEFAULT_PAGE = 1
-  DEFAULT_PER_PAGE = 20
+  DEFAULT_PER_PAGE = 10
 
   attr_reader :page, :per_page
 

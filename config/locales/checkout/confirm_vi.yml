@@ -1,0 +1,9 @@
+vi:
+  checkout:
+    confirm:
+      unit_price: Đơn giá
+      is_home_delivery: Giao xe tại nhà
+      rental_time: Số ngày thuê
+      submit: Hoàn tất đặt xe
+      amount: Tổng tiền
+      deposit: Cọc trước

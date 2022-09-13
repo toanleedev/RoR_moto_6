@@ -34,8 +34,8 @@ class Order < ActiveRecord::Base
     open: 0,
     accepted: 1,
     processing: 2,
-    pending: 3,
-    completed: 4,
+    completed: 3,
+    pending: 4,
     canceled: 5,
     refunding: 6,
     refunded: 7

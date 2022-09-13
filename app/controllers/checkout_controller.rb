@@ -1,5 +1,6 @@
 class CheckoutController < ApplicationController
-  before_action :get_vehicle
+  before_action :set_vehicle
+  before_action :authenticate_user!
 
   def confirm
     # check params lai cho nay
@@ -10,7 +11,7 @@ class CheckoutController < ApplicationController
 
   private
 
-  def get_vehicle
+  def set_vehicle
     @vehicle = Vehicle.includes(:brand, :type, :engine, :user)
                       .find_by(id: params[:vehicle_id])
   end

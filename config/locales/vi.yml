@@ -27,3 +27,10 @@ vi:
     failure:
       create: Tạo mới thất bại. Vui lòng thử lại.
       update: Cập nhật thất bại. Vui lòng thử lại.
+  views:
+    pagination:
+      first: '« Đến đầu'
+      last: 'Đến cuối »'
+      previous: '‹ Trang trước'
+      next: 'Trang sau ›'
+      truncate: '…'

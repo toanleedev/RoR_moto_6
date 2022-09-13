@@ -9,7 +9,7 @@
       = f.hidden_field :vehicle_id, value: vehicle.id
       = f.hidden_field :is_home_delivery, value: params[:is_home_delivery]
       = f.hidden_field :owner_id, value: vehicle.user.id
-      = f.hidden_field :delivery_address
+      = f.hidden_field :delivery_address, value: params[:delivery_address]
       = f.hidden_field :amount, value: params[:total]
 
       .row.py-4.gx-4
@@ -33,7 +33,7 @@
                   span #{params[:start_date]} ➜ #{params[:end_date]}
                 li
                   span.fw-bold Giao xe: 
-                  span Nhận xe tại đại lý
+                  span = params[:delivery_address].presence || 'Nhận xe tại đại lý'
             .divider
             div
               h5.text-uppercase Phương thức thanh toán
@@ -56,17 +56,10 @@
                 span.rental_time_js ×#{params[:rental_time]} ngày
               .divider
               .price-row.mb-3
-                span = t('.total')
+                span = t('.amount')
                 span #{params[:total]}
               .price-row.mb-3
                 span = t('.deposit')
                 span #{params[:total].to_i*0.3}
 
-              = f.submit "Đặt xe", class: 'w-100 btn btn-primary'
-          / .bg-white.p-3.shadow-sm.rounded
-          /   h4 = t('.price_detail')
-          /   .divider
-            
-        
-
-        
+              = f.submit t('.submit'), class: 'w-100 btn btn-primary'

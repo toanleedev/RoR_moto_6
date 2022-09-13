@@ -34,12 +34,15 @@ $(document).on('turbolinks:load', function () {
     renderRentalTime();
     renderTotal();
   });
+
   $('#is_home_delivery').change(function () {
     if (this.checked) {
-      $('.is_home_delivery_price_js').show();
+      $('.delivery_address_js').show();
+      // $('.is_home_delivery_price_js').show();
       renderTotal();
     } else {
-      $('.is_home_delivery_price_js').hide();
+      $('.delivery_address_js').hide();
+      // $('.is_home_delivery_price_js').hide();
       renderTotal();
     }
   });
@@ -48,8 +51,9 @@ $(document).on('turbolinks:load', function () {
     var startDate = $('#start_date').data('datetimepicker').date();
     var endDate = $('#end_date').data('datetimepicker').date();
     var dateDiff = endDate.diff(startDate, 'days', false);
-    var dateHour = (endDate - startDate) / 36e5 / 24;
-    // debugger;
+
+    if (dateDiff === 0) dateDiff = 1;
+
     $('.rental_time_js').html(`x${dateDiff} ngày`);
     $('input[name="rental_time"]').val(dateDiff);
     renderTotal();

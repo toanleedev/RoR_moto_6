@@ -5,5 +5,12 @@ $(document).ready(function () {
       return new bootstrap.Toast(toastEl).show(); // No need for options; use the default options
     });
   });
+  $(document).on('turbolinks:click', function () {
+    $('.spinner').show();
+  });
+
+  $(document).on('turbolinks:load', function () {
+    $('.spinner').hide();
+  });
   AOS.init();
 });

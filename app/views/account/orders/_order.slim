@@ -13,9 +13,9 @@ li.list-group-item.mb-3.shadow-sm
   .divider
   .text-end
     p = raw t('.amount', amount: order.amount)
-    .div
-      - if params[:controller] == 'account/orders'
-        = link_to t('.show'), account_order_path(order), class: 'btn btn-primary me-2'
-      - else
-        = link_to t('.show'), account_rental_order_path(order), class: 'btn btn-primary me-2'
+  .d-flex.justify-content-end.gap-2
+    - unless @is_rental_page
+      = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
       span.btn.btn-outline-primary = t('.contact')
+    - else
+      = link_to t('.show'), account_rental_order_path(order), class: 'btn btn-primary'

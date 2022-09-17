@@ -11,26 +11,6 @@ module Account
       save_order @order
     end
 
-    def accept
-      @order.status = :accepted
-      save_order @order
-    end
-
-    def processing
-      @order.status = :processing
-      save_order @order
-    end
-
-    def completed
-      @order.status = :completed
-      save_order @order
-    end
-
-    def pending
-      @order.status = :pending
-      save_order @order
-    end
-
     private
 
     def set_order
@@ -40,7 +20,7 @@ module Account
     def save_order(order)
       if order.save
         flash[:notice] = t('message.success.update')
-        redirect_to account_orders_path
+        redirect_to account_order_path(order)
       else
         flash[:alert] = t('message.failure.update')
         redirect_to request.referrer

@@ -13,7 +13,16 @@ class OrdersFilter < BaseFilter
   def filter
     records = @current_user.orders.includes(:vehicle, vehicle: [:vehicle_images])
 
-    records = records.where(status: status) if status.present?
+    if status.present?
+      case status
+      when 'coming'
+        records = records.where.not(status: %i[completed canceled])
+      when 'completed'
+        records = records.where(status: :completed)
+      when 'canceled'
+        records = records.where(status: :canceled)
+      end
+    end
 
     records.order(created_at: :desc).page(@page).per(@per_page)
   end

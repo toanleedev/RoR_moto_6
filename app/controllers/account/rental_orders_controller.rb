@@ -1,6 +1,6 @@
 module Account
   class RentalOrdersController < ::OrdersController
-    before_action :set_order, only: %i[edit show update cancel]
+    before_action :set_order, except: %i[index create]
     before_action :set_is_rental_page
 
     def index
@@ -16,6 +16,26 @@ module Account
       render 'account/orders/edit'
     end
 
+    def cancel
+      @order.status = :canceled
+      save_order @order
+    end
+
+    def accept
+      @order.status = :accepted
+      save_order @order
+    end
+
+    def processing
+      @order.status = :processing
+      save_order @order
+    end
+
+    def completed
+      @order.status = :completed
+      save_order @order
+    end
+
     private
 
     def set_order
@@ -24,6 +44,16 @@ module Account
 
     def set_is_rental_page
       @is_rental_page = true
+    end
+
+    def save_order(order)
+      if order.save
+        flash[:notice] = t('message.success.update')
+        redirect_to account_rental_order_path(order)
+      else
+        flash[:alert] = t('message.failure.update')
+        redirect_to request.referrer
+      end
     end
   end
 end

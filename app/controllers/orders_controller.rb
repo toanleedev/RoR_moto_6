@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     if order.save
       flash[:notice] = t('message.success.create')
       redirect_to root_path
+      # redirect_to order/complete
     else
       flash[:alert] = t('message.failure.create')
     end
@@ -20,6 +21,7 @@ class OrdersController < ApplicationController
     if @order.update order_update_params
       flash[:notice] = t('message.success.update')
       redirect_to account_order_path(@order)
+      # rental_order update bi loi
     else
       flash[:alert] = t('message.failure.update')
       redirect_to request.referrer

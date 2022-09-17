@@ -25,13 +25,16 @@ Rails.application.routes.draw do
       resources :orders do
         member do
           patch 'cancel'
+        end
+      end
+      resources :rental_orders do 
+        member do
+          patch 'cancel'
           patch 'accept'
           patch 'processing'
           patch 'completed'
-          patch 'pending'
         end
       end
-      resources :rental_orders
     end
 
     get '/admin', to: redirect('/admin/dashboard')

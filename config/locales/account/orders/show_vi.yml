@@ -17,9 +17,11 @@ vi:
         confirm_cancel: Bạn có muốn hủy đơn hàng không?
         open: Chờ xác nhận
         accepted: Đã xác nhận
-        processing: Đang thực hiện
+        processing: Đang tiến hành
         pending: Hoãn lại
         completed: Hoàn thành
         canceled: Đã hủy
         refunding: Đang hoàn tiền
         refunded: Đã hoàn tiền
+        start_process: Đã giao xe
+        accept: Xác nhận đơn

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       end
     end
 
-    get '/admin', to: redirect('/admin/dashboard')
+    get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       get 'dashboard', to: 'admin#index'
       resources :users

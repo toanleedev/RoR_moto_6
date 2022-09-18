@@ -1,0 +1,13 @@
+en:
+  vehicles:
+    show:
+      description: Description
+      address: Address
+      procedure: Procedure
+      paper_verify: Documents only need to be verified (vehicle owner does not keep)
+      identity_card: Identity card
+      license: License
+      collateral: Collateral (retained by car owners)
+      deposit: Deposit from VND 800,000 to VND 1 million
+      accept_payment: ACCEPT PAYMENT
+      postpaid: Postpaid

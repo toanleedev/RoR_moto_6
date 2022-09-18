@@ -1,0 +1,8 @@
+en:
+  admin:
+    vehicle_options:
+      form:
+        key: Key
+        name_vi: Name option
+        name_en: Name option (English)
+        submit: Submit

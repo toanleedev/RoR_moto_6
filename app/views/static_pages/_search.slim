@@ -1,7 +1,7 @@
 .bg-white.mt-5.p-3.rounded
   = bootstrap_form_tag url: '/search', method: 'GET', enforce_utf8: false do |f|
     h3.text-center = t ".title"
-    = f.select :province, [["Đà Nẵng", "Đà Nẵng"]], { include_blank: t('.search'),
+    = f.select :province, [["Đà Nẵng", "Đà Nẵng"]], { include_blank: t('.select_holder'),
       hide_label: true, selected: params[:province], wrapper: { class: 'has-warning'}},
       { class: "selectpicker" }
     .row

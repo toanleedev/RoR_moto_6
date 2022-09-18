@@ -1,0 +1,10 @@
+en:
+  searches:
+    form_search:
+      filter: Search Filters
+      start_date: Pick-up date
+      end_date: Drop-off Date
+      name: Enter model, brand
+      brand: Select brand
+      type: Select model
+      submit: Search

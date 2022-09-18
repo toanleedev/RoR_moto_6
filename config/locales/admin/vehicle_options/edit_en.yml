@@ -1,0 +1,8 @@
+en:
+  admin:
+    vehicle_options:
+      edit:
+        home: Admin
+        vehicle_option: Vehicle selection settings
+        title: Edit selection settings
+        edit: Edit

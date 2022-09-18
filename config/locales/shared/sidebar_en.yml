@@ -1,0 +1,10 @@
+en:
+  shared:
+    sidebar:
+      account: Account
+      address: My Address
+      paper: License
+      order: Orders
+      rental_order: Manage Rental Orders
+      vehicles: Manage Vehicles
+      partner: Partner

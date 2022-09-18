@@ -1,0 +1,5 @@
+en:
+  searches:
+    vehicle:
+      price: '%{price}VND/<span class="fs-6">day</span>'
+      detail: Detail

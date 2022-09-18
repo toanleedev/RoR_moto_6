@@ -1,0 +1,6 @@
+en:
+  account:
+    addresses:
+      index:
+        title: My address
+        add_address: New address

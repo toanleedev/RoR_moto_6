@@ -36,8 +36,6 @@ class Order < ActiveRecord::Base
     processing: 2,
     completed: 3,
     pending: 4,
-    canceled: 5,
-    refunding: 6,
-    refunded: 7
+    canceled: 5
   }
 end

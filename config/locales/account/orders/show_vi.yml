@@ -7,10 +7,14 @@ vi:
         start_date: Từ ngày
         end_date: Đến ngày
         count_rental_days: Tổng số ngày thuê
+        delivery_address: Địa chỉ nhận xe
         payment: Phương thức thanh toán
         amount: Tổng cộng
         update: Cập nhật thông tin
         cancel: Hủy đơn
+        start_process: Đã giao xe
+        end_process: Đã trả xe
+        accept: Xác nhận đơn
         cash: Tiền mặt
         paypal: Paypal
         momo: MOMO
@@ -18,10 +22,5 @@ vi:
         open: Chờ xác nhận
         accepted: Đã xác nhận
         processing: Đang tiến hành
-        pending: Hoãn lại
         completed: Hoàn thành
         canceled: Đã hủy
-        refunding: Đang hoàn tiền
-        refunded: Đã hoàn tiền
-        start_process: Đã giao xe
-        accept: Xác nhận đơn

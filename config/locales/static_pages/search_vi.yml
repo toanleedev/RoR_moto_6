@@ -5,4 +5,4 @@ vi:
       start_date: Ngày nhận xe
       end_date: Ngày trả xe
       submit: Tìm xe giá tốt
-      search: Chọn địa điểm
+      select_holder: Chọn địa điểm

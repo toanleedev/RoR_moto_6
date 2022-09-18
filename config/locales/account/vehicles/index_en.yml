@@ -1,0 +1,6 @@
+en:
+  account:
+    vehicles:
+      index:
+        title: My vehicles
+        new: New vehicle

@@ -2,7 +2,6 @@ vi:
   account:
     orders:
       order:
-        title: Địa chỉ của tôi
         show: Xem thông tin
         contact: Liên hệ chủ xe
         amount: 'Tổng số tiền: <span class="h4 text-primary">%{amount}₫</span>'
@@ -12,5 +11,3 @@ vi:
         pending: Chờ
         completed: Hoàn thành
         canceled: Đã hủy
-        refunding: Đang hoàn tiền
-        refunded: Đã hoàn tiền

@@ -1,0 +1,13 @@
+en:
+  account:
+    papers:
+      index:
+        title: License information
+        message_not_paper: You do not have a license, please create a new one
+        here: Here
+        card_number: Identity Card
+        card_front_url: ID card front
+        card_back_url: Back of ID card
+        driver_number: Driver's license number
+        driver_front_url: Driver's license front
+        submit: Save

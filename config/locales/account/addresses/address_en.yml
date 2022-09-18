@@ -1,0 +1,7 @@
+en:
+  account:
+    addresses:
+      address:
+        edit: Edit
+        delete: Delete
+        default: Address default

@@ -1,0 +1,14 @@
+en:
+  account:
+    orders:
+      index:
+        title: Booking List
+        all: All
+        open: Opening
+        accepted: Accepted
+        pending: Pending
+        processing: Processing
+        canceled: Canceled
+        completed: Completed
+        coming: Coming
+        empty_message: There is no data to show

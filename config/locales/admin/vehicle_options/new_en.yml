@@ -1,0 +1,8 @@
+en:
+  admin:
+    vehicle_options:
+      new:
+        home: Admin
+        vehicle_option: Options Setting
+        title: Options Setting
+        new: Add new

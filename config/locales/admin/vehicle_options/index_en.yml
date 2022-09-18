@@ -1,0 +1,14 @@
+en:
+  admin:
+    vehicle_options:
+      index:
+        title: Vehicle Options Setting
+        home: Admin
+        vehicle_option: Vehicle Options Setting
+        new: Add new
+        id: id
+        key: Key
+        name_vi: Name option
+        name_en: Name option (English)
+        action: Actions
+        edit: Edit

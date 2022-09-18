@@ -1,0 +1,9 @@
+en:
+  checkout:
+    confirm:
+      unit_price: Unit price
+      is_home_delivery: Get the vehicle at home
+      rental_time: Rental time
+      submit: Complete booking
+      amount: Total
+      deposit: Deposit

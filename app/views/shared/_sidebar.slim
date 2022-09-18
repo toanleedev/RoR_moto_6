@@ -14,11 +14,12 @@
 .user-sidebar class="#{active_class('account/orders')}"
   = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
   = link_to t(".order"), account_orders_path, class: 'user-sidebar__link'
-.divider
-p.fw-bold = t('.partner')
-.user-sidebar class="#{active_class('account/rental_orders')}"
-  = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
-  = link_to t(".rental_order"), account_rental_orders_path, class: 'user-sidebar__link'
-.user-sidebar class="#{active_class('account/vehicles')}"
-  = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
-  = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'
+- if current_user.is_partner
+  .divider
+  p.fw-bold = t('.partner')
+  .user-sidebar class="#{active_class('account/rental_orders')}"
+    = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+    = link_to t(".rental_order"), account_rental_orders_path, class: 'user-sidebar__link'
+  .user-sidebar class="#{active_class('account/vehicles')}"
+    = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+    = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'

@@ -1,0 +1,6 @@
+en:
+  account:
+    vehicles:
+      vehicle:
+        price: '%{price}VND/<span class="fs-6">day</span>'
+        edit: Update

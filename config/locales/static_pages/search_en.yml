@@ -1,0 +1,8 @@
+en:
+  static_pages:
+    search:
+      title: Need to rent a motorbike?
+      start_date: Pick-up date
+      end_date: Return date
+      submit: Search
+      select_holder: Select location

@@ -12,7 +12,7 @@ module ApplicationHelper
     flash.each_with_object([]) do |(type, message), flash_messages|
       type = 'bg-success' if type == 'notice'
       type = 'bg-danger' if type == 'alert'
-      text = "<div class='toast align-items-center text-white #{type} border-0 position-absolute m-3 bottom-0 end-0' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'><div class='toast-body'>#{message}</div><button type='button' class='btn-close btn-close-white me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button></div></div>"
+      text = "<div class='toast align-items-center text-white #{type} border-0 position-fixed m-3 bottom-0 start-0' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'><div class='toast-body'>#{message}</div><button type='button' class='btn-close btn-close-white me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button></div></div>"
       flash_messages << text.html_safe if message
     end.join("\n").html_safe
   end
@@ -29,6 +29,37 @@ module ApplicationHelper
         class: 'rounded-circle shadow-sm',
         crop: 'fill'
       )
+    end
+  end
+
+  def vehicle_image(vehicle, size = 150, alt = 'vehicle image')
+    if vehicle.vehicle_images.any?
+      cl_image_tag(
+        vehicle.vehicle_images.first.image_path,
+        height: size,
+        width: size,
+        crop: :fill,
+        class: 'rounded-start'
+      )
+    else
+      image_link = "https://via.placeholder.com/#{size}"
+      image_tag(image_link, alt: alt, class: 'img-fluid')
+    end
+  end
+
+  def active_class(controller)
+    return 'active' if controller == params[:controller]
+  end
+
+  def custom_account_order_path(is_rental_page = nil, status = nil)
+    if is_rental_page.nil?
+      account_orders_path
+
+      account_orders_path(status: status) if status.present?
+    else
+      account_rental_orders_path
+
+      account_rental_orders_path(status: status) if status.present?
     end
   end
 end

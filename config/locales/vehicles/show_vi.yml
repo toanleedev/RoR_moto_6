@@ -1,0 +1,13 @@
+vi:
+  vehicles:
+    show:
+      description: Mô tả
+      address: Địa chỉ
+      procedure: Thủ tục
+      paper_verify: Giấy tờ chỉ cần xác minh (chủ xe không giữ lại)
+      identity_card: CMND
+      license: Bằng lái
+      collateral: Tài sản thế chấp (chủ xe giữ lại)
+      deposit: Đặt cọc từ 800.000đ đến 1 triệu đồng
+      accept_payment: Chấp nhận thanh toán
+      postpaid: Trả sau

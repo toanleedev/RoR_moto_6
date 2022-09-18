@@ -1,85 +1,45 @@
 en:
-  language:
-    vi: 'Vietnamese'
-    en: 'English'
   number:
     currency:
       format:
         format: '%n %u'
-        unit: 'VNĐ'
-        delimiter: ','
+        unit: 'VND'
         separator: '.'
+        delimiter: ','
         precision: '.'
+  date:
+    formats:
+      default: '%Y-%m-%d'
+      long: '%d %b, %Y'
+      short: '%d %b'
   time:
     formats:
-      default: '%FT%T'
-  image:
-    invalid: 'Must be a valid image format!'
-    min: 'Should be less than 3MB!'
-  header:
-    home: 'Home'
-    about: 'About'
-    rent: 'Motorbike rental'
-    account: 'Account'
-    sign_out: 'Sign out'
-    language: 'Language'
-    language_path: 'US-Flag.png'
-  button:
-
-  users:
-    title:
-      sign_up: 'Sign up'
-      login: 'Login'
-      profile: 'My Profile'
-      address: 'My Addresses'
-      paper: 'My Papers'
-      new_address: 'New Address'
-      edit_address: 'Update Address'
-      order: 'My Order'
-    sidebar:
-      account: 'Account'
-      address: 'Addresses'
-      paper: 'Papers'
-      order: 'Order rental'
-    form:
-      name: 'Name'
-      email: 'Email'
-      first_name: 'First name'
-      last_name: 'Last name'
-      phone_number: 'Phone number'
-      birth: 'Date of birth'
-      gender:
-        title: 'Gender'
-        male: 'Male'
-        female: 'Female'
-        other: 'Other'
-      address: 'Address'
-      password: 'Password'
-      password_confirmation: 'Confirmation Password'
-      remember: 'Remember me'
-      forgot_password: 'Forgot your password?'
-      current_password: 'Current Password'
-      update_password_message: "Leave blank if you don't want to change it"
-      current_password_message: 'We need your current password to confirm your changes'
-      or: 'Or'
-      no_account_message: "Don't have an account?"
-      login_with_facebook: 'Log in with Facebook'
-      login_with_google: 'Log in with Google'
-      signup_with_facebook: 'Sign up with Facebook'
-      signup_with_google: 'Sign up with Google'
-    action:
-      update: 'Update account'
-      submit: 'Submit'
-      cancel: 'Cancel'
-  address:
-    action:
-      update: 'Update address'
-      create: 'Create address'
-  account:
-    papers:
-      index:
-        title: 'User paper'
-      edit:
-        title: 'Edit paper'
-      new:
-        title: 'New paper'
+      default: '%d/%m/%Y %H:%M'
+      long: '%d/%m/%Y %H:%M'
+      short: '%d %b %H:%M'
+  common:
+    or: Or
+    and: And
+  message:
+    success:
+      create: Create new successfully
+      update: Update successful
+    failure:
+      create: Create new failed. Please try again.
+      update: Update failed. Please try again.
+  views:
+    pagination:
+      first: '« First'
+      last: 'Last »'
+      previous: '‹ Prev'
+      next: 'Next ›'
+      truncate: '…'
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: 'No %{entry_name} found'
+          one: 'Displaying <b>1</b> %{entry_name}'
+          other: 'Displaying <b>all %{count}</b> %{entry_name}'
+      more_pages:
+        display_entries: 'Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total'

@@ -32,9 +32,9 @@
 #  provider               :string
 #  uid                    :string
 #  is_admin               :boolean
+#  address_default_id     :bigint
 #
 class User < ActiveRecord::Base
-  # :timeoutable
   devise :database_authenticatable,
          :confirmable,
          :registerable,
@@ -47,18 +47,19 @@ class User < ActiveRecord::Base
          omniauth_providers: %i[facebook google_oauth2]
   mount_uploader :photo_url, PictureUploader
   before_save :downcase_email
-  validate :avatar_size
-  has_many :addresses, dependent: :destroy
+
   has_one :paper, dependent: :destroy
+  has_one :address, dependent: :destroy
   has_many :vehicles, dependent: :destroy
+  has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
+  has_many :rental_orders, class_name: 'Order', foreign_key: 'owner_id'
+
+  validate :avatar_size
   validates :email, presence: true
-  validates :phone, presence: true
   validates :first_name, presence: true,
                          length: { minimum: 2 }
   validates :last_name, presence: true,
                         length: { minimum: 2 }
-
-  accepts_nested_attributes_for :addresses, :paper
 
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first

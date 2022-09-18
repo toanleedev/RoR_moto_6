@@ -3,7 +3,7 @@ vi:
     header:
       home: 'Trang chủ'
       about: 'Giới thiệu'
-      rent: 'Thuê xe máy'
+      rent: 'Tìm kiếm'
       account: 'Tài khoản'
       sign_out: 'Đăng xuất'
       sign_in: 'Đăng nhập'

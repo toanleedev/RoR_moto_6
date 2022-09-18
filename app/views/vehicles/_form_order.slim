@@ -1,0 +1,50 @@
+= content_for :head do
+
+.div
+  = bootstrap_form_tag url: '/checkout/confirm', enforce_utf8: false do |f|
+    = f.hidden_field :vehicle_id, value: @vehicle.id
+    .row.mb-4
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 = t('.form_title')
+          .divider
+          .row
+            .col-md-6.position-relative
+              = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
+                data: {toggle: 'datetimepicker', target: '#start_date', init: params[:start_date]},
+                autocomplete: "off"
+            .col-md-6.position-relative
+              = f.text_field :end_date, label: t('.end_date'), class: 'datetimepicker-input',
+                data: {toggle: 'datetimepicker', target: '#end_date', init: params[:end_date]},
+                autocomplete: "off"
+    .row.mb-4
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 = t('.add_service')
+          .divider
+          = f.check_box :is_home_delivery, label: t('.is_home_delivery'), checked: true
+          = f.text_area :delivery_address, label: t('.delivery_address'),
+            wrapper: {class: 'mb-3 delivery_address_js'}
+    .row
+      .col
+        .bg-white.p-3.shadow-sm.rounded
+          h4 = t('.price_detail')
+          .divider
+          .price-row
+            = f.hidden_field :unit_price, value: @vehicle.price
+            span = t('.unit_price')
+            span = @vehicle.price
+          .price-row.is_home_delivery_price_js style="display: none"
+            span = t('.is_home_delivery')
+            span 50000
+          .price-row.text-muted
+            = f.hidden_field :rental_time
+            span = t('.rental_time')
+            span.rental_time_js ×1 ngày
+          .divider
+          .price-row
+            = f.hidden_field :total
+            span = t('.total')
+            span.total_js 0
+          .divider
+          = f.submit t('.submit'), class: 'w-100 btn btn-primary'

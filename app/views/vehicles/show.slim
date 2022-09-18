@@ -1,0 +1,57 @@
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+.bg-light
+  .container
+    .row.py-4.gx-4
+      .col-8
+        .bg-white.p-3.shadow-sm.rounded
+          .row
+            .col-md-5.text-center
+              - if @vehicle.vehicle_images.exists?
+                = cl_image_tag(@vehicle.vehicle_images.first.image_path, height: 200, width: 200, crop: :fill, class: 'rounded-start')
+              - else
+                img src="https://via.placeholder.com/200" class="img-fluid"
+            .col-md-7
+              h2.text-primary = vehicle_title(@vehicle)
+              .d-flex.mt-2
+                = image_tag('star_on.png')
+                = image_tag('star_on.png')
+                = image_tag('star_on.png')
+                = image_tag('star_on.png')
+                = image_tag('star_on.png')
+              .row.mt-3
+                .col-md-6
+                  = fa_icon "cogs", text: @vehicle.type.name_vi
+                .col-md-6
+                  = fa_icon "bolt", text: 'Xăng'
+                .col-md-6
+                  = fa_icon "tachometer", text: @vehicle.engine.name_vi
+                .col-md-6
+                  = fa_icon "wrench", text: '2022'
+            .col-md-12.mt-5
+              .mb-5
+                h5.text-uppercase = t('.description')
+                p.text-body = @vehicle.description
+              .mb-5
+                h5.text-uppercase = t('.address')
+                p.text-body = @vehicle.user.address.show_address
+              .mb-5
+                h5.text-uppercase = t('.procedure')
+                p.fw-bold = t('.paper_verify')
+                ul
+                  li
+                    p.text-body = t('.identity_card')
+                  li
+                    p.text-body = t('.license')
+                p.fw-bold = t('.collateral')
+                ul
+                  li
+                    p.text-body = t('.deposit')
+              .mb-5
+                h5.text-uppercase = t('.accept_payment')
+                ul
+                  li
+                    p = t('.postpaid')
+
+      .col-4
+        = render 'form_order'

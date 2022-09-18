@@ -13,9 +13,13 @@
 #  updated_at :datetime         not null
 #
 class Address < ActiveRecord::Base
-  belongs_to  :user
+  belongs_to :user
 
   def full_address
     "#{street}, #{ward}, #{district}, #{province}"
+  end
+
+  def show_address
+    "#{ward}, #{district}, #{province}"
   end
 end

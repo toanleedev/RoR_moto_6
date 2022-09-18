@@ -1,0 +1,13 @@
+en:
+  account:
+    orders:
+      order:
+        show: More Detail
+        contact: Contact
+        amount: 'Total amount: <span class="h4 text-primary">%{amount} VND</span>'
+        open: Opening
+        accepted: Accepted
+        pending: Pending
+        processing: Processing
+        canceled: Canceled
+        completed: Completed

@@ -1,0 +1,21 @@
+li.list-group-item.mb-3.shadow-sm
+  .text-end.mb-2
+    span class="badge bg-secondary" = t(".#{order.status}")
+  .row
+    .col-md-2
+      = vehicle_image(order.vehicle, 100)
+    .col-md-5
+      h4 = vehicle_title(order.vehicle)
+      p = order.vehicle.price
+    .col-md-5
+      p Số ngày thuê: #{order.count_rental_days}
+      p #{l(order.start_date)} ➜ #{l(order.end_date)}
+  .divider
+  .text-end
+    p = raw t('.amount', amount: order.amount)
+  .d-flex.justify-content-end.gap-2
+    - unless @is_rental_page
+      = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
+      span.btn.btn-outline-primary = t('.contact')
+    - else
+      = link_to t('.show'), account_rental_order_path(order), class: 'btn btn-primary'

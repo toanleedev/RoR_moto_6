@@ -1,0 +1,14 @@
+en:
+  layouts:
+    header:
+      home: Home
+      about: About
+      rent: Search
+      admin: Go to Admin
+      account: Account
+      sign_out: Logout
+      sign_in: Sign in
+      sign_up: Sign up
+      language_path: US-Flag.png
+      vi: Vietnamese
+      en: English

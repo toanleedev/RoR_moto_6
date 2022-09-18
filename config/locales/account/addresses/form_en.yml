@@ -1,0 +1,10 @@
+en:
+  account:
+    addresses:
+      form:
+        province: Province/City
+        district: District
+        ward: Ward
+        street: Street name
+        submit: Save
+        cancel: Back

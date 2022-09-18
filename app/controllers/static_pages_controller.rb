@@ -1,3 +1,5 @@
 class StaticPagesController < ApplicationController
-  def index; end
+  def index
+    @time_now = Time.new.strftime('%Y-%m-%dT%k:%M')
+  end
 end

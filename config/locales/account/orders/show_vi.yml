@@ -1,0 +1,26 @@
+vi:
+  account:
+    orders:
+      show:
+        title: Hóa đơn thuê xe
+        status: Trạng thái
+        start_date: Từ ngày
+        end_date: Đến ngày
+        count_rental_days: Tổng số ngày thuê
+        delivery_address: Địa chỉ nhận xe
+        payment: Phương thức thanh toán
+        amount: Tổng cộng
+        update: Cập nhật thông tin
+        cancel: Hủy đơn
+        start_process: Đã giao xe
+        end_process: Đã trả xe
+        accept: Xác nhận đơn
+        cash: Tiền mặt
+        paypal: Paypal
+        momo: MOMO
+        confirm_cancel: Bạn có muốn hủy đơn hàng không?
+        open: Chờ xác nhận
+        accepted: Đã xác nhận
+        processing: Đang tiến hành
+        completed: Hoàn thành
+        canceled: Đã hủy

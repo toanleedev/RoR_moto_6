@@ -1,0 +1,14 @@
+vi:
+  account:
+    orders:
+      index:
+        title: Danh sách chuyến
+        all: Tất cả
+        open: Chờ xác nhận
+        accepted: Đã xác nhận
+        pending: Hoãn
+        processing: Đang tiến hành
+        canceled: Đã hủy
+        completed: Hoàn tất
+        coming: Sắp tới
+        empty_message: Không có dữ liệu để hiển thị

@@ -1,0 +1,41 @@
+- provide :title, t(".title")
+
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+.nav.nav-tabs
+  li.nav-item
+    = link_to t('.all'), custom_account_order_path(@is_rental_page),
+      class: "nav-link #{params[:status].present? ? '' : 'active'}"
+  - if @is_rental_page
+    li.nav-item
+      = link_to t('.open'), custom_account_order_path(@is_rental_page, 'open'),
+        class: "nav-link #{params[:status] === 'open' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.accepted'), custom_account_order_path(@is_rental_page, 'accepted'),
+        class: "nav-link #{params[:status] === 'accepted' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.processing'), custom_account_order_path(@is_rental_page, 'processing'),
+        class: "nav-link #{params[:status] === 'processing' ? 'active' : ''}"
+    / li.nav-item
+    /   = link_to t('.pending'), custom_account_order_path(@is_rental_page, 'pending'),
+    /     class: "nav-link #{params[:status] === 'pending' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.completed'), custom_account_order_path(@is_rental_page, 'completed'),
+        class: "nav-link #{params[:status] === 'completed' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.canceled'), custom_account_order_path(@is_rental_page, 'canceled'),
+        class: "nav-link #{params[:status] === 'canceled' ? 'active' : ''}"
+  - else
+    li.nav-item
+      = link_to t('.coming'), custom_account_order_path(@is_rental_page, 'coming'),
+          class: "nav-link #{params[:status] === 'coming' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.completed'), custom_account_order_path(@is_rental_page, 'completed'),
+        class: "nav-link #{params[:status] === 'completed' ? 'active' : ''}"
+    li.nav-item
+      = link_to t('.canceled'), custom_account_order_path(@is_rental_page, 'canceled'),
+        class: "nav-link #{params[:status] === 'canceled' ? 'active' : ''}"
+ul.list-group.list-group-flush
+  = render(@orders) || content_tag("p") do
+    p.text-center.text-muted = t('.empty_message')
+  = paginate @orders, theme: 'bootstrap4'

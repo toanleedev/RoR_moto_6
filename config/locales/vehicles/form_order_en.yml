@@ -1,0 +1,14 @@
+en:
+  vehicles:
+    form_order:
+      form_title: Rental period
+      start_date: Pick-up date
+      end_date: Drop-off date
+      is_home_delivery: Get the vehicle at home
+      unit_price: Unit price
+      rental_time: Rental time
+      total: Total
+      add_service: Additional service
+      price_detail: Price detail
+      submit: Book a vehicle
+      delivery_address: Pickup address

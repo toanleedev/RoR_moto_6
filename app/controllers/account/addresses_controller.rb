@@ -1,31 +1,10 @@
 module Account
   class AddressesController < ApplicationController
     layout 'account'
-    before_action :take_address, only: %i[edit update destroy]
     before_action :authenticate_user!
+    before_action :init_address
 
-    def index
-      @addresses = current_user.addresses
-    end
-
-    def new
-      @address = Address.new
-      @people = User.all
-    end
-
-    def create
-      @address = current_user.addresses.new(address_params)
-
-      if @address.save
-        flash[:notice] = 'Them dia chi thanh cong'
-        redirect_to account_addresses_path
-      else
-        flash[:alert] = 'Them that bai'
-        redirect_to request.referrer
-      end
-    end
-
-    def edit
+    def show
       respond_to do |format|
         format.html
         format.json { render(json: @address) }
@@ -35,36 +14,33 @@ module Account
     def update
       if @address.update address_params
         flash[:notice] = 'Update address success'
-        redirect_to account_addresses_path
+        redirect_to account_address_path
       else
         flash[:alert] = 'Update address failure'
-        redirect_to request.referrer
+        init_address
+        render :show
       end
     end
 
-    def destroy
-      if @address.destroy
-        flash[:notice] = 'Delete address success'
+    def create
+      address = Address.new address_params
+      if address.save
+        flash[:notice] = t('message.success.create')
       else
-        flash[:alert] = 'Delete address failure'
+        flash[:alert] = t('message.failure.create')
       end
-      redirect_to request.referrer
+      redirect_to account_address_path
     end
-
-    def show; end
 
     private
 
     def address_params
-      params.require(:address).permit(:province, :district, :ward, :street)
+      params.require(:address)
+            .permit(:user_id, :province, :district, :ward, :street)
     end
 
-    def take_address
-      @address = current_user.addresses.find_by_id(params[:id])
-
-      return unless @address.blank?
-
-      flash[:alert] = "Can't found address"
+    def init_address
+      @address = current_user.address || Address.new
     end
   end
 end

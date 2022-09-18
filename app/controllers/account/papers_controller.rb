@@ -2,28 +2,25 @@ module Account
   class PapersController < ApplicationController
     layout 'account'
     before_action :authenticate_user!
-    before_action :paper, only: %i[index]
+    before_action :init_paper
 
-    def index; end
-
-    def new
-      @paper = Paper.new
-    end
+    def show; end
 
     def create
       paper = Paper.new paper_params
       if paper.save
-        flash[:notice] = 'Them thanh cong'
+        flash[:notice] = t('message.success.create')
       else
-        flash[:notice] = 'Them that bai'
+        flash[:alert] = t('message.failure.create')
       end
+      redirect_to account_paper_path
     end
 
     def update
       if current_user.paper.update paper_params
-        flash[:notice] = 'Cap nhat thanh cong'
+        flash[:notice] = t('message.success.update')
       else
-        flash[:notice] = 'Cap nhat that bai'
+        flash[:alert] = t('message.failure.update')
       end
       redirect_to request.referrer
     end
@@ -35,8 +32,8 @@ module Account
                                     :driver_number, :driver_front_url)
     end
 
-    def paper
-      @paper ||= current_user.paper
+    def init_paper
+      @paper = current_user.paper || Paper.new
     end
   end
 end

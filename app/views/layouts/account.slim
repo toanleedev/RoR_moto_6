@@ -17,6 +17,7 @@ html
           .col-md-3.col-sm-12
             = render "shared/sidebar"
           .col-md-9.py-4.col-sm-12.bg-light.rounded.shadow-sm
+            = render 'shared/loading'
             = yield
       = toastr_flash
     = render 'layouts/footer'

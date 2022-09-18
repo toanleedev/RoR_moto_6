@@ -13,22 +13,43 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     namespace :account do
-      resources :addresses
-      resources :papers
+      resource :address
+      resource :paper
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
+      resources :orders do
+        member do
+          patch 'cancel'
+        end
+      end
+      resources :rental_orders do 
+        member do
+          patch 'cancel'
+          patch 'accept'
+          patch 'processing'
+          patch 'completed'
+        end
+      end
     end
 
-    get '/admin', to: redirect('/admin/dashboard')
+    get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       get 'dashboard', to: 'admin#index'
       resources :users
-      scope :options do
-        resources :vehicle_brands
-        resources :vehicle_types
-      end
       resources :vehicle_options
+      resources :orders
+    end
+
+    resources :searches, path: 'search'
+    resources :vehicles, only: [:show]
+    # resources :checkout
+    namespace :checkout do
+      post 'confirm', action: :confirm
+    end
+    resources :orders
+    if Rails.env.production? || Rails.env.development?
+      get '*path' => redirect('/404.html')
     end
   end
 end

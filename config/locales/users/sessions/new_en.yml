@@ -1,0 +1,13 @@
+en:
+  users:
+    sessions:
+      new:
+        title: Sign in
+        email: Email
+        password: Password
+        remember: Remember me
+        forgot_password: Forgot Password?
+        submit: Login
+        sign_in_google: Sign in with Google
+        no_account_message: Don't have an account?
+        sign_up: Sign up

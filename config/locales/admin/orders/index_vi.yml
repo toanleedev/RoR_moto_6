@@ -1,0 +1,7 @@
+vi:
+  admin:
+    orders:
+      index:
+        home: Admin
+        title: Quản lý đơn hàng
+        orders: Đơn hàng

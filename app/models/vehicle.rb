@@ -20,6 +20,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :type, class_name: 'VehicleOption', foreign_key: 'type_id'
   belongs_to  :engine, class_name: 'VehicleOption', foreign_key: 'engine_id'
   has_many :vehicle_images, dependent: :destroy
+  has_many :orders
 
   accepts_nested_attributes_for :vehicle_images
 end

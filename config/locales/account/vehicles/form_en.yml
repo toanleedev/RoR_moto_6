@@ -1,0 +1,14 @@
+en:
+  account:
+    vehicles:
+      form:
+        name: Name vehicle
+        description: Description
+        price: Price
+        year_produce: Year produce
+        vehicle_brand: Vehicle brand
+        vehicle_type: Vehicle type
+        vehicle_engine: Vehicle engine
+        submit: Save
+        select_value: Please choose
+        sure_delete: Are you sure remove this image?

@@ -1,0 +1,22 @@
+= bootstrap_form_tag url: '/search', method: 'GET', enforce_utf8: false do |f|
+  h4 = t ".filter"
+  .row
+    .col-md-6
+      = f.datetime_field :start_date, label: t('.start_date'),
+        value: params[:start_date], min: @time_now
+    .col-md-6
+      = f.datetime_field :end_date, label: t('.end_date'),
+        value: params[:end_date]
+  = f.text_field :name, hide_label: true,
+    placeholder: t('.name'),
+    append: '<a class="btn btn-secondary">x</a>', value: params[:name]
+  = f.select :brand, @vehicle_brands, { include_blank: t('.brand'),
+    hide_label: true, selected: params[:brand]},
+    { class: "selectpicker" }
+  = f.select :type, @vehicle_types, { include_blank: t('.type'),
+    hide_label: true, selected: params[:type]},
+    { class: "selectpicker" }
+  = f.select :province, [["Đà Nẵng", "Đà Nẵng"], ["Phú Yên", "Phú Yên"]], { include_blank: t('.search'),
+    hide_label: true, selected: params[:province]},
+    { class: "selectpicker" }
+  = f.submit t('.submit'), class: 'btn btn-primary w-100', name: nil

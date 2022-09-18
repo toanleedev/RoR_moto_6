@@ -1,0 +1,10 @@
+en:
+  account:
+    papers:
+      form:
+        card_number: Identity Card
+        card_front_url: ID card front
+        card_back_url: Back of ID card
+        driver_number: Driver's license number
+        driver_front_url: Driver's license front
+        submit: Save

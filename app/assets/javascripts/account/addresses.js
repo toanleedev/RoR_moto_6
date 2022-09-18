@@ -1,22 +1,19 @@
 $(document).on('turbolinks:load', function () {
-  // addresses/1/edit
-  var url = window.location.pathname.split('/');
-  if (url[url.length - 1] === 'edit') {
-    var addressId = url[url.length - 2];
-    var userAddressInfo = fetchAddressUser(addressId);
-    fetchProvince(userAddressInfo.province);
-    fetchDistrict(userAddressInfo.district);
-    fetchWard(userAddressInfo.ward);
-  } else if (url[url.length - 1] === 'new') {
+  var userAddress = fetchAddressUser();
+  if (userAddress) {
+    fetchProvince(userAddress.province);
+    fetchDistrict(userAddress.district);
+    fetchWard(userAddress.ward);
+  } else {
     fetchProvince();
     fetchDistrict();
     fetchWard();
   }
 
-  function fetchAddressUser(addressId) {
+  function fetchAddressUser() {
     var theResponse = null;
     $.ajax({
-      url: `/account/addresses/${addressId}/edit`,
+      url: `/account/address.json`,
       method: 'GET',
       dataType: 'json',
       async: false,
@@ -37,9 +34,13 @@ $(document).on('turbolinks:load', function () {
       success: function (response) {
         response.forEach((province) => {
           $('#address_province').append(
-            `<option value="${province.name.replace('Tỉnh ', '')}" data-code="${
-              province.code
-            }">${province.name.replace('Tỉnh ', '')}</option>`
+            `<option value="${province.name.replace(
+              /Tỉnh |Thành phố /g,
+              ''
+            )}" data-code="${province.code}">${province.name.replace(
+              /Tỉnh |Thành phố /g,
+              ''
+            )}</option>`
           );
         });
         if (userProvince) {

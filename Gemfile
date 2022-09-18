@@ -60,6 +60,16 @@ gem 'rubocop-rails'
 gem 'chartkick'
 gem 'groupdate'
 
+gem 'ransack'
+
+# Pagination
+gem 'kaminari'
+
+gem 'bootstrap4-datetime-picker-rails'
+gem 'momentjs-rails'
+
+gem 'active_model_serializers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -72,6 +82,8 @@ group :development do
   gem 'web-console', '~> 4.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'pry-byebug', '~> 3.9'
 
   gem 'annotate'
 end

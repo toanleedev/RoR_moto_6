@@ -1,6 +1,0 @@
-li.list-group-item
-    .d-flex.w-100
-      h5.mb-1 = address.province
-      = link_to t('.edit'), edit_account_address_path(address), class: 'btn btn-link ms-auto me-2'
-      = link_to t('.delete'), account_address_path(address), method:"delete", data: {:confirm => "You sure?" }, class: "btn btn-link"
-    p.mb-1 = address.full_address

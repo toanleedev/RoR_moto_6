@@ -1,0 +1,65 @@
+= content_for :head do
+  
+.bg-light
+  .container-sm.max-width-768
+    = bootstrap_form_with(model: @order) do |f|
+      = f.hidden_field :start_date, value: params[:start_date]
+      = f.hidden_field :end_date, value: params[:end_date]
+      = f.hidden_field :count_rental_days, value: params[:rental_time]
+      = f.hidden_field :vehicle_id, value: vehicle.id
+      = f.hidden_field :is_home_delivery, value: params[:is_home_delivery]
+      = f.hidden_field :owner_id, value: vehicle.user.id
+      = f.hidden_field :delivery_address, value: params[:delivery_address]
+      = f.hidden_field :amount, value: params[:total]
+
+      .row.py-4.gx-4
+        .col-md-12
+          .bg-white.p-3.shadow-sm.rounded
+            .p-5
+              h1 = current_user.full_name
+            .divider
+            .row
+              .col-2
+                = vehicle_image(vehicle)
+              .col-10
+                p = vehicle_title(vehicle)
+                p = vehicle.price
+            .divider
+            div
+              h5.text-uppercase Thông tin xác nhận
+              ul
+                li
+                  span.fw-bold Thời gian: 
+                  span #{params[:start_date]} ➜ #{params[:end_date]}
+                li
+                  span.fw-bold Giao xe: 
+                  span = params[:delivery_address].presence || 'Nhận xe tại đại lý'
+            .divider
+            div
+              h5.text-uppercase Phương thức thanh toán
+              = f.form_group :payment
+                = f.radio_button :payment, 'cash', label: "Trả sau", checked: true
+                = f.radio_button :payment, 'paypal', label: "Thanh toán qua Paypal"
+                = f.radio_button :payment, 'momo', label: "Thanh toán qua Momo"
+            .divider
+            div
+              h5.text-uppercase Chi tiết giá
+              .divider
+              .price-row
+                span = t('.unit_price')
+                span = vehicle.price
+              .price-row.is_home_delivery_price_js style="display: none"
+                span = t('.is_home_delivery')
+                span 50000
+              .price-row.text-muted
+                span = t('.rental_time')
+                span.rental_time_js ×#{params[:rental_time]} ngày
+              .divider
+              .price-row.mb-3
+                span = t('.amount')
+                span #{params[:total]}
+              .price-row.mb-3
+                span = t('.deposit')
+                span #{params[:total].to_i*0.3}
+
+              = f.submit t('.submit'), class: 'w-100 btn btn-primary'

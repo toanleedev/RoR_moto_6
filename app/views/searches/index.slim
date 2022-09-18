@@ -1,0 +1,10 @@
+.bg-light
+  .container
+    h2.text-center.py-3 = t('.title', city: params[:province])
+    .row
+      .col-md-4
+        .sticky-top.top-20
+          = render 'form_search'
+      .col-md-8
+        .row
+          = render partial: 'vehicle', collection: @vehicles

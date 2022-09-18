@@ -7,10 +7,10 @@
   = link_to t(".account"), edit_user_registration_path, class: 'user-sidebar__link'
 .user-sidebar class="#{active_class('account/addresses')}"
   = fa_icon "location-arrow", class: 'user-sidebar__icon', style: 'width: 25px;color: #009F75'
-  = link_to t(".address"), account_addresses_path, class: 'user-sidebar__link'
+  = link_to t(".address"), account_address_path, class: 'user-sidebar__link'
 .user-sidebar class="#{active_class('account/papers')}"
   = fa_icon "address-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #438eeb'
-  = link_to t(".paper"), account_papers_path, class: 'user-sidebar__link'
+  = link_to t(".paper"), account_paper_path, class: 'user-sidebar__link'
 .user-sidebar class="#{active_class('account/orders')}"
   = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
   = link_to t(".order"), account_orders_path, class: 'user-sidebar__link'

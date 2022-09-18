@@ -2,13 +2,9 @@ module Account
   class PapersController < ApplicationController
     layout 'account'
     before_action :authenticate_user!
-    before_action :paper, only: %i[index]
+    before_action :init_paper
 
-    def index; end
-
-    def new
-      @paper = Paper.new
-    end
+    def show; end
 
     def create
       paper = Paper.new paper_params
@@ -17,6 +13,7 @@ module Account
       else
         flash[:alert] = t('message.failure.create')
       end
+      redirect_to account_paper_path
     end
 
     def update
@@ -35,8 +32,8 @@ module Account
                                     :driver_number, :driver_front_url)
     end
 
-    def paper
-      @paper ||= current_user.paper
+    def init_paper
+      @paper = current_user.paper || Paper.new
     end
   end
 end

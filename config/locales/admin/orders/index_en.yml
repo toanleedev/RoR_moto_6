@@ -1,0 +1,7 @@
+en:
+  admin:
+    orders:
+      index:
+        home: Admin
+        title: Manage Order
+        orders: Order

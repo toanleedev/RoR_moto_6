@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
   attribute :phone, if: :phone_condition?
   # has_many :vehicles
-  belongs_to :address_default
+  has_one :address
   # has_one :paper
 
   def full_name

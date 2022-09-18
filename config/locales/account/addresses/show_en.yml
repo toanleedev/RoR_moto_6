@@ -1,6 +1,5 @@
 en:
   account:
     addresses:
-      index:
+      show:
         title: My address
-        add_address: New address

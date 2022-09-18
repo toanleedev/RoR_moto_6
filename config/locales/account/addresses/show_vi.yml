@@ -1,6 +1,5 @@
 vi:
   account:
     addresses:
-      index:
+      show:
         title: Địa chỉ của tôi
-        add_address: Thêm địa chỉ

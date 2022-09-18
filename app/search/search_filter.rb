@@ -13,11 +13,11 @@ class SearchFilter < BaseFilter
   end
 
   def filter
-    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, user: [:address_default])
+    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, user: [:address])
 
     if @province.present?
       records =
-        records.joins(user: [:address_default]).where('addresses.province LIKE ?', "%#{@province}%")
+        records.joins(user: [:address]).where('addresses.province LIKE ?', "%#{@province}%")
     end
     if @name.present? # a long comment that makes it too long
       records = records.where('name ILIKE ?', "%#{@name}%")

@@ -13,12 +13,8 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     namespace :account do
-      resources :addresses do
-        member do
-          patch 'default_address'
-        end
-      end
-      resources :papers
+      resource :address
+      resource :paper
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end

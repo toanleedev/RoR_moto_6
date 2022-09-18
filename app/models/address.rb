@@ -13,7 +13,6 @@
 #  updated_at :datetime         not null
 #
 class Address < ActiveRecord::Base
-  has_one :user, foreign_key: :address_default_id
   belongs_to :user
 
   def full_address

@@ -1,16 +1,14 @@
-- provide :title, t(".title")
-h3.border-bottom.pb-4.mb-3 = t(".title")
-= bootstrap_form_for([:account, @paper]) do |f|
+= bootstrap_form_for(@paper, url: account_paper_path) do |f|
   = f.hidden_field :user_id, value: current_user.id
-  = f.text_field :card_number, label: t(".card_number")
-  = f.file_field :card_front_url, label: t(".card_front_url")
+  = f.text_field :card_number, label: t(".card_number"), required: true
+  = f.file_field :card_front_url, label: t(".card_front_url"), required: true
   - if @paper.card_front_url.present?
     = cl_image_tag(@paper.card_front_url, height: 150, crop: :fill, class: 'border mb-3')
-  = f.file_field :card_back_url, label: t(".card_back_url")
+  = f.file_field :card_back_url, label: t(".card_back_url"), required: true
   - if @paper.card_back_url.present?
     = cl_image_tag(@paper.card_back_url, height: 150, crop: :fill, class: 'border mb-3')
-  = f.text_field :driver_number, label: t(".driver_number")
-  = f.file_field :driver_front_url, label: t(".driver_front_url")
+  = f.text_field :driver_number, label: t(".driver_number"), required: true
+  = f.file_field :driver_front_url, label: t(".driver_front_url"), required: true
   - if @paper.driver_front_url.present?
     = cl_image_tag(@paper.driver_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
   = f.primary t(".submit")

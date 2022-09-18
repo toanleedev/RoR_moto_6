@@ -1,10 +1,7 @@
 en:
   account:
     papers:
-      index:
-        title: License information
-        message_not_paper: You do not have a license, please create a new one
-        here: Here
+      form:
         card_number: Identity Card
         card_front_url: ID card front
         card_back_url: Back of ID card

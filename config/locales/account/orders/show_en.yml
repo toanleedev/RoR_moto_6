@@ -18,7 +18,10 @@ en:
         cash: Cash
         paypal: Paypal
         momo: MOMO
-        confirm_cancel: Do you want to cancel your order?
+        confirm_accept: Do you want to accept order?
+        confirm_cancel: Do you want to cancel order?
+        confirm_process: Do you want to start?
+        confirm_complete: Do you want to complete order?
         open: Opening
         accepted: Accepted
         processing: Processing

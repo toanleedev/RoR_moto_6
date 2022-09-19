@@ -1,4 +1,4 @@
-= bootstrap_form_tag url: '/search', method: 'GET', enforce_utf8: false do |f|
+= bootstrap_form_tag(url: "search", method: :get, local: true, enforce_utf8: false) do |f|
   h4 = t ".filter"
   .row
     .col-md-6

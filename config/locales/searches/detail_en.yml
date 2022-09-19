@@ -1,6 +1,6 @@
 en:
-  vehicles:
-    show:
+  searches:
+    detail:
       description: Description
       address: Address
       procedure: Procedure

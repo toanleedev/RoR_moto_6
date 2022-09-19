@@ -1,12 +1,14 @@
-= bootstrap_form_tag url: '/search', method: 'GET', enforce_utf8: false do |f|
+= bootstrap_form_tag(url: "/#{I18n.locale}/search", method: :get, local: true, enforce_utf8: false) do |f|
   h4 = t ".filter"
   .row
-    .col-md-6
-      = f.datetime_field :start_date, label: t('.start_date'),
-        value: params[:start_date], min: @time_now
-    .col-md-6
-      = f.datetime_field :end_date, label: t('.end_date'),
-        value: params[:end_date]
+    .col-md-6.position-relative
+      = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
+        data: {toggle: 'datetimepicker', target: '#start_date', init: params[:start_date]},
+        autocomplete: "off"
+    .col-md-6.position-relative
+      = f.text_field :end_date, label: t('.end_date'), class: 'datetimepicker-input',
+        data: {toggle: 'datetimepicker', target: '#end_date', init: params[:end_date]},
+        autocomplete: "off"
   = f.text_field :name, hide_label: true,
     placeholder: t('.name'),
     append: '<a class="btn btn-secondary">x</a>', value: params[:name]

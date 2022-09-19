@@ -1,4 +1,4 @@
 en:
   searches:
-    index:
+    show:
       title: Self-drive car rental in %{city}

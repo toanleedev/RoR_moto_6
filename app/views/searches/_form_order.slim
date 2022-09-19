@@ -1,7 +1,5 @@
-= content_for :head do
-
 .div
-  = bootstrap_form_tag url: '/checkout/confirm', enforce_utf8: false do |f|
+  = bootstrap_form_tag url: "/#{I18n.locale}/checkout/confirm", enforce_utf8: false do |f|
     = f.hidden_field :vehicle_id, value: @vehicle.id
     .row.mb-4
       .col

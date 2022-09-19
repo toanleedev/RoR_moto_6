@@ -41,9 +41,10 @@ Rails.application.routes.draw do
       resources :orders
     end
 
-    resources :searches, path: 'search'
-    resources :vehicles, only: [:show]
-    # resources :checkout
+    resource :search, only: [:show] do
+      get 'vehicle/:id', to: 'searches#detail'
+    end
+
     namespace :checkout do
       post 'confirm', action: :confirm
     end

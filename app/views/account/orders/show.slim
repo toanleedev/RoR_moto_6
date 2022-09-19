@@ -62,7 +62,7 @@ div
         /   class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process')}
       - elsif @order.status == 'processing'
         = link_to t('.completed'), completed_account_rental_order_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process')}
+          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_complete')}
     - else
       - if @order.status == 'open'
         = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'

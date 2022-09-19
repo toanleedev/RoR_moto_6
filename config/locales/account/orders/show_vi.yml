@@ -18,7 +18,10 @@ vi:
         cash: Tiền mặt
         paypal: Paypal
         momo: MOMO
-        confirm_cancel: Bạn có muốn hủy đơn hàng không?
+        confirm_accept: Xác nhận đơn?
+        confirm_cancel: Bạn có muốn hủy đơn không?
+        confirm_process: Xác nhận bắt đầu?
+        confirm_complete: Xác nhận hoàn thành?
         open: Chờ xác nhận
         accepted: Đã xác nhận
         processing: Đang tiến hành

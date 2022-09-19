@@ -1,4 +1,4 @@
 vi:
   searches:
-    index:
+    show:
       title: Cho thuê xe tự lái tại %{city}

@@ -7,7 +7,7 @@ nav.navbar.navbar-expand-lg.navbar-light
     #navbarText.collapse.navbar-collapse
       ul.navbar-nav.mb-2.mb-lg-0.align-items-center.ms-auto
         = link_to t('.home'), root_path, class: "nav-item nav-link"
-        = link_to t('.rent'), searches_path, class: "nav-item nav-link"
+        = link_to t('.rent'), search_path, class: "nav-item nav-link"
         = link_to t('.about'), root_path, class: "nav-item nav-link me-3"
         - if user_signed_in?
           .dropdown

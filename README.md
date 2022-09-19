@@ -8,40 +8,19 @@ Install
 
 - rvm install 2.7.5
 - rvm use 2.7.5 --default
-- git clone git@github.com:kyhuuhai/training-e-learning.git
-- git remote add rikai git@github.com:kyhuuhai/training-e-learning.git
+- git clone git@github.com:mminhtoanDTU/RoR_moto_6.git
+- git remote add toan git@github.com:mminhtoanDTU/RoR_moto_6.git
 - git checkout your_name
 - bundle install
 - rake db:create
 - rake db:migrate
+- rake db:seed
+- rails server
 - Access: localhost:3000
 
 ---
 
-## Spec
-
-https://docs.google.com/spreadsheets/d/1iWfwf7XSZQzgHwn_H1lRFpJf1Zc-yxpb1dxVcMuXsuk/edit#gid=52168524
-
 ## Convention (https://github.com/kyhuuhai/training_shop/blob/master/CONVENTION.md)
-
-## Pull Request Description
-
-- Attchment link ticket redmine vào pull
-- Attchment hình ảnh chụp layout các chức năng làm của pull đó
-- Gửi và theo dõi pull trên hệ thống [PRTS](https://docs.google.com/spreadsheets/d/1dO7RAbWRbSY9AGlVInrZomV7fQa2vwfIX7SHTQHE9Po/edit#gid=0) đã làm ở tutorial
-- Đối với pull init model cần attachment hình ảnh thiết kế DB
-- Giải thích cách làm và bằng chứng dựa theo template
-
-```
-
-## Review project
-
-- Chỉ được review project khi team hoàn thành >= 85% chức năng yêu cầu của dự án
-- Yêu cầu deploy dự án trên heroku
-- Sử dụng link heroku để trình bày project
-- Các dữ liệu đăng nhập cần fake sẵn sàng để trình bày
-- Chức năng thành viên nào làm thành viên đó trình bày
-- Trường hợp team hoàn thành dưới 85% yêu cầu thì cần liên hệ với Trainer trước deadline 2 ngày để xin dời lịch và xin thêm thời gian
 
 #### Các kỹ thuật áp dụng trong rails project 1
 
@@ -78,4 +57,7 @@ https://docs.google.com/spreadsheets/d/1iWfwf7XSZQzgHwn_H1lRFpJf1Zc-yxpb1dxVcMuX
 31. [Ruby Nil Object](https://ruby-doc.org/core-2.4.0/NilClass.html)
 
 #### Happy coding!!!
+
+```
+
 ```

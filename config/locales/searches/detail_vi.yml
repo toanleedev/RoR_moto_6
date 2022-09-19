@@ -1,6 +1,6 @@
 vi:
-  vehicles:
-    show:
+  searches:
+    detail:
       description: Mô tả
       address: Địa chỉ
       procedure: Thủ tục

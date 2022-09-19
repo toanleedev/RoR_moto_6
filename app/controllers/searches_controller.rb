@@ -1,9 +1,14 @@
 class SearchesController < ApplicationController
-  before_action :set_options, only: %i[index edit]
+  before_action :set_options, only: %i[show detail]
 
-  def index
+  def show
     @vehicles = SearchFilter.new(params).filter
     @time_now = Time.new.strftime('%Y-%m-%dT%k:%M')
+  end
+
+  def detail
+    @vehicle = Vehicle.includes(:brand, :type, :engine, :vehicle_images, user: [:address])
+                      .find_by(id: params[:id])
   end
 
   private

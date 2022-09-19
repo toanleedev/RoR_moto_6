@@ -5,8 +5,12 @@
       hide_label: true, selected: params[:province], wrapper: { class: 'has-warning'}},
       { class: "selectpicker" }
     .row
-      .col-md-6
-        = f.datetime_field :start_date, label: t('.start_date'), value: params[:start_date] || @time_now
-      .col-md-6
-        = f.datetime_field :end_date, label: t('.end_date'),value: params[:end_date]
+      .col-md-6.position-relative
+        = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
+          data: {toggle: 'datetimepicker', target: '#start_date'},
+          autocomplete: "off"
+      .col-md-6.position-relative
+        = f.text_field :end_date, label: t('.end_date'), class: 'datetimepicker-input',
+          data: {toggle: 'datetimepicker', target: '#end_date'},
+          autocomplete: "off"
     = f.submit t('.submit'), class: 'btn btn-primary w-100', name: nil

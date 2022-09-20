@@ -9,4 +9,5 @@
           = render 'form_search'
       .col-md-8
         .row
-          = render partial: 'vehicle', collection: @vehicles
+          = render(partial: 'vehicle', collection: @vehicles) || content_tag("p") do
+            p.text-center.text-muted = t('.empty_message')

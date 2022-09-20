@@ -2,6 +2,7 @@ nav.navbar.navbar-expand-lg.navbar-light
   .container
     = link_to root_path, class: "navbar-brand" do
       = image_tag 'logo-moto.png', width: 140
+    = link_to t('.partner'), partner_path, class: "btn btn-outline-success"
     button.navbar-toggler aria-controls="navbarText" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarText" data-bs-toggle="collapse" type="button" 
       span.navbar-toggler-icon
     #navbarText.collapse.navbar-collapse

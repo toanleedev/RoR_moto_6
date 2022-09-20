@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
 
   has_one :paper, dependent: :destroy
   has_one :address, dependent: :destroy
+  has_one :partner_history, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
   has_many :rental_orders, class_name: 'Order', foreign_key: 'owner_id'

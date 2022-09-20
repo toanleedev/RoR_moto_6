@@ -13,17 +13,17 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     namespace :account do
-      resource :address
-      resource :paper
+      resource :address, only: %i[show update create]
+      resource :paper, only: %i[show create update]
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
-      resources :orders do
+      resources :orders, only: %i[index cancel] do
         member do
           patch 'cancel'
         end
       end
-      resources :rental_orders do 
+      resources :rental_orders, only: %i[index show edit] do 
         member do
           patch 'cancel'
           patch 'accept'
@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       get 'dashboard', to: 'admin#index'
-      resources :users
+      resources :users, only: %i[index show]
       resources :vehicle_options
-      resources :orders
+      resources :orders, only: [:index]
     end
 
     resource :search, only: [:show] do
@@ -48,7 +48,8 @@ Rails.application.routes.draw do
     namespace :checkout do
       post 'confirm', action: :confirm
     end
-    resources :orders
+    resources :orders, only: %i[create show edit update]
+    resource :partner
     if Rails.env.production? || Rails.env.development?
       get '*path' => redirect('/404.html')
     end

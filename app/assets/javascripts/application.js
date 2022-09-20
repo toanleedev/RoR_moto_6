@@ -11,3 +11,4 @@
 //= require moment
 //= require moment/vi.js
 //= require tempusdominus-bootstrap-4.js
+//= require select2

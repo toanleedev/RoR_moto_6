@@ -2,3 +2,4 @@ vi:
   searches:
     show:
       title: Cho thuê xe tự lái tại %{city}
+      empty_message: Không tìm thấy xe nào.

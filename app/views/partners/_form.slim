@@ -2,6 +2,12 @@
   .p-3
     h3 = t('.form_title')
     = bootstrap_form_for(@partner, url: partner_path) do |f|
+      - if @partner.pending?
+        .alert.alert-secondary = t('.pending')
+      - elsif @partner.canceled?
+        .alert.alert-danger = t('.canceled')
+      - else
+        .alert.alert-success = t('.success')
       = f.hidden_field :user_id, value: current_user.id
       = f.text_field :full_name, label: t('.full_name')
       = f.text_field :phone, label: t('.phone')

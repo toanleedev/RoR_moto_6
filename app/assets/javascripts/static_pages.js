@@ -22,4 +22,9 @@ $(document).on('turbolinks:load', function () {
   $('#end_date').on('change.datetimepicker', function (e) {
     $('#start_date').datetimepicker('maxDate', e.date);
   });
+
+  $('.js-province-select').select2({
+    dropdownAutoWidth: true,
+    width: "100%"
+  });
 });

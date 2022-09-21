@@ -9,4 +9,12 @@ class PartnerHistory < ActiveRecord::Base
     confirmed: 1,
     canceled: 2
   }
+
+  def pending?
+    status == 'pending'
+  end
+
+  def canceled?
+    status == 'canceled'
+  end
 end

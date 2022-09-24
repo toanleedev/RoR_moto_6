@@ -8,7 +8,7 @@
 #  count_rental_days  :integer
 #  amount             :decimal(18, )
 #  message            :string
-#  status             :integer          default(0)
+#  status             :integer          default("open")
 #  confirmation_token :string
 #  is_confirmed       :boolean          default(FALSE)
 #  is_home_delivery   :boolean          default(FALSE)

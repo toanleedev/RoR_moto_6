@@ -15,4 +15,5 @@
  *= require leaflet
  *= require bootstrap-table/bootstrap-table
  *= require tempusdominus-bootstrap-4
+ *= require select2
  */

@@ -72,6 +72,8 @@ module Account
     end
 
     def upload_image
+      return unless params[:images].present?
+
       params[:images]['image_path'].each do |image|
         @image = @vehicle.vehicle_images.create!(image_path: image)
       end

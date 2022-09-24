@@ -18,7 +18,7 @@
   = f.select :type, @vehicle_types, { include_blank: t('.type'),
     hide_label: true, selected: params[:type]},
     { class: "selectpicker" }
-  = f.select :province, [["Đà Nẵng", "Đà Nẵng"], ["Phú Yên", "Phú Yên"]], { include_blank: t('.search'),
+  = f.select :province, [["Đà Nẵng", "Đà Nẵng"], ["Hội An", "Hội An"]], { include_blank: t('.search'),
     hide_label: true, selected: params[:province]},
     { class: "selectpicker" }
   = f.submit t('.submit'), class: 'btn btn-primary w-100', name: nil

@@ -2,3 +2,4 @@ en:
   searches:
     show:
       title: Self-drive car rental in %{city}
+      empty_message: Sorry! No result found :(

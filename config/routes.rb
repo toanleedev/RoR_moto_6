@@ -13,17 +13,17 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     namespace :account do
-      resource :address, only: %i[show update create]
+      resource :address, only: %i[show create update]
       resource :paper, only: %i[show create update]
       resources :vehicles do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
-      resources :orders, only: %i[index cancel] do
+      resources :orders, only: %i[index show edit update] do
         member do
           patch 'cancel'
         end
       end
-      resources :rental_orders, only: %i[index show edit] do 
+      resources :rental_orders, only: %i[index show edit update] do 
         member do
           patch 'cancel'
           patch 'accept'
@@ -39,6 +39,12 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show]
       resources :vehicle_options
       resources :orders, only: [:index]
+      resources :partners, only: %i[index show] do
+        member do
+          get 'confirm'
+          get 'cancel'
+        end
+      end
     end
 
     resource :search, only: [:show] do

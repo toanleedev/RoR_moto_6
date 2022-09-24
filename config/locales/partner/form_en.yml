@@ -13,3 +13,5 @@ en:
       tax_code: Tax code
       submit: Registration
       back: Go back
+      pending: Your application is pending for review.
+      canceled: Your application has been declined. Try later.

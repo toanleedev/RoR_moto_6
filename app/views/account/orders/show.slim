@@ -58,14 +58,14 @@ div
       - elsif @order.status == 'accepted'
         = link_to t('.start_process'), processing_account_rental_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process')}
-        / = link_to t('.pending'), pending_account_rental_order_path(@order), method: 'PATCH',
-        /   class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process')}
       - elsif @order.status == 'processing'
         = link_to t('.completed'), completed_account_rental_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_complete')}
+      = link_to t('.back'), account_rental_orders_path, class: 'btn btn-outline-secondary'
     - else
       - if @order.status == 'open'
         = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
       - elsif @order.status == 'open' || @order.status == 'accepted'
         = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
+      = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'

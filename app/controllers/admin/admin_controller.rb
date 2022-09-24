@@ -9,7 +9,7 @@ module Admin
     def index; end
 
     def authenticate_admin
-      redirect_to '/', alert: 'Not authorized.' unless current_user&.is_admin
+      redirect_to root_path, alert: t('.not_authorized') unless current_user&.is_admin
     end
   end
 end

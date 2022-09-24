@@ -16,28 +16,23 @@
     #toolbar
       button#remove.btn.btn-danger.ms-2 disabled=true
         = fa_icon 'trash'
-    table#table
+    table#table data-detail-formatter="detailFormatter"
       thead
         tr
-          th data-field="state" data-checkbox="true"
-          th data-field="renter_id" data-formatter="userFormat"
-            = t '.renter_id'
-          th data-field="owner_id" data-formatter="userFormat"
-            = t '.owner_id'
-          th data-field="vehicle_id"
-            = t '.vehicle_id'
-          th data-field="start_date" data-formatter="dateFormat"
-            = t '.start_date'
-          th data-field="end_date" data-formatter="dateFormat"
-            = t '.end_date'
-          th data-field="count_rental_days"
-            = t '.days'
-          th data-field="is_home_delivery"
-            = t '.is_home_delivery'
-          th data-field="payment"
-            = t '.payment'
-          th data-field="amount"
-            = t '.amount'
+          th data-field="user_id" data-formatter="userFormat"
+            = t '.user_id'
+          th data-field="full_name"
+            = t '.full_name'
+          th data-field="email"
+            = t '.email'
+          th data-field="phone"
+            = t '.phone'
+          th data-field="address"
+            = t '.address'
+          th data-field="user_kind" data-formatter="kindFormat"
+            = t '.user_kind'
+          th data-field="tax_code"
+            = t '.tax_code'
           th data-field="status" data-formatter="statusFormat"
             = t '.status'
           th data-field="id" data-formatter="actionFormatter"
@@ -53,17 +48,32 @@ javascript:
       ${value}
     </a>`
   }
-  function dateFormat(value) {
-    return moment(value).format('DD/MM/YYYY HH:mm')
-  }
 
   function statusFormat(value) {
     return `<span class="badge bg-primary">${value}</span>`
   }
 
-  function actionFormatter(e) {
-    return `
-      <a class='btn btn-link'>
-        <i class="fa fa-edit"></i>
+  function kindFormat(value) {
+    return `<span class="badge bg-secondary">${value}</span>`
+  }
+
+  function actionFormatter(value, row) {
+    var html = `
+      <a class='btn btn-link' href='partners/${value}/confirm' >
+        #{t('.confirm')}
+      </a>
+      <a class='btn btn-link' href='partners/${value}/cancel' >
+        #{t('.cancel')}
       </a>`
+    if (row.status === 'confirmed') html = ''
+    return html;
+  }
+
+  function detailFormatter(index, row) {
+    return `
+      <div>
+        <div>${row.title} </div>
+        <div>${row.description}</div>
+      </div>
+    `
   }

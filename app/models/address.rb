@@ -8,7 +8,6 @@
 #  district   :string
 #  ward       :string
 #  street     :string
-#  geocoding  :text             default([]), is an Array
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

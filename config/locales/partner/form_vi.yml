@@ -13,3 +13,5 @@ vi:
       tax_code: Mã số thuế
       submit: Đăng ký
       back: Quay lại
+      pending: Đơn đăng ký của bạn đang chờ để được xét duyệt.
+      canceled: Đơn của bạn đã bị từ chối. Thử lại sau.

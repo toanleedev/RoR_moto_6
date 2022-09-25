@@ -1,0 +1,16 @@
+vi:
+  admin:
+    users:
+      index:
+        home: Admin
+        title: Quản lý người dùng
+        users: Người dùng
+        last_name: Họ
+        first_name: Tên
+        email: Email
+        phone: Điện thoại
+        gender: Giới tính
+        birth: Ngày sinh
+        is_partner: Đối tác
+        action: Hành động
+        show: Xem

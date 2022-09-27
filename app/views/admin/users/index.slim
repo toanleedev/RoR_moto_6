@@ -6,7 +6,7 @@
     ol.breadcrumb
       li.breadcrumb-item
         = link_to t('.home'), admin_dashboard_path
-      li.breadcrumb-item.active = t ".dashboard"
+      li.breadcrumb-item.active = t ".users"
 .row
   .col-md-12
     #toolbar
@@ -30,6 +30,8 @@
             = t '.birth'
           th data-field="is_partner"
             = t '.is_partner'
+          th data-field="is_admin"
+            = t '.is_admin'
           th data-field="id" data-formatter="actionFormatter"
             = t '.action'
 

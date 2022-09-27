@@ -10,8 +10,8 @@ module Admin
     end
 
     def show
-      @user = User.find_by(id: params[:id])
-      # binding.pry
+      @user = User.includes(:paper, :address, :vehicles).find_by(id: params[:id])
+
       respond_to do |format|
         format.html
         format.json { render json: @user, serializer: UserSerializer }

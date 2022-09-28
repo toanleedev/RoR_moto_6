@@ -22,7 +22,8 @@ en:
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?
         confirm_complete: Do you want to complete order?
-        open: Opening
+        opening: Opening
+        pending: Pending
         accepted: Accepted
         processing: Processing
         completed: Completed

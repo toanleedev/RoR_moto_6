@@ -8,34 +8,50 @@
 #  count_rental_days  :integer
 #  amount             :decimal(18, )
 #  message            :string
-#  status             :integer          default("open")
+#  status             :integer          default("opening")
 #  confirmation_token :string
-#  is_confirmed       :boolean          default(FALSE)
 #  is_home_delivery   :boolean          default(FALSE)
 #  delivery_address   :string
 #  is_prepaid         :boolean          default(FALSE)
 #  prepaid_discount   :decimal(18, )
-#  payment            :string           default("cash"), not null
 #  payment_info       :string
-#  is_paid            :boolean          default(FALSE)
 #  discount           :decimal(18, )
 #  vehicle_id         :bigint           not null
 #  renter_id          :bigint
 #  owner_id           :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  confirmed_at       :datetime
+#  processing_at      :datetime
+#  completed_at       :datetime
+#  paid_at            :datetime
+#  uid                :string
+#  payment            :integer          default("cash"), not null
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :renter, class_name: 'User'
   belongs_to :vehicle
+  before_create :default_values
 
   enum status: {
-    open: 0,
-    accepted: 1,
-    processing: 2,
-    completed: 3,
-    pending: 4,
+    opening: 0,
+    pending: 1,
+    accepted: 2,
+    processing: 3,
+    completed: 4,
     canceled: 5
   }
+
+  enum payment: {
+    cash: 0,
+    paypal: 1
+  }
+
+  protected
+
+  def default_values
+    self.confirmation_token = SecureRandom.urlsafe_base64
+    self.uid ||= "MOTO_#{SecureRandom.alphanumeric(10)}"
+  end
 end

@@ -5,9 +5,9 @@ en:
         show: More Detail
         contact: Contact
         amount: 'Total amount: <span class="h4 text-primary">%{amount} VND</span>'
-        open: Opening
-        accepted: Accepted
+        opening: Opening
         pending: Pending
+        accepted: Accepted
         processing: Processing
         canceled: Canceled
         completed: Completed

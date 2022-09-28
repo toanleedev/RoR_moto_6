@@ -5,9 +5,9 @@ vi:
         show: Xem thông tin
         contact: Liên hệ chủ xe
         amount: 'Tổng số tiền: <span class="h4 text-primary">%{amount}₫</span>'
-        open: Chờ xác nhận
+        opening: Chưa xác nhận
+        pending: Chờ duyệt
         accepted: Đã xác nhận
         processing: Đang tiến hành
-        pending: Chờ
         completed: Hoàn thành
         canceled: Đã hủy

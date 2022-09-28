@@ -50,7 +50,7 @@ div
         span.text-primary.fw-bold = @order.amount
   div.d-flex.justify-content-end.gap-2
     - if @is_rental_page
-      - if @order.status == 'open'
+      - if @order.status == 'pending'
         = link_to t('.accept'), accept_account_rental_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
         = link_to t('.cancel'), cancel_account_rental_order_path(@order), method: 'PATCH',
@@ -63,9 +63,9 @@ div
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_complete')}
       = link_to t('.back'), account_rental_orders_path, class: 'btn btn-outline-secondary'
     - else
-      - if @order.status == 'open'
+      - if @order.status == 'pending'
         = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
-      - elsif @order.status == 'open' || @order.status == 'accepted'
+      - elsif @order.status == 'pending' || @order.status == 'accepted'
         = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
       = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'

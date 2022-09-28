@@ -22,7 +22,8 @@ vi:
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: Xác nhận bắt đầu?
         confirm_complete: Xác nhận hoàn thành?
-        open: Chờ xác nhận
+        opening: Chưa xác nhận
+        pending: Chờ duyệt
         accepted: Đã xác nhận
         processing: Đang tiến hành
         completed: Hoàn thành

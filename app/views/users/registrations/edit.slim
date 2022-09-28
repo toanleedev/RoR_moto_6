@@ -20,9 +20,9 @@
             = f.phone_field :phone, label: t(".phone")
             = f.date_select :birth, start_year: 1951, end_year: 2022, label: t(".birth")
             = f.form_group :gender, label: { text: t(".gender"), class: 'd-block' } do
-              = f.radio_button :gender, 1, label: t(".male"), inline: true
-              = f.radio_button :gender, 2, label: t(".female"), inline: true
-              = f.radio_button :gender, 0, label: t(".other"), inline: true
+              = f.radio_button :gender, 'male', label: t(".male"), inline: true
+              = f.radio_button :gender, 'female', label: t(".female"), inline: true
+              = f.radio_button :gender, 'other', label: t(".other"), inline: true
             - if current_user.provider.blank?
               = f.password_field :password, autocomplete: "current-password", label: t(".password"), help: t(".update_password_message")
               = f.password_field :password_confirmation, label: t(".password_confirmation")

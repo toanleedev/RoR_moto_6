@@ -1,17 +1,20 @@
 module Admin
   class UsersController < AdminController
-    layout 'admin'
-
     def index
       @users = User.all
+
+      respond_to do |format|
+        format.html
+        format.json { render json: @users.as_json }
+      end
     end
 
     def show
-      @user = User.find_by(id: params[:id])
-      # binding.pry
+      @user = User.includes(:paper, :address, :vehicles).find_by(id: params[:id])
+
       respond_to do |format|
         format.html
-        format.json { render json: @user, serializer: UserSerializer}
+        format.json { render json: @user, serializer: UserSerializer }
       end
     end
   end

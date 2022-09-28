@@ -26,7 +26,7 @@ module ApplicationHelper
         folder: 'moto-6',
         width: size,
         height: size,
-        class: 'rounded-circle shadow-sm',
+        class: 'rounded-circle shadow-sm border',
         crop: 'fill'
       )
     end

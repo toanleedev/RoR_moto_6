@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
                          length: { minimum: 2 }
   validates :last_name, presence: true,
                         length: { minimum: 2 }
+  enum gender: {
+    other: 0,
+    male: 1,
+    female: 2
+  }
 
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first

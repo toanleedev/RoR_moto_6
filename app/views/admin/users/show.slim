@@ -4,5 +4,63 @@
     ol.breadcrumb
       li.breadcrumb-item
         = link_to t('.home'), admin_dashboard_path
-      li.breadcrumb-item.active = t ".user"
-h1 = @user.first_name
+      li.breadcrumb-item
+        = link_to t('.users'), admin_users_path
+      li.breadcrumb-item.active = t ".show"
+.row
+  .col-md-5
+    .d-flex.flex-column.justify-content-center.align-items-center.gap-3
+      = avatar_for(@user.photo_url, 150)
+      span.fw-bold.ms-3 = @user.full_name
+    div
+      | Tổng số xe sở hữu: 
+      = @user.vehicles.count
+    div Số đơn đã order 
+    div
+      | Đã tham gia: 
+      = distance_of_time_in_words_to_now(@user.created_at)
+  .col-md-7
+    = bootstrap_form_for([:admin, @user],
+      layout: :horizontal, label_col: "col-sm-4",
+      control_col: "col-sm-8") do |f|
+      = f.static_control :first_name, label: t('.first_name'), required: false
+      = f.static_control :last_name, label: t('.last_name'), required: false
+      = f.static_control :email, label: t('.email'), required: false
+      = f.static_control :phone, label: t('.phone'), required: false
+      = f.datetime_field :birth, label: t('.birth'), required: false, disabled: true
+      = f.static_control :gender, label: t('.gender'), required: false
+      = f.check_box :is_partner, label: t('.is_partner'), disabled: true
+      = f.check_box :is_admin, label: t('.is_admin'), disabled: true
+    #accordionExample.accordion.mt-3
+      - if @user.address.present?
+        .accordion-item
+          h2#flush-headingOne.accordion-header
+            button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"]
+              = t('.addresses')
+          #flush-collapseOne.accordion-collapse.collapse[aria-labelledby="flush-headingOne" data-bs-parent="#accordionExample"]
+            .accordion-body
+              = @user.address.full_address
+      - if @user.paper.present?
+        .accordion-item
+          h2#flush-headingTwo.accordion-header
+            button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"]
+              = t('.papers')
+          #flush-collapseTwo.accordion-collapse.collapse[aria-labelledby="flush-headingTwo" data-bs-parent="#accordionExample"]
+            .accordion-body
+              = bootstrap_form_tag(layout: :horizontal, label_col: "col-sm-4",
+                control_col: "col-sm-8") do |f|
+                = f.static_control :card_number, value: @user.paper.card_number.presence
+                - if @user.paper.card_front_url.present?
+                  = cl_image_tag(@user.paper.card_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
+                - if @user.paper.card_back_url.present?
+                  = cl_image_tag(@user.paper.card_back_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
+                = f.static_control :driver_number, value: @user.paper.driver_number
+                - if @user.paper.driver_front_url.present?
+                  = cl_image_tag(@user.paper.driver_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
+      / .accordion-item
+      /   h2#flush-headingThree.accordion-header
+      /     button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"]
+      /       = t('.vehicles')
+      /   #flush-collapseThree.accordion-collapse.collapse[aria-labelledby="flush-headingThree" data-bs-parent="#accordionExample"]
+      /     .accordion-body
+            / = render partial: "account/vehicles/vehicle", collection: @user.vehicles

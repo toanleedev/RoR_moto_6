@@ -1,0 +1,16 @@
+en:
+  admin:
+    users:
+      index:
+        home: Admin
+        title: Manage users
+        users: Users
+        last_name: Last name
+        first_name: First name
+        email: Email
+        phone: Phone
+        gender: Gender
+        birth: Date of birth
+        is_partner: Partner
+        action: Actions
+        show: Show

@@ -9,6 +9,10 @@ class CheckoutController < ApplicationController
     render 'confirm', locals: { vehicle: @vehicle }, collection: @order
   end
 
+  def complete
+    redirect_to root_path unless params[:uid].present?
+  end
+
   private
 
   def set_vehicle

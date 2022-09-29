@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
     namespace :checkout do
       post 'confirm', action: :confirm
+      get 'complete', action: :complete
     end
     resources :orders, only: %i[create show edit update]
     resource :partner

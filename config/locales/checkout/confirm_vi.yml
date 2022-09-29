@@ -1,9 +1,18 @@
 vi:
   checkout:
     confirm:
+      head_user_info: Thông tin người dùng
+      head_confirm_info: Thông tin xác nhận
+      fromto: 'Thời gian thuê từ: '
+      address_delivery: 'Địa chỉ giao xe: '
+      payment_method: Phương thức thanh toán
+      cash: Tiền mặt
+      paypal: Paypal
+      detail_price: Chi tiết giá
       unit_price: Đơn giá
       is_home_delivery: Giao xe tại nhà
       rental_time: Số ngày thuê
+      rental_time_format: 'x%{times} ngày'
       submit: Hoàn tất đặt xe
       amount: Tổng tiền
       deposit: Cọc trước

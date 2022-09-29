@@ -52,6 +52,6 @@ class Order < ActiveRecord::Base
 
   def default_values
     self.confirmation_token = SecureRandom.urlsafe_base64
-    self.uid ||= "MOTO_#{SecureRandom.alphanumeric(10)}"
+    self.uid ||= "MOTO#{SecureRandom.alphanumeric(10).upcase}"
   end
 end

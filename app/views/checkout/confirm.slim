@@ -15,8 +15,10 @@
       .row.py-4.gx-4
         .col-md-12
           .bg-white.p-3.shadow-sm.rounded
-            .p-5
-              h1 = current_user.full_name
+            div
+              h5.text-uppercase = t('.head_user_info')
+              h3 = current_user.full_name
+              p = current_user.address.full_address
             .divider
             .row
               .col-2
@@ -26,23 +28,23 @@
                 p = vehicle.price
             .divider
             div
-              h5.text-uppercase Thông tin xác nhận
+              h5.text-uppercase = t('.head_confirm_info')
               ul
                 li
-                  span.fw-bold Thời gian: 
+                  span.fw-bold = t('.fromto') 
                   span #{params[:start_date]} ➜ #{params[:end_date]}
                 li
-                  span.fw-bold Giao xe: 
+                  span.fw-bold = t('.address_delivery')
                   span = params[:delivery_address].presence || 'Nhận xe tại đại lý'
             .divider
             div
-              h5.text-uppercase Phương thức thanh toán
+              h5.text-uppercase = t('.payment_method')
               = f.form_group :payment
-                = f.radio_button :payment, 'cash', label: "Trả sau", checked: true
-                = f.radio_button :payment, 'paypal', label: "Thanh toán qua Paypal"
+                = f.radio_button :payment, 'cash', label: t('.cash'), checked: true
+                = f.radio_button :payment, 'paypal', label: t('.paypal')
             .divider
             div
-              h5.text-uppercase Chi tiết giá
+              h5.text-uppercase = t('.detail_price')
               .divider
               .price-row
                 span = t('.unit_price')
@@ -52,7 +54,7 @@
                 span 50000
               .price-row.text-muted
                 span = t('.rental_time')
-                span.rental_time_js ×#{params[:rental_time]} ngày
+                span = t('.rental_time_format', times: params[:rental_time])
               .divider
               .price-row.mb-3
                 span = t('.amount')

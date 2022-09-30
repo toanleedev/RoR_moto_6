@@ -1,0 +1,6 @@
+vi:
+  checkout:
+    confirm:
+      heading: Tạo đơn thành công
+      message: 'Đơn hàng <span class="fw-bold">#%{uid}</span> của bạn đã được tạo thành công. Vui lòng kiểm tra hộp thư để xác nhận đơn.'
+      back_home: Quay lại trang chủ

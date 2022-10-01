@@ -1,0 +1,17 @@
+vi:
+  order_mailer:
+    order_confirmation:
+      order_subject: Order confirmation
+      heading: MOTE SHARE
+      dear: 'Dear <b>%{name}</b>,'
+      thanks: Thank you for your order
+      uid: Order ID
+      vehicle_name: Vehicle Name
+      start_date: Pick-up date
+      end_date: Drop-off date
+      count_rental_days: Rental times
+      amount: Amount
+      payment: Payment method
+      cash: Cash
+      confirm_message: 'You can confirm your application through the link below:'
+      confirm: Confirm here

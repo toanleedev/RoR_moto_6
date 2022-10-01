@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   def create
     order = Order.new order_params
     if order.save
+      OrderMailer.order_confirmation(order).deliver_now
       flash[:notice] = t('message.success.create')
       redirect_to checkout_complete_path(uid: order.uid)
     else

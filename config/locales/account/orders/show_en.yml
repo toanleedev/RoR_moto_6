@@ -3,6 +3,7 @@ en:
     orders:
       show:
         title: Order detail
+        uid: Order id
         status: Status
         start_date: Pick-up date
         end_date: Drop-off date
@@ -28,3 +29,4 @@ en:
         processing: Processing
         completed: Completed
         canceled: Canceled
+        back: Back

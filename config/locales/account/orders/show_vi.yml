@@ -3,6 +3,7 @@ vi:
     orders:
       show:
         title: Hóa đơn thuê xe
+        uid: Mã đơn
         status: Trạng thái
         start_date: Từ ngày
         end_date: Đến ngày
@@ -28,3 +29,4 @@ vi:
         processing: Đang tiến hành
         completed: Hoàn thành
         canceled: Đã hủy
+        back: Quay lại

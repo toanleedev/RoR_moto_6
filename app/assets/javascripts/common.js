@@ -6,11 +6,11 @@ $(document).ready(function () {
     });
   });
   $(document).on('turbolinks:click', function () {
-    $('.spinner').show();
+    $('.loading-js').show();
   });
 
   $(document).on('turbolinks:load', function () {
-    $('.spinner').hide();
+    $('.loading-js').hide();
   });
   AOS.init();
 });

@@ -20,6 +20,8 @@ class CheckoutController < ApplicationController
       return redirect_to root_path, flash: { alert: 'Đơn đã được xác nhận.' } if order.status == 'pending'
 
       order.status = :pending
+      order.confirmed_at = Time.current
+
       if order.save
         flash[:notice] = 'Xác nhận đơn thành công'
       else

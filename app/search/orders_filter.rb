@@ -5,10 +5,11 @@ class OrdersFilter < BaseFilter
     super
 
     @status = options[:status].presence
+    @uid = options[:uid].presence
     @current_user = current_user
   end
 
-  attr_reader :status
+  attr_reader :status, :uid
 
   def filter
     records = @current_user.orders.includes(:vehicle, vehicle: [:vehicle_images])
@@ -24,6 +25,8 @@ class OrdersFilter < BaseFilter
       end
     end
 
+    records = records.where(uid: uid) if uid.present?
+
     records.order(created_at: :desc).page(@page).per(@per_page)
   end
 
@@ -31,7 +34,7 @@ class OrdersFilter < BaseFilter
     records = @current_user.rental_orders.includes(:vehicle, vehicle: [:vehicle_images])
 
     records = records.where(status: status) if status.present?
-
+    records = records.where(uid: uid) if uid.present?
     records.order(created_at: :desc).page(@page).per(@per_page)
   end
 end

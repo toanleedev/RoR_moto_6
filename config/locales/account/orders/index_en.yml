@@ -12,3 +12,5 @@ en:
         completed: Completed
         coming: Coming
         empty_message: There is no data to show
+        search_uid: Search Order ID
+        btn_search: Search

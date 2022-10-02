@@ -1,5 +1,6 @@
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table-locale-all.min.js"
 = content_for :page_header
   h2 = t ".users"
   nav
@@ -12,7 +13,7 @@
     #toolbar
       button#remove.btn.btn-danger.ms-2 disabled=true
         = fa_icon 'trash'
-    table#table
+    table#table data-locale="#{params[:locale]}"
       thead
         tr
           th data-field="state" data-checkbox="true"

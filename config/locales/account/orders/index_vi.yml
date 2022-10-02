@@ -12,3 +12,5 @@ vi:
         completed: Hoàn tất
         coming: Sắp tới
         empty_message: Không có dữ liệu để hiển thị
+        search_uid: Tìm kiếm mã đơn
+        btn_search: Tìm

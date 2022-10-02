@@ -1,4 +1,4 @@
-vi:
+en:
   order_mailer:
     order_confirmation:
       order_subject: Order confirmation

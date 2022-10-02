@@ -11,8 +11,9 @@
 #  brand_id     :bigint
 #  type_id      :bigint
 #  engine_id    :bigint
-#  year_produce :datetime
 #  name         :string
+#  status       :integer          default("idle")
+#  year_produce :integer
 #
 class Vehicle < ActiveRecord::Base
   belongs_to  :user
@@ -23,4 +24,11 @@ class Vehicle < ActiveRecord::Base
   has_many :orders
 
   accepts_nested_attributes_for :vehicle_images
+
+  enum status: {
+    idle: 0,
+    reserved: 1,
+    hidden: 3,
+    locked: 4
+  }
 end

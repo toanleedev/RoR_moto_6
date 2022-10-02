@@ -4,3 +4,6 @@ en:
       vehicle:
         price: '%{price}VND/<span class="fs-6">day</span>'
         edit: Update
+        idle: Idle
+        reserved: Reserved
+        hidden: Hidden

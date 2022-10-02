@@ -34,6 +34,8 @@ class Order < ActiveRecord::Base
   belongs_to :vehicle
   before_create :default_values
 
+  accepts_nested_attributes_for :vehicle
+
   enum status: {
     opening: 0,
     pending: 1,

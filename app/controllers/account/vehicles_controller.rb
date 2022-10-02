@@ -6,6 +6,7 @@ module Account
 
     def index
       @vehicles = current_user.vehicles.includes(:brand, :type, :engine)
+                              .order(created_at: :desc)
     end
 
     def new
@@ -18,7 +19,7 @@ module Account
       if @vehicle.save
         upload_image
         flash[:notice] = t('message.success.create')
-        redirect_to account_vehicles_path
+        redirect_to edit_account_vehicle_path(@vehicle)
       else
         flash[:alert] = t('message.failure.create')
         render :new
@@ -33,7 +34,7 @@ module Account
       if @vehicle.update vehicle_params
         upload_image
         flash[:notice] = t('message.success.update')
-        redirect_to account_vehicles_path
+        redirect_to edit_account_vehicle_path(@vehicle)
       else
         flash[:alert] = t('message.failure.update')
         render :edit

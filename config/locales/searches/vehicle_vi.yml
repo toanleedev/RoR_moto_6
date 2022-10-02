@@ -3,3 +3,6 @@ vi:
     vehicle:
       price: '%{price}₫/<span class="fs-6">ngày</span>'
       detail: Chi tiết
+      idle: Khả dụng
+      reserved: Đã đặt trước
+      hidden: Bị ẩn

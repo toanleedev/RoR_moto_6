@@ -45,4 +45,4 @@
             span = t('.total')
             span.total_js 0
           .divider
-          = f.submit t('.submit'), class: 'w-100 btn btn-primary'
+          = f.submit t('.submit'), class: 'w-100 btn btn-primary', disabled: @vehicle.status != 'idle'

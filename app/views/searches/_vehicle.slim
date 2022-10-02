@@ -28,6 +28,7 @@
       .col-md-3
         .card-body.h-100.text-end.d-flex.flex-column.align-items-end
           h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))
+          span class='badge bg-secondary float-end' = t(".#{vehicle.status}")
           = link_to t('.detail'), {controller: :searches, action: :detail, id: vehicle,
             start_date: params[:start_date], end_date: params[:end_date]},
             class: 'btn btn-primary mt-auto w-100'

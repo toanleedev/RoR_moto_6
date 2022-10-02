@@ -17,6 +17,8 @@ div
   .row.g-0.text-end.mb-3
     .col-md-8
       .border-bottom.border-end.p-2
+        span = t('.uid')
+      .border-bottom.border-end.p-2
         span = t('.status')
       .border-bottom.border-end.p-2
         span = t('.start_date')
@@ -27,11 +29,19 @@ div
       - if @order.is_home_delivery
         .border-bottom.border-end.p-2
           span = t('.delivery_address')
+      - if @order.processing_at
+        .border-bottom.border-end.p-2
+          span = t('.processing_at')
+      - if @order.completed_at
+        .border-bottom.border-end.p-2
+          span = t('.completed_at')
       .border-bottom.border-end.p-2
         span = t('.payment')
       .border-bottom.border-end.p-2
         span = t('.amount')
     .col-md-4
+      .border-bottom.p-2.min-height-40
+        span = @order.uid || '-'
       .border-bottom.p-2.min-height-40
         span class="badge bg-secondary" = t(".#{@order.status}")
       .border-bottom.p-2.min-height-40
@@ -44,13 +54,19 @@ div
         .border-bottom.p-2.text-truncate.min-height-40
           span data-bs-toggle="tooltip" data-bs-placement="top" title="#{@order.delivery_address}"
             = @order.delivery_address
+      - if @order.processing_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.processing_at)
+      - if @order.completed_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.completed_at)
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment}")
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = @order.amount
   div.d-flex.justify-content-end.gap-2
     - if @is_rental_page
-      - if @order.status == 'open'
+      - if @order.status == 'pending'
         = link_to t('.accept'), accept_account_rental_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
         = link_to t('.cancel'), cancel_account_rental_order_path(@order), method: 'PATCH',
@@ -63,9 +79,8 @@ div
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_complete')}
       = link_to t('.back'), account_rental_orders_path, class: 'btn btn-outline-secondary'
     - else
-      - if @order.status == 'open'
+      - if @order.status.in?(['opening', 'pending'])
         = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
-      - elsif @order.status == 'open' || @order.status == 'accepted'
         = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
       = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'

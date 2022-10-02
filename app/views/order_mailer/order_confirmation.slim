@@ -1,0 +1,22 @@
+h1 = t('.heading')
+p = raw t('.dear', name: @order.renter.full_name)
+p = t('.thanks')
+table style="border-collapse: collapse"
+  tr
+    th = t('.uid')
+    th = t('.vehicle_name')
+    th = t('.start_date')
+    th = t('.end_date')
+    th = t('.count_rental_days')
+    th = t('.amount')
+    th = t('.payment')
+  tr
+    td = @order.uid
+    td = @order.vehicle.name
+    td = l(@order.start_date)
+    td = l(@order.end_date)
+    td = @order.count_rental_days
+    td = @order.amount
+    td = t(".#{@order.payment}")
+p = t('.confirm_message')
+= link_to t('.confirm'), checkout_confirmation_url(uid: @order.uid, token: @order.confirmation_token)

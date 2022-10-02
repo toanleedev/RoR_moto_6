@@ -3,6 +3,7 @@ en:
     orders:
       show:
         title: Order detail
+        uid: Order id
         status: Status
         start_date: Pick-up date
         end_date: Drop-off date
@@ -22,8 +23,10 @@ en:
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?
         confirm_complete: Do you want to complete order?
-        open: Opening
+        opening: Opening
+        pending: Pending
         accepted: Accepted
         processing: Processing
         completed: Completed
         canceled: Canceled
+        back: Back

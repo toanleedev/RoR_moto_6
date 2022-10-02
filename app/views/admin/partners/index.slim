@@ -2,6 +2,7 @@
 
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table-locale-all.min.js"
   script src="https://unpkg.com/bootstrap-table@1.21.0/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"
   link href="https://unpkg.com/bootstrap-table@1.21.0/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet"
 = content_for :page_header
@@ -16,7 +17,7 @@
     #toolbar
       button#remove.btn.btn-danger.ms-2 disabled=true
         = fa_icon 'trash'
-    table#table data-detail-formatter="detailFormatter"
+    table#table data-detail-formatter="detailFormatter" data-locale="#{params[:locale]}"
       thead
         tr
           th data-field="user_id" data-formatter="userFormat"

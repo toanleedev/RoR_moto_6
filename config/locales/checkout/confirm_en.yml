@@ -1,9 +1,18 @@
 en:
   checkout:
     confirm:
+      head_user_info: User info
+      head_confirm_info: Confirmation Information
+      fromto: 'Rent from: '
+      address_delivery: 'Delivery address: '
+      payment_method: Payment method
+      cash: Cash
+      paypal: Paypal
+      detail_price: Price detail
       unit_price: Unit price
       is_home_delivery: Get the vehicle at home
       rental_time: Rental time
+      rental_time_format: 'x%{times} days'
       submit: Complete booking
       amount: Total
       deposit: Deposit

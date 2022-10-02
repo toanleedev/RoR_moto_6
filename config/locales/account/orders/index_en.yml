@@ -4,11 +4,13 @@ en:
       index:
         title: Booking List
         all: All
-        open: Opening
-        accepted: Accepted
+        opening: Opening
         pending: Pending
+        accepted: Accepted
         processing: Processing
         canceled: Canceled
         completed: Completed
         coming: Coming
         empty_message: There is no data to show
+        search_uid: Search Order ID
+        btn_search: Search

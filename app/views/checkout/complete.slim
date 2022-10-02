@@ -1,0 +1,6 @@
+.container
+  .alert.alert-success.mt-3
+    h4.alert-heading = t('.heading')
+    p = raw t('.message', uid: params[:uid])
+  .text-center
+    = link_to t('.back_home'), root_path, class: "btn btn-primary"

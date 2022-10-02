@@ -28,11 +28,13 @@ module Account
 
     def processing
       @order.status = :processing
+      @order.processing_at = Time.current
       save_order @order
     end
 
     def completed
       @order.status = :completed
+      @order.completed_at = Time.current
       save_order @order
     end
 

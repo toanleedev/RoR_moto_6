@@ -1,0 +1,17 @@
+vi:
+  order_mailer:
+    order_confirmation:
+      order_subject: Xác nhận đơn thuê xe
+      heading: MOTE SHARE
+      dear: 'Chào <b>%{name}</b>,'
+      thanks: Cảm ơn bạn đã đặt đơn
+      uid: Mã đơn
+      vehicle_name: Tên xe
+      start_date: Từ ngày
+      end_date: Đến ngày
+      count_rental_days: Số ngày thuê
+      amount: Tổng tiền
+      payment: Thanh toán
+      cash: Tiền mặt
+      confirm_message: 'Bạn có thể xác nhận đơn của mình thông qua liên kết bên dưới:'
+      confirm: Nhấn để xác nhận

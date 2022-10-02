@@ -1,0 +1,4 @@
+vi:
+  checkout:
+    confirmation:
+      processing: Đang xác thực

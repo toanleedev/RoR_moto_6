@@ -1,0 +1,6 @@
+en:
+  checkout:
+    complete:
+      heading: Successfully created order
+      message: 'Your order <span class="fw-bold">#%{uid}</span> has been created successfully. Please check your mailbox to confirm the order.'
+      back_home: Back to home page

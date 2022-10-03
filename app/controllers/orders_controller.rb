@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new order_params
+    order.vehicle.status = :reserved
     if order.save
       OrderMailer.order_confirmation(order).deliver_now
       flash[:notice] = t('message.success.create')

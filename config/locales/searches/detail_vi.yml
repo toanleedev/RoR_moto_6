@@ -11,3 +11,6 @@ vi:
       deposit: Đặt cọc từ 800.000đ đến 1 triệu đồng
       accept_payment: Chấp nhận thanh toán
       postpaid: Trả sau
+      idle: Khả dụng
+      reserved: Đã đặt trước
+      hidden: Bị ẩn

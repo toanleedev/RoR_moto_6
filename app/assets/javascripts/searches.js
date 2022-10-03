@@ -80,4 +80,9 @@ $(document).on('turbolinks:load', function () {
     inputTotal.val(total);
     return;
   }
+
+  $('.js-province-select').select2({
+    dropdownAutoWidth: true,
+    width: '100%',
+  });
 });

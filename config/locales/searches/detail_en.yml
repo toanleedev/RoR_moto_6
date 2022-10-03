@@ -11,3 +11,6 @@ en:
       deposit: Deposit from VND 800,000 to VND 1 million
       accept_payment: ACCEPT PAYMENT
       postpaid: Postpaid
+      idle: Idle
+      reserved: Reserved
+      hidden: Hidden

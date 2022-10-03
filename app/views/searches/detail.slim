@@ -12,6 +12,7 @@
               - else
                 img src="https://via.placeholder.com/200" class="img-fluid"
             .col-md-7
+              span class='badge bg-primary float-end' = t(".#{@vehicle.status}")
               h2.text-primary = vehicle_title(@vehicle)
               .d-flex.mt-2
                 = image_tag('star_on.png')

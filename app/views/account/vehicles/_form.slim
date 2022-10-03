@@ -4,7 +4,8 @@
       = f.select :brand_id, @vehicle_brands, {label: t('.vehicle_brand'), include_blank: t('.select_value')}
       = f.text_field :name, label: t('.name')
       = f.text_area :description, label: t('.description')
-      / = f.date_field :year_produce, label: t('.year_produce'), discard_day: true, discard_month: true, start_year: 2000, end_year: Time.now.year
+      = f.select :year_produce, (Time.zone.now.year - 30)..(Time.zone.now.year),
+        {label: t('.year_produce'), include_blank: t('.select_value')}
       = f.select :type_id, @vehicle_types, {label: t('.vehicle_type'), include_blank: t('.select_value')}
       = f.select :engine_id, @vehicle_engines, {label: t('.vehicle_engine'), include_blank: t('.select_value')}
     .col-md-6

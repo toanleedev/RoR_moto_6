@@ -8,6 +8,7 @@ module Account
 
     def cancel
       @order.status = :canceled
+      @order.vehicle.status = :idle
       save_order @order
     end
 

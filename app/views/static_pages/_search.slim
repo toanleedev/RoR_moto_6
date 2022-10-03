@@ -1,8 +1,9 @@
 .bg-white.mt-5.p-3.rounded
-  = bootstrap_form_tag(url: "#{I18n.locale}/search", method: :get, local: true, enforce_utf8: false) do |f|
+  = bootstrap_form_tag(url: "#{I18n.locale}/search",
+    method: :get, local: true, enforce_utf8: false) do |f|
     h3.text-center = t ".title"
-    = select_tag(:province, options_for_select([["Đà Nẵng", "Đà Nẵng"],["Hội An", "Hội An"]]),
-      class:"js-province-select")
+    = f.select :province, province_search_options,
+      { label: t('.province') }, class: 'js-province-select'
     .row
       .col-md-6.position-relative
         = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',

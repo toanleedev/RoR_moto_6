@@ -18,6 +18,7 @@ module Account
 
     def cancel
       @order.status = :canceled
+      @order.vehicle.status = :idle
       save_order @order
     end
 
@@ -34,6 +35,7 @@ module Account
 
     def completed
       @order.status = :completed
+      @order.vehicle.status = :idle
       @order.completed_at = Time.current
       save_order @order
     end

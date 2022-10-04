@@ -3,3 +3,6 @@ en:
     papers:
       show:
         title: License information
+        open: Opening
+        confirmed: Confirmed
+        rejected: Rejected

@@ -10,19 +10,21 @@ module Account
       paper = Paper.new paper_params
       if paper.save
         flash[:notice] = t('message.success.create')
+        redirect_to account_paper_path
       else
         flash[:alert] = t('message.failure.create')
+        render 'show'
       end
-      redirect_to account_paper_path
     end
 
     def update
       if current_user.paper.update paper_params
         flash[:notice] = t('message.success.update')
+        redirect_to account_paper_path
       else
         flash[:alert] = t('message.failure.update')
+        render 'show'
       end
-      redirect_to request.referrer
     end
 
     private

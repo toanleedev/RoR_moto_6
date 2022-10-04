@@ -3,3 +3,6 @@ vi:
     papers:
       show:
         title: Thông tin giấy tờ
+        open: Chờ duyệt
+        confirmed: Đã duyệt
+        rejected: Từ chối

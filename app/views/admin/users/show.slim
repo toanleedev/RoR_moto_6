@@ -9,54 +9,46 @@
       li.breadcrumb-item.active = t ".show"
 .row
   .col-md-5
-    .d-flex.flex-column.justify-content-center.align-items-center.gap-3
+    .d-flex.justify-content-center.mb-3
       = avatar_for(@user.photo_url, 150)
-      span.fw-bold.ms-3 = @user.full_name
-    div
-      | Tổng số xe sở hữu: 
-      = @user.vehicles.count
-    div Số đơn đã order 
-    div
-      | Đã tham gia: 
-      = distance_of_time_in_words_to_now(@user.created_at)
+    - user_info_fields(@user).each do |name, value|
+      dl.row.mb-2
+        dt.col-md-3
+          = t(".#{name}")
+        dd.col-md-9
+          - case name
+          - when 'birth'
+            = l(value)
+          - when 'gender'
+            = t(".#{value}")
+          - when 'is_partner', 'is_admin'
+            .badge.bg-primary = value
+          - when 'created_at'
+            = distance_of_time_in_words_to_now(value)
+          - else
+            = value
+    - if @user.address.present?
+      dl.row.mb-2
+        dt.col-md-3
+          = t(".address")
+        dd.col-md-9
+          = @user.address.full_address
   .col-md-7
-    = bootstrap_form_for([:admin, @user],
-      layout: :horizontal, label_col: "col-sm-4",
-      control_col: "col-sm-8") do |f|
-      = f.static_control :first_name, label: t('.first_name'), required: false
-      = f.static_control :last_name, label: t('.last_name'), required: false
-      = f.static_control :email, label: t('.email'), required: false
-      = f.static_control :phone, label: t('.phone'), required: false
-      = f.datetime_field :birth, label: t('.birth'), required: false, disabled: true
-      = f.static_control :gender, label: t('.gender'), required: false
-      = f.check_box :is_partner, label: t('.is_partner'), disabled: true
-      = f.check_box :is_admin, label: t('.is_admin'), disabled: true
-    #accordionExample.accordion.mt-3
-      - if @user.address.present?
-        .accordion-item
-          h2#flush-headingOne.accordion-header
-            button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"]
-              = t('.addresses')
-          #flush-collapseOne.accordion-collapse.collapse[aria-labelledby="flush-headingOne" data-bs-parent="#accordionExample"]
-            .accordion-body
-              = @user.address.full_address
-      - if @user.paper.present?
-        .accordion-item
-          h2#flush-headingTwo.accordion-header
-            button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"]
-              = t('.papers')
-          #flush-collapseTwo.accordion-collapse.collapse[aria-labelledby="flush-headingTwo" data-bs-parent="#accordionExample"]
-            .accordion-body
-              = bootstrap_form_tag(layout: :horizontal, label_col: "col-sm-4",
-                control_col: "col-sm-8") do |f|
-                = f.static_control :card_number, value: @user.paper.card_number.presence
-                - if @user.paper.card_front_url.present?
-                  = cl_image_tag(@user.paper.card_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
-                - if @user.paper.card_back_url.present?
-                  = cl_image_tag(@user.paper.card_back_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
-                = f.static_control :driver_number, value: @user.paper.driver_number
-                - if @user.paper.driver_front_url.present?
-                  = cl_image_tag(@user.paper.driver_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
+    .d-flex.align-items-center.mb-3
+      h4.fw-bold 
+        = t('.papers')
+        span.badge.bg-primary.ms-3 = t(".#{@user.paper.status}")
+    - user_paper_infos(@user.paper).each do |name, value|
+      dl.row.mb-2
+        dt.col-md-3
+          = t(".#{name}")
+        dd.col-md-9
+          - case name
+          - when 'card_front_url', 'card_back_url', 'driver_front_url'
+            - if value.present?
+              = cl_image_tag(value, width: 300, crop: :fill, class: 'border mb-3 d-block')
+          - else
+            = value
       / .accordion-item
       /   h2#flush-headingThree.accordion-header
       /     button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"]

@@ -28,8 +28,8 @@ class Paper < ActiveRecord::Base
 
   validates :card_number, presence: true,
                           format: { with: /\A(?=\d*$)(?:.{9}|.{12})\z/,
-                                    message: 'Integer only. No sign allowed.' }
+                                    message: I18n.t('.account.papers.validate.card_number') }
   validates :driver_number, presence: true,
-                            format: { with: /\A\d(?:.{12})$\z/,
-                                      message: 'Integer only. No sign allowed.' }
+                            format: { with: /\A\d{12}\z/,
+                                      message: I18n.t('.account.papers.validate.driver_number') }
 end

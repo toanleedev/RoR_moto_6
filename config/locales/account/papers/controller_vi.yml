@@ -1,0 +1,12 @@
+vi:
+  account:
+    papers:
+      update:
+        update_success: Cập nhật thông tin thành công
+        update_failure: Cập nhật thông tin thất bại
+      create:
+        create_success: Tạo thông tin thành công
+        create_failure: Tạo thông tin thất bại
+      validate:
+        card_number: CMND có độ dài 9 hoặc CCCD có độ dài 12
+        driver_number: Số bằng lái xe có độ dài 12.

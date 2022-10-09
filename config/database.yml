@@ -1,12 +1,18 @@
 default: &default
   adapter: postgresql
-  host: 127.0.0.1
-  pool: 5
-  username: root
-  password: password
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   reconnect: false
   encoding: utf8
 
 development:
   <<: *default
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
   database: moto_development
+
+production:
+  <<: *default
+  database: moto_production
+  username: root
+  password: <%= ENV["APP_DATABASE_PASSWORD"] %>

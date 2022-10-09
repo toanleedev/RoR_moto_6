@@ -1,0 +1,11 @@
+vi:
+  admin:
+    users:
+      confirm_paper:
+        user_not_found: Không tìm thấy người dùng
+        confirm_success: Xác nhận thông tin thành công
+        confirm_failure: Xác nhận thông tin thất bại
+      reject_paper:
+        user_not_found: Không tìm thấy người dùng
+        reject_success: Không xác nhận thành công
+        reject_failure: Không xác nhận thất bại

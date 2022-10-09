@@ -1,0 +1,32 @@
+en:
+  admin:
+    users:
+      show:
+        title: Thông tin người dùng
+        home: Admin
+        show: Chi tiết
+        users: Người dùng
+        last_name: Họ
+        first_name: Tên
+        email: Email
+        phone: Điện thoại
+        gender: Giới tính
+        birth: Ngày sinh
+        is_partner: Đối tác
+        is_admin: Quản trị viên
+        created_at: Đã tạo
+        address: Địa chỉ
+        papers: Thông tin giấy tờ
+        card_number: Số CMND/CCCD
+        card_front_url: Mặt trước CMND/CCCD
+        card_back_url: Mặt sau CMND/CCCD
+        driver_number: Số bằng lái xe
+        driver_front_url: Mặt trước bằng lái xe
+        confirmed: Đã xác nhận
+        open: Chờ xác nhận
+        rejected: Bị từ chối
+        confirm_paper: Xác nhận
+        reject_paper: Từ chối
+        dialog_confirm: Bạn có đồng ý xác nhận?
+        dialog_reject: Bạn có đồng ý từ chối?
+        empty_paper: Người dùng chưa cập nhật thông tin giấy tờ

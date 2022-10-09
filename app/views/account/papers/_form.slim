@@ -11,4 +11,5 @@
   = f.file_field :driver_front_url, label: t(".driver_front_url")
   - if @paper.driver_front_url.present?
     = cl_image_tag(@paper.driver_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')
-  = f.primary t(".submit")
+  - unless @paper.confirmed?
+    = f.primary t(".submit")

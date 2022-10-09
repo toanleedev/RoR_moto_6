@@ -1,0 +1,12 @@
+en:
+  account:
+    papers:
+      update:
+        update_success: Update information successfully
+        update_failure: Update information failed
+      create:
+        create_success: Create information successfully
+        create_failure: Create information failed
+      validate:
+        card_number: ID card length 9 or 12
+        driver_number: Driver's license number has length 12.

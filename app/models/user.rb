@@ -66,6 +66,8 @@ class User < ActiveRecord::Base
     female: 2
   }
 
+  accepts_nested_attributes_for :paper
+
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first
     return result if result.present?

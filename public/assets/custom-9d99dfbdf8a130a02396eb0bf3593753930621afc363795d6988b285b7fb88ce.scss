@@ -1,0 +1,39 @@
+.pointer {
+  cursor: pointer;
+}
+
+.text-underline-hover {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.divider {
+  padding: 0;
+  color: #000000d9;
+  font-size: 14px;
+  line-height: 1.5715;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin: 16px 0;
+}
+
+.top-20 {
+  top: 20px;
+}
+
+.max-width {
+  &-768 {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+.min-height-40 {
+  min-height: 41px;
+}
+
+.h-80 {
+  height: 80px;
+}

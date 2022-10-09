@@ -1,0 +1,26 @@
+$primary-color: #009f75;
+
+.user-sidebar {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+  margin-bottom: 16px;
+
+  &.active &__link {
+    color: $primary-color;
+  }
+
+  &__link {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s linear;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__icon {
+    font-size: 24px;
+  }
+}

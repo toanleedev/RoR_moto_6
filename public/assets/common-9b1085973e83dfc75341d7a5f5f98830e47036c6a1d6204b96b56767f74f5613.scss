@@ -1,0 +1,11 @@
+@import 'bootstrap';
+@import 'font-awesome';
+
+html,
+body {
+  height: 100%;
+}
+
+.main {
+  min-height: calc(100% - 128px);
+}

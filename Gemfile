@@ -7,7 +7,7 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+# gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails'
 
@@ -88,4 +88,10 @@ group :development do
   gem 'pry-byebug', '~> 3.9'
 
   gem 'annotate'
+end
+
+group :production do
+  gem 'pg'
+  
+  gem 'rails_12factor'
 end

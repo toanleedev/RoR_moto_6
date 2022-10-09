@@ -258,6 +258,11 @@ GEM
     rails-i18n (7.0.5)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (6.0.1)
       actionpack (= 6.0.1)
       activesupport (= 6.0.1)
@@ -340,8 +345,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
@@ -392,6 +395,7 @@ DEPENDENCIES
   pry-byebug (~> 3.9)
   rails (= 6.0.1)
   rails-i18n
+  rails_12factor
   ransack
   rouge
   rubocop-rails
@@ -401,7 +405,6 @@ DEPENDENCIES
   spring
   sprockets-rails
   turbolinks
-  uglifier
   web-console (~> 4.2)
 
 BUNDLED WITH

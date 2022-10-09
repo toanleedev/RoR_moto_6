@@ -1,0 +1,1 @@
+.user-sidebar{display:flex;align-items:center;gap:0 10px;margin-bottom:16px}.user-sidebar.active .user-sidebar__link{color:#009f75}.user-sidebar__link{color:#333;text-decoration:none;transition:color 0.2s linear}.user-sidebar__link:hover{color:#009f75}.user-sidebar__icon{font-size:24px}

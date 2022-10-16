@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   before_action :set_vehicle, except: %i[confirmation]
   before_action :authenticate_user!
+  before_action :validate_before_order, only: [:confirm]
 
   def confirm
     # check params lai cho nay
@@ -38,5 +39,11 @@ class CheckoutController < ApplicationController
   def set_vehicle
     @vehicle = Vehicle.includes(:brand, :type, :engine, :user)
                       .find_by(id: params[:vehicle_id])
+  end
+
+  def validate_before_order
+    return redirect_to account_paper_path, flash: { alert: t('.require_paper') } unless current_user.paper&.confirmed?
+
+    return redirect_to request.referrer, flash: { alert: t('.already_order') } if current_user.orders.already_order.any?
   end
 end

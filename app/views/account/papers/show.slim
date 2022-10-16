@@ -1,7 +1,8 @@
 - provide :title, t(".title")
 .d-flex.align-items-center.border-bottom.pb-3.mb-3
   h3 = t(".title")
-  span.badge.bg-primary.ms-auto = t(".#{@paper.status}")
+  - unless @paper.new_record?
+    span.badge.bg-primary.ms-auto = t(".#{@paper.status}")
 .row
   .col-md-12
     = render 'form'

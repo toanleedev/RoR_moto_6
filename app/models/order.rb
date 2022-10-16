@@ -26,7 +26,7 @@
 #  completed_at       :datetime
 #  paid_at            :datetime
 #  uid                :string
-#  payment            :integer          default("cash"), not null
+#  payment            :integer
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
@@ -49,6 +49,8 @@ class Order < ActiveRecord::Base
     cash: 0,
     paypal: 1
   }
+
+  scope :already_order, -> { where.not(status: %i[completed canceled]) }
 
   protected
 

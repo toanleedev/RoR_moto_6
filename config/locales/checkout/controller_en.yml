@@ -1,0 +1,5 @@
+en:
+  checkout:
+    confirm:
+      require_paper: You need to verify the license information before renting a car
+      already_order: You already have an order.

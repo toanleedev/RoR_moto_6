@@ -1,4 +1,5 @@
 class PartnersController < ApplicationController
+  before_action :authenticate_user!
   before_action :authenticate_partner
 
   def show

@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :vehicles, dependent: :destroy
   has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
   has_many :rental_orders, class_name: 'Order', foreign_key: 'owner_id'
+  has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
 
   validate :avatar_size
   validates :email, presence: true

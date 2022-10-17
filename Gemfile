@@ -72,6 +72,8 @@ gem 'active_model_serializers'
 
 gem 'select2-rails'
 
+gem 'redis'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

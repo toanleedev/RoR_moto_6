@@ -9,10 +9,24 @@ nav.navbar.navbar-expand-lg.navbar-light
       ul.navbar-nav.mb-2.mb-lg-0.align-items-center.ms-auto
         = link_to t('.home'), root_path, class: "nav-item nav-link"
         = link_to t('.rent'), search_path, class: "nav-item nav-link"
-        = link_to t('.about'), root_path, class: "nav-item nav-link me-3"
+        = link_to t('.about'), root_path, class: "nav-item nav-link"
+        .dropdown
+          #dropdownNotification.dropdown-toggle.hide-arrow data-bs-toggle="dropdown"
+            button.btn.btn-light.rounded-pill.position-relative.me-2
+              = fa_icon 'bell'
+              span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger
+                = current_user.notifications.count
+          ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
+            - current_user.notifications.limit(10).each do |notify|
+              li
+                = link_to notify.on_click_url, class: 'dropdown-item' do
+                  span.fw-bold = notify.title
+                  div = notify.content
+                  span.text-primary.fw-bold.fs-12 = distance_of_time_in_words_to_now(notify.created_at)
+
         - if user_signed_in?
           .dropdown
-            .dropdown-toggle.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
+            .dropdown-toggle.hide-arrow.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
               = avatar_for(current_user.photo_url, 40)
               span.m-2 = current_user.first_name
             ul.dropdown-menu.dropdown-menu-end aria-labelledby="dropdownUser"

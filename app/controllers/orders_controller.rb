@@ -3,12 +3,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    order = Order.new order_params
-    order.vehicle.status = :reserved
-    if order.save
-      OrderMailer.order_confirmation(order).deliver_now
+    order = BuildOrders.new(order_params).save
+
+    if order.success?
       flash[:notice] = t('message.success.create')
-      redirect_to checkout_complete_path(uid: order.uid)
+      redirect_to checkout_complete_path(uid: order.data.uid)
     else
       flash[:alert] = t('message.failure.create')
     end
@@ -42,5 +41,9 @@ class OrdersController < ApplicationController
   def order_update_params
     params.require(:order).permit(:start_date, :end_date, :is_home_delivery,
                                   :delivery_address, :count_rental_days, :amount)
+  end
+
+  def send_notification(order)
+    SendNotificationJob.perform_now('CreateOrder', order)
   end
 end

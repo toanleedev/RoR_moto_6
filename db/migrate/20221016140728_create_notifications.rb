@@ -7,7 +7,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.text :content
       t.string :on_click_url
       t.datetime :checked_at
-      t.integer :type, default: 0
+      t.integer :notify_type, default: 0
 
       t.timestamps
     end

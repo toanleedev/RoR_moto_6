@@ -1,9 +1,9 @@
 class SendNotificationJob < ApplicationJob
   queue_as :default
 
-  def perform(current_user, url)
-    Notification.create(receiver: current_user, sender: current_user, on_click_url: url,
-      title: 'Hello', content: 'How are you?')
+  def perform(type, order)
+    # Notification.create(receiver: current_user, sender: current_user, on_click_url: url,
+    #   title: 'Hello', content: 'How are you?')
     # ActionCable.server.broadcast 'notifications:#{notification.receiver_id}', counter: render_counter(notification.receiver.notifications.count), layout: render_notification(notification)
   end
 

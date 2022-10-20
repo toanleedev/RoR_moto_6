@@ -2,3 +2,7 @@ en:
   notification:
     title:
       new_order: You have a new order
+      new_order_confirm: You have a new order
+    content:
+      new_order: You have a new order
+      new_order_confirm: You have a new order

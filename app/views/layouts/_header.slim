@@ -18,11 +18,11 @@ nav.navbar.navbar-expand-lg.navbar-light
                 span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger
                   = current_user.notifications.count
             ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
-              - current_user.notifications.limit(5).each do |notify|
+              - current_user.notifications.limit(5).order(created_at: :desc).each do |notify|
                 li
-                  = link_to notify.on_click_url, class: 'dropdown-item' do
+                  = link_to "/#{I18n.locale}/#{notify.on_click_url}", class: 'dropdown-item' do
                     span.fw-bold = t("#{notify.title}")
-                    div = notify.content
+                    div.text-wrap = t("#{notify.content}")
                     span.text-primary.fw-bold.fs-12 = distance_of_time_in_words_to_now(notify.created_at)
           .dropdown
             .dropdown-toggle.hide-arrow.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"

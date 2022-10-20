@@ -2,3 +2,7 @@ vi:
   notification:
     title:
       new_order: Bạn có đơn thuê xe mới
+      new_order_confirm: Xác nhận đơn thuê
+    content:
+      new_order: Có đơn thuê mới. Kiểm tra ngay
+      new_order_confirm: Bạn vui lòng xác nhận đơn qua email để hoàn tất quá trình thuê xe.

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     namespace :account do
       resource :address, only: %i[show create update]
       resource :paper, only: %i[show create update]
-      resources :vehicles do
+      resources :vehicles, except: %i[show] do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do

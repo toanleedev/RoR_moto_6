@@ -32,13 +32,13 @@ class BuildOrders
       receiver_id: order[:renter_id],
       on_click_url: "#{ORDER_URL}/#{order[:id]}",
       title: 'notification.title.new_order_confirm',
-      content: 'notification.content.new_order_confirm',
+      content: 'notification.content.new_order_confirm'
     }
     owner_params = {
       receiver_id: order[:owner_id],
       on_click_url: "#{RENTAL_ORDER_URL}/#{order[:id]}",
       title: 'notification.title.new_order',
-      content: 'notification.content.new_order',
+      content: 'notification.content.new_order'
     }
     notification_params << renter_params
     notification_params << owner_params

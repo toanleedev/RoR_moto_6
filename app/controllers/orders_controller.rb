@@ -42,8 +42,4 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:start_date, :end_date, :is_home_delivery,
                                   :delivery_address, :count_rental_days, :amount)
   end
-
-  def send_notification(order)
-    SendNotificationJob.perform_now('CreateOrder', order)
-  end
 end

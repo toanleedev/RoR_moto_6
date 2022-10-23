@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:start_date, :end_date, :count_rental_days,
+    params.require(:order).permit(:start_date, :end_date, :rental_times,
                                   :vehicle_id, :is_home_delivery, :unit_price,
                                   :delivery_address, :amount, :payment, :owner_id).to_h.deep_merge(
                                     renter_id: current_user.id
@@ -40,6 +40,6 @@ class OrdersController < ApplicationController
 
   def order_update_params
     params.require(:order).permit(:start_date, :end_date, :is_home_delivery,
-                                  :delivery_address, :count_rental_days, :amount)
+                                  :delivery_address, :rental_times, :amount)
   end
 end

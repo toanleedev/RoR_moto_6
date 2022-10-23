@@ -7,8 +7,9 @@ vi:
         status: Trạng thái
         start_date: Từ ngày
         end_date: Đến ngày
-        count_rental_days: Tổng số ngày thuê
+        rental_times: Tổng số ngày thuê
         delivery_address: Địa chỉ nhận xe
+        processing_at: Giao xe lúc
         payment: Phương thức thanh toán
         amount: Tổng cộng
         update: Cập nhật thông tin
@@ -21,12 +22,12 @@ vi:
         momo: MOMO
         confirm_accept: Xác nhận đơn?
         confirm_cancel: Bạn có muốn hủy đơn không?
-        confirm_process: Xác nhận bắt đầu?
+        confirm_process: 'Xác nhận bắt đầu lúc %{time}?'
         confirm_complete: Xác nhận hoàn thành?
         opening: Chưa xác nhận
         pending: Chờ duyệt
         accepted: Đã xác nhận
         processing: Đang tiến hành
-        completed: Hoàn thành
+        completed: Xác nhận hoàn thành
         canceled: Đã hủy
         back: Quay lại

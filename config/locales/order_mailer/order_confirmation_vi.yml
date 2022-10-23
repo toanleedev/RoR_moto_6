@@ -9,7 +9,7 @@ vi:
       vehicle_name: Tên xe
       start_date: Từ ngày
       end_date: Đến ngày
-      count_rental_days: Số ngày thuê
+      rental_times: Số ngày thuê
       amount: Tổng tiền
       payment: Thanh toán
       cash: Tiền mặt

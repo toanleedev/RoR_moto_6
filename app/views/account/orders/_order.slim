@@ -8,7 +8,7 @@ li.list-group-item.mb-3.shadow-sm
       h4 = vehicle_title(order.vehicle)
       p = order.vehicle.price
     .col-md-5
-      p Số ngày thuê: #{order.count_rental_days}
+      p Số ngày thuê: #{order.rental_times}
       p #{l(order.start_date)} ➜ #{l(order.end_date)}
   .divider
   .text-end
@@ -18,4 +18,4 @@ li.list-group-item.mb-3.shadow-sm
       = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
       span.btn.btn-outline-primary = t('.contact')
     - else
-      = link_to t('.show'), account_rental_order_path(order), class: 'btn btn-primary'
+      = link_to t('.show'), account_order_manage_path(order), class: 'btn btn-primary'

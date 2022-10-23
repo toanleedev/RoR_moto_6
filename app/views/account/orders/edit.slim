@@ -20,7 +20,7 @@
   = f.form_group do
     = f.check_box :is_home_delivery, label: t('.is_home_delivery')
   = f.text_area :delivery_address, label: t('.delivery_address'), wrapper: {class: 'mb-3 delivery_address_js'}
-  = f.static_control :count_rental_days, label: t('.count_rental_days')
+  = f.static_control :rental_times, label: t('.rental_times')
   = f.static_control :amount, label: t('.amount')
   = f.hidden_field :vehicle_price, value: @order.vehicle.price
   = f.form_group do

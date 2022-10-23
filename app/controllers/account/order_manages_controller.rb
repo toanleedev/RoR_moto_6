@@ -1,5 +1,5 @@
 module Account
-  class RentalOrdersController < ::OrdersController
+  class OrderManagesController < ::OrdersController
     before_action :set_order, except: %i[index create]
     before_action :set_is_rental_page
 
@@ -20,11 +20,13 @@ module Account
       @order.status = :canceled
       @order.vehicle.status = :idle
       save_order @order
+      SendNotification.new(@order).order_cancel
     end
 
     def accept
       @order.status = :accepted
       save_order @order
+      SendNotification.new(@order).order_accept
     end
 
     def processing
@@ -34,16 +36,18 @@ module Account
     end
 
     def completed
-      @order.status = :completed
-      @order.vehicle.status = :idle
-      @order.completed_at = Time.current
-      save_order @order
+      # @order.status = :completed
+      # @order.vehicle.status = :idle
+      # @order.completed_at = Time.current
+      # save_order @order
     end
+
+    def checkout; end
 
     private
 
     def set_order
-      @order = current_user.rental_orders.includes(:vehicle).find_by(id: params[:id])
+      @order = current_user.order_manages.includes(:vehicle).find_by(id: params[:id])
     end
 
     def set_is_rental_page
@@ -53,7 +57,7 @@ module Account
     def save_order(order)
       if order.save
         flash[:notice] = t('message.success.update')
-        redirect_to account_rental_order_path(order)
+        redirect_to account_order_manage_path(order)
       else
         flash[:alert] = t('message.failure.update')
         redirect_to request.referrer

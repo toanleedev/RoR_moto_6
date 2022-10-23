@@ -57,9 +57,25 @@ module ApplicationHelper
 
       account_orders_path(status: status) if status.present?
     else
-      account_rental_orders_path
+      account_order_manages_path
 
-      account_rental_orders_path(status: status) if status.present?
+      account_order_manages_path(status: status) if status.present?
     end
+  end
+
+  def notifications_user
+    current_user.notifications.order(created_at: :desc)
+  end
+
+  def notification_count_not_seen
+    current_user.notifications.where(checked_at: nil).count
+  end
+
+  def count_diff_date(start_date, end_date)
+    diff = ((end_date.to_datetime - start_date.to_datetime).to_f * 2).round / 2.to_f
+
+    return 1 if diff < 1
+
+    diff
   end
 end

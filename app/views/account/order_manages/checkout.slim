@@ -1,6 +1,7 @@
+- current_date = params[:completed_at]&.to_datetime || Time.current
+- actual_count_date = count_diff_date(@order[:processing_at], current_date)
 - provide :title, t(".title")
-= content_for :head do
-  = javascript_include_tag 'orders', 'data-turbolinks-track': 'reload'
+
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
 
@@ -32,9 +33,10 @@ div
       - if @order.processing_at
         .border-bottom.border-end.p-2
           span = t('.processing_at')
-      - if @order.completed_at
-        .border-bottom.border-end.p-2
-          span = t('.completed_at')
+      .border-bottom.border-end.p-2
+        span = t('.completed_at')
+      .border-bottom.border-end.p-2
+        span = t('.actual_count_date')
       .border-bottom.border-end.p-2
         span = t('.payment')
       .border-bottom.border-end.p-2
@@ -56,30 +58,16 @@ div
             = @order.delivery_address
       - if @order.processing_at
         .border-bottom.p-2.text-truncate.min-height-40
-          span = l(@order.processing_at)
-      - if @order.completed_at
-        .border-bottom.p-2.text-truncate.min-height-40
-          span = l(@order.completed_at)
+          span = l(@order[:processing_at])
+      .border-bottom.p-2.text-truncate.min-height-40
+        span = l(current_date)
+      .border-bottom.p-2.text-truncate.min-height-40
+        span = actual_count_date
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment}")
       .border-bottom.p-2.min-height-40
-        span.text-primary.fw-bold = @order.amount
+        span.text-primary.fw-bold = @order.vehicle.price * actual_count_date
   div.d-flex.justify-content-end.gap-2
-    - if @is_rental_page
-      - if @order.status == 'pending'
-        = link_to t('.accept'), accept_account_order_manage_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
-        = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
-      - elsif @order.status == 'accepted'
-        = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
-      - elsif @order.status == 'processing'
-        = link_to t('.completed'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
-      = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
-    - else
-      - if @order.status.in?(['opening', 'pending'])
-        = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
-        = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
-      = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
+    = link_to t('.accept'), account_order_manage_path(@order), method: 'PATCH',
+      class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
+    = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'

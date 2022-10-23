@@ -7,7 +7,7 @@ en:
         status: Status
         start_date: Pick-up date
         end_date: Drop-off date
-        count_rental_days: Total rental days
+        rental_times: Total rental days
         delivery_address: Address to pick up motorbikes
         payment: Payment method
         amount: Total

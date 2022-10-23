@@ -31,7 +31,7 @@ class OrdersFilter < BaseFilter
   end
 
   def filter_rental
-    records = @current_user.rental_orders.includes(:vehicle, vehicle: [:vehicle_images])
+    records = @current_user.order_manages.includes(:vehicle, vehicle: [:vehicle_images])
 
     records = records.where(status: status) if status.present?
     records = records.where(uid: uid) if uid.present?

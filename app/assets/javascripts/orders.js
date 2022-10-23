@@ -51,12 +51,12 @@ $(document).on('turbolinks:load', function () {
     var endDate = $('#end_date').data('datetimepicker').date();
     var dateDiff = endDate.diff(startDate, 'days', false);
 
-    $('input[name="order[count_rental_days]"]').val(dateDiff);
+    $('input[name="order[rental_times]"]').val(dateDiff);
     calculateTotal();
   }
 
   function calculateTotal() {
-    let rentalTime = $('input[name="order[count_rental_days]"]').val();
+    let rentalTime = $('input[name="order[rental_times]"]').val();
     let vehiclePrice = $('input[name="order[vehicle_price]"]').val();
     let total = vehiclePrice * rentalTime;
 

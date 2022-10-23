@@ -7,7 +7,7 @@ en:
         end_date: Drop-off Date
         is_home_delivery: Get the vehicle at home
         delivery_address: Pickup address
-        count_rental_days: Rental time
+        rental_times: Rental time
         payment: Payment method
         amount: Total
         submit: Save

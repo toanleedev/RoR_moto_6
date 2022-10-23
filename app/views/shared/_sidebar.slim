@@ -17,9 +17,9 @@
 - if current_user.is_partner
   .divider
   p.fw-bold = t('.partner')
-  .user-sidebar class="#{active_class('account/rental_orders')}"
+  .user-sidebar class="#{active_class('account/order_manages')}"
     = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
-    = link_to t(".rental_order"), account_rental_orders_path, class: 'user-sidebar__link'
+    = link_to t(".order_manage"), account_order_manages_path, class: 'user-sidebar__link'
   .user-sidebar class="#{active_class('account/vehicles')}"
     = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
     = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'

@@ -23,8 +23,9 @@ Rails.application.routes.draw do
           patch 'cancel'
         end
       end
-      resources :rental_orders, only: %i[index show edit update] do 
+      resources :order_manages, only: %i[index show edit update] do 
         member do
+          get 'checkout'
           patch 'cancel'
           patch 'accept'
           patch 'processing'
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: %i[create show edit update]
     resource :partner
+    resource :notification, only: [:create]
     if Rails.env.production? || Rails.env.development?
       get '*path' => redirect('/404.html')
     end

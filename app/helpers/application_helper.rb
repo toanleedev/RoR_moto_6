@@ -76,6 +76,10 @@ module ApplicationHelper
 
     return 1 if diff < 1
 
-    diff
+    try_integer(diff)
+  end
+
+  def try_integer(float)
+    (float % 1).zero? ? float.to_i : float.to_f
   end
 end

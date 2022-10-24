@@ -8,7 +8,7 @@ en:
         start_date: Pick-up date
         end_date: Drop-off date
         rental_times: Total rental days
-        delivery_address: Address to pick up motorbikes
+        delivery_address: Address to pick up
         payment: Payment method
         amount: Total
         update: Update

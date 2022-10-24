@@ -29,7 +29,7 @@ Rails.application.routes.draw do
           patch 'cancel'
           patch 'accept'
           patch 'processing'
-          patch 'completed'
+          post 'completed'
         end
       end
     end

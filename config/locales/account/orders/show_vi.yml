@@ -23,11 +23,11 @@ vi:
         confirm_accept: Xác nhận đơn?
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: 'Xác nhận bắt đầu lúc %{time}?'
-        confirm_complete: Xác nhận hoàn thành?
+        confirm_complete: Xác nhận hoàn thành
         opening: Chưa xác nhận
         pending: Chờ duyệt
         accepted: Đã xác nhận
         processing: Đang tiến hành
-        completed: Xác nhận hoàn thành
+        completed: Hoàn thành
         canceled: Đã hủy
         back: Quay lại

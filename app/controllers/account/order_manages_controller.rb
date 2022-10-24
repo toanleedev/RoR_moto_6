@@ -16,30 +16,34 @@ module Account
       render 'account/orders/edit'
     end
 
+    attr_reader :order
+
     def cancel
-      @order.status = :canceled
-      @order.vehicle.status = :idle
-      save_order @order
-      SendNotification.new(@order).order_cancel
+      order.status = :canceled
+      order.vehicle.status = :idle
+      save_order order
+      SendNotification.new(order).order_cancel
     end
 
     def accept
-      @order.status = :accepted
-      save_order @order
-      SendNotification.new(@order).order_accept
+      order.status = :accepted
+      save_order order
+      SendNotification.new(order).order_accept
     end
 
     def processing
-      @order.status = :processing
-      @order.processing_at = Time.current
-      save_order @order
+      order.status = :processing
+      order.processing_at = Time.current
+      save_order order
     end
 
     def completed
-      # @order.status = :completed
-      # @order.vehicle.status = :idle
-      # @order.completed_at = Time.current
-      # save_order @order
+      order.rental_times = params[:rental_times]
+      order.amount = params[:amount]
+      order.status = :completed
+      order.vehicle.status = :idle
+      order.completed_at = params[:completed_at]
+      save_order order
     end
 
     def checkout; end
@@ -48,6 +52,8 @@ module Account
 
     def set_order
       @order = current_user.order_manages.includes(:vehicle).find_by(id: params[:id])
+
+      return redirect_to account_order_manages_path unless @order.present?
     end
 
     def set_is_rental_page

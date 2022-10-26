@@ -10,6 +10,7 @@ vi:
         rental_times: Tổng số ngày thuê
         delivery_address: Địa chỉ nhận xe
         processing_at: Giao xe lúc
+        completed_at: Trả xe lúc
         payment: Phương thức thanh toán
         amount: Tổng cộng
         update: Cập nhật thông tin
@@ -19,7 +20,6 @@ vi:
         accept: Xác nhận đơn
         cash: Tiền mặt
         paypal: Paypal
-        momo: MOMO
         confirm_accept: Xác nhận đơn?
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: 'Xác nhận bắt đầu lúc %{time}?'

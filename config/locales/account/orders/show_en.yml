@@ -9,6 +9,8 @@ en:
         end_date: Drop-off date
         rental_times: Total rental days
         delivery_address: Address to pick up
+        processing_at: Processing at
+        completed_at: Completed at
         payment: Payment method
         amount: Total
         update: Update
@@ -18,7 +20,6 @@ en:
         accept: Confirm order
         cash: Cash
         paypal: Paypal
-        momo: MOMO
         confirm_accept: Do you want to accept order?
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?

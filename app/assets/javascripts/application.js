@@ -12,3 +12,5 @@
 //= require moment/vi.js
 //= require tempusdominus-bootstrap-4.js
 //= require select2
+//= require_tree ./channels
+//= require cable

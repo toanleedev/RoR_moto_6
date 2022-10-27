@@ -3,7 +3,7 @@ class NotificationBroadcastJob < ApplicationJob
 
   def perform(notification)
     ActionCable.server.broadcast "notifications:#{notification.receiver_id}",
-      counter: render_counter(notification.receiver.notifications.count),
+      counter: render_counter(notification.receiver.notifications.where(checked_at: nil).count),
       layout: render_notification(notification)
   end
 

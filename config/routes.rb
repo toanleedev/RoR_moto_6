@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
   devise_for :users,
              only: :omniauth_callbacks,
              controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -70,4 +69,5 @@ Rails.application.routes.draw do
       get '*path' => redirect('/404.html')
     end
   end
+  mount ActionCable.server => '/cable'
 end

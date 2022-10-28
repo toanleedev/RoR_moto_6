@@ -11,8 +11,30 @@ $(document).ready(function () {
     },
 
     received: function (data) {
-      // Called when there's incoming data on the websocket for this channel
-      console.log('received', data);
+      const main = $('.main');
+      main.append(data.toast);
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+
+      // Add toast notification
+      toastElList.map(function (toastEl) {
+        new bootstrap.Toast(toastEl).show();
+        toastEl.addEventListener('hidden.bs.toast', function (event) {
+          toastEl.remove();
+        });
+      });
+
+      // Add notification in list
+      const notificationList = $('.notify-list');
+      notificationList.prepend(data.notification);
+
+      // Add notification counter
+      const notificationButton = $('.notification-button-js');
+      if (notificationButton.find('span.badge').length !== 0) {
+        const counterEl = notificationButton.children('span.badge');
+        counterEl.text(parseInt(counterEl.text()) + 1);
+      } else {
+        notificationButton.append(data.counter);
+      }
     },
   });
 });

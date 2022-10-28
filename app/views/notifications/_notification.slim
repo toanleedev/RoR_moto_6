@@ -1,1 +1,11 @@
-h1 = notification.content
+li.position-relative
+  - unless notification.checked_at?
+    span class="position-absolute end-0 top-50 translate-middle p-1 bg-primary border border-light rounded-circle"
+  = button_to notification_path(id: notification), class: "dropdown-item #{notification.checked_at? ? 'text-muted' : ''}",
+    local: true, enforce_utf8: false do
+    span class="fw-bold"
+      = t("#{notification.title}")
+    div.text-wrap
+      = t("#{notification.content}")
+    span class="fw-bold fs-12 #{notification.checked_at? ? '' : 'text-primary'}"
+      = distance_of_time_in_words_to_now(notification.created_at)

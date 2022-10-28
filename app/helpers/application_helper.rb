@@ -63,7 +63,7 @@ module ApplicationHelper
     end
   end
 
-  def notifications_user
+  def user_notifications
     current_user.notifications.order(created_at: :desc)
   end
 

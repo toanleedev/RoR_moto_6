@@ -13,24 +13,13 @@ nav.navbar.navbar-expand-lg.navbar-light
         - if user_signed_in?
           .dropdown
             #dropdownNotification.dropdown-toggle.hide-arrow data-bs-toggle="dropdown"
-              button.btn.btn-light.rounded-pill.position-relative.me-2
+              button.notification-button-js.btn.btn-light.rounded-pill.position-relative.me-2
                 = fa_icon 'bell'
                 - unless notification_count_not_seen.zero?
-                  span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger
-                    = notification_count_not_seen
+                  = render 'notifications/counter', counter: notification_count_not_seen
             ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
-              - notifications_user.each do |notify|
-                li.position-relative
-                  - unless notify.checked_at?
-                    span class="position-absolute end-0 top-50 translate-middle p-1 bg-primary border border-light rounded-circle"
-                  = button_to notification_path(id: notify), class: "dropdown-item #{notify.checked_at? ? 'text-muted' : ''}",
-                    local: true, enforce_utf8: false do
-                    span class="fw-bold"
-                      = t("#{notify.title}")
-                    div.text-wrap
-                      = t("#{notify.content}")
-                    span class="fw-bold fs-12 #{notify.checked_at? ? '' : 'text-primary'}"
-                      = distance_of_time_in_words_to_now(notify.created_at)
+              - user_notifications.each do |notification|
+                = render 'notifications/notification', notification: notification
           .dropdown
             .dropdown-toggle.hide-arrow.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
               = avatar_for(current_user.photo_url, 40)

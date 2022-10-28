@@ -11,7 +11,7 @@ module ApplicationCable
 
     def find_verified_user
       key = Rails.application.config.session_options.fetch(:key)
-      cookies.encrypted[key]&.symbolize_keys[:"warden.user.user.key"][0][0]
+
       user_id = cookies.encrypted[key]&.symbolize_keys[:"warden.user.user.key"][0][0]
       User.find_by(id: user_id) || reject_unauthorized_connection
     end

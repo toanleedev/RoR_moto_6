@@ -4,6 +4,7 @@ en:
       order:
         show: More Detail
         contact: Contact
+        rental_times: 'Rental times: %{times}'
         amount: 'Total amount: <span class="h4 text-primary">%{amount} VND</span>'
         opening: Opening
         pending: Pending

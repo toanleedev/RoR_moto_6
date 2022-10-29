@@ -9,7 +9,7 @@ en:
       vehicle_name: Vehicle Name
       start_date: Pick-up date
       end_date: Drop-off date
-      count_rental_days: Rental times
+      rental_times: Rental times
       amount: Amount
       payment: Payment method
       cash: Cash

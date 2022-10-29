@@ -5,6 +5,6 @@ vi:
       address: 'Địa chỉ'
       paper: 'Giấy tờ'
       order: 'Danh sách chuyến'
-      rental_order: Quản lý xe thuê
+      order_manage: Quản lý xe thuê
       vehicles: Xe cho thuê
       partner: Đối tác

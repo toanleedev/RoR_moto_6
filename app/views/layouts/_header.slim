@@ -9,10 +9,19 @@ nav.navbar.navbar-expand-lg.navbar-light
       ul.navbar-nav.mb-2.mb-lg-0.align-items-center.ms-auto
         = link_to t('.home'), root_path, class: "nav-item nav-link"
         = link_to t('.rent'), search_path, class: "nav-item nav-link"
-        = link_to t('.about'), root_path, class: "nav-item nav-link me-3"
+        = link_to t('.about'), root_path, class: "nav-item nav-link"
         - if user_signed_in?
           .dropdown
-            .dropdown-toggle.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
+            #dropdownNotification.dropdown-toggle.hide-arrow data-bs-toggle="dropdown"
+              button.notification-button-js.btn.btn-light.rounded-pill.position-relative.me-2
+                = fa_icon 'bell'
+                - unless notification_count_not_seen.zero?
+                  = render 'notifications/counter', counter: notification_count_not_seen
+            ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
+              - user_notifications.each do |notification|
+                = render 'notifications/notification', notification: notification
+          .dropdown
+            .dropdown-toggle.hide-arrow.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
               = avatar_for(current_user.photo_url, 40)
               span.m-2 = current_user.first_name
             ul.dropdown-menu.dropdown-menu-end aria-labelledby="dropdownUser"

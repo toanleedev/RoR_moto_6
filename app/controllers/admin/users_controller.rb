@@ -17,6 +17,7 @@ module Admin
 
       user.paper.status = :rejected
       if user.save
+        SendNotification.new(user).paper_reject
         redirect_to admin_user_path(user), notice: t('.reject_success')
       else
         redirect_to request.referrer, alert: t('.reject_failure')
@@ -32,6 +33,7 @@ module Admin
       user.paper.status = :confirmed
       user.paper.verified_at = Time.current
       if user.save
+        SendNotification.new(user).paper_confirm
         redirect_to admin_user_path(user), notice: t('.confirm_success')
       else
         redirect_to request.referrer, alert: t('.confirm_failure')

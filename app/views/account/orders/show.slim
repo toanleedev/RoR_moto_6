@@ -25,7 +25,7 @@ div
       .border-bottom.border-end.p-2
         span = t('.end_date')
       .border-bottom.border-end.p-2
-        span = t('.count_rental_days')
+        span = t('.rental_times')
       - if @order.is_home_delivery
         .border-bottom.border-end.p-2
           span = t('.delivery_address')
@@ -49,7 +49,7 @@ div
       .border-bottom.p-2.min-height-40
         span = l(@order.end_date)
       .border-bottom.p-2.min-height-40
-        span = @order.count_rental_days
+        span = try_integer(@order.rental_times)
       - if @order.is_home_delivery
         .border-bottom.p-2.text-truncate.min-height-40
           span data-bs-toggle="tooltip" data-bs-placement="top" title="#{@order.delivery_address}"
@@ -63,21 +63,20 @@ div
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment}")
       .border-bottom.p-2.min-height-40
-        span.text-primary.fw-bold = @order.amount
+        span.text-primary.fw-bold = try_integer(@order.amount)
   div.d-flex.justify-content-end.gap-2
     - if @is_rental_page
       - if @order.status == 'pending'
-        = link_to t('.accept'), accept_account_rental_order_path(@order), method: 'PATCH',
+        = link_to t('.accept'), accept_account_order_manage_path(@order), method: 'PATCH',
           class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
-        = link_to t('.cancel'), cancel_account_rental_order_path(@order), method: 'PATCH',
+        = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
       - elsif @order.status == 'accepted'
-        = link_to t('.start_process'), processing_account_rental_order_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process')}
+        = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
+          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
       - elsif @order.status == 'processing'
-        = link_to t('.completed'), completed_account_rental_order_path(@order), method: 'PATCH',
-          class: 'btn btn-outline-danger', data: {confirm: t('.confirm_complete')}
-      = link_to t('.back'), account_rental_orders_path, class: 'btn btn-outline-secondary'
+        = link_to t('.confirm_complete'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
+      = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
     - else
       - if @order.status.in?(['opening', 'pending'])
         = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'

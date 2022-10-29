@@ -7,7 +7,7 @@ table style="border-collapse: collapse"
     th = t('.vehicle_name')
     th = t('.start_date')
     th = t('.end_date')
-    th = t('.count_rental_days')
+    th = t('.rental_times')
     th = t('.amount')
     th = t('.payment')
   tr
@@ -15,7 +15,7 @@ table style="border-collapse: collapse"
     td = @order.vehicle.name
     td = l(@order.start_date)
     td = l(@order.end_date)
-    td = @order.count_rental_days
+    td = @order.rental_times
     td = @order.amount
     td = t(".#{@order.payment}")
 p = t('.confirm_message')

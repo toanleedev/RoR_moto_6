@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     namespace :account do
       resource :address, only: %i[show create update]
       resource :paper, only: %i[show create update]
-      resources :vehicles do
+      resources :vehicles, except: %i[show] do
         delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do
@@ -23,12 +23,13 @@ Rails.application.routes.draw do
           patch 'cancel'
         end
       end
-      resources :rental_orders, only: %i[index show edit update] do 
+      resources :order_manages, only: %i[index show edit update] do 
         member do
+          get 'checkout'
           patch 'cancel'
           patch 'accept'
           patch 'processing'
-          patch 'completed'
+          post 'completed'
         end
       end
     end
@@ -63,8 +64,10 @@ Rails.application.routes.draw do
     end
     resources :orders, only: %i[create show edit update]
     resource :partner
+    resource :notification, only: [:create]
     if Rails.env.production? || Rails.env.development?
       get '*path' => redirect('/404.html')
     end
   end
+  mount ActionCable.server => '/cable'
 end

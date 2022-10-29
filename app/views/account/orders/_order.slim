@@ -8,8 +8,10 @@ li.list-group-item.mb-3.shadow-sm
       h4 = vehicle_title(order.vehicle)
       p = order.vehicle.price
     .col-md-5
-      p Số ngày thuê: #{order.count_rental_days}
-      p #{l(order.start_date)} ➜ #{l(order.end_date)}
+      p = t('.rental_times', times: try_integer(order.rental_times))
+      - start_date = order.processing_at.present? ? order.processing_at : order.start_date
+      - end_date = order.completed_at.present? ? order.completed_at : order.end_date
+      p #{l(start_date)} ➜ #{l(end_date)}
   .divider
   .text-end
     p = raw t('.amount', amount: order.amount)
@@ -18,4 +20,4 @@ li.list-group-item.mb-3.shadow-sm
       = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
       span.btn.btn-outline-primary = t('.contact')
     - else
-      = link_to t('.show'), account_rental_order_path(order), class: 'btn btn-primary'
+      = link_to t('.show'), account_order_manage_path(order), class: 'btn btn-primary'

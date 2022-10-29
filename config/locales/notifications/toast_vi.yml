@@ -1,0 +1,5 @@
+vi:
+  notifications:
+    toast:
+      new_notification: Có thông báo mới
+      just_now: Gần đây

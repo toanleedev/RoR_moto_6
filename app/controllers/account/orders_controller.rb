@@ -6,6 +6,8 @@ module Account
       @orders = OrdersFilter.new(params, current_user).filter
     end
 
+    def show; end
+
     def cancel
       @order.status = :canceled
       @order.vehicle.status = :idle

@@ -21,6 +21,7 @@ module Admin
       user.is_partner = true
 
       if partner.save && user.save
+        SendNotification.new(user).partner_confirm
         flash[:notice] = t('message.success.update')
       else
         flash[:alert] = t('message.failure.update')
@@ -33,6 +34,7 @@ module Admin
       partner.status = :canceled
 
       if partner.save
+        SendNotification.new(user).partner_reject
         flash[:notice] = t('message.success.update')
       else
         flash[:alert] = t('message.failure.update')

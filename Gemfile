@@ -72,6 +72,11 @@ gem 'active_model_serializers'
 
 gem 'select2-rails'
 
+gem 'puma', '~> 4.0'
+gem 'redis', '~> 4.0'
+
+gem 'paypal-checkout-sdk'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

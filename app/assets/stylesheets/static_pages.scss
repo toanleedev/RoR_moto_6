@@ -16,3 +16,17 @@
     background-color: #0000002f;
   }
 }
+
+.notify-list {
+  width: 300px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.dropdown-toggle.hide-arrow::after {
+  display: none;
+}
+
+.fs-12 {
+  font-size: 12px;
+}

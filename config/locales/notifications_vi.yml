@@ -1,0 +1,16 @@
+vi:
+  notification:
+    title:
+      new_order: Bạn có đơn thuê xe mới
+      new_order_confirm: Xác nhận đơn thuê
+      order_accept: Đơn đã được duyệt
+      paper_confirm: Giấy tờ đã duyệt
+      paper_reject: Từ chối duyệt giấy tờ
+      partner_confirm: Đã duyệt đơn đăng ký đối tác
+    content:
+      new_order: Có đơn thuê mới. Kiểm tra ngay
+      new_order_confirm: Bạn vui lòng xác nhận đơn qua email để hoàn tất quá trình thuê xe.
+      order_accept: Đơn của bạn đã được duyệt. Hãy nhớ đến điểm hẹn đúng ngày.
+      paper_confirm: Thông tin giấy tờ của bạn đã được duyệt. Từ giờ bạn có thể bắt đầu thuê xe.
+      paper_reject: Thông tin giấy tờ của bạn đã bị từ chối. Vui lòng cập nhật lại thông tin.
+      partner_confirm: Đơn đăng ký trờ thành đối tác của bạn đã được duyệt. Bạn đã thể đăng xe để cho thuê.

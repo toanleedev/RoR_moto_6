@@ -1,5 +1,7 @@
 require File.expand_path('boot', __dir__)
-
+require 'active_support'
+require 'active_support/all'
+require 'active_support/time'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -19,7 +21,7 @@ module TrainingShop
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    config.active_record.default_timezone = 'Central Time (US & Canada)'
+    config.active_record.default_timezone = :utc
     config.time_zone = 'Hanoi'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
@@ -33,5 +35,7 @@ module TrainingShop
     config.i18n.available_locales = %i[en vi]
     config.i18n.default_locale = :vi
     config.autoload_paths += ["#{config.root}/app/serializers"]
+
+    config.middleware.use ActionDispatch::Cookies
   end
 end

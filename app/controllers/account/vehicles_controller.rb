@@ -28,8 +28,6 @@ module Account
 
     def edit; end
 
-    def show; end
-
     def update
       if @vehicle.update vehicle_params
         upload_image

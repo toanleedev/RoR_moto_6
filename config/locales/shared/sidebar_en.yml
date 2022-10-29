@@ -5,6 +5,6 @@ en:
       address: My Address
       paper: License
       order: Orders
-      rental_order: Manage Rental Orders
+      order_manage: Manage Rental Orders
       vehicles: Manage Vehicles
       partner: Partner

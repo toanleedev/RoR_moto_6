@@ -1,0 +1,7 @@
+.toast[role="alert" aria-live="assertive" aria-atomic="true" class="position-fixed start-0 bottom-0 m-3"]
+  .toast-header
+    strong.me-auto = t('.new_notification')
+    small.text-muted = t('.just_now')
+    button.btn-close[type="button" data-bs-dismiss="toast" aria-label="Close"]
+  .toast-body
+    = t(notification.title)

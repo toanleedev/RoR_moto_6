@@ -42,8 +42,12 @@ class CheckoutController < ApplicationController
   end
 
   def validate_before_order
-    return redirect_to account_paper_path, flash: { alert: t('.require_paper') } unless current_user.paper&.confirmed?
+    unless current_user.paper&.confirmed?
+      return redirect_to account_paper_path, flash: { alert: t('.require_paper') }
+    end
 
-    return redirect_to request.referrer, flash: { alert: t('.already_order') } if current_user.orders.already_order.any?
+    return unless current_user.orders.already_order.any?
+
+    redirect_to request.referrer, flash: { alert: t('.already_order') }
   end
 end

@@ -5,7 +5,7 @@
     = bootstrap_form_with(model: @order) do |f|
       = f.hidden_field :start_date, value: params[:start_date]
       = f.hidden_field :end_date, value: params[:end_date]
-      = f.hidden_field :count_rental_days, value: params[:rental_time]
+      = f.hidden_field :rental_times, value: params[:rental_time]
       = f.hidden_field :vehicle_id, value: vehicle.id
       = f.hidden_field :is_home_delivery, value: params[:is_home_delivery]
       = f.hidden_field :owner_id, value: vehicle.user.id

@@ -4,6 +4,7 @@ vi:
       order:
         show: Xem thông tin
         contact: Liên hệ chủ xe
+        rental_times: 'Số ngày thuê: %{times}'
         amount: 'Tổng số tiền: <span class="h4 text-primary">%{amount}₫</span>'
         opening: Chưa xác nhận
         pending: Chờ duyệt

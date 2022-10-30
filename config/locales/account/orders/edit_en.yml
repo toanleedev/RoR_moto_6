@@ -8,6 +8,6 @@ en:
         is_home_delivery: Get the vehicle at home
         delivery_address: Pickup address
         rental_times: Rental time
-        payment: Payment method
+        payment_kind: Payment method
         amount: Total
         submit: Save

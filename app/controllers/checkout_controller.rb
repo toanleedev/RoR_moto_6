@@ -34,6 +34,34 @@ class CheckoutController < ApplicationController
     redirect_to root_path
   end
 
+  def payment
+    environment = PayPal::SandboxEnvironment.new(ENV.fetch('PAYPAL_CLIENT_ID'),
+                                                 ENV.fetch('PAYPAL_SECRET'))
+    client = PayPal::PayPalHttpClient.new(environment)
+    request = PayPalCheckoutSdk::Orders::OrdersCaptureRequest.new(params[:payment_id])
+    order = Order.find_by(uid: params[:order_uid])
+
+    return redirect_to request.referrer, flash: { alert: t('.order_not_found') } if order.blank?
+
+    begin
+      response = client.execute(request).result
+
+      if response.status == 'COMPLETED'
+        order.paid_at = Time.current
+        order.payment_security = response.id
+        order.payment_info = response.status
+        order.save!
+        flash[:notice] = 'Thanh toan thanh cong'
+      end
+    rescue PayPalHttp::HttpError => e
+      # Something went wrong server-side
+      puts e.status_code
+      puts e.headers['debug_id']
+      flash[:alert] = 'Thanh toan that bai'
+    end
+    redirect_to account_orders_path(order)
+  end
+
   private
 
   def set_vehicle

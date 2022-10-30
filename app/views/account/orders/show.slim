@@ -1,6 +1,7 @@
 - provide :title, t(".title")
 = content_for :head do
   = javascript_include_tag 'orders', 'data-turbolinks-track': 'reload'
+  script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
 
@@ -36,7 +37,7 @@ div
         .border-bottom.border-end.p-2
           span = t('.completed_at')
       .border-bottom.border-end.p-2
-        span = t('.payment')
+        span = t('.payment_kind')
       .border-bottom.border-end.p-2
         span = t('.amount')
     .col-md-4
@@ -61,7 +62,7 @@ div
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.completed_at)
       .border-bottom.p-2.min-height-40
-        span = t(".#{@order.payment}")
+        span = t(".#{@order.payment_kind}")
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(@order.amount)
   div.d-flex.justify-content-end.gap-2
@@ -83,3 +84,40 @@ div
         = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
           class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
       = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
+- if @order.completed?
+  row
+    .col-md-6.offset-md-3
+      #paypal-button-container
+
+javascript:
+  const USDRate = 24000
+  const amountUSD = #{@order.amount} / USDRate
+
+  paypal.Buttons({
+    // Sets up the transaction when a payment button is clicked
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountUSD// Can also reference a variable or function
+          }
+        }]
+      });
+    },
+    // Finalize the transaction after payer approval
+    onApprove: (data, actions) => {
+      $.ajax({
+        url: "#{checkout_payment_path}",
+        method: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({
+          'payment_id': data.orderID,
+          'order_uid': "#{@order.uid}"
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': $('meta[name="csrf-token"]').content
+        }
+      })
+    }
+  }).render('#paypal-button-container');

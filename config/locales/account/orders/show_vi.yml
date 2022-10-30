@@ -11,7 +11,7 @@ vi:
         delivery_address: Địa chỉ nhận xe
         processing_at: Giao xe lúc
         completed_at: Trả xe lúc
-        payment: Phương thức thanh toán
+        payment_kind: Phương thức thanh toán
         amount: Tổng cộng
         update: Cập nhật thông tin
         cancel: Hủy đơn

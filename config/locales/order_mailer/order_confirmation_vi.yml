@@ -11,7 +11,7 @@ vi:
       end_date: Đến ngày
       rental_times: Số ngày thuê
       amount: Tổng tiền
-      payment: Thanh toán
+      payment_kind: Thanh toán
       cash: Tiền mặt
       confirm_message: 'Bạn có thể xác nhận đơn của mình thông qua liên kết bên dưới:'
       confirm: Nhấn để xác nhận

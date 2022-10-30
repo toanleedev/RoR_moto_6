@@ -61,6 +61,7 @@ Rails.application.routes.draw do
       post 'confirm', action: :confirm
       get 'complete', action: :complete
       get 'confirmation', action: :confirmation
+      post 'payment', action: :payment
     end
     resources :orders, only: %i[create show edit update]
     resource :partner

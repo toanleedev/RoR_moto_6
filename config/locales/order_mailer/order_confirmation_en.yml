@@ -11,7 +11,7 @@ en:
       end_date: Drop-off date
       rental_times: Rental times
       amount: Amount
-      payment: Payment method
+      payment_kind: Payment method
       cash: Cash
       confirm_message: 'You can confirm your application through the link below:'
       confirm: Confirm here

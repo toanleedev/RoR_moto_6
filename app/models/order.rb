@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
     canceled: 5
   }
 
-  enum payment: {
+  enum payment_kind: {
     cash: 0,
     paypal: 1
   }

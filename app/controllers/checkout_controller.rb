@@ -41,7 +41,7 @@ class CheckoutController < ApplicationController
     request = PayPalCheckoutSdk::Orders::OrdersCaptureRequest.new(params[:payment_id])
     order = Order.find_by(uid: params[:order_uid])
 
-    return redirect_to request.referrer, flash: { alert: t('.order_not_found') } if order.blank?
+    return redirect_to account_orders_path, flash: { alert: t('.order_not_found') } if order.blank?
 
     begin
       response = client.execute(request).result
@@ -51,15 +51,15 @@ class CheckoutController < ApplicationController
         order.payment_security = response.id
         order.payment_info = response.status
         order.save!
-        flash[:notice] = 'Thanh toan thanh cong'
+        render json: { message: 'Thanh toan thanh cong',
+                       url: account_order_path(order) }, status: :ok
       end
     rescue PayPalHttp::HttpError => e
       # Something went wrong server-side
       puts e.status_code
       puts e.headers['debug_id']
-      flash[:alert] = 'Thanh toan that bai'
+      render json: { message: 'Thanh toan that bai' }, status: :bad_request
     end
-    redirect_to account_orders_path(order)
   end
 
   private

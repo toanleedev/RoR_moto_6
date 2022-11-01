@@ -11,6 +11,8 @@ en:
         delivery_address: Address to pick up
         processing_at: Processing at
         completed_at: Completed at
+        paid_at: Paid at
+        paid: Paid
         payment_kind: Payment method
         amount: Total
         update: Update

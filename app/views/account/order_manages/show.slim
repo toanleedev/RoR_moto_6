@@ -1,7 +1,6 @@
 - provide :title, t(".title")
 = content_for :head do
-  = javascript_include_tag 'orders', 'data-turbolinks-track': 'reload'
-  script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
+
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
 
@@ -74,53 +73,18 @@ div
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(@order.amount)
   div.d-flex.justify-content-end.gap-2
-    - if @order.status.in?(['opening', 'pending'])
-      = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
-      = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
+    - if @order.status == 'pending'
+      = link_to t('.accept'), accept_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
+      = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
-    = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
+    - elsif @order.status == 'accepted'
+      = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
+    - elsif @order.status == 'processing'
+      = link_to t('.confirm_complete'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
+    = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
 - if @order.paypal? &&  @order.completed? && @order.paid_at.blank?
   row
     .col-md-6.offset-md-3
       #paypal-button-container
-
-javascript:
-  const USDRate = 24000
-  const amountUSD = Math.round(#{@order.amount} / USDRate)
-
-  if(#{@order.paypal?} && #{@order.completed?} && #{@order.paid_at.blank?}){
-    paypal.Buttons({
-      createOrder: (data, actions) => {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: amountUSD
-            }
-          }]
-        });
-      },
-
-      onApprove: (data, actions) => {
-        $.ajax({
-          url: "#{checkout_payment_path}",
-          method: 'POST',
-          dataType: 'json',
-          data: JSON.stringify({
-            'payment_id': data.orderID,
-            'order_uid': "#{@order.uid}"
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name="csrf-token"]').content
-          },
-          error: function (xhr, ajaxOptions, thrownError) {
-            console.log(thrownError);
-          },
-          success: function (response) {
-            alert(response.message)
-            window.location.href = response.url;
-          },
-        })
-      }
-    }).render('#paypal-button-container');
-  }

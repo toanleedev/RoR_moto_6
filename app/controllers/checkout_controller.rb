@@ -51,6 +51,7 @@ class CheckoutController < ApplicationController
         order.payment_security = response.id
         order.payment_info = response.status
         order.save!
+        SendNotification.new(order).user_paid_order
         render json: { message: 'Thanh toan thanh cong',
                        url: account_order_path(order) }, status: :ok
       end

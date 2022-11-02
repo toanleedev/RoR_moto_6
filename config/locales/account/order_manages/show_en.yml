@@ -1,0 +1,35 @@
+en:
+  account:
+    order_manages:
+      show:
+        title: Order detail
+        uid: Order id
+        status: Status
+        start_date: Pick-up date
+        end_date: Drop-off date
+        rental_times: Total rental days
+        delivery_address: Address to pick up
+        processing_at: Processing at
+        completed_at: Completed at
+        paid_at: Paid at
+        paid: Paid
+        payment_kind: Payment method
+        amount: Total
+        update: Update
+        cancel: Cancel
+        start_process: Motorcycle delivered
+        end_process: End process
+        accept: Confirm order
+        cash: Cash
+        paypal: Paypal
+        confirm_accept: Do you want to accept order?
+        confirm_cancel: Do you want to cancel order?
+        confirm_process: Do you want to start?
+        confirm_complete: Do you want to complete order?
+        opening: Opening
+        pending: Pending
+        accepted: Accepted
+        processing: Processing
+        completed: Completed
+        canceled: Canceled
+        back: Back

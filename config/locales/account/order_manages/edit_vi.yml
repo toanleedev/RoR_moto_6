@@ -1,0 +1,13 @@
+vi:
+  account:
+    order_manages:
+      edit:
+        title: Cập nhật thông tin thuê xe
+        start_date: Từ ngày
+        end_date: Đến ngày
+        is_home_delivery: Giao xe tại nhà
+        delivery_address: Địa chỉ nhận xe
+        rental_times: Tổng số ngày thuê
+        payment_kind: Phương thức thanh toán
+        amount: Tổng cộng
+        submit: Lưu

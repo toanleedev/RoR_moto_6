@@ -51,18 +51,6 @@ module ApplicationHelper
     return 'active' if controller == params[:controller]
   end
 
-  def custom_account_order_path(is_rental_page = nil, status = nil)
-    if is_rental_page.nil?
-      account_orders_path
-
-      account_orders_path(status: status) if status.present?
-    else
-      account_order_manages_path
-
-      account_order_manages_path(status: status) if status.present?
-    end
-  end
-
   def user_notifications
     current_user.notifications.order(created_at: :desc)
   end

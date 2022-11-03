@@ -34,7 +34,7 @@ class CheckoutController < ApplicationController
     redirect_to root_path
   end
 
-  def payment
+  def payment_paypal
     environment = PayPal::SandboxEnvironment.new(ENV.fetch('PAYPAL_CLIENT_ID'),
                                                  ENV.fetch('PAYPAL_SECRET'))
     client = PayPal::PayPalHttpClient.new(environment)

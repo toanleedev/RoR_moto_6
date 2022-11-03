@@ -73,18 +73,18 @@ div
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(@order.amount)
   div.d-flex.justify-content-end.gap-2
-    - if @order.status == 'pending'
+    - if @order.pending?
       = link_to t('.accept'), accept_account_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
       = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
-    - elsif @order.status == 'accepted'
+    - elsif @order.accepted?
       = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
-    - elsif @order.status == 'processing'
+    - elsif @order.processing?
       = link_to t('.confirm_complete'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
+    - elsif @order.completed? && @order.cash? && @order.paid_at.blank?
+      = link_to t('.cash_paid'), cash_paid_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-success', data: {confirm: t('.cash_paid_confirm')}
     = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
-- if @order.paypal? &&  @order.completed? && @order.paid_at.blank?
-  row
-    .col-md-6.offset-md-3
-      #paypal-button-container
+

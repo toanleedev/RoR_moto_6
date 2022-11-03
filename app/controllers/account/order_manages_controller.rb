@@ -9,8 +9,6 @@ module Account
 
     def show; end
 
-    # def edit; end
-
     attr_reader :order
 
     def cancel
@@ -42,6 +40,11 @@ module Account
     end
 
     def checkout; end
+
+    def cash_paid
+      order.paid_at = Time.current
+      save_order order
+    end
 
     private
 

@@ -40,7 +40,6 @@ class SendNotification
   end
 
   def order_create
-    notification_params = []
     renter_params = {
       receiver_id: params[:renter_id],
       on_click_url: "#{ORDER_URL}/#{params[:id]}",
@@ -53,10 +52,8 @@ class SendNotification
       title: 'notification.title.new_order',
       content: 'notification.content.new_order'
     }
-    notification_params << renter_params
-    notification_params << owner_params
-
-    BulkSendNotification.perform_now(notification_params)
+    SendNotificationJob.perform_now(renter_params)
+    SendNotificationJob.perform_now(owner_params)
   end
 
   def paper_confirm
@@ -101,5 +98,16 @@ class SendNotification
     }
 
     SendNotificationJob.perform_now(notification_param)
+  end
+
+  def user_paid_order
+    notification_params = {
+      sender_id: params[:renter_id],
+      receiver_id: params[:owner_id],
+      on_click_url: "#{ORDER_MANAGE_URL}/#{params[:id]}",
+      title: 'notification.title.paid_order',
+      content: 'notification.content.paid_order'
+    }
+    SendNotificationJob.perform_now(notification_params)
   end
 end

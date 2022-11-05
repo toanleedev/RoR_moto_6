@@ -8,6 +8,6 @@ vi:
         is_home_delivery: Giao xe tại nhà
         delivery_address: Địa chỉ nhận xe
         rental_times: Tổng số ngày thuê
-        payment: Phương thức thanh toán
+        payment_kind: Phương thức thanh toán
         amount: Tổng cộng
         submit: Lưu

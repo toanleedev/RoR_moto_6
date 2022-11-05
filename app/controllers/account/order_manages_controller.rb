@@ -1,20 +1,13 @@
 module Account
   class OrderManagesController < ::OrdersController
     before_action :set_order, except: %i[index create]
-    before_action :set_is_rental_page
 
     def index
       @orders = OrdersFilter.new(params, current_user).filter_rental
-      render 'account/orders/index'
+      @is_manage_page = true
     end
 
-    def show
-      render 'account/orders/show'
-    end
-
-    def edit
-      render 'account/orders/edit'
-    end
+    def show; end
 
     attr_reader :order
 
@@ -48,16 +41,17 @@ module Account
 
     def checkout; end
 
+    def cash_paid
+      order.paid_at = Time.current
+      save_order order
+    end
+
     private
 
     def set_order
       @order = current_user.order_manages.includes(:vehicle).find_by(id: params[:id])
 
       return redirect_to account_order_manages_path unless @order.present?
-    end
-
-    def set_is_rental_page
-      @is_rental_page = true
     end
 
     def save_order(order)

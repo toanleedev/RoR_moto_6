@@ -11,7 +11,7 @@ class BuildOrders
       order.vehicle.status = :reserved
       order.save!
       send_mail_confirm(order)
-      SendNotification.new(@order).order_create
+      SendNotification.new(order).order_create
       ServiceResult.new(success: true, data: order)
     end
   rescue StandardError => e

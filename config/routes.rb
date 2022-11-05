@@ -30,6 +30,7 @@ Rails.application.routes.draw do
           patch 'accept'
           patch 'processing'
           post 'completed'
+          patch 'cash_paid'
         end
       end
     end
@@ -61,6 +62,7 @@ Rails.application.routes.draw do
       post 'confirm', action: :confirm
       get 'complete', action: :complete
       get 'confirmation', action: :confirmation
+      post 'payment', action: :payment_paypal
     end
     resources :orders, only: %i[create show edit update]
     resource :partner

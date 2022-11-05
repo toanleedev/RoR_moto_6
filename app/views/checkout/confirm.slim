@@ -39,9 +39,9 @@
             .divider
             div
               h5.text-uppercase = t('.payment_method')
-              = f.form_group :payment
-                = f.radio_button :payment, 'cash', label: t('.cash'), checked: true
-                = f.radio_button :payment, 'paypal', label: t('.paypal')
+              = f.form_group :payment_kind
+                = f.radio_button :payment_kind, 'cash', label: t('.cash'), checked: true
+                = f.radio_button :payment_kind, 'paypal', label: t('.paypal')
             .divider
             div
               h5.text-uppercase = t('.detail_price')
@@ -59,8 +59,8 @@
               .price-row.mb-3
                 span = t('.amount')
                 span #{params[:total]}
-              .price-row.mb-3
-                span = t('.deposit')
-                span #{params[:total].to_i*0.3}
+              / .price-row.mb-3
+              /   span = t('.deposit')
+              /   span #{params[:total].to_i*0.3}
 
               = f.submit t('.submit'), class: 'w-100 btn btn-primary'

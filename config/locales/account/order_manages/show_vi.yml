@@ -1,6 +1,6 @@
 vi:
   account:
-    orders:
+    order_manages:
       show:
         title: Hóa đơn thuê xe
         uid: Mã đơn
@@ -26,6 +26,8 @@ vi:
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: 'Xác nhận bắt đầu lúc %{time}?'
         confirm_complete: Xác nhận hoàn thành
+        cash_paid: Đã thanh toán
+        cash_paid_confirm: Xác nhận đã hoàn tất thanh toán?
         opening: Chưa xác nhận
         pending: Chờ duyệt
         accepted: Đã xác nhận

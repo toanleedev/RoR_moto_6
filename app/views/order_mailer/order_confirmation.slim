@@ -9,7 +9,7 @@ table style="border-collapse: collapse"
     th = t('.end_date')
     th = t('.rental_times')
     th = t('.amount')
-    th = t('.payment')
+    th = t('.payment_kind')
   tr
     td = @order.uid
     td = @order.vehicle.name
@@ -17,6 +17,6 @@ table style="border-collapse: collapse"
     td = l(@order.end_date)
     td = @order.rental_times
     td = @order.amount
-    td = t(".#{@order.payment}")
+    td = t(".#{@order.payment_kind}")
 p = t('.confirm_message')
 = link_to t('.confirm'), checkout_confirmation_url(uid: @order.uid, token: @order.confirmation_token)

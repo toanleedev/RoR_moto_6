@@ -12,7 +12,7 @@ en:
         processing_at: Pick-up date(reality)
         completed_at: Pick-up date(reality)
         actual_count_date: Actual rental days
-        payment: Payment method
+        payment_kind: Payment method
         amount: Amount
         cash: Cash
         paypal: Paypal

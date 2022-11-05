@@ -1,6 +1,6 @@
 en:
   account:
-    orders:
+    order_manages:
       show:
         title: Order detail
         uid: Order id
@@ -26,6 +26,8 @@ en:
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?
         confirm_complete: Do you want to complete order?
+        cash_paid: Cash paid
+        cash_paid_confirm: Confirmed cash payment completed?
         opening: Opening
         pending: Pending
         accepted: Accepted

@@ -1,7 +1,5 @@
-- completed_at = params[:completed_at]&.to_datetime || Time.current
-- actual_count_date = count_diff_date(@order[:processing_at], completed_at)
-- amount = @order.vehicle.price * actual_count_date
 - provide :title, t(".title")
+= content_for :head do
 
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
@@ -34,10 +32,12 @@ div
       - if @order.processing_at
         .border-bottom.border-end.p-2
           span = t('.processing_at')
-      .border-bottom.border-end.p-2
-        span = t('.completed_at')
-      .border-bottom.border-end.p-2
-        span = t('.actual_count_date')
+      - if @order.completed_at
+        .border-bottom.border-end.p-2
+          span = t('.completed_at')
+      - if @order.paid_at
+        .border-bottom.border-end.p-2
+          span = t('.paid_at')
       .border-bottom.border-end.p-2
         span = t('.payment_kind')
       .border-bottom.border-end.p-2
@@ -47,6 +47,8 @@ div
         span = @order.uid || '-'
       .border-bottom.p-2.min-height-40
         span class="badge bg-secondary" = t(".#{@order.status}")
+        - if @order.paid_at.present?
+          span class="badge bg-success ms-2" = t('.paid')
       .border-bottom.p-2.min-height-40
         span = l(@order.start_date)
       .border-bottom.p-2.min-height-40
@@ -59,17 +61,30 @@ div
             = @order.delivery_address
       - if @order.processing_at
         .border-bottom.p-2.text-truncate.min-height-40
-          span = l(@order[:processing_at])
-      .border-bottom.p-2.text-truncate.min-height-40
-        span = l(completed_at)
-      .border-bottom.p-2.text-truncate.min-height-40
-        span = actual_count_date
+          span = l(@order.processing_at)
+      - if @order.completed_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.completed_at)
+      - if @order.paid_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.paid_at)
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment_kind}")
       .border-bottom.p-2.min-height-40
-        span.text-primary.fw-bold = try_integer(amount)
+        span.text-primary.fw-bold = try_integer(@order.amount)
   div.d-flex.justify-content-end.gap-2
-    = button_to t('.completed'), completed_account_order_manage_path(@order,
-      completed_at: completed_at, rental_times: actual_count_date, amount: amount),
-      class: 'btn btn-primary', local: true
-    = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
+    - if @order.pending?
+      = link_to t('.accept'), accept_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
+      = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
+    - elsif @order.accepted?
+      = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
+    - elsif @order.processing?
+      = link_to t('.confirm_complete'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
+    - elsif @order.completed? && @order.cash? && @order.paid_at.blank?
+      = link_to t('.cash_paid'), cash_paid_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-success', data: {confirm: t('.cash_paid_confirm')}
+    = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
+

@@ -12,7 +12,7 @@ vi:
         processing_at: Giao xe lúc
         completed_at: Trả xe lúc
         actual_count_date: Số ngày thuê thực
-        payment: Phương thức thanh toán
+        payment_kind: Phương thức thanh toán
         amount: Tổng cộng
         cash: Tiền mặt
         paypal: Paypal

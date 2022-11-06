@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
   end
 
   def detail
-    @vehicle = Vehicle.includes(:brand, :type, :engine, :vehicle_images, user: [:address])
+    @vehicle = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
                       .find_by(id: params[:id])
   end
 

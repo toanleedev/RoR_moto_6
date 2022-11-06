@@ -1,0 +1,26 @@
+- @rating = Rating.new
+
+#ratingModel.modal.fade[tabindex="-1" aria-labelledby="ratingModelLabel" aria-hidden="true"]
+  .modal-dialog
+    = bootstrap_form_for(@rating, url: rating_path) do |f|
+      .modal-content
+        .modal-header
+          h5#ratingModelLabel.modal-title = t('.modal_title')
+          button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          .row
+            .col-2
+              = vehicle_image(@order.vehicle, 100)
+            .col-7
+              p.fw-bold = vehicle_title(@order.vehicle)
+              p = @order.vehicle.price
+            .col-3
+          .row
+            .col-12
+              = f.text_area :content, label: t(".content")
+              = f.number_field :rating_point, label: t(".point"), max: 5, min: 1, value: 5
+              = f.hidden_field :order_id, value: @order.id
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+            = t('.modal_close')
+          = f.primary 'submit'

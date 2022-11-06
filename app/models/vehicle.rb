@@ -22,6 +22,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :engine, class_name: 'VehicleOption', foreign_key: 'engine_id'
   has_many :vehicle_images, dependent: :destroy
   has_many :orders
+  has_many :ratings, -> { where rate_kind: :vehicle }, through: :orders
 
   accepts_nested_attributes_for :vehicle_images
 

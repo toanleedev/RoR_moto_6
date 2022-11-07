@@ -1,0 +1,6 @@
+- (1..5).each do | |
+  - if rating > 0
+    - rating -= 1
+    = image_tag('star_on.png')
+  - else
+    = image_tag('star_off.png')

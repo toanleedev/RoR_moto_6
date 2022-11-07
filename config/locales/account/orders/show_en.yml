@@ -33,3 +33,6 @@ en:
         completed: Completed
         canceled: Canceled
         back: Back
+        rating: Write a review
+        rating_from_renter: Rating from renter
+        rating_from_owner: Rating from owner

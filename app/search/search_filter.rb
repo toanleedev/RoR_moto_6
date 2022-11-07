@@ -13,7 +13,7 @@ class SearchFilter < BaseFilter
   end
 
   def filter
-    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, user: [:address])
+    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
 
     if @province.present?
       records =

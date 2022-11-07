@@ -81,12 +81,7 @@ div
             = @order.rating.content
           .col-md-3.d-flex.gap-1.align-items-start
             - current_rate = @order.rating.rating_point
-            - (1..5).each do |rate|
-              - if current_rate > 0
-                - current_rate -= 1
-                = image_tag('star_on.png')
-              - else
-                = image_tag('star_off.png')
+            = render 'shared/rating', rating: current_rate
 
   div.d-flex.justify-content-end.gap-2
     - if @order.status.in?(['opening', 'pending'])

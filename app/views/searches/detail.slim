@@ -15,15 +15,7 @@
               span class='badge bg-primary float-end' = t(".#{@vehicle.status}")
               h2.text-primary = vehicle_title(@vehicle)
               .d-flex.mt-2
-                - array_point = @vehicle.ratings.pluck(:rating_point)
-                - current_avg = array_point.reduce(:+).to_f / array_point.size
-                - current_rate = current_avg
-                - (1..5).each do |r|
-                  - if current_rate > 0
-                    - current_rate -= 1
-                    = image_tag('star_on.png')
-                  - else
-                    = image_tag('star_off.png')
+                = render 'shared/rating', rating: @vehicle.average_rating
               .row.mt-3
                 .col-md-6
                   = fa_icon "cogs", text: @vehicle.type.name_vi

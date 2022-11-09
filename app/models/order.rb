@@ -34,7 +34,8 @@ class Order < ActiveRecord::Base
   belongs_to :renter, class_name: 'User'
   belongs_to :vehicle
   before_create :default_values
-  has_one :rating, -> { where rate_kind: :vehicle }, dependent: :destroy
+  has_one :vehicle_rating, -> { where rate_kind: :vehicle },
+          class_name: 'Rating'
   has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
 
   accepts_nested_attributes_for :vehicle

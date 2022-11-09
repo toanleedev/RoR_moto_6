@@ -20,7 +20,7 @@
             .col-md-6
               = fa_icon "tachometer", text: vehicle.engine.name_vi
             .col-md-6
-              = fa_icon "wrench", text: '2022'
+              = fa_icon "wrench", text: vehicle.year_produce
       .col-md-3
         .card-body.h-100.text-end.d-flex.flex-column.align-items-end
           h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))

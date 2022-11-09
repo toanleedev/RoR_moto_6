@@ -54,8 +54,7 @@ class User < ActiveRecord::Base
   has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
   has_many :order_manages, class_name: 'Order', foreign_key: 'owner_id'
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
-  has_many :ratings, -> { where rate_kind: :user },
-           through: :orders, foreign_key: 'renter_id'
+  has_many :ratings, through: :orders, foreign_key: 'renter_id', source: :renter_rating
 
   validate :avatar_size
   validates :email, presence: true
@@ -93,6 +92,13 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{last_name} #{first_name}"
+  end
+
+  def average_rating
+    arr_points = ratings.pluck(:rating_point)
+    return 0 if arr_points.empty?
+
+    arr_points.reduce(:+).to_f / arr_points.size
   end
 
   private

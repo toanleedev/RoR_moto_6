@@ -1,0 +1,17 @@
+.card.mb-3
+  .card-body
+    .card-title.fw-bold = t('.title')
+    .row
+      .col-md-9
+        .row
+          .col-md-3
+            p = t('.full_name')
+            p = t('.address')
+            p = t('.phone')
+          .col-md-9
+            p = @order.owner.full_name
+            p = @order.owner.address.show_address
+            p = @order.owner.phone || 'N/A'
+      .col-md-3
+        div.text-center
+          .btn.btn-sm.btn-outline-primary = t('.contact')

@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[create show edit update]
     resource :partner
     resource :notification, only: [:create]
+    resource :rating, only: [:create]
     if Rails.env.production? || Rails.env.development?
       get '*path' => redirect('/404.html')
     end

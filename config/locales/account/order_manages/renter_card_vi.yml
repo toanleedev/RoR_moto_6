@@ -1,0 +1,11 @@
+vi:
+  account:
+    order_manages:
+      renter_card:
+        title: Thông tin người thuê
+        full_name: Họ và tên
+        address: Địa chỉ
+        phone: Số điện thoại
+        paper: Giấy tờ
+        contact: Liên hệ ngay
+        confirmed: Đã xác nhận

@@ -17,7 +17,8 @@ module Account
     private
 
     def set_order
-      @order = current_user.orders.includes(:vehicle).find_by(id: params[:id])
+      @order = current_user.orders.includes(:vehicle, :vehicle_rating)
+                           .find_by(id: params[:id])
     end
 
     def save_order(order)

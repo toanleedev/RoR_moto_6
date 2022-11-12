@@ -5,7 +5,7 @@
 #  id                 :bigint           not null, primary key
 #  start_date         :datetime
 #  end_date           :datetime
-#  count_rental_days  :integer
+#  rental_times       :float
 #  amount             :decimal(18, )
 #  message            :string
 #  status             :integer          default("opening")
@@ -26,13 +26,17 @@
 #  completed_at       :datetime
 #  paid_at            :datetime
 #  uid                :string
-#  payment            :integer
+#  payment_kind       :integer          default("cash"), not null
+#  payment_security   :string
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :renter, class_name: 'User'
   belongs_to :vehicle
   before_create :default_values
+  has_one :vehicle_rating, -> { where rate_kind: :vehicle },
+          class_name: 'Rating'
+  has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
 
   accepts_nested_attributes_for :vehicle
 

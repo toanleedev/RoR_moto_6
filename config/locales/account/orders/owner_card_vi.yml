@@ -1,0 +1,9 @@
+vi:
+  account:
+    orders:
+      owner_card:
+        title: Thông tin người cho thuê
+        full_name: Họ và tên
+        address: Địa chỉ
+        phone: Số điện thoại
+        contact: Liên hệ ngay

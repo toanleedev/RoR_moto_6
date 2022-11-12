@@ -1,6 +1,8 @@
 li.list-group-item.mb-3.shadow-sm
   .text-end.mb-2
     span class="badge bg-secondary" = t(".#{order.status}")
+    - if order.completed? && order.paid_at.present?
+      span class="badge bg-success ms-1" = t(".paid")
   .row
     .col-md-2
       = vehicle_image(order.vehicle, 100)

@@ -1,0 +1,9 @@
+en:
+  account:
+    orders:
+      owner_card:
+        title: Information of lessor
+        full_name: Fullname
+        address: Address
+        phone: Phone number
+        contact: Contact

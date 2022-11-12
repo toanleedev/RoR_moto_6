@@ -15,11 +15,7 @@
               span class='badge bg-primary float-end' = t(".#{@vehicle.status}")
               h2.text-primary = vehicle_title(@vehicle)
               .d-flex.mt-2
-                = image_tag('star_on.png')
-                = image_tag('star_on.png')
-                = image_tag('star_on.png')
-                = image_tag('star_on.png')
-                = image_tag('star_on.png')
+                = render 'shared/rating', rating: @vehicle.average_rating
               .row.mt-3
                 .col-md-6
                   = fa_icon "cogs", text: @vehicle.type.name_vi
@@ -28,7 +24,7 @@
                 .col-md-6
                   = fa_icon "tachometer", text: @vehicle.engine.name_vi
                 .col-md-6
-                  = fa_icon "wrench", text: '2022'
+                  = fa_icon "wrench", text: @vehicle.year_produce
             .col-md-12.mt-5
               .mb-5
                 h5.text-uppercase = t('.description')

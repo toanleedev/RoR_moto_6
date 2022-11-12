@@ -35,3 +35,6 @@ en:
         completed: Completed
         canceled: Canceled
         back: Back
+        rating: Renter rating
+        rating_from_renter: Ratings from renter
+        rating_from_owner: Ratings from owner

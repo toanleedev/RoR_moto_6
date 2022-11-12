@@ -22,6 +22,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :engine, class_name: 'VehicleOption', foreign_key: 'engine_id'
   has_many :vehicle_images, dependent: :destroy
   has_many :orders
+  has_many :ratings, through: :orders, source: :vehicle_rating
 
   accepts_nested_attributes_for :vehicle_images
 
@@ -31,4 +32,9 @@ class Vehicle < ActiveRecord::Base
     hidden: 3,
     locked: 4
   }
+
+  def average_rating
+    arr_points = ratings.pluck(:rating_point)
+    arr_points.reduce(:+).to_f / arr_points.size
+  end
 end

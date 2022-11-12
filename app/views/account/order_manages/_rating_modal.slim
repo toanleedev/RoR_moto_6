@@ -9,7 +9,7 @@
           button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
         .modal-body
           .row
-            div = @order.renter.full_name
+            / div = @order.renter.full_name
           .row
             .col-12
               = f.text_area :content, label: t(".content")
@@ -19,4 +19,4 @@
         .modal-footer
           button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
             = t('.modal_close')
-          = f.primary 'submit'
+          = f.primary t('.submit')

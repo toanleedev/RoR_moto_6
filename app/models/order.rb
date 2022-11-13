@@ -55,6 +55,7 @@ class Order < ActiveRecord::Base
   }
 
   scope :already_order, -> { where.not(status: %i[completed canceled]) }
+  scope :has_completed, -> { where(status: :completed) }
 
   protected
 

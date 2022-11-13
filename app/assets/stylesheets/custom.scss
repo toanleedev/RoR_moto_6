@@ -10,6 +10,11 @@
   }
 }
 
+.hover-shadow:hover {
+  box-shadow: 0 0.125rem 0.25rem #ddd;
+  transition: all linear 0.15s;
+}
+
 .divider {
   padding: 0;
   color: #000000d9;

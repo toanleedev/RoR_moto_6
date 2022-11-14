@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       collection do
         get 'partner_turnover'
         get 'partner_order'
+        get 'partner_vehicle'
       end
     end
     if Rails.env.production? || Rails.env.development?

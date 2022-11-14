@@ -2,38 +2,49 @@
 .d-flex.align-items-center.border-bottom.pb-3.mb-3
   h3 = t(".title")
 .container
-  h5 Chỉ số quan trọng
-  .row.mb-3
+  h5 = t('.stats')
+  .row.mb-4
     .col-md-4
       = link_to account_statistic_path(period: params[:period]),
         class: 'text-body text-decoration-none' do
         .card.border.border-primary.shadow-sm
           .card-body
-            h6.card-title Doanh số
-            p.card-text.fs-5 = @turnover_total
+            h6.card-title = t('.turnover')
+            p.card-text.fs-5 = t('.turnover_total', total: @turnover_total)
     .col-md-4
       = link_to account_statistic_path(period: params[:period], chart: :order),
         class: 'text-body text-decoration-none' do
         .card.border.hover-shadow
           .card-body
-            h6.card-title Số đơn thuê thành công
+            h6.card-title = t('.order_success_count')
             p.card-text.fs-5 = @order_completed_count
     .col-md-4
       = link_to account_statistic_path(period: params[:period], chart: :vehicle),
         class: 'text-body text-decoration-none' do
         .card.border.hover-shadow
           .card-body
-            h6.card-title Số xe đang có
+            h6.card-title = t('.my_vehicle_count')
             p.card-text.fs-5 = @vehicle_count
-  - if params[:chart].nil?  
-    .row
-      h5 = t('.turnover_chart')
+
+  .d-flex
+    h5 = t('.chart')
+    .d-flex.gap-2.ms-auto
+      = link_to t('.day'), account_statistic_path(period: 'day', chart: params[:chart]),
+        class: 'btn btn-sm btn-primary'
+      = link_to t('.week'), account_statistic_path(period: 'week', chart: params[:chart]),
+        class: 'btn btn-sm btn-outline-primary'
+      = link_to t('.month'), account_statistic_path(period: 'month', chart: params[:chart]),
+        class: 'btn btn-sm btn-outline-primary'
+  .row
+    - if params[:chart].nil?
       .col-md-12
-        = line_chart partner_turnover_chart_path(period: params[:period]), title: "Doanh số",
-          label: 'Doanh thu', prefix: "₫", thousands: ",", empty: "No data", curve: false
-  - if params[:chart] == 'order'
-    .row
-      h5 = t('.order_chart')
+        = line_chart partner_turnover_chart_path(period: params[:period]), title: t('.turnover_chart_title'),
+          label: t('.turnover'), prefix: "₫", thousands: ",", empty: t('.no_data'), curve: false
+    - if params[:chart] == 'order'
       .col-md-12
-        = line_chart partner_order_chart_path(period: params[:period]), title: "Đơn thành công",
-          label: 'Đơn thuê',curve: false
+        = line_chart partner_order_chart_path(period: params[:period]), title: t('.order_chart_title'),
+          label: t('.order_label'),curve: false
+    - if params[:chart] == 'vehicle'
+      .col-md-12
+        = column_chart partner_vehicle_chart_path(period: params[:period]), title: t('.order_chart_title'),
+          label: 'Đơn thuê',curve: false, discrete: true

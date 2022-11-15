@@ -25,4 +25,13 @@ class ChartsController < ApplicationController
                                    'orders.completed_at').count
     render json: vehicle_partner_statistic.chart_json
   end
+
+  def admin_users
+    users_statistic =
+      User.all
+          .group_by_period(params[:period] || 'month',
+                           :created_at, permit: %w[day week month])
+          .count
+    render json: users_statistic
+  end
 end

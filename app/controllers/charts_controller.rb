@@ -20,7 +20,9 @@ class ChartsController < ApplicationController
 
   def partner_vehicle
     vehicle_partner_statistic =
-      current_user.vehicles.pluck(:name, :price)
-    render json: vehicle_partner_statistic
+      current_user.vehicles.joins(:orders).group('name')
+                  .group_by_period(params[:period] || 'month',
+                                   'orders.completed_at').count
+    render json: vehicle_partner_statistic.chart_json
   end
 end

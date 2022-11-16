@@ -31,7 +31,7 @@
             = t '.end_date'
           th data-field="rental_times"
             = t '.days'
-          th data-field="is_home_delivery"
+          th data-field="is_home_delivery" data-formatter="homeDeliveryFormat"
             = t '.is_home_delivery'
           th data-field="payment_kind"
             = t '.payment_kind'
@@ -56,13 +56,40 @@ javascript:
     return moment(value).format('DD/MM/YYYY HH:mm')
   }
 
-  function statusFormat(value) {
-    return `<span class="badge bg-primary">${value}</span>`
+  function homeDeliveryFormat(value) {
+    if(value) {
+      return `<span class="badge bg-primary">${value}<span>`
+    }
   }
 
-  function actionFormatter(e) {
+  function statusFormat(value) {
+    let className = 'badge ';
+    switch(value) {
+      case 'opening':
+      case 'pending':
+        className += 'bg-secondary';
+        break;
+      case 'accepted':
+        className += 'bg-warning';
+        break;
+      case 'processing':
+        className += 'bg-primary';
+        break;
+      case 'completed':
+        className += 'bg-success';
+        break;
+      case 'canceled':
+        className += 'bg-danger';
+        break;
+      default:
+        className += 'bg-light'
+    }
+    return `<span class="${className}">${value}</span>`
+  }
+
+  function actionFormatter(value) {
     return `
-      <a class='btn btn-link'>
-        <i class="fa fa-edit"></i>
+      <a class='btn btn-link' href="orders/${value}">
+        #{t('.show')}
       </a>`
   }

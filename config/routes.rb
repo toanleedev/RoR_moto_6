@@ -46,7 +46,7 @@ Rails.application.routes.draw do
         end
       end
       resources :vehicle_options
-      resources :orders, only: [:index]
+      resources :orders, only: %i[index show]
       resources :partners, only: %i[index show] do
         member do
           get 'confirm'

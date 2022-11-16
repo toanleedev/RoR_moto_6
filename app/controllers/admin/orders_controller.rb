@@ -8,5 +8,9 @@ module Admin
         format.json { render json: @orders }
       end
     end
+
+    def show
+      @order = Order.includes(:vehicle).find_by(id: params[:id])
+    end
   end
 end

@@ -14,3 +14,4 @@
 //= require select2
 //= require_tree ./channels
 //= require cable
+//= require aos

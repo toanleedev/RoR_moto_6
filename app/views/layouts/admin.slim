@@ -6,9 +6,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
     = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
-    = stylesheet_link_tag "https://unpkg.com/aos@next/dist/aos.css"
     = content_for :head
-    script src="https://unpkg.com/aos@next/dist/aos.js"
   body class="#{params[:controller]}.#{params[:action]}"
     = render 'shared/admin_header'
     .container-fluid

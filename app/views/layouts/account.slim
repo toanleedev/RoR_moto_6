@@ -5,10 +5,8 @@ html
     title = full_title(yield(:title))
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
     = javascript_include_tag 'application', 'data-turbolinks-track': true
-    = stylesheet_link_tag "https://unpkg.com/aos@next/dist/aos.css"
     = csrf_meta_tags
     = content_for :head
-    script src="https://unpkg.com/aos@next/dist/aos.js"
   body class="#{params[:controller]}##{params[:action]}"
     = render 'layouts/header'
     main.main

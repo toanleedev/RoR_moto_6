@@ -1,0 +1,52 @@
+= content_for :page_header
+  h2 = t ".dashboard"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item.active = t ".dashboard"
+.container
+  .row
+    h5 Stats
+    .col-md-3.mb-4
+      = link_to admin_dashboard_path(period: params[:period]),
+        class: 'text-body text-decoration-none' do
+        div class="card border #{params[:chart].nil? ?
+          'border border-primary' : 'hover-shadow'}"
+          .card-body
+            h6.card-title Tổng người dùng
+            p.card-text.fs-5 = @number_of_users
+    .col-md-3
+      = link_to admin_dashboard_path(period: params[:period], chart: :vehicle),
+        class: 'text-body text-decoration-none' do
+        div class="card border"
+          .card-body
+            h6.card-title Số xe đăng ký
+            p.card-text.fs-5 = @number_of_vehicles
+    .col-md-3
+      = link_to admin_dashboard_path(period: params[:period], chart: :order),
+        class: 'text-body text-decoration-none' do
+        div class="card border"
+          .card-body
+            h6.card-title Số đơn đã thuê hoàn thành
+            p.card-text.fs-5 = @orders_completed_count
+    .col-md-3
+      = link_to admin_dashboard_path(period: params[:period], chart: :turnover),
+        class: 'text-body text-decoration-none' do
+        div class="card border"
+          .card-body
+            h6.card-title = t(".turnover")
+            p.card-text.fs-5 NaN
+  .d-flex
+    h5 = t('.chart')
+    .d-flex.gap-2.ms-auto
+      = link_to t('.day'), admin_dashboard_path(period: 'day', chart: params[:chart]),
+        class: "btn btn-sm #{params[:period] == 'day' ? 'btn-primary' : 'btn-outline-primary'}"
+      = link_to t('.week'), admin_dashboard_path(period: 'week', chart: params[:chart]),
+        class: "btn btn-sm #{params[:period] == 'week' ? 'btn-primary' : 'btn-outline-primary'}"
+      = link_to t('.month'), admin_dashboard_path(period: 'month', chart: params[:chart]),
+        class: "btn btn-sm #{params[:period] == 'month' || params[:period].nil? ? 'btn-primary' : 'btn-outline-primary'}"
+  .row
+    .col
+      = area_chart admin_statistic_chart_path(period: params[:period], chart: params[:chart]),
+        title: 'Users'

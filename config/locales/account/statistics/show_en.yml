@@ -1,0 +1,20 @@
+en:
+  account:
+    statistics:
+      show:
+        title: Statistic
+        stats: Important stats
+        chart: Chart
+        day: Day
+        week: Week
+        month: Month
+        turnover: Turnover
+        turnover_total: '%{total} đ'
+        order_success_count: Number of successful rentals
+        order_count: Number of rentals
+        my_vehicle_count: Number of vehicles owned
+        turnover_chart_title: Turnover chart
+        order_chart_title: Chart of rental orders
+        vehicle_chart_title: Chart of rental orders by vehicle
+        order_label: Order
+        no_data: No data

@@ -68,6 +68,11 @@ class CheckoutController < ApplicationController
   def set_vehicle
     @vehicle = Vehicle.includes(:brand, :type, :engine, :user)
                       .find_by(id: params[:vehicle_id])
+
+    return unless @vehicle.blank?
+
+    flash[:alert] = t('.vehicle_not_found')
+    redirect_to root_path
   end
 
   def validate_before_order

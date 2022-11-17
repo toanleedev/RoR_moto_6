@@ -17,6 +17,14 @@ class Notification < ActiveRecord::Base
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
 
+  scope :count_unread, -> { where(checked_at: nil).count }
+
+  enum notify_type: {
+    user: 0,
+    admin: 1,
+    announcement: 2
+  }
+
   after_create :send_notification
 
   def send_notification

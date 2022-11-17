@@ -9,6 +9,14 @@ class PartnersController < ApplicationController
   def create
     partner = PartnerHistory.new partner_params
     if partner.save
+      notify_params = {
+        sender_id: partner.user_id,
+        on_click_url: 'admin/partners',
+        notify_type: :admin,
+        title: 'notification.title.partner_request',
+        content: 'notification.content.partner_request'
+      }
+      SendNotification.new(notify_params).call
       flash[:notice] = t('message.success.create')
     else
       flash[:alert] = t('message.failure.create')

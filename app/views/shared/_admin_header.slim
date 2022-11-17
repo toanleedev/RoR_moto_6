@@ -1,5 +1,15 @@
-header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
+header.navbar.navbar-dark.navbar-expand-sm.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
   = link_to 'MOTOSHARE', root_path, class: "navbar-brand bg-secondary col-md-3 col-lg-2 me-0 px-3"
-  .navbar-nav
+  .navbar-nav.ms-auto
+    .dropdown
+      #dropdownNotification.dropdown-toggle.hide-arrow.mt-1 data-bs-toggle="dropdown"
+        button.notification-button-js.btn.btn-sm.btn-light.rounded-pill.position-relative.me-2
+          = fa_icon 'bell'
+          - unless admin_notifications.count_unread.zero?
+            = render 'notifications/counter', counter: admin_notifications.count_unread
+      ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
+        = render(partial: 'notifications/notification',
+                 collection: admin_notifications) || content_tag("p") do
+          p.text-center.text-muted = t('.empty_message')
     .nav-item.text-nowrap
-      a class="nav-link px-3" Sign out
+      a class="nav-link px-3" = t('.sign_out')

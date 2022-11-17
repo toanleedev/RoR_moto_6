@@ -52,11 +52,11 @@ module ApplicationHelper
   end
 
   def user_notifications
-    current_user.notifications.order(created_at: :desc)
+    current_user.notifications.user.order(created_at: :desc)
   end
 
-  def notification_count_not_seen
-    current_user.notifications.where(checked_at: nil).count
+  def admin_notifications
+    Notification.admin.order(created_at: :desc)
   end
 
   def count_diff_date(start_date, end_date)

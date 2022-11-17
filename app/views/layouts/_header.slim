@@ -15,10 +15,11 @@ nav.navbar.navbar-expand-lg.navbar-light
             #dropdownNotification.dropdown-toggle.hide-arrow data-bs-toggle="dropdown"
               button.notification-button-js.btn.btn-light.rounded-pill.position-relative.me-2
                 = fa_icon 'bell'
-                - unless notification_count_not_seen.zero?
-                  = render 'notifications/counter', counter: notification_count_not_seen
+                - unless user_notifications.count_unread.zero?
+                  = render 'notifications/counter', counter: user_notifications.count_unread
             ul.dropdown-menu.dropdown-menu-end.notify-list aria-labelledby="dropdownNotification"
-              = render partial: 'notifications/notification', collection: user_notifications
+              = render(partial: 'notifications/notification', collection: user_notifications) || content_tag("p") do
+                p.text-center.text-muted = t('.empty_message')
           .dropdown
             .dropdown-toggle.hide-arrow.pointer.bg-body.p-1.rounded-pill#dropdownUser data-bs-toggle="dropdown"
               = avatar_for(current_user.photo_url, 40)

@@ -29,9 +29,9 @@
             = t '.gender'
           th data-field="birth" data-formatter="dateFormat"
             = t '.birth'
-          th data-field="is_partner"
+          th data-field="is_partner" data-formatter="partnerFormat"
             = t '.is_partner'
-          th data-field="is_admin"
+          th data-field="is_admin" data-formatter="adminFormat"
             = t '.is_admin'
           th data-field="id" data-formatter="actionFormatter"
             = t '.action'
@@ -47,4 +47,16 @@ javascript:
       <a class='btn btn-link' href="users/${value}">
         #{t('.show')}
       </a>`
+  }
+
+  function partnerFormat(value) {
+    if(value) {
+      return `<span class="badge bg-success">${value}</span>`
+    }
+  }
+
+  function adminFormat(value) {
+    if(value) {
+      return `<span class="badge bg-success">${value}</span>`
+    }
   }

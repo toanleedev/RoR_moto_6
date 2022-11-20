@@ -15,3 +15,4 @@
 //= require_tree ./channels
 //= require cable
 //= require aos
+//= require slick

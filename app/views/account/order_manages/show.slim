@@ -10,7 +10,7 @@ div
     .col-2
       = vehicle_image(@order.vehicle, 100)
     .col-7
-      p.fw-bold = vehicle_title(@order.vehicle)
+      p.fw-bold = @order.vehicle.full_name
       p = @order.vehicle.price
     .col-3
       
@@ -30,7 +30,7 @@ div
       - if @order.is_home_delivery
         .border-bottom.border-end.p-2
           span = t('.delivery_address')
-      - if @order.processing_at
+      - if @order.processing_at && !@order.accepted?
         .border-bottom.border-end.p-2
           span = t('.processing_at')
       - if @order.completed_at
@@ -60,7 +60,7 @@ div
         .border-bottom.p-2.text-truncate.min-height-40
           span data-bs-toggle="tooltip" data-bs-placement="top" title="#{@order.delivery_address}"
             = @order.delivery_address
-      - if @order.processing_at
+      - if @order.processing_at && !@order.accepted?
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.processing_at)
       - if @order.completed_at
@@ -103,9 +103,13 @@ div
       = link_to t('.cancel'), cancel_account_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
     - elsif @order.accepted?
+      = link_to t('.undo_pending'), pending_account_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_pending')}
       = link_to t('.start_process'), processing_account_order_manage_path(@order), method: 'PATCH',
-        class: 'btn btn-outline-danger', data: {confirm: t('.confirm_process', time: Time.current)}
+        class: 'btn btn-danger', data: {confirm: t('.confirm_process', time: Time.current)}
     - elsif @order.processing?
+      = link_to t('.undo_accept'), accept_account_order_manage_path(@order, send_notify: false), method: 'PATCH',
+        class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_accept')}
       = link_to t('.confirm_complete'), checkout_account_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
     - elsif @order.completed? && @order.cash? && @order.paid_at.blank?
       = link_to t('.cash_paid'), cash_paid_account_order_manage_path(@order), method: 'PATCH',
@@ -115,4 +119,3 @@ div
         = t('.rating')
       = render 'rating_modal'
     = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
-

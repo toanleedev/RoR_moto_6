@@ -21,7 +21,7 @@ module Account
     def accept
       order.status = :accepted
       save_order order
-      SendNotification.new(order).order_accept
+      SendNotification.new(order).order_accept unless params[:send_notify].present?
     end
 
     def processing
@@ -39,6 +39,11 @@ module Account
       save_order order
     end
 
+    def pending
+      order.status = :pending
+      save_order order
+    end
+
     def checkout; end
 
     def cash_paid
@@ -51,7 +56,10 @@ module Account
     def set_order
       @order = current_user.order_manages.includes(:vehicle).find_by(id: params[:id])
 
-      return redirect_to account_order_manages_path unless @order.present?
+      return unless @order.blank?
+
+      flash[:alert] = t('.order_not_found')
+      redirect_to account_order_manages_path
     end
 
     def save_order(order)

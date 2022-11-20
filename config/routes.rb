@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :order_manages, only: %i[index show edit update] do 
         member do
           get 'checkout'
+          patch 'pending'
           patch 'cancel'
           patch 'accept'
           patch 'processing'
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
         end
       end
       resources :vehicle_options
-      resources :orders, only: [:index]
+      resources :orders, only: %i[index show]
       resources :partners, only: %i[index show] do
         member do
           get 'confirm'

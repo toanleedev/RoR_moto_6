@@ -26,3 +26,6 @@
   .user-sidebar class="#{active_class('account/vehicles')}"
     = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
     = link_to t(".statistic"), account_statistic_path, class: 'user-sidebar__link'
+  .user-sidebar class="#{active_class('account/vehicles')}"
+    = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
+    = link_to 'Thanh toán hàng tháng', account_statistic_path, class: 'user-sidebar__link'

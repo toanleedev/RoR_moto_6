@@ -1,0 +1,6 @@
+.card.mb-3
+  .card-body
+    p.fw-bold = rating.reviewer.full_name
+    p = rating.content
+    - current_rate = rating.rating_point
+    = render 'shared/rating', rating: current_rate

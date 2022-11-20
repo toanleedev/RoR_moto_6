@@ -37,4 +37,8 @@ class Vehicle < ActiveRecord::Base
     arr_points = ratings.pluck(:rating_point)
     arr_points.reduce(:+).to_f / arr_points.size
   end
+
+  def full_name
+    "#{brand.name_vi} #{name}"
+  end
 end

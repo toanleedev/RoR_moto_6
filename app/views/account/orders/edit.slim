@@ -9,7 +9,7 @@
     .col-2
       = vehicle_image(@order.vehicle)
     .col-10
-      p.fw-bold = vehicle_title(@order.vehicle)
+      p.fw-bold = @order.vehicle.full_name
       p = @order.vehicle.price
   = f.text_field :start_date, label: t('.start_date'), class: 'datetimepicker-input',
     data: {toggle: 'datetimepicker', target: '#start_date', init: h(@order.start_date)},

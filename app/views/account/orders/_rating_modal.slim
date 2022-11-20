@@ -12,7 +12,7 @@
             .col-2
               = vehicle_image(@order.vehicle, 100)
             .col-7
-              p.fw-bold = vehicle_title(@order.vehicle)
+              p.fw-bold = @order.vehicle.full_name
               p = @order.vehicle.price
             .col-3
           .row

@@ -1,0 +1,111 @@
+= content_for :head do
+
+= content_for :page_header
+  h2 = t ".order_title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item
+        = link_to t('.orders'), admin_orders_path
+      li.breadcrumb-item.active = t ".order_detail"
+.wrapper
+  .row
+    .col-md-6
+      .card.mb-3
+        .card-body
+          .card-title.fw-bold = t('.owner_info')
+          .row
+            .col-md-12
+              .row
+                .col-md-4
+                  p = t('.full_name')
+                  p = t('.address')
+                  p = t('.phone')
+                .col-md-8
+                  p = @order.owner.full_name
+                  p = @order.owner.address.show_address
+                  p = @order.owner.phone || 'N/A'
+    .col-md-6
+      .card.mb-3
+        .card-body
+          .card-title.fw-bold = t('.renter_info')
+          .row
+            .col-md-12
+              .row
+                .col-md-4
+                  p = t('.full_name')
+                  p = t('.address')
+                  p = t('.phone')
+                .col-md-8
+                  p = @order.renter.full_name
+                  p = @order.renter.address.show_address
+                  p = @order.renter.phone || 'N/A'
+    .col-md-12
+      h5 = t('.order_detail')
+      .divider
+      .row
+        .col-2
+          = vehicle_image(@order.vehicle, 100)
+        .col-7
+          p.fw-bold = @order.vehicle.full_name
+          p = @order.vehicle.price
+        .col-3
+      .row.g-0.text-end.mb-3
+        .col-md-8
+          .border-bottom.border-end.p-2
+            span = t('.uid')
+          .border-bottom.border-end.p-2
+            span = t('.status')
+          .border-bottom.border-end.p-2
+            span = t('.start_date')
+          .border-bottom.border-end.p-2
+            span = t('.end_date')
+          .border-bottom.border-end.p-2
+            span = t('.rental_times')
+          - if @order.is_home_delivery
+            .border-bottom.border-end.p-2
+              span = t('.delivery_address')
+          - if @order.processing_at
+            .border-bottom.border-end.p-2
+              span = t('.processing_at')
+          - if @order.completed_at
+            .border-bottom.border-end.p-2
+              span = t('.completed_at')
+          - if @order.paid_at
+            .border-bottom.border-end.p-2
+              span = t('.paid_at')
+          .border-bottom.border-end.p-2
+            span = t('.payment_kind')
+          .border-bottom.border-end.p-2
+            span = t('.amount')
+        .col-md-4
+          .border-bottom.p-2.min-height-40
+            span = @order.uid || '-'
+          .border-bottom.p-2.min-height-40
+            span class="badge bg-secondary" = t(".#{@order.status}")
+            - if @order.paid_at.present?
+              span class="badge bg-success ms-2" = t('.paid')
+          .border-bottom.p-2.min-height-40
+            span = l(@order.start_date)
+          .border-bottom.p-2.min-height-40
+            span = l(@order.end_date)
+          .border-bottom.p-2.min-height-40
+            span = try_integer(@order.rental_times)
+          - if @order.is_home_delivery
+            .border-bottom.p-2.text-truncate.min-height-40
+              span data-bs-toggle="tooltip" data-bs-placement="top" title="#{@order.delivery_address}"
+                = @order.delivery_address
+          - if @order.processing_at
+            .border-bottom.p-2.text-truncate.min-height-40
+              span = l(@order.processing_at)
+          - if @order.completed_at
+            .border-bottom.p-2.text-truncate.min-height-40
+              span = l(@order.completed_at)
+          - if @order.paid_at
+            .border-bottom.p-2.text-truncate.min-height-40
+              span = l(@order.paid_at)
+          .border-bottom.p-2.min-height-40
+            span = t(".#{@order.payment_kind}")
+          .border-bottom.p-2.min-height-40
+            span.text-primary.fw-bold = try_integer(@order.amount)

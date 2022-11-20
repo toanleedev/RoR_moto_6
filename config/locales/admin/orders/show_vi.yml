@@ -1,8 +1,16 @@
 vi:
-  account:
-    order_manages:
+  admin:
+    orders:
       show:
-        title: Hóa đơn thuê xe
+        home: Quản trị viên
+        order_title: Thông tin đơn thuê
+        order_detail: Chi tiết đơn thuê
+        orders: Quản lý đơn hàng
+        owner_info: Thông tin chủ xe
+        renter_info: Thông tin khách thuê
+        full_name: Họ và tên
+        address: Địa chỉ
+        phone: Số điện thoại
         uid: Mã đơn
         status: Trạng thái
         start_date: Từ ngày
@@ -22,23 +30,9 @@ vi:
         accept: Xác nhận đơn
         cash: Tiền mặt
         paypal: Paypal
-        undo_pending: Hoàn tác sang chờ
-        undo_accept: Hoàn tác sang chấp nhận
-        confirm_undo_pending: Xác nhận hoàn tác chờ
-        confirm_undo_accept: Xác nhận hoàn tác sang chấp nhận
-        confirm_accept: Xác nhận đơn?
-        confirm_cancel: Bạn có muốn hủy đơn không?
-        confirm_process: 'Xác nhận bắt đầu lúc %{time}?'
-        confirm_complete: Xác nhận hoàn thành
-        cash_paid: Đã thanh toán
-        cash_paid_confirm: Xác nhận đã hoàn tất thanh toán?
         opening: Chưa xác nhận
         pending: Chờ duyệt
         accepted: Đã xác nhận
         processing: Đang tiến hành
         completed: Hoàn thành
         canceled: Đã hủy
-        back: Quay lại
-        rating: Đánh giá người thuê
-        rating_from_renter: Đánh giá từ người thuê
-        rating_from_owner: Đánh giá từ người cho thuê

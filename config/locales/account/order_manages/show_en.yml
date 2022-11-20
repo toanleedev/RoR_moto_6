@@ -22,6 +22,10 @@ en:
         accept: Confirm order
         cash: Cash
         paypal: Paypal
+        undo_pending: Undo to pending
+        undo_accept: Undo to accept
+        confirm_undo_pending: Do you want to undo to pending?
+        confirm_undo_accept: Do you want to undo to accepted?
         confirm_accept: Do you want to accept order?
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?

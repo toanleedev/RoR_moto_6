@@ -7,7 +7,7 @@ li.list-group-item.mb-3.shadow-sm
     .col-md-2
       = vehicle_image(order.vehicle, 100)
     .col-md-5
-      h4 = vehicle_title(order.vehicle)
+      h4 = order.vehicle.full_name
       p = order.vehicle.price
     .col-md-5
       p = t('.rental_times', times: try_integer(order.rental_times))

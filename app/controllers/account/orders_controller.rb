@@ -19,6 +19,10 @@ module Account
     def set_order
       @order = current_user.orders.includes(:vehicle, :vehicle_rating)
                            .find_by(id: params[:id])
+      return unless @order.blank?
+
+      flash[:alert] = t('.order_not_found')
+      redirect_to account_orders_path
     end
 
     def save_order(order)

@@ -9,6 +9,14 @@ module Account
     def create
       paper = Paper.new paper_params
       if paper.save
+        notify_params = {
+          sender_id: paper.user_id,
+          on_click_url: "admin/users/#{paper.user_id}",
+          notify_type: :admin,
+          title: 'notification.title.paper_request',
+          content: 'notification.content.paper_request'
+        }
+        SendNotification.new(notify_params).call
         flash[:notice] = t('.create_success')
         redirect_to account_paper_path
       else

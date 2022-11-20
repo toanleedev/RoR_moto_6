@@ -9,6 +9,10 @@ class SearchesController < ApplicationController
   def detail
     @vehicle = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
                       .find_by(id: params[:id])
+    return unless @vehicle.blank?
+
+    flash[:alert] = t('.vehicle_not_found')
+    redirect_to search_path
   end
 
   private

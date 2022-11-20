@@ -7,7 +7,7 @@
           = vehicle_image(vehicle, 180)
       .col-md-6
         .card-body
-          = link_to vehicle_title(vehicle), {controller: :searches, action: :detail, id: vehicle,
+          = link_to vehicle.full_name, {controller: :searches, action: :detail, id: vehicle,
             start_date: params[:start_date], end_date: params[:end_date]},
             class: 'card-title h5 text-body text-underline-hover'
           .d-flex.mt-2

@@ -1,6 +1,6 @@
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
-.background-wrapper
+.background-wrapper.mb-5
   .container.position-relative
     .row
       .col-6.pt-5
@@ -8,3 +8,79 @@
         p.h4.text-white.text-muted = t ".sub_title"
       .col-6
         = render 'search'
+section.mb-5
+  .container
+    .row.text-center.g-4
+      h3 Đặt xe như thế nào
+      .col-md-4
+        .card.h-100
+          = image_tag("step1.png", class: 'card-img-top')
+          .card-body
+            h4.card-title Xác thực thông tin
+            .card-text Nhập đầy đủ thông tin cá nhân, chúng tôi sẽ xác thực nhanh chóng
+      .col-md-4
+        .card.h-100
+          = image_tag("step2.png", class: 'card-img-top')
+          .card-body
+            h4.card-title Đặt xe
+            .card-text Tìm kiếm một chiếc xe ưng ý thông qua Website chúng tôi
+      .col-md-4
+        .card.h-100
+          = image_tag("step3.gif", class: 'card-img-top')
+          .card-body 
+            h4.card-title Nhận xe
+            .card-text Nhận xe tại nhà hoặc các đối tác trong khu vực của chúng tôi
+section.bg-light.py-4
+  .container
+    .row
+      h3 Xe nổi bật
+      .favorite_vehicles
+        = render(partial: 'favorite', collection: @favorite_vehicles, as: :vehicle)
+section.benefit.bg-white.py-5
+  .container
+    .row.g-4
+      h3 Lợi ích nhận được
+      .col-md-6
+        .card.h-100
+          .row.g-0
+            .col-md-4
+              = image_tag("benefit_1.png", class: 'card-img-top')
+            .col-md-8
+              .card-body
+                h5.card-title.fw-bold Nhiều lựa chọn
+                .card-text Hàng trăm loại xe đa dạng ở nhiều địa điểm trên cả nước, phù hợp với mọi mục đích của bạn
+      .col-md-6
+        .card.h-100
+          .row.g-0
+            .col-md-4
+              = image_tag("benefit_2.png", class: 'card-img-top')
+            .col-md-8
+              .card-body
+                h5.card-title.fw-bold Tin cậy
+                .card-text Các xe đều có thời gian sử dụng dưới 3 năm và được bảo dưỡng thường xuyên
+      .col-md-6
+        .card.h-100
+          .row.g-0
+            .col-md-4
+              = image_tag("benefit_3.png", class: 'card-img-top')
+            .col-md-8
+              .card-body
+                h5.card-title.fw-bold Thuận tiện
+                .card-text Dễ dàng tìm kiếm, so sánh và đặt chiếc xe như ý với chỉ vài click chuột
+      .col-md-6
+        .card.h-100
+          .row.g-0
+            .col-md-4
+              = image_tag("benefit_4.png", class: 'card-img-top')
+            .col-md-8
+              .card-body
+                h5.card-title.fw-bold Giá cả cạnh tranh
+                .card-text Giá thuê được niêm yết công khai và rẻ hơn tới 10% so với giá truyền thống
+javascript:
+  $('.favorite_vehicles').slick({
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    centerMode: false,
+    adaptiveHeight: true,
+    autoplay: true
+  });

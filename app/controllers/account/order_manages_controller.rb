@@ -21,7 +21,7 @@ module Account
     def accept
       order.status = :accepted
       save_order order
-      SendNotification.new(order).order_accept
+      SendNotification.new(order).order_accept unless params[:send_notify].present?
     end
 
     def processing
@@ -36,6 +36,11 @@ module Account
       order.status = :completed
       order.vehicle.status = :idle
       order.completed_at = params[:completed_at]
+      save_order order
+    end
+
+    def pending
+      order.status = :pending
       save_order order
     end
 

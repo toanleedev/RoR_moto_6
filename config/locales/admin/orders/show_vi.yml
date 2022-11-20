@@ -5,7 +5,7 @@ vi:
         home: Quản trị viên
         order_title: Thông tin đơn thuê
         order_detail: Chi tiết đơn thuê
-        orders: Đơn hàng
+        orders: Quản lý đơn hàng
         owner_info: Thông tin chủ xe
         renter_info: Thông tin khách thuê
         full_name: Họ và tên

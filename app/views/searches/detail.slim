@@ -13,7 +13,7 @@
                 img src="https://via.placeholder.com/200" class="img-fluid"
             .col-md-7
               span class='badge bg-primary float-end' = t(".#{@vehicle.status}")
-              h2.text-primary = vehicle_title(@vehicle)
+              h2.text-primary = @vehicle.full_name
               .d-flex.mt-2
                 = render 'shared/rating', rating: @vehicle.average_rating
               .row.mt-3

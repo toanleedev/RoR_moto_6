@@ -2,6 +2,17 @@ vi:
   admin:
     orders:
       index:
-        home: Admin
         title: Quản lý đơn hàng
-        orders: Đơn hàng
+        home: Bảng điều khiển
+        orders: Quản lý đơn hàng
+        renter_id: ID khách
+        owner_id: ID đối tác
+        vehicle_id: ID xe thuê
+        start_date: Thuê từ ngày
+        end_date: Thuê đến ngày
+        rental_times: Số ngày thuê
+        payment_kind: Loại thanh toán
+        amount: Tổng tiền
+        status: Trạng thái
+        action: Hành động
+        show: Xem

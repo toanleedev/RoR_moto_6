@@ -1,0 +1,12 @@
+.col-md-3
+  .card
+    .row.g-0
+      .col-md-4
+        = vehicle_image(vehicle, 180)
+      .col-md-8
+        .card-body.d-flex.flex-column.align-items-start.h-100
+          h5.card-title.fw-bold = vehicle.full_name
+          = render 'shared/rating', rating: vehicle.average_rating
+          .card-text.text-truncate = vehicle.description
+          = link_to 'Xem ngay', {controller: :searches, action: :detail, id: vehicle},
+            class: 'btn btn-primary mt-auto'

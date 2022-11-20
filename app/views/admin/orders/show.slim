@@ -6,6 +6,8 @@
     ol.breadcrumb
       li.breadcrumb-item
         = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item
+        = link_to t('.orders'), admin_orders_path
       li.breadcrumb-item.active = t ".order_detail"
 .wrapper
   .row
@@ -46,7 +48,7 @@
         .col-2
           = vehicle_image(@order.vehicle, 100)
         .col-7
-          p.fw-bold = vehicle_title(@order.vehicle)
+          p.fw-bold = @order.vehicle.full_name
           p = @order.vehicle.price
         .col-3
       .row.g-0.text-end.mb-3

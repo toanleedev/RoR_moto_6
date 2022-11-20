@@ -13,8 +13,8 @@
 .row
   .col-md-12
     #toolbar
-      button#remove.btn.btn-danger.ms-2 disabled=true
-        = fa_icon 'trash'
+      / button#remove.btn.btn-danger.ms-2 disabled=true
+      /   = fa_icon 'trash'
     table#table data-locale="#{params[:locale]}"
       thead
         tr
@@ -30,9 +30,7 @@
           th data-field="end_date" data-formatter="dateFormat"
             = t '.end_date'
           th data-field="rental_times"
-            = t '.days'
-          th data-field="is_home_delivery" data-formatter="homeDeliveryFormat"
-            = t '.is_home_delivery'
+            = t '.rental_times'
           th data-field="payment_kind"
             = t '.payment_kind'
           th data-field="amount"

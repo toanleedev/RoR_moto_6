@@ -1,4 +1,5 @@
-.d-flex.gap-1
+- center = center.presence
+.d-flex.gap-1 class="#{center ? 'justify-content-center' : ''}"
   - (1..5).each do | |
     - if rating > 0
       - rating -= 1

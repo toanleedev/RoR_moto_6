@@ -1,5 +1,6 @@
 module Admin
   class UsersController < AdminController
+    before_action :set_user, except: %i[index]
     def index
       @users = User.all
 
@@ -9,10 +10,9 @@ module Admin
       end
     end
 
-    def reject_paper
-      user = User.find_by(id: params[:id])
-      return redirect_to request.referrer, alert: t('.user_not_found') unless user.present?
+    attr_reader :user
 
+    def reject_paper
       return if user.paper.rejected?
 
       user.paper.status = :rejected
@@ -25,9 +25,6 @@ module Admin
     end
 
     def confirm_paper
-      user = User.find_by(id: params[:id])
-      return redirect_to request.referrer, alert: t('.user_not_found') unless user.present?
-
       return if user.paper.confirmed?
 
       user.paper.status = :confirmed
@@ -41,12 +38,43 @@ module Admin
     end
 
     def show
-      @user = User.includes(:paper, :address, :vehicles).find_by(id: params[:id])
-
       respond_to do |format|
         format.html
         format.json { render json: @user, serializer: UserSerializer }
       end
+    end
+
+    def edit; end
+
+    def update; end
+
+    def block
+      user.status = :blocked
+      if user.save
+        redirect_to edit_admin_user_path(user), notice: t('.block_success')
+      else
+        redirect_to request.referrer, alert: t('.block_failure')
+      end
+    end
+
+    def unblock
+      user.status = :offline
+      if user.save
+        redirect_to edit_admin_user_path(user), notice: t('.unblock_success')
+      else
+        redirect_to request.referrer, alert: t('.unblock_failure')
+      end
+    end
+
+    private
+
+    def set_user
+      @user = User.includes(:paper, :address, :vehicles).find_by(id: params[:id])
+
+      return unless @user.blank?
+
+      flash[:alert] = t('.user_not_found')
+      redirect_to admin_users_path
     end
   end
 end

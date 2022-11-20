@@ -35,15 +35,18 @@ Rails.application.routes.draw do
         end
       end
       resource :statistic, only: %i[show]
+      resource :service_fee, only: :show
     end
 
     get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       resource :dashboard
-      resources :users, only: %i[index show] do
+      resources :users, only: %i[index show edit] do
         member do
           patch 'confirm_paper'
           patch 'reject_paper'
+          patch 'block'
+          patch 'unblock'
         end
       end
       resources :vehicle_options

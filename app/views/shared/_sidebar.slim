@@ -23,9 +23,9 @@
   .user-sidebar class="#{active_class('account/vehicles')}"
     = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
     = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'
-  .user-sidebar class="#{active_class('account/vehicles')}"
+  .user-sidebar class="#{active_class('account/statistics')}"
     = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
     = link_to t(".statistic"), account_statistic_path, class: 'user-sidebar__link'
   .user-sidebar class="#{active_class('account/vehicles')}"
-    = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
-    = link_to 'Thanh toán hàng tháng', account_statistic_path, class: 'user-sidebar__link'
+    = fa_icon "credit-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #c2b'
+    = link_to 'Thống kê phí dịch vụ', account_service_fee_path, class: 'user-sidebar__link'

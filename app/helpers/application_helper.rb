@@ -17,16 +17,17 @@ module ApplicationHelper
     end.join("\n").html_safe
   end
 
-  def avatar_for(image, size = 50, alt = 'Avatar')
+  def avatar_for(image, size = 50, alt = 'Avatar', extra_class = '')
     if image.blank?
-      image_tag('default-avatar.png', alt: alt, width: size, class: 'rounded-circle shadow-sm')
+      image_tag('default-avatar.png', alt: alt,
+                width: size, class: "rounded-circle shadow-sm #{extra_class}")
     else
       cl_image_tag(
         image,
         folder: 'moto-6',
         width: size,
         height: size,
-        class: 'rounded-circle shadow-sm border',
+        class: "rounded-circle shadow-sm border #{extra_class}",
         crop: 'fill'
       )
     end

@@ -1,0 +1,20 @@
+= content_for :head do
+
+= content_for :page_header
+  h2 = t ".title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item
+        = link_to t('.vehicles'), admin_vehicles_path
+      li.breadcrumb-item.active = t ".vehicle_detail"
+.row
+  .col-md-8
+    = @vehicle.full_name
+    p.badge.bg-primary = @vehicle.status
+    .d-flex.gap-3
+      = link_to t('.accepted_vehicle'), accepted_admin_vehicle_path(@vehicle),
+        method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.accepted_confirm')}
+      = link_to t('.locked_vehicle'), locked_admin_vehicle_path(@vehicle),
+        method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.locked_confirm')}

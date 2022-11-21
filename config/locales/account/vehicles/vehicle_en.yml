@@ -5,5 +5,5 @@ en:
         price: '%{price}VND/<span class="fs-6">day</span>'
         edit: Update
         idle: Idle
-        reserved: Reserved
+        rented: Rented
         hidden: Hidden

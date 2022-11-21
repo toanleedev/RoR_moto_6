@@ -27,10 +27,12 @@ class Vehicle < ActiveRecord::Base
   accepts_nested_attributes_for :vehicle_images
 
   enum status: {
-    idle: 0,
-    reserved: 1,
-    hidden: 3,
-    locked: 4
+    opening: 0,
+    accepted: 1,
+    idle: 2,
+    rented: 3,
+    locked: 4,
+    offline: 5
   }
 
   def average_rating

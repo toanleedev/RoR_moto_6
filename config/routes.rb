@@ -49,6 +49,12 @@ Rails.application.routes.draw do
           patch 'unblock'
         end
       end
+      resources :vehicles, only: %i[index show] do
+        member do
+          patch 'accepted'
+          patch 'locked'
+        end
+      end
       resources :vehicle_options
       resources :orders, only: %i[index show]
       resources :partners, only: %i[index show] do

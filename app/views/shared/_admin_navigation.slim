@@ -18,9 +18,13 @@ nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collap
           = fa_icon "clipboard", class: 'me-2'
           = t('.partners')
       li.nav-item
-        a class="nav-link" data-bs-toggle="collapse" data-bs-target="#vehicle_option_collapse" aria-controls="vehicle_option_collapse"
+        = link_to admin_vehicles_path, class: "nav-link #{active_class("admin/partners")}" do
           = fa_icon "car", class: 'me-2'
-          = t ".vehicle"
+          = t('.vehicles')
+      li.nav-item
+        a class="nav-link" data-bs-toggle="collapse" data-bs-target="#vehicle_option_collapse" aria-controls="vehicle_option_collapse"
+          = fa_icon "wrench", class: 'me-2'
+          = t ".settings"
         .collapse.show#vehicle_option_collapse
           ul.list-unstyled.fw-normal.small
             li

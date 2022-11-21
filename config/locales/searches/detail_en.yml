@@ -12,5 +12,5 @@ en:
       accept_payment: ACCEPT PAYMENT
       postpaid: Postpaid
       idle: Idle
-      reserved: Reserved
+      rented: Rented
       hidden: Hidden

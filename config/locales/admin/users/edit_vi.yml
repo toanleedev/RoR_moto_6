@@ -1,0 +1,22 @@
+vi:
+  admin:
+    users:
+      edit:
+        title: Chỉnh sửa thông tin người dùng
+        home: Admin
+        edit: Chỉnh sửa
+        users: Quản lý người dùng
+        last_name: Họ
+        first_name: Tên
+        phone: Số điện thoại
+        email: Email
+        gender: Giới tính
+        male: Nam
+        female: Nữ
+        other: Khác
+        birth: Ngày sinh
+        submit: Gửi
+        unblock_btn: Mở khóa tài khoản
+        confirm_unblock: Xác nhận mở khóa tài khoản?
+        block_btn: Khóa tài khoản
+        confirm_block: Xác nhận khóa tài khoản?

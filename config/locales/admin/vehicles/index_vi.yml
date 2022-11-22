@@ -1,0 +1,16 @@
+vi:
+  admin:
+    vehicles:
+      index:
+        title: Thông tin xe cho thuê
+        home: Admin
+        vehicles: Quản lý xe
+        user: Người dùng
+        brand: Hãng xe
+        name: Tên xe
+        year_produce: Năm sản xuất
+        price: Giá thuê
+        created_at: Ngày tạo
+        status: Trạng thái
+        action: Hành động
+        show: Xem

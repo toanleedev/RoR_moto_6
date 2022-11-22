@@ -34,7 +34,7 @@
           = t(".address")
         dd.col-md-9
           = @user.address.full_address
-    = link_to 'edit', edit_admin_user_path(@user), class: 'btn btn-primary offset-md-3'
+    = link_to t('.edit'), edit_admin_user_path(@user), class: 'btn btn-primary offset-md-3'
   .col-md-7
     .d-flex.align-items-center.mb-3
       h4.fw-bold 

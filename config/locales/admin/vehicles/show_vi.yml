@@ -1,0 +1,18 @@
+vi:
+  admin:
+    vehicles:
+      show:
+        title: Thông tin chi tiết xe thuê
+        home: Admin
+        vehicles: Quản lý xe
+        vehicle_detail: Chi tiết xe
+        accepted_vehicle: Duyệt xe thuê
+        accepted_confirm: Xác nhận duyệt xe này
+        locked_vehicle: Khóa xe thuê
+        locked_confirm: Xác nhận khóa xe này?
+        opening: Đang mở
+        accepted: Đã duyệt
+        idle: Rảnh
+        rented: Đã thuê
+        locked: Đã khóa
+        offline: Nghỉ

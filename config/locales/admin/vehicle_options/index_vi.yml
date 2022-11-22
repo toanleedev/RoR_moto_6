@@ -2,9 +2,9 @@ vi:
   admin:
     vehicle_options:
       index:
-        title: Thông tin lựa chọn
+        title: Cài đặt lựa chọn
         home: Admin
-        vehicle_option: Cài đặt lựa chọn xe
+        vehicle_option: Cài đặt lựa chọn
         new: Thêm mới
         id: id
         key: Khóa

@@ -6,7 +6,7 @@
         = link_to t('.home'), admin_dashboard_path
       li.breadcrumb-item
         = link_to t('.users'), admin_users_path
-      li.breadcrumb-item.active = t ".show"
+      li.breadcrumb-item.active = t ".edit"
 .container
   = bootstrap_form_for([:admin, @user], layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8") do |f|
     .row
@@ -20,14 +20,14 @@
           = f.radio_button :gender, 'male', label: t(".male"), inline: true
           = f.radio_button :gender, 'female', label: t(".female"), inline: true
           = f.radio_button :gender, 'other', label: t(".other"), inline: true
-        = f.primary 'submit', extra_class: 'offset-sm-4'
+        = f.primary t('.submit'), extra_class: 'offset-sm-4'
       .col-md-4.text-center
         = avatar_for(@user.photo_url, 150)
         = render 'shared/rating', rating: @user.average_rating, center: true
         .divider
         - if @user.blocked?
-          = link_to 'Mở khóa tài khoản', unblock_admin_user_path(@user),
+          = link_to t('.unblock_btn'), unblock_admin_user_path(@user),
             method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.confirm_unblock')}
         - else
-          = link_to 'Khóa tài khoản', block_admin_user_path(@user),
+          = link_to t('.block_btn'), block_admin_user_path(@user),
             method: 'PATCH', class: 'btn btn-danger', data: {confirm: t('.confirm_block')}

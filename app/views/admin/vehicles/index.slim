@@ -1,5 +1,6 @@
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table-locale-all.min.js"
 = content_for :page_header
   h2 = t ".title"
   nav
@@ -15,7 +16,7 @@
         tr
           th data-field="state" data-checkbox="true"
           th data-field="user" data-formatter="userFormat"
-            = t '.user_id'
+            = t '.user'
           th data-field="brand"
             = t '.brand'
           th data-field="name"
@@ -24,9 +25,9 @@
             = t '.year_produce'
           th data-field="price"
             = t '.price'
-          th data-field="created_at" data-formatter="dateFormat"
+          th data-field="created_at" data-formatter="dateFormat" data-sortable="true"
             = t '.created_at'
-          th data-field="status" data-formatter="statusFormat"
+          th data-field="status" data-formatter="statusFormat" data-sortable="true"
             = t '.status'
           th data-field="id" data-formatter="actionFormat"
             = t '.action'

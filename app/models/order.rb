@@ -51,7 +51,7 @@ class Order < ActiveRecord::Base
 
   enum payment_kind: {
     cash: 0,
-    paypal: 1
+    bank_transfer: 1
   }
 
   scope :already_order, -> { where.not(status: %i[completed canceled]) }

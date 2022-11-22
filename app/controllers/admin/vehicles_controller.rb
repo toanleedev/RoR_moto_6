@@ -23,6 +23,10 @@ module Admin
       end
     end
 
+    def bulk_accepted
+      Vehicle.where(id: params[:ids], status: :opening).update_all(status: :accepted)
+    end
+
     def locked
       vehicle.status = :locked
       if vehicle.save

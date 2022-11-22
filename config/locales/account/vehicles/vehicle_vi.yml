@@ -4,6 +4,9 @@ vi:
       vehicle:
         price: '%{price}₫/<span class="fs-6">ngày</span>'
         edit: Cập nhật
+        opening: Chờ duyệt
+        accepted: Đã duyệt
         idle: Khả dụng
         rented: Đã đặt trước
-        hidden: Bị ẩn
+        offline: Tạm ẩn
+        locked: Bị khóa

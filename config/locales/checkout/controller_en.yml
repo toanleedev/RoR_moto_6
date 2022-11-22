@@ -3,3 +3,10 @@ en:
     confirm:
       require_paper: You need to verify the license information before renting a car
       already_order: You already have an order.
+      pay_paypal_success: Payment via Paypal successful
+      pay_paypal_failure: Payment via Paypal failure
+      order_confirmed: Order has been confirmed.
+      order_confirmed_success: Order confirmation successful
+      order_confirmed_failure: Order confirmation failure
+      uid_not_found: UID not found
+      vehicle_not_found: Vehicle not found

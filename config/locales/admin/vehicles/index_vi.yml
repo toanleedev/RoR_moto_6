@@ -6,6 +6,7 @@ vi:
         home: Admin
         vehicles: Quản lý xe
         user: Người dùng
+        approve: ' Duyệt'
         brand: Hãng xe
         name: Tên xe
         year_produce: Năm sản xuất

@@ -21,7 +21,7 @@ en:
         end_process: End process
         accept: Confirm order
         cash: Cash
-        paypal: Paypal
+        bank_transfer: Bank transfer
         confirm_accept: Do you want to accept order?
         confirm_cancel: Do you want to cancel order?
         confirm_process: Do you want to start?

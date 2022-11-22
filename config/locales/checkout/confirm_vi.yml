@@ -7,7 +7,7 @@ vi:
       address_delivery: 'Địa chỉ giao xe: '
       payment_method: Phương thức thanh toán
       cash: Tiền mặt
-      paypal: Paypal
+      bank_transfer: Chuyển khoản ngân hàng
       detail_price: Chi tiết giá
       unit_price: Đơn giá
       is_home_delivery: Giao xe tại nhà

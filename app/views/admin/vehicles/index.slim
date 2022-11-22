@@ -11,6 +11,9 @@
 .row
   .col-md-12
     #toolbar
+      button#remove.btn.btn-primary.ms-2 disabled=true
+        = fa_icon 'check-square'
+        = t('.approve')
     table#table data-locale="#{params[:locale]}"
       thead
         tr

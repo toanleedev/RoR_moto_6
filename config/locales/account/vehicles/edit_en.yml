@@ -3,3 +3,9 @@ en:
     vehicles:
       edit:
         title: Chỉnh sửa thông tin xe
+        opening: Chờ duyệt
+        accepted: Đã duyệt
+        idle: Khả dụng
+        rented: Đã đặt trước
+        offline: Tạm ẩn
+        locked: Bị khóa

@@ -18,18 +18,19 @@ class CheckoutController < ApplicationController
     order = Order.find_by(uid: params[:uid])
 
     if order.present?
-      return redirect_to root_path, flash: { alert: 'Đơn đã được xác nhận.' } if order.status == 'pending'
+      return redirect_to root_path, flash: { alert: t('.order_confirmed') } if
+        order.status == 'pending'
 
       order.status = :pending
       order.confirmed_at = Time.current
 
       if order.save
-        flash[:notice] = 'Xác nhận đơn thành công'
+        flash[:notice] = t('.order_confirmed_success')
       else
-        flash[:alert] = 'Xác nhận đơn thất bại'
+        flash[:alert] = t('.order_confirmed_failure')
       end
     else
-      flash[:alert] = 'Không tìm thấy uid'
+      flash[:alert] = t('.uid_not_found')
     end
     redirect_to root_path
   end
@@ -52,14 +53,14 @@ class CheckoutController < ApplicationController
         order.payment_info = response.status
         order.save!
         SendNotification.new(order).user_paid_order
-        render json: { message: 'Thanh toan thanh cong',
+        render json: { message: t('.pay_paypal_success'),
                        url: account_order_path(order) }, status: :ok
       end
     rescue PayPalHttp::HttpError => e
       # Something went wrong server-side
       puts e.status_code
       puts e.headers['debug_id']
-      render json: { message: 'Thanh toan that bai' }, status: :bad_request
+      render json: { message: t('.pay_paypal_failure') }, status: :bad_request
     end
   end
 

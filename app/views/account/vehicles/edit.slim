@@ -1,5 +1,6 @@
 - provide :title, t(".title")
-.d-flex.border-bottom.pb-3.mb-3
+.d-flex.border-bottom.pb-3.mb-3.align-items-center
   h3 = t(".title")
+  span.badge.bg-primary.ms-auto = t(".#{@vehicle.status}")
 
 = render 'form', vehicle: @vehicle

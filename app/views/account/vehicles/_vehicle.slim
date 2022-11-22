@@ -2,10 +2,7 @@
   .card.mb-2
     .row.g-0
       .col-md-3
-        - if vehicle.vehicle_images.any?
-          = cl_image_tag(vehicle.vehicle_images.first.image_path, height: 200, width: 200, crop: :fill, class: 'rounded-start')
-        - else
-          img src="https://via.placeholder.com/200" class="img-fluid "
+        = vehicle_image(vehicle, 200)
       .col-md-5
         .card-body
           h5.card-title = vehicle.full_name

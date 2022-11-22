@@ -10,11 +10,42 @@
         = link_to t('.vehicles'), admin_vehicles_path
       li.breadcrumb-item.active = t ".vehicle_detail"
 .row
+  .col-md-4
+    = vehicle_image(@vehicle, 500)
   .col-md-8
-    = @vehicle.full_name
-    p.badge.bg-primary = @vehicle.status
+    h3 Thông tin chi tiết xe
+    dl.row
+      dt.col-md-2
+        .fw-bold Tên xe
+      dd.col-md-10
+        = @vehicle.full_name
+      dt.col-md-2
+        .fw-bold Hãng xe
+      dd.col-md-10
+        = @vehicle.brand.name_vi
+      dt.col-md-2
+        .fw-bold Loại xe
+      dd.col-md-10
+        = @vehicle.type.name_vi
+      dt.col-md-2
+        .fw-bold Động cơ
+      dd.col-md-10
+        = @vehicle.engine.name_vi
+      dt.col-md-2
+        .fw-bold Giá thuê
+      dd.col-md-10
+        = @vehicle.price
+      dt.col-md-2
+        .fw-bold Trạng thái
+      dd.col-md-10
+        .badge.bg-primary = @vehicle.status
+      dt.col-md-2
+        .fw-bold Mô tả
+      dd.col-md-10
+        = @vehicle.description
+
     .d-flex.gap-3
       = link_to t('.accepted_vehicle'), accepted_admin_vehicle_path(@vehicle),
         method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.accepted_confirm')}
       = link_to t('.locked_vehicle'), locked_admin_vehicle_path(@vehicle),
-        method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.locked_confirm')}
+        method: 'PATCH', class: 'btn btn-danger', data: {confirm: t('.locked_confirm')}

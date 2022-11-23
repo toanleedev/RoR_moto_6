@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-md-4
+      h3 Message list
+      .list-group
+        = render(partial: 'user', collection: @users)
+    .col-md-8.bg-light
+      h3 Content

@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     resource :partner
     resource :notification, only: [:create]
     resource :rating, only: [:create]
+    resources :messages
     resource :chart do
       collection do
         get 'partner_turnover'

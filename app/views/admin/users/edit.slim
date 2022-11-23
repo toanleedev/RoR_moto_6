@@ -1,0 +1,33 @@
+= content_for :page_header
+  h2 = t ".title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item
+        = link_to t('.users'), admin_users_path
+      li.breadcrumb-item.active = t ".edit"
+.container
+  = bootstrap_form_for([:admin, @user], layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8") do |f|
+    .row
+      .col-md-8
+        = f.static_control :email, autocomplete: "email", class: 'ps-2', label: t(".email")
+        = f.text_field :first_name, autocomplete: "first_name", label: t(".first_name")
+        = f.text_field :last_name, autocomplete: "last_name", label: t(".last_name")
+        = f.phone_field :phone, label: t(".phone")
+        = f.date_select :birth, start_year: 1951, end_year: 2022, label: t(".birth")
+        = f.form_group :gender, label: { text: t(".gender"), class: 'd-block' } do
+          = f.radio_button :gender, 'male', label: t(".male"), inline: true
+          = f.radio_button :gender, 'female', label: t(".female"), inline: true
+          = f.radio_button :gender, 'other', label: t(".other"), inline: true
+        = f.primary t('.submit'), extra_class: 'offset-sm-4'
+      .col-md-4.text-center
+        = avatar_for(@user.photo_url, 150)
+        = render 'shared/rating', rating: @user.average_rating, center: true
+        .divider
+        - if @user.blocked?
+          = link_to t('.unblock_btn'), unblock_admin_user_path(@user),
+            method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.confirm_unblock')}
+        - else
+          = link_to t('.block_btn'), block_admin_user_path(@user),
+            method: 'PATCH', class: 'btn btn-danger', data: {confirm: t('.confirm_block')}

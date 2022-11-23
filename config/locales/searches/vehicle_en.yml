@@ -4,5 +4,5 @@ en:
       price: '%{price}VND/<span class="fs-6">day</span>'
       detail: Detail
       idle: Idle
-      reserved: Reserved
+      rented: Rented
       hidden: Hidden

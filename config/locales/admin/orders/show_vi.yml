@@ -29,7 +29,7 @@ vi:
         end_process: Đã trả xe
         accept: Xác nhận đơn
         cash: Tiền mặt
-        paypal: Paypal
+        bank_transfer: Chuyển khoản ngân hàng
         opening: Chưa xác nhận
         pending: Chờ duyệt
         accepted: Đã xác nhận

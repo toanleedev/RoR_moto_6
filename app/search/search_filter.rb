@@ -14,7 +14,7 @@ class SearchFilter < BaseFilter
 
   def filter
     records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
-
+                     .where(status: %i[idle rented])
     if @province.present?
       records =
         records.joins(user: [:address]).where('addresses.province LIKE ?', "%#{@province}%")

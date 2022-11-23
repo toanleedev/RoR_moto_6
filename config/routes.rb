@@ -16,7 +16,8 @@ Rails.application.routes.draw do
       resource :address, only: %i[show create update]
       resource :paper, only: %i[show create update]
       resources :vehicles, except: %i[show] do
-        delete '/destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
+        patch 'update_status', on: :member
+        delete 'destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do
         member do
@@ -35,16 +36,26 @@ Rails.application.routes.draw do
         end
       end
       resource :statistic, only: %i[show]
+      resource :service_fee, only: :show
     end
 
     get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       resource :dashboard
-      resources :users, only: %i[index show] do
+      resources :users, only: %i[index show edit] do
         member do
           patch 'confirm_paper'
           patch 'reject_paper'
+          patch 'block'
+          patch 'unblock'
         end
+      end
+      resources :vehicles, only: %i[index show] do
+        member do
+          patch 'accepted'
+          patch 'locked'
+        end
+        patch 'bulk_accepted', on: :collection
       end
       resources :vehicle_options
       resources :orders, only: %i[index show]

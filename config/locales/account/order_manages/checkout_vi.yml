@@ -15,7 +15,7 @@ vi:
         payment_kind: Phương thức thanh toán
         amount: Tổng cộng
         cash: Tiền mặt
-        paypal: Paypal
+        bank_transfer: Chuyển khoản ngân hàng
         processing: Đang tiến hành
         completed: Xác nhận hoàn thành
         canceled: Đã hủy

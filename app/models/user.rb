@@ -68,6 +68,12 @@ class User < ActiveRecord::Base
     female: 2
   }
 
+  enum status: {
+    online: 0,
+    offline: 1,
+    blocked: 4
+  }
+
   accepts_nested_attributes_for :paper
 
   def self.from_omniauth(auth)

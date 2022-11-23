@@ -7,7 +7,7 @@ en:
       address_delivery: 'Delivery address: '
       payment_method: Payment method
       cash: Cash
-      paypal: Paypal
+      bank_transfer: Bank transfer
       detail_price: Price detail
       unit_price: Unit price
       is_home_delivery: Get the vehicle at home

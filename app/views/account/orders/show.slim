@@ -94,7 +94,7 @@ div
         = t('.rating')
       = render 'rating_modal'
     = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
-- if @order.paypal? &&  @order.completed? && @order.paid_at.blank?
+- if @order.bank_transfer? &&  @order.completed? && @order.paid_at.blank?
   row
     .col-md-6.offset-md-3
       #paypal-button-container
@@ -103,7 +103,7 @@ javascript:
   const USDRate = 24000
   const amountUSD = Math.round(#{@order.amount} / USDRate)
 
-  if(#{@order.paypal?} && #{@order.completed?} && #{@order.paid_at.blank?}){
+  if(#{@order.bank_transfer?} && #{@order.completed?} && #{@order.paid_at.blank?}){
     paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({

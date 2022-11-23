@@ -1,0 +1,80 @@
+= content_for :head do
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table-locale-all.min.js"
+= content_for :page_header
+  h2 = t ".title"
+  nav
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('.home'), admin_dashboard_path
+      li.breadcrumb-item.active = t ".vehicles"
+.row
+  .col-md-12
+    #toolbar
+      button#remove.btn.btn-primary.ms-2 disabled=true
+        = fa_icon 'check-square'
+        = t('.approve')
+    table#table data-locale="#{params[:locale]}"
+      thead
+        tr
+          th data-field="state" data-checkbox="true"
+          th data-field="user" data-formatter="userFormat"
+            = t '.user'
+          th data-field="brand"
+            = t '.brand'
+          th data-field="name"
+            = t '.name'
+          th data-field="year_produce"
+            = t '.year_produce'
+          th data-field="price"
+            = t '.price'
+          th data-field="created_at" data-formatter="dateFormat" data-sortable="true"
+            = t '.created_at'
+          th data-field="status" data-formatter="statusFormat" data-sortable="true"
+            = t '.status'
+          th data-field="id" data-formatter="actionFormat"
+            = t '.action'
+
+  = render 'admin/shared/user_canvas'
+
+javascript:
+  function userFormat(user) {
+    return `
+    <a class="link-primary pointer user_canvas_js" data-id="${user.id}"
+      data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
+      ${user.full_name}
+    </a>`
+  }
+
+  function dateFormat(value) {
+    return moment(value).format('DD/MM/YYYY HH:mm')
+  }
+
+  function statusFormat(value) {
+    let className = 'badge ';
+    switch(value) {
+      case 'opening':
+        className += 'bg-secondary';
+        break;
+      case 'accepted':
+        className += 'bg-primary';
+        break;
+      case 'rented':
+        className += 'bg-warning';
+        break;
+      case 'blocked':
+        className += 'bg-danger';
+        break;
+      default:
+        className += 'bg-light'
+    }
+    return `<span class="${className}">${value}</span>`
+  }
+
+  function actionFormat(value) {
+    return `
+      <a class='btn btn-link' href="vehicles/${value}">
+        #{t('.show')}
+      </a>`
+  }

@@ -15,7 +15,7 @@ en:
         payment_kind: Payment method
         amount: Amount
         cash: Cash
-        paypal: Paypal
+        bank_transfer: Bank transfer
         processing: Processing
         completed: Completed
         canceled: Canceled

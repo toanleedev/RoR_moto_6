@@ -5,7 +5,7 @@ vi:
         title: Thông tin người dùng
         home: Admin
         show: Chi tiết
-        users: Người dùng
+        users: Quản lý người dùng
         last_name: Họ
         first_name: Tên
         email: Email
@@ -30,3 +30,4 @@ vi:
         dialog_confirm: Bạn có đồng ý xác nhận?
         dialog_reject: Bạn có đồng ý từ chối?
         empty_paper: Người dùng chưa cập nhật thông tin giấy tờ
+        edit: Chỉnh sửa

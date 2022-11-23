@@ -9,6 +9,8 @@ module Account
                               .order(created_at: :desc)
     end
 
+    attr_reader :vehicle
+
     def new
       @vehicle = Vehicle.new
     end
@@ -50,16 +52,28 @@ module Account
     end
 
     def destroy_image
-      @vehicle = Vehicle.find_by(id: params[:vehicle_id])
-      @image = @vehicle.vehicle_images.find_by(id: params[:id])
-      if @image.image_path.file.exists?
-        @image.image_path.file.delete
-        @image.destroy
+      vehicle = Vehicle.find_by(id: params[:vehicle_id])
+      image = vehicle.vehicle_images.find_by(id: params[:id])
+      if image.image_path.file.exists?
+        image.image_path.file.delete
+        image.destroy
         flash[:notice] = t('message.success.destroy') 
       else
         flash[:alert] = t('message.failure.destroy')
       end
       redirect_to request.referrer
+    end
+
+    def update_status
+      return unless params[:status].present?
+
+      vehicle.status = params[:status]
+      if vehicle.save
+        flash[:notice] = t('message.success.update')
+      else
+        flash[:alert] = t('message.failure.update')
+      end
+      redirect_to edit_account_vehicle_path(@vehicle)
     end
 
     private

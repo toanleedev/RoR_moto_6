@@ -21,7 +21,7 @@ vi:
         end_process: Đã trả xe
         accept: Xác nhận đơn
         cash: Tiền mặt
-        paypal: Paypal
+        bank_transfer: Chuyển khoản ngân hàng
         confirm_accept: Xác nhận đơn?
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: 'Xác nhận bắt đầu lúc %{time}?'

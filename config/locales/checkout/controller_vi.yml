@@ -3,3 +3,10 @@ vi:
     confirm:
       require_paper: Bạn cần xác thực thông tin giấy tờ trước khi thuê xe
       already_order: Bạn đã có đơn order rồi.
+      pay_paypal_success: Thanh toán qua Paypal thành công
+      pay_paypal_failure: Thanh toán qua Paypal thất bại
+      order_confirmed: Đơn đã được xác nhận.
+      order_confirmed_success: Xác nhận đơn thành công
+      order_confirmed_failure: Xác nhận đơn thất bại
+      uid_not_found: UID không tồn tại
+      vehicle_not_found: Xe không tồn tại

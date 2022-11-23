@@ -21,7 +21,7 @@ en:
         end_process: End process
         accept: Confirm order
         cash: Cash
-        paypal: Paypal
+        bank_transfer: Bank transfer
         undo_pending: Undo to pending
         undo_accept: Undo to accept
         confirm_undo_pending: Do you want to undo to pending?

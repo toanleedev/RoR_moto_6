@@ -4,5 +4,5 @@ vi:
       price: '%{price}₫/<span class="fs-6">ngày</span>'
       detail: Chi tiết
       idle: Khả dụng
-      reserved: Đã đặt trước
+      rented: Đã đặt trước
       hidden: Bị ẩn

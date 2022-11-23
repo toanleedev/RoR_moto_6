@@ -9,8 +9,9 @@
       li.breadcrumb-item.active = t ".show"
 .row.py-3
   .col-md-5
-    .d-flex.justify-content-center.mb-3
+    .text-center.mb-3
       = avatar_for(@user.photo_url, 150)
+      = render 'shared/rating', rating: @user.average_rating, center: true
     - user_info_fields(@user).each do |name, value|
       dl.row.mb-2
         dt.col-md-3
@@ -33,6 +34,7 @@
           = t(".address")
         dd.col-md-9
           = @user.address.full_address
+    = link_to t('.edit'), edit_admin_user_path(@user), class: 'btn btn-primary offset-md-3'
   .col-md-7
     .d-flex.align-items-center.mb-3
       h4.fw-bold 

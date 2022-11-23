@@ -8,7 +8,7 @@ class BuildOrders
   def save
     ActiveRecord::Base.transaction do
       order = Order.new params
-      order.vehicle.status = :reserved
+      order.vehicle.status = :rented
       order.save!
       send_mail_confirm(order)
       SendNotification.new(order).order_create

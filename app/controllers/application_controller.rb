@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     photo_url
     photo_url_cache
     remove_photo_url
+    status
   ].freeze
 
   USER_REGISTER_ATTRIBUTES = %w[

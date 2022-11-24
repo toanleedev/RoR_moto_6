@@ -1,2 +1,2 @@
-li.card.mt-3.message-item class="#{message.odd? ? 'receiver' : 'sender'}"
-  .card-body Hello #{message}
+li.card.mt-3.message-item class="#{current_user.id == message.sender.id ? 'sender' : 'receiver'}"
+  .card-body #{message.content}

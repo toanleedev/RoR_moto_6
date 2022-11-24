@@ -55,7 +55,8 @@ class User < ActiveRecord::Base
   has_many :order_manages, class_name: 'Order', foreign_key: 'owner_id'
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
   has_many :ratings, through: :orders, foreign_key: 'renter_id', source: :renter_rating
-
+  has_many :messages, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :user_rooms, through: :messages, foreign_key: 'receiver_id', source: :receiver
   validate :avatar_size
   validates :email, presence: true
   validates :first_name, presence: true,
@@ -105,6 +106,10 @@ class User < ActiveRecord::Base
     return 0 if arr_points.empty?
 
     arr_points.reduce(:+).to_f / arr_points.size
+  end
+
+  def message_rooms
+    messages
   end
 
   private

@@ -1,6 +1,10 @@
 .message {
+  &-container {
+    min-height: calc(100vh - 128px);
+  }
+
   &-wrapper {
-    height: calc(100vh - 210px);
+    min-height: calc(100vh - 210px);
     display: flex;
     flex-direction: column;
   }

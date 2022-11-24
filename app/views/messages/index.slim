@@ -1,8 +1,8 @@
-.container
+.container.message-container
   .row
     .col-md-3
-      h3 Message list
+      h4 Danh sách trò chuyện
       .list-group
         = render(partial: 'user', collection: @user_rooms)
-    .col-md-9.bg-light
-      h3 Content
+    .col-md-9.bg-light.message-container
+      h4.mt-3.text-center Vui lòng chọn cuộc trò chuyện

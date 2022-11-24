@@ -7,12 +7,12 @@
       .list-group
         = render(partial: 'user', collection: @user_rooms)
     .col-md-9.bg-light
-      h3 = @receiver_info.full_name
+      h3 = @receiver.full_name
       .divider
       .message-wrapper
         .message-content
           ul.message-list.list-unstyled
-            = render(partial: 'message', collection: (1..20), as: :message)
+            = render(partial: 'message', collection: @room_messages, as: :message)
       = bootstrap_form_for(@message, local: true) do |f|
         .row
           .col-11

@@ -75,6 +75,8 @@ class User < ActiveRecord::Base
     blocked: 4
   }
 
+  scope :admins, -> { where(is_admin: true) }
+
   accepts_nested_attributes_for :paper
 
   def self.from_omniauth(auth)

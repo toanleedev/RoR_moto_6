@@ -18,6 +18,10 @@
 #
 class PartnerHistory < ActiveRecord::Base
   belongs_to :user
+  validates :full_name, :phone, :title, :description, :email, :address, presence: true, length: { minimum: 2 }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :phone, presence: true, numericality: true, length: { minimum: 10, maximum: 15 }
+
   enum user_kind: {
     personal: 1,
     company: 2

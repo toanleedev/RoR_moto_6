@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get '/admin', to: redirect('/admin/dashboard') #fix locale
     namespace :admin do
       resource :dashboard
-      resources :users, only: %i[index show edit] do
+      resources :users, only: %i[index show edit update] do
         member do
           patch 'confirm_paper'
           patch 'reject_paper'

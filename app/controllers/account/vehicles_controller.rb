@@ -23,8 +23,9 @@ module Account
         flash[:notice] = t('message.success.create')
         redirect_to edit_account_vehicle_path(@vehicle)
       else
+        set_options
         flash[:alert] = t('message.failure.create')
-        render :new
+        render 'new'
       end
     end
 

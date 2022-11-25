@@ -24,6 +24,9 @@ class Vehicle < ActiveRecord::Base
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
 
+  validates :description, :name, :brand_id, :type_id, :engine_id, presence: true
+  validates :price, presence: true, format: { with: /\A\d+(?:\.\d{2})?\z/ }, numericality: { greater_than: 0, less_than: 1000000 }
+
   accepts_nested_attributes_for :vehicle_images
 
   enum status: {

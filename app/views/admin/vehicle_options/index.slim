@@ -15,8 +15,8 @@
   .col-md-12
     #toolbar
       = link_to t('.new'), new_admin_vehicle_option_path, class: 'btn btn-primary'
-      button#remove.btn.btn-danger.ms-2 disabled=true
-        = fa_icon 'trash'
+      / button#remove.btn.btn-danger.ms-2 disabled=true
+      /   = fa_icon 'trash'
     table#table data-locale="#{params[:locale]}"
       thead
         tr

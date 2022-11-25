@@ -31,6 +31,7 @@ module Admin
     end
 
     def cancel
+      user = partner.user
       partner.status = :canceled
 
       if partner.save

@@ -19,10 +19,12 @@ class PartnersController < ApplicationController
       }
       SendNotification.new(notify_params).call
       flash[:notice] = t('message.success.create')
+      redirect_to partner_path
     else
       flash[:alert] = t('message.failure.create')
+      @partner = partner
+      render 'show'
     end
-    redirect_to partner_path
   end
 
   def update
@@ -32,7 +34,8 @@ class PartnersController < ApplicationController
       flash[:notice] = t('message.success.update')
       redirect_to partner_path
     else
-      render 'show', collection: @partner
+      @partner.status = :canceled
+      render 'show'
     end
   end
 

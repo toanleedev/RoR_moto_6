@@ -1,13 +1,13 @@
 = bootstrap_form_for(@paper, url: account_paper_path, inline_errors: true) do |f|
   = f.hidden_field :user_id, value: current_user.id
-  = f.text_field :card_number, label: t(".card_number"), required: true
+  = f.text_field :card_number, label: t(".card_number")
   = f.file_field :card_front_url, label: t(".card_front_url")
   - if @paper.card_front_url.present?
     = cl_image_tag(@paper.card_front_url, height: 150, crop: :fill, class: 'border mb-3')
   = f.file_field :card_back_url, label: t(".card_back_url")
   - if @paper.card_back_url.present?
     = cl_image_tag(@paper.card_back_url, height: 150, crop: :fill, class: 'border mb-3')
-  = f.text_field :driver_number, label: t(".driver_number"), required: true
+  = f.text_field :driver_number, label: t(".driver_number")
   = f.file_field :driver_front_url, label: t(".driver_front_url")
   - if @paper.driver_front_url.present?
     = cl_image_tag(@paper.driver_front_url, height: 150, crop: :fill, class: 'border mb-3 d-block')

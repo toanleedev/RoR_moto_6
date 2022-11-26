@@ -7,11 +7,12 @@ module Account
     def show; end
 
     def create
-      paper = Paper.new paper_params
-      if paper.save
+      @paper = Paper.new paper_params
+      if @paper.save
         notify_params = {
-          sender_id: paper.user_id,
-          on_click_url: "admin/users/#{paper.user_id}",
+          sender_id: @paper.user_id,
+          receiver_id: User.admins.first.id,
+          on_click_url: "admin/users/#{@paper.user_id}",
           notify_type: :admin,
           title: 'notification.title.paper_request',
           content: 'notification.content.paper_request'
@@ -31,7 +32,7 @@ module Account
         redirect_to account_paper_path
       else
         flash[:alert] = t('.update_failure')
-        render 'show'
+        render 'show', collection: @paper
       end
     end
 

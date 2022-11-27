@@ -3,7 +3,8 @@
 
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
-
+  button.btn.btn-primary.ms-auto[data-bs-toggle="modal" data-bs-target="#contractModel"]
+    = t('.contract')
 div
   = render 'renter_card'
   .row
@@ -119,3 +120,4 @@ div
         = t('.rating')
       = render 'rating_modal'
     = link_to t('.back'), account_order_manages_path, class: 'btn btn-outline-secondary'
+= render 'account/orders/contract_modal'

@@ -4,7 +4,8 @@
   script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".title")
-
+  button.btn.btn-primary.ms-auto[data-bs-toggle="modal" data-bs-target="#contractModel"]
+    = t('.contract')
 div
   = render 'owner_card'
   .row
@@ -98,7 +99,7 @@ div
   row
     .col-md-6.offset-md-3
       #paypal-button-container
-
+= render 'contract_modal'
 javascript:
   const USDRate = 24000
   const amountUSD = Math.round(#{@order.amount} / USDRate)

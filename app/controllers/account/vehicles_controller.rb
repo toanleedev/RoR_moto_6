@@ -15,6 +15,8 @@ module Account
       @vehicle = Vehicle.new
     end
 
+    def show; end
+
     def create
       @vehicle = current_user.vehicles.new vehicle_params
 
@@ -75,6 +77,10 @@ module Account
         flash[:alert] = t('message.failure.update')
       end
       redirect_to edit_account_vehicle_path(@vehicle)
+    end
+
+    def priority
+      
     end
 
     private

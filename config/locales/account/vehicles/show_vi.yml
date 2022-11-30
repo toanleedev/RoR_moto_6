@@ -1,0 +1,24 @@
+vi:
+  account:
+    vehicles:
+      show:
+        vehicle_detail_title: Thông tin chi tiết xe
+        vehicle_name: Tên xe
+        vehicle_brand: Hãng xe
+        vehicle_type: Loại xe
+        vehicle_engine: Động cơ
+        vehicle_price: Giá xe
+        vehicle_status: Trạng thái
+        vehicle_description: Mô tả
+        opening: Chờ duyệt
+        accepted: Đã duyệt
+        idle: Khả dụng
+        rented: Đã đặt trước
+        offline: Tạm ẩn
+        locked: Bị khóa
+        btn_edit: Cập nhật
+        btn_hidden: Tạm ẩn
+        btn_rentable: Bật cho thuê
+        confirm_rentable: Xác nhận là cho phép thuê?
+        confirm_hidden: Xác nhận ẩn xe?
+        priority_register: Đăng ký quảng cáo

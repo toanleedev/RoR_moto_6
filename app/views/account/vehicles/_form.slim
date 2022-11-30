@@ -24,12 +24,6 @@
                   data: { bs_target: "#carouselExample", bs_slide_to: "#{index}"})
   .d-flex.gap-3
     = f.primary t(".submit")
-    - if @vehicle.accepted?
-      = link_to t('.rentable'), update_status_account_vehicle_path(@vehicle, status: :idle),
-        method: :patch, data: {confirm: t('.confirm_rentable')}, class: 'btn btn-success'
-    - if @vehicle.idle?
-      = link_to t('.hidden'), update_status_account_vehicle_path(@vehicle, status: :offline),
-        method: :patch, data: {confirm: t('.confirm_hidden')}, class: 'btn btn-secondary'
 = render 'modal'
 
 javascript:

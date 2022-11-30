@@ -1,0 +1,10 @@
+vi:
+  account:
+    vehicles:
+      priority:
+        vehicle_priority_register: Đăng ký chạy quảng cáo
+        price: '%{price}₫/<span class="fs-6">ngày</span>'
+        idle: Khả dụng
+        rented: Đã đặt trước
+        hidden: Bị ẩn
+        price: '%{price}₫/<span class="fs-6">tháng</span>'

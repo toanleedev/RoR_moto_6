@@ -1,0 +1,50 @@
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".vehicle_priority_register")
+.container
+  .card.mb-5
+    .row
+      .col-md-3.text-center
+        = vehicle_image(@vehicle, 150)
+      .col-md-6
+        .card-body
+          h3.card-title = @vehicle.full_name
+          = render 'shared/rating', rating: @vehicle.average_rating
+          .row.mt-3
+            .col-md-6
+              = fa_icon "cogs", text: @vehicle.type.name_vi
+            .col-md-6
+              = fa_icon "bolt", text: 'Xăng'
+            .col-md-6
+              = fa_icon "tachometer", text: @vehicle.engine.name_vi
+            .col-md-6
+              = fa_icon "wrench", text: @vehicle.year_produce
+      .col-md-3
+        .card-body
+          h4.card-text = raw t('.price', price: number_with_precision(@vehicle.price, precision: 0))
+          span class='badge bg-secondary float-end' = t(".#{@vehicle.status}")
+  .row
+    .h4.text-center Cac goi dang ky
+    .col-md-4
+      .card
+        .card-body
+          h5.card-title = t('.silver_package')
+          p.card-text Bài đăng của bạn sẽ hiện thị mức trung bình
+          h4.text-primary.fw-bold = raw t('.price', price: 50000)
+          a.btn.btn-sm.btn-primary[href="#"]
+            | Đăng ký ngay
+    .col-md-4
+      .card
+        .card-body
+          h5.card-title = t('.gold_package')
+          p.card-text Bài đăng của bạn sẽ hiện thị mức Tốt
+          h4.text-primary.fw-bold = raw t('.price', price: 80000)
+          a.btn.btn-sm.btn-primary[href="#"]
+            | Đăng ký ngay
+    .col-md-4
+      .card.text-white.bg-primary
+        .card-body
+          h5.card-title = t('.diamon_package')
+          p.card-text Bài đăng của bạn sẽ hiện thị mức cao nhất
+          h4.text-white.fw-bold = raw t('.price', price: 100000)
+          a.btn.btn-sm.btn-light[href="#"]
+            | Đăng ký ngay

@@ -20,9 +20,12 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :brand, class_name: 'VehicleOption', foreign_key: 'brand_id'
   belongs_to  :type, class_name: 'VehicleOption', foreign_key: 'type_id'
   belongs_to  :engine, class_name: 'VehicleOption', foreign_key: 'engine_id'
-  has_many :vehicle_images, dependent: :destroy
+  has_many :vehicle_images, dependent: :destroy, inverse_of: :vehicle
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
+
+  validates :description, :name, :brand_id, :type_id, :engine_id, presence: true
+  validates :price, presence: true, numericality: { greater_than: 0, less_than: 10000000 }
 
   accepts_nested_attributes_for :vehicle_images
 

@@ -1,0 +1,18 @@
+vi:
+  admin:
+    partners:
+      index:
+        title: Quản lý đăng ký đối tác
+        home: Bảng điều khiển
+        partner_manage: Quản lý đối tác
+        user_id: Người dùng
+        full_name: Họ tên
+        email: Email
+        phone: Số điện thoại
+        address: Địa chỉ
+        user_kind: Loại
+        tax_code: Mã số thuế
+        status: Trạng thái
+        action: Hành động
+        confirm: Xác nhận
+        reject: Từ chối

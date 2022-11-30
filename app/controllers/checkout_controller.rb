@@ -1,5 +1,5 @@
 class CheckoutController < ApplicationController
-  before_action :set_vehicle, except: %i[confirmation]
+  before_action :set_vehicle, except: %i[confirmation payment_paypal complete]
   before_action :authenticate_user!
   before_action :validate_before_order, only: [:confirm]
 

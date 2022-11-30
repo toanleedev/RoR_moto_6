@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
     blocked: 4
   }
 
+  scope :admins, -> { where(is_admin: true) }
+
   accepts_nested_attributes_for :paper
 
   def self.from_omniauth(auth)
@@ -105,6 +107,14 @@ class User < ActiveRecord::Base
     return 0 if arr_points.empty?
 
     arr_points.reduce(:+).to_f / arr_points.size
+  end
+
+  def message_rooms
+    User.joins('INNER JOIN messages ON messages.sender_id = users.id
+      OR messages.receiver_id = users.id')
+        .where('messages.receiver_id = :user_id OR messages.sender_id = :user_id', user_id: self.id)
+        .where.not(id: self.id)
+        .distinct
   end
 
   private

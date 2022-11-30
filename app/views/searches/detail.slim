@@ -3,6 +3,11 @@
 .bg-light
   .container
     .row.py-4.gx-4
+      - unless current_user&.paper&.confirmed? || current_user&.address.present?
+        .alert.alert-danger[role="alert"]
+          ul
+            li = t('.paper_require') unless current_user.paper&.confirmed?
+            li = t('.address_require') unless current_user.address.present?
       .col-8
         .bg-white.p-3.shadow-sm.rounded
           .row

@@ -1,0 +1,8 @@
+.container.message-container
+  .row
+    .col-md-3
+      h4 = t('.messages')
+      .list-group
+        = render(partial: 'user', collection: @rooms)
+    .col-md-9.bg-light.message-container
+      h4.mt-3.text-center = t('.choose_room')

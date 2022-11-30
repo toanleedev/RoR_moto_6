@@ -1,7 +1,9 @@
 module Admin
   class VehicleOptionsController < ApplicationController
     layout 'admin'
-    before_action :set_vehicle_option, only: %i[edit update]
+    before_action :set_vehicle_option, only: %i[edit update destroy]
+
+    attr_reader :vehicle_option
 
     def index
       @vehicle_options = VehicleOption.all
@@ -38,6 +40,18 @@ module Admin
         flash[:alert] = t('message.failure.update')
         render :edit
       end
+    end
+
+    def destroy
+      if vehicle_option.destroy
+        flash[:notice] = t('message.success.destroy')
+      else
+        flash[:alert] = t('message.failure.destroy')
+      end
+      redirect_to admin_vehicle_options_path
+    rescue StandardError => e
+      flash[:alert] = t('message.failure.destroy')
+      redirect_to request.referrer
     end
 
     private

@@ -1,0 +1,11 @@
+#contractModel.modal.fade[tabindex="-1" aria-labelledby="contractModelLabel" aria-hidden="true"]
+  .modal-dialog.modal-xl
+    .modal-content
+      .modal-header
+        h5#contractModelLabel.modal-title = t('.modal_title')
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        iframe src="https://drive.google.com/file/d/1udjAa158jCsWtQDjVfgUZp25psTcxQ3Y/preview" width="100%" height="480" allow="autoplay"
+      .modal-footer
+        button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+          = t('.modal_close')

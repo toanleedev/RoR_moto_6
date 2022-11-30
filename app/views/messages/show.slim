@@ -1,0 +1,22 @@
+- provide :no_footer, true
+
+.container
+  .row
+    .col-md-3
+      h4.mb-3 = t('.messagers')
+      .list-group.message-rooms
+        = render(partial: 'user', collection: @rooms)
+    .col-md-9.bg-light
+      h3 = @receiver.full_name
+      .divider
+      .message-wrapper
+        .message-content
+          ul.message-list.list-unstyled
+            = render(partial: 'message', collection: @room_messages, as: :message, locals: {current: current_user})
+      = bootstrap_form_for(@message, local: true) do |f|
+        .row
+          .col-11
+            = f.hidden_field :receiver_id, value: params[:id]
+            = f.text_field :content, hide_label: true, placeholder: t('.content_placeholder')
+          .col-1.text-center
+            = f.primary t('.send')

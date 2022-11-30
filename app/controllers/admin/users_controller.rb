@@ -46,7 +46,15 @@ module Admin
 
     def edit; end
 
-    def update; end
+    def update
+      if user.update user_params
+        flash[:notice] = t('message.success.update')
+        redirect_to edit_admin_user_path(user)
+      else
+        flash[:alert] = t('message.failure.update')
+        render 'edit'
+      end
+    end
 
     def block
       user.status = :blocked
@@ -67,6 +75,10 @@ module Admin
     end
 
     private
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :phone, :birth, :gender)
+    end
 
     def set_user
       @user = User.includes(:paper, :address, :vehicles).find_by(id: params[:id])

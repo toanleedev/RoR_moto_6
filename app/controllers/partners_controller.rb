@@ -11,6 +11,7 @@ class PartnersController < ApplicationController
     if partner.save
       notify_params = {
         sender_id: partner.user_id,
+        receiver_id: User.admins.first.id,
         on_click_url: 'admin/partners',
         notify_type: :admin,
         title: 'notification.title.partner_request',
@@ -18,10 +19,24 @@ class PartnersController < ApplicationController
       }
       SendNotification.new(notify_params).call
       flash[:notice] = t('message.success.create')
+      redirect_to partner_path
     else
       flash[:alert] = t('message.failure.create')
+      @partner = partner
+      render 'show'
     end
-    redirect_to partner_path
+  end
+
+  def update
+    @partner = current_user.partner_history
+    @partner.status = :pending
+    if @partner.update partner_params
+      flash[:notice] = t('message.success.update')
+      redirect_to partner_path
+    else
+      @partner.status = :canceled
+      render 'show'
+    end
   end
 
   private

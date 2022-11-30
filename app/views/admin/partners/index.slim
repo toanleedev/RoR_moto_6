@@ -11,12 +11,12 @@
     ol.breadcrumb
       li.breadcrumb-item
         = link_to t('.home'), admin_dashboard_path
-      li.breadcrumb-item.active = t ".orders"
+      li.breadcrumb-item.active = t ".partner_manage"
 .row
   .col-md-12
     #toolbar
-      button#remove.btn.btn-danger.ms-2 disabled=true
-        = fa_icon 'trash'
+      / button#remove.btn.btn-danger.ms-2 disabled=true
+      /   = fa_icon 'trash'
     table#table data-detail-formatter="detailFormatter" data-locale="#{params[:locale]}"
       thead
         tr
@@ -64,7 +64,7 @@ javascript:
         #{t('.confirm')}
       </a>
       <a class='btn btn-link' href='partners/${value}/cancel' >
-        #{t('.cancel')}
+        #{t('.reject')}
       </a>`
     if (row.status === 'confirmed') html = ''
     return html;

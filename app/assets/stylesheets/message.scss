@@ -1,0 +1,46 @@
+.message {
+  &-rooms {
+    height: calc(100vh - 128px);
+    overflow-y: scroll;
+  }
+  &-container {
+    min-height: calc(100vh - 128px);
+  }
+
+  &-wrapper {
+    min-height: calc(100vh - 210px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-item {
+    width: fit-content;
+    max-width: 500px;
+    min-width: 50px;
+    word-wrap: break-word;
+
+    &.sender {
+      background-color: pink;
+      align-self: flex-end;
+    }
+  }
+
+  &-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column-reverse;
+    // align-items: flex-start;
+    overflow-y: scroll;
+    padding-top: 10px;
+    max-height: calc(100vh - 191px);
+  }
+
+  &-sender {
+    align-items: flex-start;
+  }
+}

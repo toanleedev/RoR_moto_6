@@ -24,9 +24,11 @@ vi:
     success:
       create: Tạo mới thành công
       update: Cập nhật thành công
+      destroy: Xóa thành công
     failure:
       create: Tạo mới thất bại. Vui lòng thử lại.
       update: Cập nhật thất bại. Vui lòng thử lại.
+      destroy: Xóa thất bại. Vui lòng thử lại.
   views:
     pagination:
       first: '« Đến đầu'

@@ -63,8 +63,11 @@ javascript:
       case 'rented':
         className += 'bg-warning';
         break;
-      case 'blocked':
+      case 'locked':
         className += 'bg-danger';
+        break;
+      case 'idle':
+        className += 'bg-info';
         break;
       default:
         className += 'bg-light'

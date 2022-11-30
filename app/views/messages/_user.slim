@@ -1,0 +1,5 @@
+= link_to message_path(user), class: 'list-group-item list-group-item-action' do
+  .d-flex.w-100.justify-content-between
+    h5.mb-1 = user.full_name
+    small = distance_of_time_in_words_to_now(user.updated_at)
+  small.text-muted Message

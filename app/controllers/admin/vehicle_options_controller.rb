@@ -49,6 +49,9 @@ module Admin
         flash[:alert] = t('message.failure.destroy')
       end
       redirect_to admin_vehicle_options_path
+    rescue StandardError => e
+      flash[:alert] = t('message.failure.destroy')
+      redirect_to request.referrer
     end
 
     private

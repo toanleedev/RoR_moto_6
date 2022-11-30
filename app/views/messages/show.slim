@@ -5,14 +5,14 @@
     .col-md-3
       h3 = t('.messager')
       .list-group
-        = render(partial: 'user', collection: @user_rooms)
+        = render(partial: 'user', collection: @rooms)
     .col-md-9.bg-light
       h3 = @receiver.full_name
       .divider
       .message-wrapper
         .message-content
           ul.message-list.list-unstyled
-            = render(partial: 'message', collection: @room_messages, as: :message)
+            = render(partial: 'message', collection: @room_messages, as: :message, locals: {current: current_user})
       = bootstrap_form_for(@message, local: true) do |f|
         .row
           .col-11

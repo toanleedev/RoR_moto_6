@@ -55,8 +55,7 @@ class User < ActiveRecord::Base
   has_many :order_manages, class_name: 'Order', foreign_key: 'owner_id'
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
   has_many :ratings, through: :orders, foreign_key: 'renter_id', source: :renter_rating
-  has_many :messages, class_name: 'Message', foreign_key: 'sender_id'
-  has_many :user_rooms, through: :messages, foreign_key: 'receiver_id', source: :receiver
+
   validate :avatar_size
   validates :email, presence: true
   validates :first_name, presence: true,
@@ -111,7 +110,11 @@ class User < ActiveRecord::Base
   end
 
   def message_rooms
-    messages
+    User.joins('INNER JOIN messages ON messages.sender_id = users.id
+      OR messages.receiver_id = users.id')
+        .where('messages.receiver_id = :user_id OR messages.sender_id = :user_id', user_id: self.id)
+        .where.not(id: self.id)
+        .distinct
   end
 
   private

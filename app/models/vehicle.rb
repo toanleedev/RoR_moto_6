@@ -20,7 +20,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :brand, class_name: 'VehicleOption', foreign_key: 'brand_id'
   belongs_to  :type, class_name: 'VehicleOption', foreign_key: 'type_id'
   belongs_to  :engine, class_name: 'VehicleOption', foreign_key: 'engine_id'
-  has_many :vehicle_images, dependent: :destroy
+  has_many :vehicle_images, dependent: :destroy, inverse_of: :vehicle
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
 

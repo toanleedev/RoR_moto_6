@@ -2,10 +2,12 @@ class NotificationBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(notification)
-    ActionCable.server.broadcast "notifications:#{notification.receiver_id}",
+    ActionCable.server.broadcast(
+      "notifications:#{notification.receiver_id}",
       counter: render_counter(notification.receiver.notifications.where(checked_at: nil).count),
       toast: render_toast(notification),
       notification: render_notification(notification)
+    )
   end
 
   private

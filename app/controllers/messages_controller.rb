@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
   def create
     message = Message.new message_params
     if message.save
-      # call socket
+      MessageBroadcastJob.perform_now(message)
     else
       flash[:alert] = t('.create_failure')
     end
@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
   private
 
   def set_user_rooms
-    @user_rooms = current_user.user_rooms.distinct
+    @rooms = current_user.message_rooms
   end
 
   def message_params

@@ -11,6 +11,9 @@ nav.navbar.navbar-expand-lg.navbar-light
         = link_to t('.rent'), search_path, class: "nav-item nav-link"
         = link_to t('.about'), root_path, class: "nav-item nav-link"
         - if user_signed_in?
+          = link_to messages_path, class: 'btn btn-light rounded-pill position-relative me-2' do
+            = fa_icon 'comments'
+            span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger 2
           .dropdown
             #dropdownNotification.dropdown-toggle.hide-arrow data-bs-toggle="dropdown"
               button.notification-button-js.btn.btn-light.rounded-pill.position-relative.me-2

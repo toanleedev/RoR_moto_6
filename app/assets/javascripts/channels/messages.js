@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  App.notifications = App.cable.subscriptions.create('MessagesChannel', {
+  App.messages = App.cable.subscriptions.create('MessagesChannel', {
     connected: function () {
       console.log('Messager connected');
     },
@@ -10,6 +10,8 @@ $(document).ready(function () {
 
     received: function (data) {
       console.log(data);
+      const messageList = $('.message-list');
+      messageList.append(data.message);
     },
   });
 });

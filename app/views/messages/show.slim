@@ -3,8 +3,8 @@
 .container
   .row
     .col-md-3
-      h3 = t('.messager')
-      .list-group
+      h4.mb-3 = t('.messagers')
+      .list-group.message-rooms
         = render(partial: 'user', collection: @rooms)
     .col-md-9.bg-light
       h3 = @receiver.full_name
@@ -17,6 +17,6 @@
         .row
           .col-11
             = f.hidden_field :receiver_id, value: params[:id]
-            = f.text_field :content, hide_label: true, placeholder: "Leave a comment..."
+            = f.text_field :content, hide_label: true, placeholder: t('.content_placeholder')
           .col-1.text-center
-            = f.primary 'Send'
+            = f.primary t('.send')

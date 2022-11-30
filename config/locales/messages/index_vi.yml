@@ -1,7 +1,6 @@
 vi:
   messages:
-    show:
+    index:
       user_not_found: Không tìm thấy người dùng
-      send: Gửi
-      content_placeholder: Nhập tin nhắn
       messagers: Danh sách trò chuyện
+      choose_room: Vui lòng chọn cuộc trò chuyện

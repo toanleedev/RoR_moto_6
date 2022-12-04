@@ -1,6 +1,6 @@
 vi:
   checkout:
-    confirm:
+    confirmation:
       require_paper: Bạn cần xác thực thông tin giấy tờ trước khi thuê xe
       already_order: Bạn đã có đơn order rồi.
       pay_paypal_success: Thanh toán qua Paypal thành công

@@ -9,7 +9,7 @@
 #  content      :text
 #  on_click_url :string
 #  checked_at   :datetime
-#  notify_type  :integer          default(0)
+#  notify_type  :integer          default("user")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

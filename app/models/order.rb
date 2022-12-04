@@ -12,10 +12,7 @@
 #  confirmation_token :string
 #  is_home_delivery   :boolean          default(FALSE)
 #  delivery_address   :string
-#  is_prepaid         :boolean          default(FALSE)
-#  prepaid_discount   :decimal(18, )
 #  payment_info       :string
-#  discount           :decimal(18, )
 #  vehicle_id         :bigint           not null
 #  renter_id          :bigint
 #  owner_id           :bigint
@@ -28,6 +25,7 @@
 #  uid                :string
 #  payment_kind       :integer          default("cash"), not null
 #  payment_security   :string
+#  price              :decimal(18, )
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'

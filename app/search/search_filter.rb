@@ -13,7 +13,8 @@ class SearchFilter < BaseFilter
   end
 
   def filter
-    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
+    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings,
+                               :priorities, user: [:address])
                      .where(status: %i[idle rented])
     if @province.present?
       records =

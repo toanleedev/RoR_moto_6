@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       resources :vehicles do
         patch 'update_status', on: :member
         get 'priority', on: :member
+        post 'priority_create', on: :member
+        post 'priority_payment', on: :member
         delete 'destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do

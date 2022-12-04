@@ -3,6 +3,7 @@ vi:
     vehicles:
       vehicle:
         price: '%{price}₫/<span class="fs-6">ngày</span>'
+        show: Xem chi tiết
         edit: Cập nhật
         opening: Chờ duyệt
         accepted: Đã duyệt

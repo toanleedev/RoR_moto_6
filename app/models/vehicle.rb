@@ -12,7 +12,7 @@
 #  type_id      :bigint
 #  engine_id    :bigint
 #  name         :string
-#  status       :integer          default("idle")
+#  status       :integer          default("opening")
 #  year_produce :integer
 #
 class Vehicle < ActiveRecord::Base
@@ -23,11 +23,14 @@ class Vehicle < ActiveRecord::Base
   has_many :vehicle_images, dependent: :destroy, inverse_of: :vehicle
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
+  has_many :priorities
+  # has_many :priorities_subscribe, -> { where(priorities: { expiry_date: Time.current.., status: 'online' } ) },
+  #          through: :priorities, source: :vehicle
 
   validates :description, :name, :brand_id, :type_id, :engine_id, presence: true
   validates :price, presence: true, numericality: { greater_than: 0, less_than: 10000000 }
 
-  accepts_nested_attributes_for :vehicle_images
+  accepts_nested_attributes_for :vehicle_images, :priorities
 
   enum status: {
     opening: 0,
@@ -45,5 +48,9 @@ class Vehicle < ActiveRecord::Base
 
   def full_name
     "#{brand.name_vi} #{name}"
+  end
+
+  def lastest_subscribe_priority
+    priorities.last
   end
 end

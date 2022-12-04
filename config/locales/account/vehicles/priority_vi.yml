@@ -7,4 +7,22 @@ vi:
         idle: Khả dụng
         rented: Đã đặt trước
         hidden: Bị ẩn
-        price: '%{price}₫/<span class="fs-6">tháng</span>'
+        price_pack: '%{price}₫/<span class="fs-6">tháng</span>'
+        register_now: Đăng ký ngay
+        silver_package: Gói bạc
+        gold_package: Gói vàng
+        diamon_package: Gói kim cương
+        silver_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức trung bình</span> của kết quả tìm kiếm'
+        gold_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức tốt</span> của kết quả tìm kiếm'
+        diamon_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức cao nhất</span> của kết quả tìm kiếm'
+        duration_month: '%{month} tháng'
+        packages_here: Gói hiện có
+        package_registered: Gói đã đăng ký
+        pack_duration: Thời hạn
+        pack_duration_format: '%{month} tháng'
+        pack_amount: 'Tổng tiền'
+        pack_amount_format: '%{amount}đ'
+        pack_paid: Thanh toán
+        pack_out_of_date: Ngày hết hạn
+        unpaid: Chưa thanh toán
+        upgrade: Nâng cấp

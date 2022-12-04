@@ -3,7 +3,7 @@
 # Table name: ratings
 #
 #  id           :bigint           not null, primary key
-#  rate_kind    :integer          default(0)
+#  rate_kind    :integer          default("vehicle")
 #  rating_point :integer
 #  content      :text
 #  reviewer_id  :bigint

@@ -1,6 +1,7 @@
 module Account
   class VehiclesController < ApplicationController
     layout 'account'
+    before_action :authenticate_user!
     before_action :set_vehicle, except: %i[index new create destroy_image]
     before_action :set_options, only: %i[new edit]
 
@@ -80,7 +81,61 @@ module Account
     end
 
     def priority
-      
+      @priority = vehicle.priorities.new unless vehicle.lastest_subscribe_priority.present?
+      @rank_options = [
+        [t('.silver_package'), 'silver'],
+        [t('.gold_package'), 'gold'],
+        [t('.diamon_package'), 'diamon']
+      ]
+      @duration_options = [
+        [t('.duration_month', month: 1), 1],
+        [t('.duration_month', month: 2), 2],
+        [t('.duration_month', month: 3), 3],
+        [t('.duration_month', month: 6), 6],
+        [t('.duration_month', month: 12), 12],
+      ]
+    end
+
+    def priority_create
+      priority = vehicle.priorities.new priority_params
+      priority.expiry_date = Time.current + priority.duration.month
+
+      if priority.save
+        flash[:notice] = t('message.success.create')
+      else
+        flash[:alert] = t('message.failure.create')
+      end
+      redirect_to priority_account_vehicle_path(vehicle)
+    end
+
+    def priority_payment
+      environment = PayPal::SandboxEnvironment.new(
+        ENV.fetch('PAYPAL_CLIENT_ID'), ENV.fetch('PAYPAL_SECRET'))
+      client = PayPal::PayPalHttpClient.new(environment)
+      request = PayPalCheckoutSdk::Orders::OrdersCaptureRequest.new(params[:payment_id])
+      priority = Priority.find_by(id: params[:priority_id])
+
+      if priority.blank?
+        redirect_to priority_account_vehicle_path(vehicle), flash:
+          { alert: t('.priority_not_found') }
+      end
+
+      begin
+        response = client.execute(request).result
+
+        if response.status == 'COMPLETED'
+          priority.paid_at = Time.current
+
+          priority.save!
+          render json: { message: t('message.success.payment'),
+                         url: priority_account_vehicle_path(vehicle) }, status: :ok
+        end
+      rescue PayPalHttp::HttpError => e
+        # Something went wrong server-side
+        puts e.status_code
+        puts e.headers['debug_id']
+        render json: { message: t('.message.failure.payment') }, status: :bad_request
+      end
     end
 
     private
@@ -89,6 +144,10 @@ module Account
       params.require(:vehicle).permit :name, :description, :price, :year_produce,
                                       :brand_id, :type_id, :engine_id,
                                       images_attributes: %i[id vehicle_id image_path]
+    end
+
+    def priority_params
+      params.require(:priority).permit :rank, :duration, :amount, :expiry_date
     end
 
     def upload_image
@@ -100,7 +159,8 @@ module Account
     end
 
     def set_vehicle
-      @vehicle = Vehicle.find_by(id: params[:id])
+      @vehicle = Vehicle.includes(:brand, :type, :engine, :user, :priorities)
+                        .find_by(id: params[:id])
 
       return unless @vehicle.blank?
 

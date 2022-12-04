@@ -32,6 +32,7 @@
 #  provider               :string
 #  uid                    :string
 #  is_admin               :boolean
+#  status                 :integer          default("online")
 #
 class User < ActiveRecord::Base
   devise :database_authenticatable,

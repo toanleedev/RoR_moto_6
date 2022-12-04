@@ -15,8 +15,9 @@ module Admin
     attr_reader :vehicle
 
     def accepted
-      vehicle.status = :accepted
+      vehicle.status = :idle
       if vehicle.save
+        send_accepted_message vehicle
         redirect_to admin_vehicle_path(vehicle), notice: t('.accepted_success')
       else
         redirect_to request.referrer, alert: t('.accepted_failure')
@@ -42,6 +43,17 @@ module Admin
       @vehicle = Vehicle.find_by(id: params[:id])
 
       return if @vehicle.present?
+    end
+
+    def send_accepted_message
+      message = {
+        sender_id: current_user.id,
+        receiver_id: vehicle.user_id,
+        on_click_url: "account/vehicles/#{vehicle.id}",
+        title: 'notification.title.vehicle_accepted',
+        content: 'notification.content.vehicle_accepted'
+      }
+      SendNotification.new(message).call
     end
   end
 end

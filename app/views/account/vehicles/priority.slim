@@ -74,7 +74,8 @@
               dt.col-md-4
                 .fw-bold = t('.pack_paid')
               dd.col-md-8
-                = @vehicle.lastest_subscribe_priority.paid_at.nil? ? t('.unpaid') : l(@vehicle.lastest_subscribe_priority.paid_at)
+                .badge.bg-primary
+                  = @vehicle.lastest_subscribe_priority.paid_at.nil? ? t('.unpaid') : t('.paid')
               dt.col-md-4
                 .fw-bold = t('.pack_out_of_date')
               dd.col-md-8

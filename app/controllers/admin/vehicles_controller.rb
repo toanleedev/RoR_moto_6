@@ -17,7 +17,7 @@ module Admin
     def accepted
       vehicle.status = :idle
       if vehicle.save
-        send_accepted_message vehicle
+        send_accepted_message
         redirect_to admin_vehicle_path(vehicle), notice: t('.accepted_success')
       else
         redirect_to request.referrer, alert: t('.accepted_failure')
@@ -28,13 +28,14 @@ module Admin
       Vehicle.where(id: params[:ids], status: :opening).update_all(status: :accepted)
     end
 
-    def locked
-      vehicle.status = :locked
+    def update
+      vehicle.status = params[:status]
       if vehicle.save
-        redirect_to admin_vehicle_path(vehicle), notice: t('.locked_success')
+        flash[:notice] = t('message.success.update')
       else
-        redirect_to request.referrer, alert: t('.locked_failure')
+        flash[:alert] = t('message.failure.update')
       end
+      redirect_to admin_vehicle_path(vehicle)
     end
 
     private

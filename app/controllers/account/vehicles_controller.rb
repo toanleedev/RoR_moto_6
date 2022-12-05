@@ -61,7 +61,7 @@ module Account
       if image.image_path.file.exists?
         image.image_path.file.delete
         image.destroy
-        flash[:notice] = t('message.success.destroy') 
+        flash[:notice] = t('message.success.destroy')
       else
         flash[:alert] = t('message.failure.destroy')
       end
@@ -125,6 +125,7 @@ module Account
 
         if response.status == 'COMPLETED'
           priority.paid_at = Time.current
+          priority.status = :online
 
           priority.save!
           render json: { message: t('message.success.payment'),

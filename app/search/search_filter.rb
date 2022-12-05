@@ -36,6 +36,6 @@ class SearchFilter < BaseFilter
       records = records.where(engine_id: @engine)
     end
 
-    records.page(@page).per(@per_page).order(:status)
+    records.page(@page).per(@per_page).order("priorities.rank desc")
   end
 end

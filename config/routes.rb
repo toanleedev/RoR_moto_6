@@ -27,7 +27,7 @@ Rails.application.routes.draw do
           patch 'cancel'
         end
       end
-      resources :order_manages, only: %i[index show edit update] do 
+      resources :order_manages, only: %i[index show edit update] do
         member do
           get 'checkout'
           patch 'pending'
@@ -53,10 +53,9 @@ Rails.application.routes.draw do
           patch 'unblock'
         end
       end
-      resources :vehicles, only: %i[index show] do
+      resources :vehicles, only: %i[index show update] do
         member do
           patch 'accepted'
-          patch 'locked'
         end
         patch 'bulk_accepted', on: :collection
       end

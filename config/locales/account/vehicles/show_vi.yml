@@ -9,6 +9,7 @@ vi:
         vehicle_engine: Động cơ
         vehicle_price: Giá xe
         vehicle_status: Trạng thái
+        vehicle_star: Số sao
         vehicle_description: Mô tả
         opening: Chờ duyệt
         accepted: Đã duyệt
@@ -22,3 +23,19 @@ vi:
         confirm_rentable: Xác nhận là cho phép thuê?
         confirm_hidden: Xác nhận ẩn xe?
         priority_register: Đăng ký quảng cáo
+        package_registered: Gói quảng cáo đã đăng ký
+        silver_package: Gói bạc
+        gold_package: Gói vàng
+        diamon_package: Gói kim cương
+        silver_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức trung bình</span> của kết quả tìm kiếm'
+        gold_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức tốt</span> của kết quả tìm kiếm'
+        diamon_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức cao nhất</span> của kết quả tìm kiếm'
+        pack_duration: Thời hạn
+        pack_duration_format: '%{month} tháng'
+        pack_amount: 'Tổng tiền'
+        pack_amount_format: '%{amount}đ'
+        pack_paid: Thanh toán
+        pack_out_of_date: Ngày hết hạn
+        unpaid: Chưa thanh toán
+        paid: Đã thanh toán
+        upgrade: Nâng cấp

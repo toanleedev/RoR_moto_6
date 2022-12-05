@@ -99,13 +99,15 @@ module Account
     def priority_create
       priority = vehicle.priorities.new priority_params
       priority.expiry_date = Time.current + priority.duration.month
+      priority.status = :offline
 
       if priority.save
         flash[:notice] = t('message.success.create')
+        redirect_to account_vehicle_path(vehicle)
       else
         flash[:alert] = t('message.failure.create')
+        redirect_to priority_account_vehicle_path(vehicle)
       end
-      redirect_to priority_account_vehicle_path(vehicle)
     end
 
     def priority_payment
@@ -116,7 +118,7 @@ module Account
       priority = Priority.find_by(id: params[:priority_id])
 
       if priority.blank?
-        redirect_to priority_account_vehicle_path(vehicle), flash:
+        redirect_to account_vehicle_path(vehicle), flash:
           { alert: t('.priority_not_found') }
       end
 
@@ -129,7 +131,7 @@ module Account
 
           priority.save!
           render json: { message: t('message.success.payment'),
-                         url: priority_account_vehicle_path(vehicle) }, status: :ok
+                         url: account_vehicle_path(vehicle) }, status: :ok
         end
       rescue PayPalHttp::HttpError => e
         # Something went wrong server-side

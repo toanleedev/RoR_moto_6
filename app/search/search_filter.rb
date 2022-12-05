@@ -16,6 +16,7 @@ class SearchFilter < BaseFilter
     records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings,
                                :priorities, user: [:address])
                      .where(status: %i[idle rented])
+                     .order('priorities.rank desc NULLS LAST, priorities.paid_at')
     if @province.present?
       records =
         records.joins(user: [:address]).where('addresses.province LIKE ?', "%#{@province}%")
@@ -36,6 +37,6 @@ class SearchFilter < BaseFilter
       records = records.where(engine_id: @engine)
     end
 
-    records.page(@page).per(@per_page).order("priorities.rank desc")
+    records.page(@page).per(@per_page)
   end
 end

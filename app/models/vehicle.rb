@@ -23,9 +23,8 @@ class Vehicle < ActiveRecord::Base
   has_many :vehicle_images, dependent: :destroy, inverse_of: :vehicle
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
-  has_many :priorities
-  # has_many :priorities_subscribe, -> { where(priorities: { expiry_date: Time.current.., status: 'online' } ) },
-  #          through: :priorities, source: :vehicle
+  has_many :priorities, -> { where status: 'online' }
+  has_one :subscribe_priority, -> { where expiry_date: Time.current.. }, class_name: 'Priority'
 
   validates :description, :name, :brand_id, :type_id, :engine_id, presence: true
   validates :price, presence: true, numericality: { greater_than: 0, less_than: 10000000 }

@@ -26,7 +26,7 @@
         .card-body
           h4.card-text = raw t('.price', price: number_with_precision(@vehicle.price, precision: 0))
           span class='badge bg-secondary float-end' = t(".#{@vehicle.status}")
-  - if @vehicle.lastest_subscribe_priority&.new_record? || @vehicle.lastest_subscribe_priority.blank?
+  - if @vehicle.subscribe_priority&.new_record? || @vehicle.subscribe_priority.blank?
     .row
       .h4.text-center = t('.packages_here')
       .col-md-4
@@ -54,77 +54,3 @@
             button.btn.btn-sm.btn-light.btn-action-diamon [data-bs-toggle="modal" data-bs-target="#priorityModel"]
               = t('.register_now')
     = render 'priority_modal'
-  - else
-    .row
-      .h4.text-center = t('.package_registered')
-      .col-md-8.offset-md-2
-        .card
-          .card-body
-            h5.card-title = t(".#{@vehicle.lastest_subscribe_priority.rank}_package")
-            h6.card-subtitle.mb-2.text-muted = raw t(".#{@vehicle.lastest_subscribe_priority.rank}_subtitle_package")
-            dl.row
-              dt.col-md-4
-                .fw-bold = t('.pack_duration')
-              dd.col-md-8
-                = raw t('.pack_duration_format', month: @vehicle.lastest_subscribe_priority.duration)
-              dt.col-md-4
-                .fw-bold = t('.pack_amount')
-              dd.col-md-8
-                = raw t('.pack_amount_format', amount: @vehicle.lastest_subscribe_priority.amount)
-              dt.col-md-4
-                .fw-bold = t('.pack_paid')
-              dd.col-md-8
-                .badge.bg-primary
-                  = @vehicle.lastest_subscribe_priority.paid_at.nil? ? t('.unpaid') : t('.paid')
-              dt.col-md-4
-                .fw-bold = t('.pack_out_of_date')
-              dd.col-md-8
-                = l(@vehicle.lastest_subscribe_priority.expiry_date)
-              - if @vehicle.lastest_subscribe_priority.paid_at.nil?
-                #paypal-button-container
-              - else
-                .d-flex.gap-2.offset-4
-                  / .btn.btn-primary.btn-sm Gia hạn
-                  - unless @vehicle.lastest_subscribe_priority.diamon?
-                    .btn.btn-primary.btn-sm = t('.upgrade')
-
-javascript:
-
-  if(#{@vehicle.lastest_subscribe_priority.present? && @vehicle.lastest_subscribe_priority.paid_at.blank?}){
-    const USDRate = 24000
-    const amountUSD = Math.round(#{@vehicle.lastest_subscribe_priority&.amount} / USDRate)
-    paypal.Buttons({
-      createOrder: (data, actions) => {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: amountUSD
-            }
-          }]
-        });
-      },
-
-      onApprove: (data, actions) => {
-        $.ajax({
-          url: "#{priority_payment_account_vehicle_path}",
-          method: 'POST',
-          dataType: 'json',
-          data: JSON.stringify({
-            'payment_id': data.orderID,
-            'priority_id': "#{@vehicle.lastest_subscribe_priority&.id}"
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name="csrf-token"]').content
-          },
-          error: function (xhr, ajaxOptions, thrownError) {
-            console.log(thrownError);
-          },
-          success: function (response) {
-            alert(response.message)
-            window.location.href = response.url;
-          },
-        })
-      }
-    }).render('#paypal-button-container');
-  }

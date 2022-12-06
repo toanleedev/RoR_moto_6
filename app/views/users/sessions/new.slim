@@ -4,9 +4,9 @@
     .col-md-4.my-3.shadow-lg.rounded.p-4
       h3.text-center.mb-3 = t(".title")
       = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = render "users/shared/error_messages", resource: resource
-        = f.email_field :email, autofocus: true, autocomplete: "email", label: t(".email"), floating: true, required: true
-        = f.password_field :password, label: t(".password"), floating: true, required: true
+        / = render "users/shared/error_messages", resource: resource
+        = f.email_field :email, autofocus: true, label: t(".email"), floating: true
+        = f.password_field :password, label: t(".password"), floating: true
         .d-flex.justify-content-between
           = f.check_box :remember_me, label: t(".remember")
           = link_to t(".forgot_password"), new_password_path(resource_name)

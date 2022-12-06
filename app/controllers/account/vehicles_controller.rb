@@ -128,6 +128,8 @@ module Account
         if response.status == 'COMPLETED'
           priority.paid_at = Time.current
           priority.status = :online
+          Payment.create paymentable: priority, user_id: current_user.id, payment_kind: :bank_transfer,
+            payment_security: response.id, amount: priority.amount, status: :completed
 
           priority.save!
           render json: { message: t('message.success.payment'),

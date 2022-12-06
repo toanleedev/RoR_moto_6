@@ -10,7 +10,6 @@
           .col
             = f.text_field :last_name, autocomplete: "last_name", label: t(".last_name"), floating: true
         = f.email_field :email, autocomplete: "email", label: t(".email"), floating: true
-       
         = f.password_field :password, label: t(".password"), floating: true
         = f.password_field :password_confirmation, label: t(".password_confirmation"), floating: true
         = f.primary t(".submit"), extra_class: ' w-100'

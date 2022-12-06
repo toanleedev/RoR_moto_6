@@ -14,6 +14,7 @@
 #
 class Priority < ActiveRecord::Base
   belongs_to :vehicle
+  has_one :payment, as: :paymentable
 
   enum rank: {
     silver: 0,

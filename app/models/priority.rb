@@ -4,11 +4,11 @@
 #
 #  id          :bigint           not null, primary key
 #  vehicle_id  :bigint           not null
-#  rank        :integer          default(0)
+#  rank        :integer          default("silver")
 #  duration    :integer
 #  amount      :decimal(18, )
-#  paid_at     :datetime
 #  expiry_date :datetime
+#  status      :integer          default("offline")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

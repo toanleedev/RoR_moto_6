@@ -5,7 +5,6 @@ class CreatePriorities < ActiveRecord::Migration[6.0]
       t.integer :rank, default: 0
       t.integer :duration
       t.decimal :amount, precision: 18, scale: 0
-      t.datetime :paid_at
       t.datetime :expiry_date
       t.integer :status, default: 0
 

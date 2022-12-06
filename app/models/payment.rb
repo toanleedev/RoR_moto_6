@@ -1,8 +1,26 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id               :bigint           not null, primary key
+#  paymentable_type :string
+#  paymentable_id   :bigint
+#  user_id          :bigint           not null
+#  payment_kind     :integer
+#  payment_security :string
+#  paid_at          :datetime
+#  amount           :decimal(18, )
+#  status           :integer          default("pending")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 class Payment < ActiveRecord::Base
   belongs_to :paymentable, polymorphic: true
+  belongs_to :user
 
   enum payment_kind: {
-    bank_transfer: 0
+    cash: 0,
+    bank_transfer: 1
   }
 
   enum status: {

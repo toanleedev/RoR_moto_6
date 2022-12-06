@@ -22,7 +22,7 @@
           h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))
           span class='badge bg-primary float-end mb-2' = t(".#{vehicle.status}")
           - if vehicle.subscribe_priority.present?
-            span class='badge bg-warning float-end' = t(".#{vehicle.subscribe_priority[:rank]}")
+            span class='badge bg-success float-end' = t(".#{vehicle.subscribe_priority[:rank]}")
           .mt-auto.d-flex.gap-2
             = link_to t('.show'), account_vehicle_path(vehicle), class: 'btn btn-outline-success'
-            = link_to t('.edit'), edit_account_vehicle_path(vehicle), class: 'btn btn-outline-primary'
+            = link_to t('.edit'), edit_account_vehicle_path(vehicle), class: 'btn btn-primary'

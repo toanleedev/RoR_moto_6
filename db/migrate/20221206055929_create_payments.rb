@@ -7,6 +7,7 @@ class CreatePayments < ActiveRecord::Migration[6.0]
       t.string :payment_security
       t.decimal :amount, precision: 18, scale: 0
       t.integer :status, default: 0
+      t.datetime :paid_at
       t.timestamps
     end
   end

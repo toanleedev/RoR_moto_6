@@ -77,11 +77,11 @@ module Account
       else
         flash[:alert] = t('message.failure.update')
       end
-      redirect_to edit_account_vehicle_path(@vehicle)
+      redirect_to account_vehicle_path(@vehicle)
     end
 
     def priority
-      @priority = vehicle.priorities.new unless vehicle.lastest_subscribe_priority.present?
+      @priority = vehicle.priorities.new
       @rank_options = [
         [t('.silver_package'), 'silver'],
         [t('.gold_package'), 'gold'],
@@ -126,10 +126,10 @@ module Account
         response = client.execute(request).result
 
         if response.status == 'COMPLETED'
-          priority.paid_at = Time.current
           priority.status = :online
-          Payment.create paymentable: priority, user_id: current_user.id, payment_kind: :bank_transfer,
-            payment_security: response.id, amount: priority.amount, status: :completed
+          Payment.create paymentable: priority, user_id: current_user.id,
+                         payment_kind: :bank_transfer, payment_security: response.id,
+                         amount: priority.amount, paid_at: Time.current, status: :completed
 
           priority.save!
           render json: { message: t('message.success.payment'),

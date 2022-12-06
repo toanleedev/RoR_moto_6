@@ -1,6 +1,5 @@
 = content_for :head do
   = javascript_include_tag 'account/priorities', 'data-turbolinks-track': 'reload'
-  script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
 
 .d-flex.border-bottom.pb-3.mb-3
   h3 = t(".vehicle_priority_register")
@@ -46,11 +45,32 @@
             button.btn.btn-sm.btn-primary.btn-action-gold [data-bs-toggle="modal" data-bs-target="#priorityModel"]
               = t('.register_now')
       .col-md-4
-        .card.text-white.bg-primary
+        .card
           .card-body
             h5.card-title = t('.diamon_package')
             p.card-text = raw t('.diamon_subtitle_package')
-            h4.text-white.fw-bold = raw t('.price_pack', price: 100000)
-            button.btn.btn-sm.btn-light.btn-action-diamon [data-bs-toggle="modal" data-bs-target="#priorityModel"]
+            h4.text-primary.fw-bold = raw t('.price_pack', price: 100000)
+            button.btn.btn-sm.btn-primary.btn-action-diamon [data-bs-toggle="modal" data-bs-target="#priorityModel"]
               = t('.register_now')
     = render 'priority_modal'
+  - elsif !@vehicle.subscribe_priority.diamon?
+    .row
+      h4 = t('.priority_upgrade')
+      - if @vehicle.subscribe_priority.silver?
+        .col-md-4
+          .card
+            .card-body
+              h5.card-title = t('.gold_package')
+              p.card-text = raw t('.gold_subtitle_package')
+              h4.text-primary.fw-bold = raw t('.price_pack', price: 80000)
+              button.btn.btn-sm.btn-primary.btn-action-gold [data-bs-toggle="modal" data-bs-target="#priorityUpgradeModel"]
+                = t('.upgrade_now')
+      .col-md-4
+        .card
+          .card-body
+            h5.card-title = t('.diamon_package')
+            p.card-text = raw t('.diamon_subtitle_package')
+            h4.text-primary.fw-bold = raw t('.price_pack', price: 100000)
+            button.btn.btn-sm.btn-primary.btn-action-diamon [data-bs-toggle="modal" data-bs-target="#priorityUpgradeModel"]
+              = t('.upgrade_now')
+    = render 'priority_upgrade_modal'

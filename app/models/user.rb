@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   has_many :order_manages, class_name: 'Order', foreign_key: 'owner_id'
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
   has_many :ratings, through: :orders, foreign_key: 'renter_id', source: :renter_rating
+  has_many :payment_histories, class_name: 'Payment', dependent: :destroy
 
   validate :avatar_size
   validates :email, presence: true

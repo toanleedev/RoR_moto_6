@@ -5,7 +5,7 @@
         h5#priorityModelLabel.modal-title = t('.modal_title')
         button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
       .modal-body
-        = bootstrap_form_for(@priority, url: priority_create_account_vehicle_path) do |f|
+        = bootstrap_form_for(@priority, url: priority_payment_path) do |f|
           = f.select :rank, @rank_options, { label: t('.f_rank') }
           = f.select :duration, @duration_options, { label: t('.f_duration') }
           = f.static_control :amount, label: t('.f_amount'), value: 0

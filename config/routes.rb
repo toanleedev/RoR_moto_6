@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         patch 'update_status', on: :member
         get 'priority', on: :member
         post 'priority_create', on: :member
-        post 'priority_payment', on: :member
         delete 'destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do
@@ -83,6 +82,11 @@ Rails.application.routes.draw do
     resource :partner
     resource :notification, only: [:create]
     resource :rating, only: [:create]
+    resource :payment do
+      member do
+        post 'priority'
+      end
+    end
     resources :messages
     resource :chart do
       collection do

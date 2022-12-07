@@ -1,4 +1,7 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
   devise_for :users,
              only: :omniauth_callbacks,
              controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
         patch 'update_status', on: :member
         get 'priority', on: :member
         post 'priority_create', on: :member
+        post 'priority_upgrade', on: :member
         delete 'destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resources :orders, only: %i[index show edit update] do

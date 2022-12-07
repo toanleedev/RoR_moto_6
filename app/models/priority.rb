@@ -24,7 +24,8 @@ class Priority < ActiveRecord::Base
 
   enum status: {
     offline: 0,
-    online: 1
+    online: 1,
+    canceled: 2
   }
 
   def subscribed?

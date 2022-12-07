@@ -84,7 +84,6 @@
               #paypal-button-container
             - else
               .d-flex.gap-2.offset-4
-                / .btn.btn-primary.btn-sm Gia hạn
                 - unless @vehicle.subscribe_priority.diamon?
                   = link_to t('.upgrade'), priority_account_vehicle_path(@vehicle),
                     class: 'btn btn-sm btn-primary'
@@ -107,12 +106,12 @@ javascript:
 
       onApprove: (data, actions) => {
         $.ajax({
-          url: "#{priority_payment_account_vehicle_path}",
+          url: "#{priority_payment_path}",
           method: 'POST',
           dataType: 'json',
           data: JSON.stringify({
-            'payment_id': data.orderID,
-            'priority_id': "#{@vehicle.subscribe_priority&.id}"
+            'vehicle_id': "#{@vehicle.id}",
+            'payment_id': data.orderID
           }),
           headers: {
             'Content-Type': 'application/json',

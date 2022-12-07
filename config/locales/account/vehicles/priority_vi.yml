@@ -18,3 +18,4 @@ vi:
         gold_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức tốt</span> của kết quả tìm kiếm'
         diamon_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức cao nhất</span> của kết quả tìm kiếm'
         duration_month: '%{month} tháng'
+        packages_here: Gói đăng ký

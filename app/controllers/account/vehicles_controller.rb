@@ -92,7 +92,7 @@ module Account
         [t('.duration_month', month: 2), 2],
         [t('.duration_month', month: 3), 3],
         [t('.duration_month', month: 6), 6],
-        [t('.duration_month', month: 12), 12],
+        [t('.duration_month', month: 12), 12]
       ]
     end
 
@@ -108,6 +108,10 @@ module Account
         flash[:alert] = t('message.failure.create')
         redirect_to priority_account_vehicle_path(vehicle)
       end
+    end
+
+    def priority_upgrade
+      redirect_to account_vehicle_path(@vehicle)
     end
 
     private

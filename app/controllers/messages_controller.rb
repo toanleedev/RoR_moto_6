@@ -16,11 +16,9 @@ class MessagesController < ApplicationController
 
   def create
     message = Message.new message_params
-    if message.save
-      MessageBroadcastJob.perform_now(message)
-    else
-      flash[:alert] = t('.create_failure')
-    end
+
+    MessageBroadcastJob.perform_now(message) if message.save
+
     redirect_to message_path(message.receiver)
   end
 

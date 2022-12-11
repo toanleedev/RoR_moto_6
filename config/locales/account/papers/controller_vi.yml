@@ -10,3 +10,4 @@ vi:
       validate:
         card_number: CMND có độ dài 9 hoặc CCCD có độ dài 12
         driver_number: Số bằng lái xe có độ dài 12.
+        url: Định dạng hình ảnh phải là jpg hoặc png

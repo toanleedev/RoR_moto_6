@@ -34,6 +34,6 @@ class Paper < ActiveRecord::Base
                                       message: I18n.t('.account.papers.validate.driver_number') }
   validates :card_front_url, :card_back_url, :driver_front_url, presence: true, format: {
     with: %r{\.jpg|png}i,
-    message: "Must be a url for jpg, or png image."
+    message: I18n.t('.account.papers.validate.url')
   }
 end

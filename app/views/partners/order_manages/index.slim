@@ -1,0 +1,32 @@
+- provide :title, t(".title")
+
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+.nav.nav-tabs
+  li.nav-item
+    = link_to t('.all'), partners_order_manages_path,
+      class: "nav-link #{params[:status].present? ? '' : 'active'}"
+  li.nav-item
+    = link_to t('.pending'), partners_order_manages_path(status: 'pending'),
+      class: "nav-link #{params[:status] === 'pending' ? 'active' : ''}"
+  li.nav-item
+    = link_to t('.accepted'), partners_order_manages_path(status: 'accepted'),
+      class: "nav-link #{params[:status] === 'accepted' ? 'active' : ''}"
+  li.nav-item
+    = link_to t('.processing'), partners_order_manages_path(status: 'processing'),
+      class: "nav-link #{params[:status] === 'processing' ? 'active' : ''}"
+  li.nav-item
+    = link_to t('.completed'), partners_order_manages_path(status: 'completed'),
+      class: "nav-link #{params[:status] === 'completed' ? 'active' : ''}"
+  li.nav-item
+    = link_to t('.canceled'), partners_order_manages_path(status: 'canceled'),
+      class: "nav-link #{params[:status] === 'canceled' ? 'active' : ''}"
+ul.list-group.list-group-flush
+  - url = "/#{I18n.locale}/partner/order_manages"
+  = bootstrap_form_tag(url: url, local: true, enforce_utf8: false, method: :get) do |f|
+    = f.hidden_field :status, value: params[:status]
+    = f.text_field :uid, skip_label: true, placeholder: t('.search_uid'),
+      value: params[:uid], append: f.primary(t('.btn_search'), name: nil), input_group_class: 'mt-3'
+  = render(partial: 'account/orders/order', collection: @orders) || content_tag("p") do
+    p.text-center.text-muted = t('.empty_message')
+  = paginate @orders, theme: 'bootstrap4'

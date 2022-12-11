@@ -1,11 +1,10 @@
 - provide :title, t(".title")
-.container.h-100
-  .row.h-100.justify-content-center
-    .col-md-4.my-3.shadow-lg.rounded.p-4
+.container.min-h-container 
+  .row.h-100
+    .col-lg-6.offset-lg-3.shadow-lg.rounded.p-4
       h3.text-center.mb-3 = t(".title")
-      = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        / = render "users/shared/error_messages", resource: resource
-        = f.email_field :email, autofocus: true, label: t(".email"), floating: true
+      = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), label_errors: true) do |f|
+        = f.text_field :email, autofocus: true, label: t(".email"), floating: true
         = f.password_field :password, label: t(".password"), floating: true
         .d-flex.justify-content-between
           = f.check_box :remember_me, label: t(".remember")

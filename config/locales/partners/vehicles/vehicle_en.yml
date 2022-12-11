@@ -1,0 +1,12 @@
+en:
+  partners:
+    vehicles:
+      vehicle:
+        price: '%{price}VND/<span class="fs-6">day</span>'
+        edit: Update
+        opening: Opening
+        accepted: Accepted
+        idle: Idle
+        rented: Rented
+        offline: Offline
+        locked: Locked

@@ -2,7 +2,8 @@ nav.navbar.navbar-expand-lg.navbar-light
   .container
     = link_to root_path, class: "navbar-brand" do
       = image_tag 'logo-moto.png', width: 140
-    = link_to t('.partner'), partner_path, class: "btn btn-outline-success"
+    - unless current_user.present? && current_user.partner?
+      = link_to t('.become_partner'), partners_register_path, class: "btn btn-outline-success"
     button.navbar-toggler aria-controls="navbarText" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarText" data-bs-toggle="collapse" type="button" 
       span.navbar-toggler-icon
     #navbarText.collapse.navbar-collapse
@@ -32,7 +33,10 @@ nav.navbar.navbar-expand-lg.navbar-light
                 = link_to t(".account"), edit_user_registration_path, class: "dropdown-item"
               - if current_user.is_admin
                 li
-                  = link_to t(".admin"), admin_dashboard_path, class: "dropdown-item"
+                  = link_to t(".admin_page"), admin_dashboard_path, class: "dropdown-item"
+              - if current_user.partner?
+                li
+                  = link_to t(".partner_page"), partners_order_manages_path, class: "dropdown-item"
               li
                 hr.dropdown-divider
               li

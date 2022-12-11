@@ -3,6 +3,8 @@ vi:
     papers:
       form:
         card_number: Số CMND/CCCD
+        card_number_help: Độ dài 9 đối với CMND/ 12 đối với CCCD
+        driver_number_help: Độ dài 12 đối với Số bằng lái xe
         card_front_url: Mặt trước CMND/CCCD
         card_back_url: Mặt sau CMND/CCCD
         driver_number: Số bằng lái xe

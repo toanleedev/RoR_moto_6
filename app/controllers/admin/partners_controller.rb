@@ -4,7 +4,7 @@ module Admin
     attr_accessor :partner
 
     def index
-      @partners = PartnerHistory.order('created_at DESC').all
+      @partners = Partner.order('created_at DESC').all
 
       respond_to do |format|
         format.html
@@ -15,13 +15,13 @@ module Admin
     def confirm
       user = partner.user
 
-      return redirect_to admin_partners_path if partner.confirmed? || user.is_partner
+      return redirect_to admin_partners_path if partner.confirmed? || user.partner?
 
       partner.status = :confirmed
       user.is_partner = true
 
       if partner.save && user.save
-        SendNotification.new(user).partner_confirm
+        send_notification_confirm(user)
         flash[:notice] = t('message.success.update')
       else
         flash[:alert] = t('message.failure.update')
@@ -47,8 +47,18 @@ module Admin
     private
 
     def set_partner
-      @partner = PartnerHistory.find_by(id: params[:id])
+      @partner = Partner.find_by(id: params[:id])
       return unless partner.present?
+    end
+
+    def send_notification_confirm(user)
+      param = {
+        receiver_id: user.id,
+        on_click_url: 'partners/order_manages',
+        title: 'notification.title.partner_confirm',
+        content: 'notification.content.partner_confirm'
+      }
+      SendNotification.new(param).call
     end
   end
 end

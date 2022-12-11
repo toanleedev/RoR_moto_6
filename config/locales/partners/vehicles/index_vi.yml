@@ -1,0 +1,6 @@
+vi:
+  partners:
+    vehicles:
+      index:
+        title: Xe của tôi
+        new: Thêm mới

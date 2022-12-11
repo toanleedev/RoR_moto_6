@@ -1,0 +1,45 @@
+en:
+  partners:
+    order_manages:
+      show:
+        title: Order detail
+        uid: Order id
+        status: Status
+        start_date: Pick-up date
+        end_date: Drop-off date
+        rental_times: Total rental days
+        delivery_address: Address to pick up
+        processing_at: Processing at
+        completed_at: Completed at
+        paid_at: Paid at
+        paid: Paid
+        payment_kind: Payment method
+        amount: Total
+        update: Update
+        cancel: Cancel
+        start_process: Motorcycle delivered
+        end_process: End process
+        accept: Confirm order
+        cash: Cash
+        bank_transfer: Bank transfer
+        undo_pending: Undo to pending
+        undo_accept: Undo to accept
+        confirm_undo_pending: Do you want to undo to pending?
+        confirm_undo_accept: Do you want to undo to accepted?
+        confirm_accept: Do you want to accept order?
+        confirm_cancel: Do you want to cancel order?
+        confirm_process: Do you want to start?
+        confirm_complete: Do you want to complete order?
+        cash_paid: Cash paid
+        cash_paid_confirm: Confirmed cash payment completed?
+        opening: Opening
+        pending: Pending
+        accepted: Accepted
+        processing: Processing
+        completed: Completed
+        canceled: Canceled
+        back: Back
+        rating: Renter rating
+        rating_from_renter: Ratings from renter
+        rating_from_owner: Ratings from owner
+        vehicle_price: '%{price}VND'

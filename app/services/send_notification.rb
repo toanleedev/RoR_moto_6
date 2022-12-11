@@ -78,17 +78,6 @@ class SendNotification
     SendNotificationJob.perform_now(notification_param)
   end
 
-  def partner_confirm
-    notification_param = {
-      receiver_id: params[:id],
-      on_click_url: ACCOUNT_VEHICLES,
-      title: 'notification.title.partner_confirm',
-      content: 'notification.content.partner_confirm'
-    }
-
-    SendNotificationJob.perform_now(notification_param)
-  end
-
   def partner_reject
     notification_param = {
       receiver_id: params[:id],

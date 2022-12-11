@@ -12,6 +12,7 @@ class BuildOrders
       order.save!
       send_mail_confirm(order)
       SendNotification.new(order).order_create
+      CancelUnconfirmedOrderJob.set(wait: 15.minutes).perform_later(order)
       ServiceResult.new(success: true, data: order)
     end
   rescue StandardError => e

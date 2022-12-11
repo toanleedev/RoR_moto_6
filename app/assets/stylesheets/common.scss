@@ -9,3 +9,7 @@ body {
 .main {
   min-height: calc(100% - 128px);
 }
+
+.min-h-container {
+  min-height: calc(100vh - 72px - 56px);
+}

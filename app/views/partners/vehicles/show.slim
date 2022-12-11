@@ -1,0 +1,130 @@
+= content_for :head do
+  script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
+
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".vehicle_detail_title")
+
+.row.mb-5
+  .col-md-5.text-center
+    = vehicle_image(@vehicle, 250)
+  .col-md-7
+    dl.row
+      dt.col-md-3
+        .fw-bold = t('.vehicle_name')
+      dd.col-md-9
+        = @vehicle.full_name
+      dt.col-md-3
+        .fw-bold = t('.vehicle_brand')
+      dd.col-md-9
+        = @vehicle.brand.name_vi
+      dt.col-md-3
+        .fw-bold = t('.vehicle_type')
+      dd.col-md-9
+        = @vehicle.type.name_vi
+      dt.col-md-3
+        .fw-bold = t('.vehicle_engine')
+      dd.col-md-9
+        = @vehicle.engine.name_vi
+      dt.col-md-3
+        .fw-bold = t('.vehicle_price')
+      dd.col-md-9
+        = @vehicle.price
+      dt.col-md-3
+        .fw-bold = t('.vehicle_status')
+      dd.col-md-9
+        .badge.bg-primary = t(".#{@vehicle.status}")
+      dt.col-md-3
+        .fw-bold = t('.vehicle_star')
+      dd.col-md-9
+        d-flex.mt-2
+          = render 'shared/rating', rating: @vehicle.average_rating
+      dt.col-md-3
+        .fw-bold = t('.vehicle_description')
+      dd.col-md-9
+        = @vehicle.description
+    .d-flex.gap-2
+      = link_to t('.btn_edit'), edit_partners_vehicle_path(@vehicle), class: 'btn btn-primary'
+      - if @vehicle.idle?
+        = link_to t('.btn_hidden'), update_status_partners_vehicle_path(@vehicle, status: :offline),
+          method: :patch, data: {confirm: t('.confirm_hidden')}, class: 'btn btn-outline-secondary'
+      - if @vehicle.accepted? || @vehicle.offline?
+        = link_to t('.btn_rentable'), update_status_partners_vehicle_path(@vehicle, status: :idle),
+          method: :patch, data: {confirm: t('.confirm_rentable')}, class: 'btn btn-secondary'
+      - if @vehicle.idle? && @vehicle.subscribe_priority.blank?
+        = link_to t('.priority_register'), priority_partners_vehicle_path(@vehicle),
+          class: 'btn btn-warning'
+
+- if @vehicle.subscribe_priority.present?
+  .row
+    .h4 = t('.package_registered')
+    .col-md-8.offset-md-2
+      .card
+        .card-body
+          h5.card-title = t(".#{@vehicle.subscribe_priority.rank}_package")
+          h6.card-subtitle.mb-2.text-muted = raw t(".#{@vehicle.subscribe_priority.rank}_subtitle_package")
+          dl.row
+            dt.col-md-4
+              .fw-bold = t('.pack_duration')
+            dd.col-md-8
+              = raw t('.pack_duration_format', month: @vehicle.subscribe_priority.duration)
+            dt.col-md-4
+              .fw-bold = t('.pack_amount')
+            dd.col-md-8
+              = raw t('.pack_amount_format', amount: @vehicle.subscribe_priority.amount)
+            dt.col-md-4
+              .fw-bold = t('.pack_paid')
+            dd.col-md-8
+              .badge.bg-primary
+                = @vehicle.subscribe_priority.offline? ? t('.unpaid') : t('.paid')
+            dt.col-md-4
+              .fw-bold = t('.pack_out_of_date')
+            dd.col-md-8
+              = l(@vehicle.subscribe_priority.expiry_date)
+            - if @vehicle.subscribe_priority.offline?
+              #paypal-button-container
+            - else
+              .d-flex.gap-2.offset-4
+                - unless @vehicle.subscribe_priority.diamon?
+                  = link_to t('.upgrade'), priority_partner_vehicle_path(@vehicle),
+                    class: 'btn btn-sm btn-primary'
+
+javascript:
+
+  if(#{@vehicle.subscribe_priority.present? && @vehicle.subscribe_priority.offline?}){
+    const USDRate = 24000
+    const amountUSD = Math.round(#{@vehicle.subscribe_priority&.amount} / USDRate)
+    paypal.Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: amountUSD
+            }
+          }]
+        });
+      },
+
+      onApprove: (data, actions) => {
+        $.ajax({
+          url: "#{priority_payment_path}",
+          method: 'POST',
+          dataType: 'json',
+          data: JSON.stringify({
+            'vehicle_id': "#{@vehicle.id}",
+            'payment_id': data.orderID
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').content
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError);
+          },
+          success: function (response) {
+            alert(response.message)
+            window.location.href = response.url;
+          },
+        })
+      }
+    }).render('#paypal-button-container');
+  }

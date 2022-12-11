@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function () {
   const selectRank = $('#priority_rank');
-  const selectDuration = $('#priority_duration');
   const inputAmount = $('#priority_amount');
   const btnActionSilver = $('.btn-action-silver');
   const btnActionGold = $('.btn-action-gold');
@@ -9,11 +8,6 @@ $(document).on('turbolinks:load', function () {
   selectRank.on('change', function () {
     calcAmount();
   });
-
-  selectDuration.on('change', function () {
-    calcAmount();
-  });
-
   btnActionSilver.on('click', () => {
     selectRank.val('silver').change;
     calcAmount();
@@ -29,7 +23,7 @@ $(document).on('turbolinks:load', function () {
 
   function calcAmount() {
     let rank = selectRank.val();
-    let duration = parseInt(selectDuration.val());
+    let duration = 1;
     let price = 0;
     switch (rank) {
       case 'silver': {

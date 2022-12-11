@@ -1,0 +1,21 @@
+vi:
+  partners:
+    vehicles:
+      priority:
+        vehicle_priority_register: Đăng ký chạy quảng cáo
+        priority_upgrade: Nâng cấp gói
+        price: '%{price}₫/<span class="fs-6">ngày</span>'
+        idle: Khả dụng
+        rented: Đã đặt trước
+        hidden: Bị ẩn
+        price_pack: '%{price}₫/<span class="fs-6">tháng</span>'
+        register_now: Đăng ký ngay
+        upgrade_now: Nâng cấp ngay
+        silver_package: Gói bạc
+        gold_package: Gói vàng
+        diamon_package: Gói kim cương
+        silver_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức trung bình</span> của kết quả tìm kiếm'
+        gold_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức tốt</span> của kết quả tìm kiếm'
+        diamon_subtitle_package: 'Bài đăng của bạn sẽ đẩy lên <span class="text-primary">mức cao nhất</span> của kết quả tìm kiếm'
+        duration_month: '%{month} tháng'
+        packages_here: Gói đăng ký

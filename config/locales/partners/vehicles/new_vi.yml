@@ -1,0 +1,5 @@
+vi:
+  partners:
+    vehicles:
+      new:
+        title: Thêm xe mới

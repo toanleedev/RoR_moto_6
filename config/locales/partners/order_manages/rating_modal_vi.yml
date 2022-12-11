@@ -1,0 +1,9 @@
+vi:
+  partners:
+    order_manages:
+      rating_modal:
+        modal_title: Viết đánh giá cho người thuê
+        content: Nội dụng đánh giá
+        point: Điểm
+        submit: Gửi đánh giá
+        modal_close: Đóng

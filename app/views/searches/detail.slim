@@ -3,11 +3,6 @@
 .bg-light
   .container
     .row.py-4.gx-4
-      - unless current_user&.paper&.confirmed? || current_user&.address.present?
-        .alert.alert-danger[role="alert"]
-          ul
-            li = t('.paper_require') unless current_user.paper&.confirmed?
-            li = t('.address_require') unless current_user.address.present?
       .col-8
         .bg-white.p-3.shadow-sm.rounded
           .row
@@ -33,7 +28,7 @@
                 p.text-body = @vehicle.description
               .mb-5
                 h5.text-uppercase = t('.address')
-                p.text-body = @vehicle.user.address.show_address
+                p.text-body = @vehicle.user.address&.show_address || 'Đang cập nhật'
               .mb-5
                 h5.text-uppercase = t('.procedure')
                 p.fw-bold = t('.paper_verify')

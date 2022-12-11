@@ -14,18 +14,18 @@
 .user-sidebar class="#{active_class('account/orders')}"
   = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
   = link_to t(".order"), account_orders_path, class: 'user-sidebar__link'
-- if current_user.is_partner
-  .divider
-  p.fw-bold = t('.partner')
-  .user-sidebar class="#{active_class('account/order_manages')}"
-    = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
-    = link_to t(".order_manage"), account_order_manages_path, class: 'user-sidebar__link'
-  .user-sidebar class="#{active_class('account/vehicles')}"
-    = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
-    = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'
-  .user-sidebar class="#{active_class('account/statistics')}"
-    = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
-    = link_to t(".statistic"), account_statistic_path, class: 'user-sidebar__link'
+/ - if current_user.is_partner
+/   .divider
+/   p.fw-bold = t('.partner')
+/   .user-sidebar class="#{active_class('account/order_manages')}"
+/     = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
+/     = link_to t(".order_manage"), account_order_manages_path, class: 'user-sidebar__link'
+/   .user-sidebar class="#{active_class('account/vehicles')}"
+/     = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+/     = link_to t(".vehicles"), account_vehicles_path, class: 'user-sidebar__link'
+/   .user-sidebar class="#{active_class('account/statistics')}"
+/     = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
+/     = link_to t(".statistic"), account_statistic_path, class: 'user-sidebar__link'
   / .user-sidebar class="#{active_class('account/vehicles')}"
   /   = fa_icon "credit-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #c2b'
   /   = link_to 'Thống kê phí dịch vụ', account_service_fee_path, class: 'user-sidebar__link'

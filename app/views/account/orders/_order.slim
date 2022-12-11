@@ -8,7 +8,7 @@ li.list-group-item.mb-3.shadow-sm
       = vehicle_image(order.vehicle, 100)
     .col-md-5
       h4 = order.vehicle.full_name
-      p = order.vehicle.price
+      p = raw t('.vehicle_price', price: order.price)
     .col-md-5
       p = t('.rental_times', times: try_integer(order.rental_times))
       - start_date = order.processing_at.present? ? order.processing_at : order.start_date
@@ -22,4 +22,4 @@ li.list-group-item.mb-3.shadow-sm
       = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
       span.btn.btn-outline-primary = t('.contact')
     - else
-      = link_to t('.show'), account_order_manage_path(order), class: 'btn btn-primary'
+      = link_to t('.show'), partners_order_manage_path(order), class: 'btn btn-primary'

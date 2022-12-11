@@ -1,0 +1,6 @@
+- provide :title, t(".title")
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+  = link_to t(".new"), new_partners_vehicle_path, class: 'btn btn-primary ms-auto'
+.row
+  = render @vehicles

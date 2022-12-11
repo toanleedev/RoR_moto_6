@@ -24,8 +24,8 @@ vi:
         bank_transfer: Chuyển khoản ngân hàng
         undo_pending: Hoàn tác sang chờ
         undo_accept: Hoàn tác sang chấp nhận
-        confirm_undo_pending: Xác nhận hoàn tác chờ
-        confirm_undo_accept: Xác nhận hoàn tác sang chấp nhận
+        confirm_undo_pending: Xác nhận hoàn tác chờ?
+        confirm_undo_accept: Xác nhận hoàn tác sang chấp nhận?
         confirm_accept: Xác nhận đơn?
         confirm_cancel: Bạn có muốn hủy đơn không?
         confirm_process: 'Xác nhận bắt đầu lúc %{time}?'

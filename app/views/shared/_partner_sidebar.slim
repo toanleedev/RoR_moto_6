@@ -1,0 +1,17 @@
+.d-flex.align-items-center.mt-3
+  = avatar_for(current_user.photo_url)
+  span.fw-bold.ms-3 = current_user.partner.name
+h5.mt-2 = t('.balance', balance: current_user.partner.balance)
+.divider
+.user-sidebar class="#{active_class('partners/order_manages')}"
+  = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'
+  = link_to t(".order_manage"), partners_order_manages_path, class: 'user-sidebar__link'
+.user-sidebar class="#{active_class('partners/vehicles')}"
+  = fa_icon "car", class: 'user-sidebar__icon', style: 'width: 25px;color: #ea7'
+  = link_to t(".vehicles"), partners_vehicles_path, class: 'user-sidebar__link'
+.user-sidebar class="#{active_class('partners/statistics')}"
+  = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
+  = link_to t(".statistic"), partners_statistic_path, class: 'user-sidebar__link'
+  / .user-sidebar class="#{active_class('partner/vehicles')}"
+  /   = fa_icon "credit-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #c2b'
+  /   = link_to 'Thống kê phí dịch vụ', partner_service_fee_path, class: 'user-sidebar__link'

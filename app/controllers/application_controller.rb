@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: USER_ATTRIBUTES)
     devise_parameter_sanitizer.permit(:sign_up, keys: USER_REGISTER_ATTRIBUTES)
+    devise_parameter_sanitizer.permit(:sign_in, keys: USER_LOGIN_ATTRIBUTES)
     devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
     # Delete the key value pairs from params hash if value is empty
     params.delete_if { |_key, value| value.blank? }
@@ -37,6 +38,12 @@ class ApplicationController < ActionController::Base
     password_confirmation
   ].freeze
 
+  USER_LOGIN_ATTRIBUTES = %w[
+    email
+    password
+    remember_me
+  ].freeze
+
   private
 
   def set_locale
@@ -46,5 +53,13 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: set_locale }
+  end
+
+  def after_sign_in_path_for(resource)
+    if resource.is_admin?
+      admin_path
+    else
+      root_path
+    end
   end
 end

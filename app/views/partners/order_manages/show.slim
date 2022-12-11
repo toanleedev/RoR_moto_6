@@ -1,0 +1,123 @@
+- provide :title, t(".title")
+= content_for :head do
+
+.d-flex.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+  button.btn.btn-primary.ms-auto[data-bs-toggle="modal" data-bs-target="#contractModel"]
+    = t('.contract')
+div
+  = render 'renter_card'
+  .row
+    .col-2
+      = vehicle_image(@order.vehicle, 100)
+    .col-7
+      p.fw-bold = @order.vehicle.full_name
+      p = t('.vehicle_price', price: @order.vehicle.price.to_i)
+    .col-3
+      
+  .divider
+  .row.g-0.text-end.mb-3
+    .col-md-8
+      .border-bottom.border-end.p-2
+        span = t('.uid')
+      .border-bottom.border-end.p-2
+        span = t('.status')
+      .border-bottom.border-end.p-2
+        span = t('.start_date')
+      .border-bottom.border-end.p-2
+        span = t('.end_date')
+      .border-bottom.border-end.p-2
+        span = t('.rental_times')
+      - if @order.is_home_delivery
+        .border-bottom.border-end.p-2
+          span = t('.delivery_address')
+      - if @order.processing_at && !@order.accepted?
+        .border-bottom.border-end.p-2
+          span = t('.processing_at')
+      - if @order.completed_at
+        .border-bottom.border-end.p-2
+          span = t('.completed_at')
+      - if @order.paid_at
+        .border-bottom.border-end.p-2
+          span = t('.paid_at')
+      .border-bottom.border-end.p-2
+        span = t('.payment_kind')
+      .border-bottom.border-end.p-2
+        span = t('.amount')
+    .col-md-4
+      .border-bottom.p-2.min-height-40
+        span = @order.uid || '-'
+      .border-bottom.p-2.min-height-40
+        span class="badge bg-secondary" = t(".#{@order.status}")
+        - if @order.paid_at.present?
+          span class="badge bg-success ms-2" = t('.paid')
+      .border-bottom.p-2.min-height-40
+        span = l(@order.start_date)
+      .border-bottom.p-2.min-height-40
+        span = l(@order.end_date)
+      .border-bottom.p-2.min-height-40
+        span = try_integer(@order.rental_times)
+      - if @order.is_home_delivery
+        .border-bottom.p-2.text-truncate.min-height-40
+          span data-bs-toggle="tooltip" data-bs-placement="top" title="#{@order.delivery_address}"
+            = @order.delivery_address
+      - if @order.processing_at && !@order.accepted?
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.processing_at)
+      - if @order.completed_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.completed_at)
+      - if @order.paid_at
+        .border-bottom.p-2.text-truncate.min-height-40
+          span = l(@order.paid_at)
+      .border-bottom.p-2.min-height-40
+        span = t(".#{@order.payment_kind}")
+      .border-bottom.p-2.min-height-40
+        span.text-primary.fw-bold = try_integer(@order.amount)
+
+  - if @order.vehicle_rating.present?
+    .card.mb-3
+      .card-body
+        .card-title.fw-bold = @order.vehicle_rating.reviewer.full_name
+        .card-subtitle.mb-2.text-muted.fs-12 = t('.rating_from_renter')
+        .row
+          .col-md-9
+            = @order.vehicle_rating.content
+          .col-md-3.d-flex.gap-1.align-items-start
+            - current_rate = @order.vehicle_rating.rating_point
+            = render 'shared/rating', rating: current_rate
+  - if @order.renter_rating.present?
+    .card.mb-3
+      .card-body
+        .card-title.fw-bold = @order.renter_rating.reviewer.full_name
+        .card-subtitle.mb-2.text-muted.fs-12 = t('.rating_from_owner')
+        .row
+          .col-md-9
+            = @order.renter_rating.content
+          .col-md-3.d-flex.gap-1.align-items-start
+            - current_rate = @order.renter_rating.rating_point
+            = render 'shared/rating', rating: current_rate
+  div.d-flex.justify-content-end.gap-2
+    - if @order.pending?
+      = link_to t('.accept'), accept_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
+      = link_to t('.cancel'), cancel_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
+    - elsif @order.accepted?
+      = link_to t('.undo_pending'), pending_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_pending')}
+      = link_to t('.start_process'), processing_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-danger', data: {confirm: t('.confirm_process', time: Time.current)}
+    - elsif @order.processing?
+      = link_to t('.undo_accept'), accept_partners_order_manage_path(@order, send_notify: false), method: 'PATCH',
+        class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_accept')}
+      = link_to t('.confirm_complete'), checkout_partners_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
+    - elsif @order.completed? && @order.cash? && @order.paid_at.blank?
+      = link_to t('.cash_paid'), cash_paid_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-outline-success', data: {confirm: t('.cash_paid_confirm')}
+    - elsif @order.completed? && @order.paid_at.present? && @order.renter_rating.blank?
+      button.btn.btn-primary[data-bs-toggle="modal" data-bs-target="#ratingModel"]
+        = t('.rating')
+      = render 'rating_modal'
+    = link_to t('.back'), partners_order_manages_path, class: 'btn btn-outline-secondary'
+= render 'account/orders/contract_modal'

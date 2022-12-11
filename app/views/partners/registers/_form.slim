@@ -1,0 +1,23 @@
+.border.shadow
+  .p-3
+    h3 = t('.form_title')
+    = bootstrap_form_for(@partner, url: partners_register_path) do |f|
+      - if !@partner.new_record? && @partner.pending?
+        .alert.alert-success = t('.pending')
+      - elsif @partner.canceled?
+        .alert.alert-danger = t('.canceled')
+      = f.hidden_field :user_id, value: current_user.id
+      = f.text_field :name, label: t('.full_name')
+      = f.text_field :phone, label: t('.phone')
+      = f.text_field :email, label: t('.email')
+      = f.text_field :address, label: t('.address')
+      = f.text_field :title, label: t('.title')
+      = f.text_field :description, label: t('.description')
+      = f.form_group :user_kind, label: { hidden: true } do
+        = f.radio_button :user_kind, 'personal', label: t('.personal'), checked: true
+        = f.radio_button :user_kind, 'company', label: t('.company')
+      = f.text_field :tax_code, label: t('.tax_code')
+      .d-flex.gap-2
+        - if @partner.new_record? || @partner.canceled?
+          = f.submit t('.submit'), class: 'btn btn-primary'
+        = link_to t('.back'), root_path, class: 'btn btn-outline-primary'

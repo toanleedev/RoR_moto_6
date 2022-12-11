@@ -23,6 +23,7 @@ class Vehicle < ActiveRecord::Base
   has_many :vehicle_images, dependent: :destroy, inverse_of: :vehicle
   has_many :orders
   has_many :ratings, through: :orders, source: :vehicle_rating
+  # has_many :ratings, as: :ratingable
   has_many :priorities, -> { where status: 'online' }
   has_one :subscribe_priority, -> { where expiry_date: Time.current.. }, class_name: 'Priority'
 

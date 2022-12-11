@@ -9,6 +9,7 @@ vi:
       partner_confirm: Đã duyệt đơn đăng ký đối tác
       partner_reject: Từ chối duyệt đối tác
       paid_order: Đã thanh toán thành công
+      vehicle_accepted: Đã xác nhận xe thuê
     content:
       new_order: Có đơn thuê mới. Kiểm tra ngay
       new_order_confirm: Bạn vui lòng xác nhận đơn qua email để hoàn tất quá trình thuê xe.
@@ -18,3 +19,4 @@ vi:
       partner_confirm: Đơn đăng ký trờ thành đối tác của bạn đã được duyệt. Bạn đã thể đăng xe để cho thuê.
       partner_reject: Admin đã từ chối duyệt đơn đăng ký trở thành đối tác của bạn. Vui lòng cập nhật thông tin và thử lại.
       paid_order: Đã hoàn thành đơn hàng. Cùng chia sẻ cảm nhận của bạn sau khi hoàn thành đơn thuê.
+      vehicle_accepted: Xe thuê của bạn đã được xác nhận

@@ -50,7 +50,7 @@ module Admin
       message = {
         sender_id: current_user.id,
         receiver_id: vehicle.user_id,
-        on_click_url: "account/vehicles/#{vehicle.id}",
+        on_click_url: "partners/vehicles/#{vehicle.id}",
         title: 'notification.title.vehicle_accepted',
         content: 'notification.content.vehicle_accepted'
       }

@@ -15,3 +15,6 @@ vi:
         status: Trạng thái
         action: Hành động
         show: Xem
+      accepted:
+        accepted_success: Xác nhận xe thành công
+        accepted_failure: Xác nhận xe thất bại

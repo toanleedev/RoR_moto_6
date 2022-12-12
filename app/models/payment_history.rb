@@ -7,4 +7,8 @@
 #  updated_at :datetime         not null
 #
 class PaymentHistory < ActiveRecord::Base
+  enum money_kind: {
+    income: 1,
+    expense: 2
+  }
 end

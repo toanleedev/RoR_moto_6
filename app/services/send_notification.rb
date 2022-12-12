@@ -1,8 +1,8 @@
 class SendNotification
   ORDER_URL = 'account/orders'.freeze
-  ORDER_MANAGE_URL = 'account/order_manages'.freeze
+  ORDER_MANAGE_URL = 'partners/order_manages'.freeze
   ACCOUNT_PAPER = 'account/paper'.freeze
-  ACCOUNT_VEHICLES = 'account/vehicles'.freeze
+  ACCOUNT_VEHICLES = 'partners/vehicles'.freeze
   PARTNER_URL = 'partner'.freeze
 
   def initialize(params)

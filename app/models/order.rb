@@ -35,9 +35,10 @@ class Order < ActiveRecord::Base
   has_one :vehicle_rating, -> { where rate_kind: :vehicle },
           class_name: 'Rating'
   has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
+  has_one :payment, as: paymentable
   # has_many :ratings, as: :ratingable
 
-  accepts_nested_attributes_for :vehicle
+  accepts_nested_attributes_for :vehicle, :payment
 
   enum status: {
     opening: 0,

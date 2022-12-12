@@ -14,7 +14,7 @@ div
       p.fw-bold = @order.vehicle.full_name
       p = @order.vehicle.price
     .col-3
-      
+
   .divider
   .row.g-0.text-end.mb-3
     .col-md-8
@@ -69,7 +69,7 @@ div
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(amount)
   div.d-flex.justify-content-end.gap-2
-    = button_to t('.completed'), completed_account_order_manage_path(@order,
+    = button_to t('.completed'), completed_partners_order_manage_path(@order,
       completed_at: completed_at, rental_times: actual_count_date, amount: amount),
       class: 'btn btn-primary', local: true
     = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'

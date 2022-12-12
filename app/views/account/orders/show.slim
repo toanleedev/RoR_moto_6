@@ -102,7 +102,10 @@ div
 = render 'contract_modal'
 javascript:
   const USDRate = 24000
-  const amountUSD = Math.round(#{@order.amount} / USDRate)
+  let amountUSD = Math.round(#{@order.amount} / USDRate)
+  if (amountUSD <= 0) {
+    amountUSD = 1
+  }
 
   if(#{@order.bank_transfer?} && #{@order.completed?} && #{@order.paid_at.blank?}){
     paypal.Buttons({

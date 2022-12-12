@@ -7,6 +7,7 @@ class CheckoutController < ApplicationController
     # check params lai cho nay
     @vehicle_params = params
     @order = Order.new
+    @order.build_payment unless @order.build_payment.present?
     render 'confirm', locals: { vehicle: @vehicle }, collection: @order
   end
 

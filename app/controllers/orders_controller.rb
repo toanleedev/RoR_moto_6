@@ -31,7 +31,8 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:start_date, :end_date, :rental_times,
                                   :vehicle_id, :is_home_delivery, :price,
-                                  :delivery_address, :amount, :payment_kind, :owner_id).to_h.deep_merge(
+                                  :delivery_address, :amount, :payment_kind,
+                                  :owner_id, payment_attributes: [:payment_kind]).to_h.deep_merge(
                                     renter_id: current_user.id
                                   )
   end

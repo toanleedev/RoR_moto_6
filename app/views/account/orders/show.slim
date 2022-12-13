@@ -72,7 +72,7 @@ div
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.paid_at)
       .border-bottom.p-2.min-height-40
-        span = t(".#{@order.payment_kind}")
+        span = t(".#{@order.payment_method}")
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(@order.amount)
   - if @order.vehicle_rating.present?
@@ -95,7 +95,7 @@ div
         = t('.rating')
       = render 'rating_modal'
     = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
-- if @order.bank_transfer? &&  @order.completed? && @order.paid_at.blank?
+- if @order.bank_transfer_payment? &&  @order.completed? && @order.paid_at.blank?
   row
     .col-md-6.offset-md-3
       #paypal-button-container
@@ -107,7 +107,7 @@ javascript:
     amountUSD = 1
   }
 
-  if(#{@order.bank_transfer?} && #{@order.completed?} && #{@order.paid_at.blank?}){
+  if(#{@order.bank_transfer_payment?} && #{@order.completed?} && #{@order.paid_at.blank?}){
     paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({

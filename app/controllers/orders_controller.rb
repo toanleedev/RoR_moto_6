@@ -3,13 +3,14 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    order = BuildOrders.new(order_params).save
+    order = BuildOrders.new(order_params, user: current_user).save
 
     if order.success?
       flash[:notice] = t('message.success.create')
       redirect_to checkout_complete_path(uid: order.data.uid)
     else
       flash[:alert] = t('message.failure.create')
+      redirect_to root_path
     end
   end
 

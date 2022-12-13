@@ -1,14 +1,16 @@
 class BuildOrders
-  def initialize(params, _options = {})
+  def initialize(params, options = {})
     @params = params
+    @current_user = options[:user]
   end
 
-  attr_reader :params
+  attr_reader :params, :current_user
 
   def save
     ActiveRecord::Base.transaction do
       order = Order.new params
       order.vehicle.status = :rented
+      order.payment.user_id = current_user.id
       order.save!
       send_mail_confirm(order)
       SendNotification.new(order).order_create

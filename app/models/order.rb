@@ -36,7 +36,9 @@ class Order < ActiveRecord::Base
           class_name: 'Rating'
   has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
   has_one :payment, as: :paymentable
-  # has_many :ratings, as: :ratingable
+  has_one :rating
+  has_one :u_rating, through: :rating, source: :ratingable, source_type: 'User'
+  has_one :v_rating, through: :rating, source: :ratingable, source_type: 'Vehicle'
 
   accepts_nested_attributes_for :vehicle, :payment
 
@@ -56,6 +58,18 @@ class Order < ActiveRecord::Base
 
   scope :already_order, -> { where.not(status: %i[completed canceled]) }
   scope :has_completed, -> { where(status: :completed) }
+
+  def payment_method
+    payment.payment_kind
+  end
+
+  def bank_transfer_payment?
+    payment.bank_transfer?
+  end
+
+  def cash_payment?
+    payment.cash?
+  end
 
   protected
 

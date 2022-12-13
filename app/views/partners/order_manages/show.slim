@@ -71,7 +71,7 @@ div
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.paid_at)
       .border-bottom.p-2.min-height-40
-        span = t(".#{@order.payment_kind}")
+        span = t(".#{@order.payment_method}")
       .border-bottom.p-2.min-height-40
         span.text-primary.fw-bold = try_integer(@order.amount)
 
@@ -112,7 +112,7 @@ div
       = link_to t('.undo_accept'), accept_partners_order_manage_path(@order, send_notify: false), method: 'PATCH',
         class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_accept')}
       = link_to t('.confirm_complete'), checkout_partners_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
-    - elsif @order.completed? && @order.cash? && @order.paid_at.blank?
+    - elsif @order.completed? && @order.payment_method.cash_payment? && @order.paid_at.blank?
       = link_to t('.cash_paid'), cash_paid_partners_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-success', data: {confirm: t('.cash_paid_confirm')}
     - elsif @order.completed? && @order.paid_at.present? && @order.renter_rating.blank?

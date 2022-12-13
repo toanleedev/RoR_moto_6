@@ -2,7 +2,7 @@ module Admin
   class UsersController < AdminController
     before_action :set_user, except: %i[index]
     def index
-      @users = User.all
+      @users = User.all.order(created_at: :desc)
 
       respond_to do |format|
         format.html

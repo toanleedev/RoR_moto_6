@@ -1,9 +1,0 @@
-en:
-  account:
-    order_manages:
-      rating_modal:
-        modal_title: Rate order
-        content: Content
-        point: Point
-        submit: Submit
-        modal_close: Cancel

@@ -27,6 +27,7 @@ class CheckoutController < ApplicationController
 
       if order.save
         flash[:notice] = t('.order_confirmed_success')
+        return redirect_to account_order_path(order)
       else
         flash[:alert] = t('.order_confirmed_failure')
       end
@@ -49,9 +50,9 @@ class CheckoutController < ApplicationController
       response = client.execute(request).result
 
       if response.status == 'COMPLETED'
-        order.paid_at = Time.current
-        order.payment_security = response.id
-        order.payment_info = response.status
+        order.payment.paid_at = Time.current
+        order.payment.payment_security = response.id
+        order.payment.status = :completed
         order.save!
         SendNotification.new(order).user_paid_order
         render json: { message: t('.pay_paypal_success'),

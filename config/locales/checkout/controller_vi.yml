@@ -10,3 +10,6 @@ vi:
       order_confirmed_failure: Xác nhận đơn thất bại
       uid_not_found: UID không tồn tại
       vehicle_not_found: Xe không tồn tại
+    payment_paypal:
+      pay_paypal_success: Thanh toán Paypal thành công.
+      pay_paypal_failure: Lỗi khi thanh toán qua Paypal. Vui lòng thử lại.

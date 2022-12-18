@@ -38,7 +38,7 @@ div
       - if @order.completed_at
         .border-bottom.border-end.p-2
           span = t('.completed_at')
-      - if @order.paid_at
+      - if @order.payment.paid_at
         .border-bottom.border-end.p-2
           span = t('.paid_at')
       .border-bottom.border-end.p-2
@@ -50,7 +50,7 @@ div
         span = @order.uid || '-'
       .border-bottom.p-2.min-height-40
         span class="badge bg-secondary" = t(".#{@order.status}")
-        - if @order.paid_at.present?
+        - if @order.payment.paid_at.present?
           span class="badge bg-success ms-2" = t('.paid')
       .border-bottom.p-2.min-height-40
         span = l(@order.start_date)
@@ -68,9 +68,9 @@ div
       - if @order.completed_at
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.completed_at)
-      - if @order.paid_at
+      - if @order.payment.paid_at
         .border-bottom.p-2.text-truncate.min-height-40
-          span = l(@order.paid_at)
+          span = l(@order.payment.paid_at)
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment_method}")
       .border-bottom.p-2.min-height-40
@@ -90,12 +90,12 @@ div
       = link_to t('.update'), edit_account_order_path(@order), class: 'btn btn-primary'
       = link_to t('.cancel'), cancel_account_order_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
-    - elsif @order.completed? && @order.paid_at.present? && @order.vehicle_rating.blank?
+    - elsif @order.completed? && @order.payment.completed? && @order.vehicle_rating.blank?
       button.btn.btn-primary[data-bs-toggle="modal" data-bs-target="#ratingModel"]
         = t('.rating')
       = render 'rating_modal'
     = link_to t('.back'), account_orders_path, class: 'btn btn-outline-secondary'
-- if @order.bank_transfer_payment? &&  @order.completed? && @order.paid_at.blank?
+- if @order.bank_transfer_payment? &&  @order.completed? && @order.payment.paid_at.blank?
   row
     .col-md-6.offset-md-3
       #paypal-button-container
@@ -107,7 +107,7 @@ javascript:
     amountUSD = 1
   }
 
-  if(#{@order.bank_transfer_payment?} && #{@order.completed?} && #{@order.paid_at.blank?}){
+  if(#{@order.bank_transfer_payment?} && #{@order.completed?} && #{@order.payment.paid_at.blank?}){
     paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({

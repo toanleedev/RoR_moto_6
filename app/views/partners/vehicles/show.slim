@@ -82,11 +82,11 @@
               = l(@vehicle.subscribe_priority.expiry_date)
             - if @vehicle.subscribe_priority.offline?
               #paypal-button-container
-            - else
-              .d-flex.gap-2.offset-4
-                - unless @vehicle.subscribe_priority.diamon?
-                  = link_to t('.upgrade'), priority_partner_vehicle_path(@vehicle),
-                    class: 'btn btn-sm btn-primary'
+            / - else
+            /   .d-flex.gap-2.offset-4
+            /     - unless @vehicle.subscribe_priority.diamon?
+            /       = link_to t('.upgrade'), priority_partners_vehicle_path(@vehicle),
+            /         class: 'btn btn-sm btn-primary'
 
 javascript:
 

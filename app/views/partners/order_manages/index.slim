@@ -22,7 +22,7 @@
     = link_to t('.canceled'), partners_order_manages_path(status: 'canceled'),
       class: "nav-link #{params[:status] === 'canceled' ? 'active' : ''}"
 ul.list-group.list-group-flush
-  - url = "/#{I18n.locale}/partner/order_manages"
+  - url = "/#{I18n.locale}/partners/order_manages"
   = bootstrap_form_tag(url: url, local: true, enforce_utf8: false, method: :get) do |f|
     = f.hidden_field :status, value: params[:status]
     = f.text_field :uid, skip_label: true, placeholder: t('.search_uid'),

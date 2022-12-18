@@ -1,4 +1,4 @@
-- @rating = Rating.new
+- @rating = @order.renter.ratings.new
 
 #ratingModel.modal.fade[tabindex="-1" aria-labelledby="ratingModelLabel" aria-hidden="true"]
   .modal-dialog
@@ -15,7 +15,8 @@
               = f.text_area :content, label: t(".content")
               = f.number_field :rating_point, label: t(".point"), max: 5, min: 1, value: 5
               = f.hidden_field :order_id, value: @order.id
-              = f.hidden_field :rate_kind, value: :user
+              = f.hidden_field :ratingable_id
+              = f.hidden_field :ratingable_type
         .modal-footer
           button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
             = t('.modal_close')

@@ -7,12 +7,10 @@
 #  end_date           :datetime
 #  rental_times       :float
 #  amount             :decimal(18, )
-#  message            :string
 #  status             :integer          default("opening")
 #  confirmation_token :string
 #  is_home_delivery   :boolean          default(FALSE)
 #  delivery_address   :string
-#  payment_info       :string
 #  vehicle_id         :bigint           not null
 #  renter_id          :bigint
 #  owner_id           :bigint
@@ -21,10 +19,7 @@
 #  confirmed_at       :datetime
 #  processing_at      :datetime
 #  completed_at       :datetime
-#  paid_at            :datetime
 #  uid                :string
-#  payment_kind       :integer          default("cash"), not null
-#  payment_security   :string
 #  price              :decimal(18, )
 #
 class Order < ActiveRecord::Base
@@ -32,13 +27,10 @@ class Order < ActiveRecord::Base
   belongs_to :renter, class_name: 'User'
   belongs_to :vehicle
   before_create :default_values
-  has_one :vehicle_rating, -> { where rate_kind: :vehicle },
+  has_one :vehicle_rating, -> { where ratingable_type: 'Vehicle' },
           class_name: 'Rating'
-  has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
+  has_one :renter_rating, -> { where ratingable_type: 'User' }, class_name: 'Rating'
   has_one :payment, as: :paymentable
-  has_one :rating
-  has_one :u_rating, through: :rating, source: :ratingable, source_type: 'User'
-  has_one :v_rating, through: :rating, source: :ratingable, source_type: 'Vehicle'
 
   accepts_nested_attributes_for :vehicle, :payment
 

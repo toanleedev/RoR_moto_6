@@ -37,7 +37,7 @@ div
       - if @order.completed_at
         .border-bottom.border-end.p-2
           span = t('.completed_at')
-      - if @order.paid_at
+      - if @order.payment.paid_at
         .border-bottom.border-end.p-2
           span = t('.paid_at')
       .border-bottom.border-end.p-2
@@ -49,7 +49,7 @@ div
         span = @order.uid || '-'
       .border-bottom.p-2.min-height-40
         span class="badge bg-secondary" = t(".#{@order.status}")
-        - if @order.paid_at.present?
+        - if @order.payment.paid_at.present?
           span class="badge bg-success ms-2" = t('.paid')
       .border-bottom.p-2.min-height-40
         span = l(@order.start_date)
@@ -67,9 +67,9 @@ div
       - if @order.completed_at
         .border-bottom.p-2.text-truncate.min-height-40
           span = l(@order.completed_at)
-      - if @order.paid_at
+      - if @order.payment.paid_at
         .border-bottom.p-2.text-truncate.min-height-40
-          span = l(@order.paid_at)
+          span = l(@order.payment.paid_at)
       .border-bottom.p-2.min-height-40
         span = t(".#{@order.payment_method}")
       .border-bottom.p-2.min-height-40
@@ -99,23 +99,23 @@ div
             = render 'shared/rating', rating: current_rate
   div.d-flex.justify-content-end.gap-2
     - if @order.pending?
-      = link_to t('.accept'), accept_partners_order_manage_path(@order), method: 'PATCH',
-        class: 'btn btn-outline-primary', data: {confirm: t('.confirm_accept')}
       = link_to t('.cancel'), cancel_partners_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-danger', data: {confirm: t('.confirm_cancel')}
+      = link_to t('.accept'), accept_partners_order_manage_path(@order), method: 'PATCH',
+        class: 'btn btn-primary', data: {confirm: t('.confirm_accept')}
     - elsif @order.accepted?
       = link_to t('.undo_pending'), pending_partners_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_pending')}
       = link_to t('.start_process'), processing_partners_order_manage_path(@order), method: 'PATCH',
-        class: 'btn btn-danger', data: {confirm: t('.confirm_process', time: Time.current)}
+        class: 'btn btn-primary', data: {confirm: t('.confirm_process', time: Time.current)}
     - elsif @order.processing?
       = link_to t('.undo_accept'), accept_partners_order_manage_path(@order, send_notify: false), method: 'PATCH',
         class: 'btn btn-secondary', data: {confirm: t('.confirm_undo_accept')}
       = link_to t('.confirm_complete'), checkout_partners_order_manage_path(@order, completed_at: Time.current), class: 'btn btn-primary'
-    - elsif @order.completed? && @order.payment_method.cash_payment? && @order.paid_at.blank?
+    - elsif @order.completed? && @order.cash_payment? && @order.payment.paid_at.blank?
       = link_to t('.cash_paid'), cash_paid_partners_order_manage_path(@order), method: 'PATCH',
         class: 'btn btn-outline-success', data: {confirm: t('.cash_paid_confirm')}
-    - elsif @order.completed? && @order.paid_at.present? && @order.renter_rating.blank?
+    - elsif @order.completed? && @order.payment.paid_at.present? && @order.renter_rating.blank?
       button.btn.btn-primary[data-bs-toggle="modal" data-bs-target="#ratingModel"]
         = t('.rating')
       = render 'rating_modal'

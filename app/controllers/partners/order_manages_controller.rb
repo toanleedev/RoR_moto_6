@@ -48,7 +48,8 @@ module Partners
     def checkout; end
 
     def cash_paid
-      order.paid_at = Time.current
+      order.payment.paid_at = Time.current
+      order.payment.status = :completed
       save_order order
     end
 

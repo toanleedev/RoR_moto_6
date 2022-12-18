@@ -2,20 +2,21 @@
 #
 # Table name: partners
 #
-#  id          :bigint           not null, primary key
-#  user_id     :bigint           not null
-#  name        :string
-#  phone       :string
-#  email       :string
-#  address     :string
-#  title       :string
-#  description :string
-#  tax_code    :string
-#  balance     :decimal(18, )    default(0)
-#  user_kind   :integer          default(NULL)
-#  status      :integer          default("pending")
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :bigint           not null, primary key
+#  user_id       :bigint           not null
+#  name          :string
+#  phone         :string
+#  email         :string
+#  address       :string
+#  title         :string
+#  description   :string
+#  tax_code      :string
+#  balance       :decimal(18, )    default(0)
+#  user_kind     :integer          default(NULL)
+#  status        :integer          default("pending")
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  vehicle_limit :integer          default(2)
 #
 class Partner < ActiveRecord::Base
   belongs_to :user

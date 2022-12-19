@@ -92,7 +92,10 @@ javascript:
 
   if(#{@vehicle.subscribe_priority.present? && @vehicle.subscribe_priority.offline?}){
     const USDRate = 24000
-    const amountUSD = Math.round(#{@vehicle.subscribe_priority&.amount} / USDRate)
+    let amountUSD = Math.round(#{@order.amount} / USDRate)
+    if (amountUSD <= 0) {
+      amountUSD = 1
+    }
     paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({

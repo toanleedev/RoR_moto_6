@@ -11,7 +11,7 @@
           'border border-primary' : 'hover-shadow'}"
           .card-body
             h6.card-title = t('.turnover')
-            p.card-text.fs-5 = t('.turnover_total', total: @turnover_total)
+            p.card-text.fs-5 = number_to_currency(@turnover_total, precision: 0)
     .col-md-4
       = link_to partners_statistic_path(period: params[:period], chart: :order),
         class: 'text-body text-decoration-none' do

@@ -4,7 +4,7 @@ vi:
       priority:
         vehicle_priority_register: Đăng ký chạy quảng cáo
         priority_upgrade: Nâng cấp gói
-        price: '%{price}₫/<span class="fs-6">ngày</span>'
+        price: '%{price}/<span class="fs-6">ngày</span>'
         idle: Khả dụng
         rented: Đã đặt trước
         hidden: Bị ẩn

@@ -1,7 +1,7 @@
 en:
   searches:
     vehicle:
-      price: '%{price}VND/<span class="fs-6">day</span>'
+      price: '<span class="h4 text-primary">%{price}₫</span>/days'
       detail: Detail
       idle: Idle
       rented: Rented

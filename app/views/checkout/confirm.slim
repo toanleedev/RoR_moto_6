@@ -26,7 +26,7 @@
                 = vehicle_image(vehicle, 180)
               .col-9
                 p = vehicle.full_name
-                p = vehicle.price
+                p = number_to_currency(vehicle.price, precision: 0)
             .divider
             div
               h5.text-uppercase = t('.head_confirm_info')
@@ -50,7 +50,7 @@
               .divider
               .price-row
                 span = t('.unit_price')
-                span = vehicle.price
+                span = number_to_currency(vehicle.price, precision: 0)
               .price-row.is_home_delivery_price_js style="display: none"
                 span = t('.is_home_delivery')
                 span 50000
@@ -60,7 +60,7 @@
               .divider
               .price-row.mb-3
                 span = t('.amount')
-                span #{params[:total]}
+                span = number_to_currency(params[:total], precision: 0)
               / .price-row.mb-3
               /   span = t('.deposit')
               /   span #{params[:total].to_i*0.3}

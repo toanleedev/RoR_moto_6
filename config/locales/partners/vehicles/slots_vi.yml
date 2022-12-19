@@ -1,0 +1,9 @@
+vi:
+  partners:
+    vehicles:
+      slots:
+        title: Mua ô đăng tin
+        buy_more_vehicle_slots: Mua bài đăng thuê xe
+        submit: Gửi
+        slot: Chỗ
+        amount: Tổng tiền

@@ -3,3 +3,4 @@ en:
     vehicles:
       new:
         title: New Vehicle
+        over_vehicle_limit: Over vehicle limit

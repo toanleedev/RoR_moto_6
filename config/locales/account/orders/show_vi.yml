@@ -37,4 +37,4 @@ vi:
         rating_from_renter: Đánh giá từ người thuê
         rating_from_owner: Đánh giá từ người cho thuê
         contract: Hợp đồng thuê
-        vehicle_price: '%{price}đ/ngày'
+        vehicle_price: '%{price}/ngày'

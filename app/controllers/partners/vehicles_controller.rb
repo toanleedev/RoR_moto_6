@@ -2,7 +2,7 @@ module Partners
   class VehiclesController < ApplicationController
     layout 'partner'
     before_action :authenticate_user!
-    before_action :set_vehicle, except: %i[index new create destroy_image]
+    before_action :set_vehicle, except: %i[index new create destroy_image slots register_slots]
     before_action :set_options, only: %i[new edit]
 
     def index
@@ -13,10 +13,39 @@ module Partners
     attr_reader :vehicle
 
     def new
+      return redirect_to partners_vehicles_path, flash: { alert: t('.over_vehicle_limit') } if
+        current_user.vehicles.size >= current_user.partner.vehicle_limit
+
       @vehicle = Vehicle.new
     end
 
     def show; end
+
+    def slots; end
+
+    def register_slots
+      partner = current_user.partner
+
+      return redirect_to partners_vehicles_path, flash: { alert: t('.partner_not_found') } if
+        partner.blank?
+
+      if params[:amount].to_i > partner.balance
+        return redirect_to partners_vehicles_path, flash: { alert: t('.not_enough_balance') }
+      end
+
+      slot = params[:slot].to_i
+      amount = slot * 100_000
+
+      partner.vehicle_limit += slot
+      partner.balance -= amount
+
+      if partner.save
+        flash[:notice] = t('.register_vehicle_slot_success')
+      else
+        flash[:notice] = t('.register_vehicle_slot_failure')
+      end
+      redirect_to partners_vehicles_path
+    end
 
     def create
       @vehicle = current_user.vehicles.new vehicle_params

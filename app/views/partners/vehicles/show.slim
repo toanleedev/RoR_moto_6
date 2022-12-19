@@ -28,7 +28,7 @@
       dt.col-md-3
         .fw-bold = t('.vehicle_price')
       dd.col-md-9
-        = @vehicle.price
+        = number_to_currency(@vehicle.price, precision: 0)
       dt.col-md-3
         .fw-bold = t('.vehicle_status')
       dd.col-md-9
@@ -63,14 +63,14 @@
           h5.card-title = t(".#{@vehicle.subscribe_priority.rank}_package")
           h6.card-subtitle.mb-2.text-muted = raw t(".#{@vehicle.subscribe_priority.rank}_subtitle_package")
           dl.row
-            dt.col-md-4
-              .fw-bold = t('.pack_duration')
-            dd.col-md-8
-              = raw t('.pack_duration_format', month: @vehicle.subscribe_priority.duration)
+            / dt.col-md-4
+            /   .fw-bold = t('.pack_duration')
+            / dd.col-md-8
+            /   = raw t('.pack_duration_format', month: @vehicle.subscribe_priority.duration)
             dt.col-md-4
               .fw-bold = t('.pack_amount')
             dd.col-md-8
-              = raw t('.pack_amount_format', amount: @vehicle.subscribe_priority.amount)
+              = number_to_currency(@vehicle.subscribe_priority.amount, precision: 0)
             dt.col-md-4
               .fw-bold = t('.pack_paid')
             dd.col-md-8
@@ -92,7 +92,7 @@ javascript:
 
   if(#{@vehicle.subscribe_priority.present? && @vehicle.subscribe_priority.offline?}){
     const USDRate = 24000
-    let amountUSD = Math.round(#{@order.amount} / USDRate)
+    let amountUSD = Math.round(#{@vehicle.subscribe_priority&.amount} / USDRate)
     if (amountUSD <= 0) {
       amountUSD = 1
     }

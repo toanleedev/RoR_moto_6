@@ -36,4 +36,4 @@ en:
         rating: Write a review
         rating_from_renter: Rating from renter
         rating_from_owner: Rating from owner
-        vehicle_price: '%{price} VND'
+        vehicle_price: '%{price}/day'

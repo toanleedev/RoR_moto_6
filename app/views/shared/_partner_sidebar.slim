@@ -1,7 +1,7 @@
 .d-flex.align-items-center.mt-3
   = avatar_for(current_user.photo_url)
   span.fw-bold.ms-3 = current_user.partner.name
-h5.mt-2 = t('.balance', balance: current_user.partner.balance)
+h5.mt-2 = t('.balance', balance: number_to_currency(current_user.partner.balance, precision: 0))
 .divider
 .user-sidebar class="#{active_class('partners/order_manages')}"
   = fa_icon "clipboard", class: 'user-sidebar__icon', style: 'width: 25px;color: #888'

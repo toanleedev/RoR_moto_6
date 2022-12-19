@@ -10,3 +10,6 @@ en:
       order_confirmed_failure: Order confirmation failure
       uid_not_found: UID not found
       vehicle_not_found: Vehicle not found
+    payment_paypal:
+      pay_paypal_success: Paid with Paypal successfully.
+      pay_paypal_failure: Paid with Paypal failure.

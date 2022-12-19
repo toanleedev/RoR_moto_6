@@ -5,7 +5,7 @@
         = link_to controller: :searches, action: :detail, id: vehicle,
           start_date: params[:start_date], end_date: params[:end_date] do
           = vehicle_image(vehicle, 180)
-      .col-md-6
+      .col-md-5
         .card-body
           = link_to vehicle.full_name, {controller: :searches, action: :detail, id: vehicle,
             start_date: params[:start_date], end_date: params[:end_date]},
@@ -21,9 +21,10 @@
               = fa_icon "tachometer", text: vehicle.engine.name_vi
             .col-md-6
               = fa_icon "wrench", text: vehicle.year_produce
-      .col-md-3
+      .col-md-4
         .card-body.h-100.text-end.d-flex.flex-column.align-items-end
-          h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))
+          / h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))
+          h6.card-text = raw t('.price', price: number_to_currency(vehicle.price, precision: 0, unit: ''))
           span class='badge bg-secondary float-end' = t(".#{vehicle.status}")
           = link_to t('.detail'), {controller: :searches, action: :detail, id: vehicle,
             start_date: params[:start_date], end_date: params[:end_date]},

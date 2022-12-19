@@ -8,7 +8,7 @@
     .row
       .col-md-3.text-center
         = vehicle_image(@vehicle, 150)
-      .col-md-6
+      .col-md-5
         .card-body
           h3.card-title = @vehicle.full_name
           = render 'shared/rating', rating: @vehicle.average_rating
@@ -21,9 +21,9 @@
               = fa_icon "tachometer", text: @vehicle.engine.name_vi
             .col-md-6
               = fa_icon "wrench", text: @vehicle.year_produce
-      .col-md-3
+      .col-md-4
         .card-body
-          h4.card-text = raw t('.price', price: number_with_precision(@vehicle.price, precision: 0))
+          h4.card-text.text-end = raw t('.price', price: number_to_currency(@vehicle.price, precision: 0))
           span class='badge bg-secondary float-end' = t(".#{@vehicle.status}")
   - if @vehicle.subscribe_priority&.new_record? || @vehicle.subscribe_priority.blank?
     .row

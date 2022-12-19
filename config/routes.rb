@@ -34,6 +34,8 @@ Rails.application.routes.draw do
         end
       end
       resources :vehicles do
+        get 'slots', on: :collection
+        post 'register_slots', on: :collection
         patch 'update_status', on: :member
         get 'priority', on: :member
         post 'priority_create', on: :member

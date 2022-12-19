@@ -19,7 +19,7 @@
               = fa_icon "wrench", text: '2022'
       .col-md-4
         .card-body.h-100.text-end.d-flex.flex-column.align-items-end
-          h4.card-text = raw t('.price', price: number_with_precision(vehicle.price, precision: 0))
+          h4.card-text = raw t('.price', price: number_to_currency(vehicle.price, precision: 0, unit: ''))
           span class='badge bg-primary float-end mb-2' = t(".#{vehicle.status}")
           - if vehicle.subscribe_priority.present?
             span class='badge bg-success float-end' = t(".#{vehicle.subscribe_priority[:rank]}")

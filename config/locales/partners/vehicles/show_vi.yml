@@ -33,7 +33,6 @@ vi:
         pack_duration: Thời hạn
         pack_duration_format: '%{month} tháng'
         pack_amount: 'Tổng tiền'
-        pack_amount_format: '%{amount}đ'
         pack_paid: Thanh toán
         pack_out_of_date: Ngày hết hạn
         unpaid: Chưa thanh toán

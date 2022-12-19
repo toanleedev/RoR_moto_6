@@ -4,3 +4,5 @@ vi:
       index:
         title: Xe của tôi
         new: Thêm mới
+        post_allowed: Bài đăng cho phép
+        buy_slot: Mua thêm bài đăng

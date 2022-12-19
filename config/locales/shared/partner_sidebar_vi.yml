@@ -1,7 +1,7 @@
 vi:
   shared:
     partner_sidebar:
-      balance: 'Số dư: %{balance} vnđ'
+      balance: 'Số dư: %{balance}'
       order_manage: Quản lý đơn thuê
       vehicles: Quản lý xe cho thuê
       statistic: Quản lý thống kê

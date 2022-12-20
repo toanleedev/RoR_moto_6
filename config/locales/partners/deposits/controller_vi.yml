@@ -1,0 +1,12 @@
+vi:
+  partners:
+    deposits:
+      show:
+        topup_packages: Gói nạp tiền
+        topup_now: Nạp tiền ngay
+        withdraw: Rút tiền
+        input_other_holder: Nhập vào số tiền
+      checkout:
+        payment: Thanh toán
+        topup_into_account: Nạp tiền vào tài khoản
+        total_amount: Tổng tiền

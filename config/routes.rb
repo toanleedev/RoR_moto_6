@@ -44,6 +44,9 @@ Rails.application.routes.draw do
       end
       resource :statistic, only: %i[show]
       resource :register
+      resource :deposit, only: %i[show create] do
+        post 'checkout', on: :collection
+      end
     end
 
     get '/admin', to: redirect('/admin/dashboard') #fix locale

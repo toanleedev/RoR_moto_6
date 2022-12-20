@@ -1,0 +1,55 @@
+= content_for :head do
+  script src="https://www.paypal.com/sdk/js?client-id=#{ENV.fetch('PAYPAL_CLIENT_ID')}"
+
+.row
+  .col-md-6.offset-md-3
+    .card
+      .card-header = t('.payment')
+      .card-body
+        p = t('.topup_into_account')
+        dl.row
+          dt.col-sm-4
+            = t('.total_amount')
+          dd.col-sm-8 = number_to_currency(@price_deposit, precision: 0)
+        #paypal-button-container
+javascript:
+  const USDRate = 24000
+  let amountUSD = Math.round(#{@price_deposit} / USDRate)
+  if (amountUSD <= 0) {
+    amountUSD = 1
+  }
+
+  paypal.Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: amountUSD
+            }
+          }]
+        });
+      },
+
+      onApprove: (data, actions) => {
+        $.ajax({
+          url: "#{checkout_partners_deposit_path}",
+          method: 'POST',
+          dataType: 'json',
+          data: JSON.stringify({
+            'payment_id': data.orderID,
+            'price_deposit': #{@price_deposit}
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').content
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError);
+          },
+          success: function (response) {
+            alert(response.message)
+            window.location.href = response.url;
+          },
+        })
+      }
+    }).render('#paypal-button-container');

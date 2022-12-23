@@ -25,7 +25,7 @@ module Admin
     end
 
     def bulk_accepted
-      Vehicle.where(id: params[:ids], status: :opening).update_all(status: :accepted)
+      Vehicle.where(id: params[:ids], status: :opening).update_all(status: :idle)
     end
 
     def update

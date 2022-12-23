@@ -11,4 +11,10 @@ class PaymentHistory < ActiveRecord::Base
     income: 1,
     expense: 2
   }
+
+  enum action_kind: {
+    created: 1,
+    edited: 2,
+    created_when_import: 3
+  }
 end

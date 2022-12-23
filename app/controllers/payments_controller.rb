@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
 
         priority.save!
         render json: { message: t('message.success.payment'),
-                       url: account_vehicle_path(vehicle) }, status: :ok
+                       url: partners_vehicle_path(vehicle) }, status: :ok
       end
     rescue PayPalHttp::HttpError => e
       # Something went wrong server-side

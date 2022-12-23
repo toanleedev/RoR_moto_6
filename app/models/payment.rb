@@ -20,7 +20,8 @@ class Payment < ActiveRecord::Base
 
   enum payment_kind: {
     cash: 0,
-    bank_transfer: 1
+    bank_transfer: 1,
+    balance: 2
   }
 
   enum status: {

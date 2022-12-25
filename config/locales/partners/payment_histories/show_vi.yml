@@ -1,0 +1,16 @@
+vi:
+  partners:
+    payment_histories:
+      show:
+        title: Thống kê
+        payment_histories: Lịch sử thanh toán
+        income: Tiền vào
+        expense: Tiền ra
+        money_kind: Trạng thái
+        action_kind: Hành động
+        created_at: Ngày tạo
+        amount: Tổng tiền
+        top_up: Nạp tiền vào tài khoản
+        service_fee: Phí dịch vụ đơn thuê
+        priority_fee: Phí gói quảng cáo
+        slot_fee: Phí mua thêm bài đăng

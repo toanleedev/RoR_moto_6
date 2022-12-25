@@ -14,6 +14,6 @@
 .user-sidebar class="#{active_class('partners/statistics')}"
   = fa_icon "line-chart", class: 'user-sidebar__icon', style: 'width: 25px;color: #ab7'
   = link_to t(".statistic"), partners_statistic_path, class: 'user-sidebar__link'
-  / .user-sidebar class="#{active_class('partner/vehicles')}"
-  /   = fa_icon "credit-card", class: 'user-sidebar__icon', style: 'width: 25px;color: #c2b'
-  /   = link_to 'Thống kê phí dịch vụ', partner_service_fee_path, class: 'user-sidebar__link'
+.user-sidebar class="#{active_class('partners/payment_histories')}"
+  = fa_icon "usd", class: 'user-sidebar__icon', style: 'width: 25px;color: #ae7'
+  = link_to t(".payment_histories"), partners_payment_history_path, class: 'user-sidebar__link'

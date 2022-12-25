@@ -20,9 +20,12 @@
 #
 class Partner < ActiveRecord::Base
   belongs_to :user
+  has_many :payment_histories, as: :userable
   validates :name, :phone, :title, :description, :email, :address, presence: true, length: { minimum: 2 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
   validates :phone, presence: true, numericality: true, length: { minimum: 10, maximum: 15 }
+
+  accepts_nested_attributes_for :payment_histories
 
   enum user_kind: {
     personal: 1,

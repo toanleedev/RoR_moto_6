@@ -53,6 +53,8 @@ class CheckoutController < ApplicationController
         order.payment.paid_at = Time.current
         order.payment.payment_security = response.id
         order.payment.status = :completed
+        order.owner.partner.balance -= order.service_fee
+        BuildPaymentHistory.new(order_payment_history_params(order)).save
         order.save!
         SendNotification.new(order).user_paid_order
         render json: { message: t('.pay_paypal_success'),
@@ -86,5 +88,14 @@ class CheckoutController < ApplicationController
     return unless current_user.orders.already_order.any?
 
     redirect_to request.referrer, flash: { alert: t('.already_order') }
+  end
+
+  def order_payment_history_params(order)
+    {
+      userable: order.owner.partner,
+      money_kind: :expense,
+      action_kind: :service_fee,
+      amount: order.service_fee
+    }
   end
 end

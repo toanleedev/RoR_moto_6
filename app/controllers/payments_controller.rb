@@ -16,10 +16,11 @@ class PaymentsController < ApplicationController
 
       if response.status == 'COMPLETED'
         priority.status = :online
-        Payment.create paymentable: priority, user_id: current_user.id,
-                       payment_kind: :bank_transfer, payment_security: response.id,
-                       amount: priority.amount, paid_at: Time.current, status: :completed
-
+        payment = priority.payment
+        payment.payment_security = response.id
+        payment.paid_at = Time.current
+        payment.status = :completed
+        BuildPaymentHistory.new(payment_history_params(payment)).save
         priority.save!
         render json: { message: t('message.success.payment'),
                        url: partners_vehicle_path(vehicle) }, status: :ok
@@ -30,5 +31,17 @@ class PaymentsController < ApplicationController
       puts e.headers['debug_id']
       render json: { message: t('.message.failure.payment') }, status: :bad_request
     end
+  end
+
+  private
+
+  def payment_history_params(payment)
+    {
+      payment_id: payment.id,
+      userable: current_user.partner,
+      money_kind: :expense,
+      action_kind: :priority_fee,
+      amount: payment.amount
+    }
   end
 end

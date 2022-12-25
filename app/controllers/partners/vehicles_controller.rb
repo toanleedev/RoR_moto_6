@@ -40,9 +40,10 @@ module Partners
       partner.balance -= amount
 
       if partner.save
+        BuildPaymentHistory.new(slot_payment_history_params(amount)).save
         flash[:notice] = t('.register_vehicle_slot_success')
       else
-        flash[:notice] = t('.register_vehicle_slot_failure')
+        flash[:alert] = t('.register_vehicle_slot_failure')
       end
       redirect_to partners_vehicles_path
     end
@@ -111,6 +112,7 @@ module Partners
 
     def priority
       @priority = vehicle.priorities.new
+      @priority.build_payment unless @priority.build_payment.present?
       @rank_options = [
         [t('.silver_package'), 'silver'],
         [t('.gold_package'), 'gold'],
@@ -121,7 +123,27 @@ module Partners
     def priority_create
       priority = vehicle.priorities.new priority_params
       priority.expiry_date = Time.current + 1.month
-      priority.status = :offline
+      priority_amount = priority_params[:amount].to_i
+      payment = priority.payment
+      if payment.balance?
+        partner = current_user.partner
+        balance_partner = partner.balance
+        if balance_partner < priority_amount
+          return redirect_to request.referrer, alert: t('.not_enough_balance')
+        end
+
+        priority.status = :online
+        partner.balance -= priority_amount
+        payment.status = :completed
+        payment.paid_at = Time.current
+        partner.save!
+        BuildPaymentHistory.new(priority_payment_history_params(priority)).save
+      else
+        priority.status = :offline
+      end
+
+      payment.user_id = current_user.id
+      payment.amount = priority_amount
 
       if priority.save
         flash[:notice] = t('message.success.create')
@@ -145,7 +167,8 @@ module Partners
     end
 
     def priority_params
-      params.require(:priority).permit :rank, :duration, :amount, :expiry_date
+      params.require(:priority).permit :rank, :duration, :amount, :expiry_date,
+                                       payment_attributes: [:payment_kind]
     end
 
     def upload_image
@@ -170,6 +193,24 @@ module Partners
       @vehicle_brands = VehicleOption.brands.pluck(:name_vi, :id)
       @vehicle_types = VehicleOption.types.pluck(:name_vi, :id)
       @vehicle_engines = VehicleOption.engines.pluck(:name_vi, :id)
+    end
+
+    def priority_payment_history_params(priority)
+      {
+        userable: current_user.partner,
+        money_kind: :expense,
+        action_kind: :priority_fee,
+        amount: priority.amount
+      }
+    end
+
+    def slot_payment_history_params(amount)
+      {
+        userable: current_user.partner,
+        money_kind: :expense,
+        action_kind: :slot_fee,
+        amount: amount
+      }
     end
   end
 end

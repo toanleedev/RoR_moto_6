@@ -7,6 +7,10 @@
       .modal-body
         = bootstrap_form_for(@priority, url: priority_create_partners_vehicle_path) do |f|
           = f.select :rank, @rank_options, { label: t('.f_rank') }
+          = f.fields_for :payment do |ff|
+            = ff.form_group :payment_kind, label: { text: t('.payment_method') }
+              = ff.radio_button :payment_kind, 'balance', label: t('.balance'), checked: true
+              = ff.radio_button :payment_kind, 'bank_transfer', label: t('.bank_transfer')
           = f.static_control :amount, label: t('.f_amount'), value: 0
           = f.primary t('.f_submit')
       .modal-footer

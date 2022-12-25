@@ -11,4 +11,6 @@ vi:
         f_duration: Thời hạn
         f_amount: Tổng tiền
         f_submit: Đăng ký
-        duration_month: '%{month} tháng'
+        payment_method: Phương thức thanh toán
+        balance: Số dư tài khoản
+        bank_transfer: Thanh toán trực tuyến

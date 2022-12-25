@@ -43,7 +43,8 @@ Rails.application.routes.draw do
         delete 'destroy_image/:id', to: 'vehicles#destroy_image', as: 'destroy_image'
       end
       resource :statistic, only: %i[show]
-      resource :register
+      resource :payment_history
+      resource :register, only: %i[show create update]
       resource :deposit, only: %i[show create] do
         post 'checkout', on: :collection
       end

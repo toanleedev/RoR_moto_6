@@ -17,6 +17,7 @@
 class Payment < ActiveRecord::Base
   belongs_to :paymentable, polymorphic: true
   belongs_to :user
+  has_one :payment_history
 
   enum payment_kind: {
     cash: 0,

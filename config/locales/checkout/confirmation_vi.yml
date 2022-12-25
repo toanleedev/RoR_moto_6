@@ -2,3 +2,5 @@ vi:
   checkout:
     confirmation:
       processing: Đang xác thực
+      order_confirmed_success: Xác nhận đơn thuê thành công
+      order_confirmed_failure: Xác nhận đơn thất bại

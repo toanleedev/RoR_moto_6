@@ -1,5 +1,6 @@
 module Partners
   class StatisticsController < ApplicationController
+    before_action :authenticate_user!
     layout 'partner'
 
     def show

@@ -1,6 +1,7 @@
 module Partners
   class DepositsController < ApplicationController
     layout 'partner'
+    before_action :authenticate_user!
 
     def show
       @price_deposits = [5_000_000, 2_000_000, 1_000_000, 500_000, 100_000]
@@ -28,6 +29,14 @@ module Partners
         if response.status == 'COMPLETED'
           partner = current_user.partner
           partner.balance += params[:price_deposit]
+
+          payment_history = PaymentHistory.new
+          payment_history.userable = partner
+          payment_history.money_kind = :income
+          payment_history.action_kind = :top_up
+          payment_history.amount = params[:price_deposit]
+
+          payment_history.save!
           partner.save!
           # PaymentHistory.create
           render json: {

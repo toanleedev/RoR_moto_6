@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
 
   has_one :paper, dependent: :destroy
   has_one :address, dependent: :destroy
-  has_one :partner_history, dependent: :destroy
   has_one :partner, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
@@ -74,7 +73,7 @@ class User < ActiveRecord::Base
 
   scope :admins, -> { where(is_admin: true) }
 
-  accepts_nested_attributes_for :paper, :ratings
+  accepts_nested_attributes_for :paper, :ratings, :partner
 
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first

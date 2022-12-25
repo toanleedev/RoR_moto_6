@@ -1,0 +1,64 @@
+- provide :title, t(".title")
+= content_for :head do
+  script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table-locale-all.min.js"
+  = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
+.d-flex.align-items-center.border-bottom.pb-3.mb-3
+  h3 = t(".payment_histories")
+
+.row
+  .col-md-12
+    table#table data-locale="#{params[:locale]}"
+      thead
+        tr
+          th data-field="action_kind" data-formatter="actionKindFormat"
+            = t '.action_kind'
+          th data-field="amount" data-formatter="amountFormat"
+            = t '.amount'
+          th data-field="created_at" data-formatter="dateFormat"
+            = t '.created_at'
+          th data-field="money_kind" data-formatter="moneyKindFormat"
+            = t '.money_kind'
+
+javascript:
+  function moneyKindFormat(value) {
+    if(value === 'income') {
+      return `
+        <span class='text-success'>
+          #{t(".income")}
+        </span>`
+    } else {
+      return `
+        <span class='text-danger'>
+          #{t(".expense")}
+        </span>`
+    }
+  }
+
+  function dateFormat(value) {
+    return moment(value).format('HH:mm:ss DD/MM/YYYY')
+  }
+
+  function amountFormat(value) {
+    return `${value} đồng`
+  }
+
+  function actionKindFormat(value) {
+    let i18n = ''
+    switch(value) {
+      case 'top_up':
+        i18n = `<span>#{t('.top_up')}</span>`
+        break;
+      case 'service_fee':
+        i18n = `<span>#{t('.service_fee')}</span>`
+        break;
+      case 'priority_fee':
+        i18n = `<span>#{t('.priority_fee')}</span>`
+        break;
+      case 'slot_fee':
+        i18n = `<span>#{t('.slot_fee')}</span>`
+        break;
+      default:
+        i18n = `<span>#{t('.undefined')}</span>`
+    }
+    return i18n
+  }

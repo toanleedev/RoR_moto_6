@@ -21,6 +21,8 @@
 #  completed_at       :datetime
 #  uid                :string
 #  price              :decimal(18, )
+#  amount_include_fee :decimal(18, )
+#  service_fee        :decimal(18, )
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
@@ -32,7 +34,7 @@ class Order < ActiveRecord::Base
   has_one :renter_rating, -> { where ratingable_type: 'User' }, class_name: 'Rating'
   has_one :payment, as: :paymentable
 
-  accepts_nested_attributes_for :vehicle, :payment
+  accepts_nested_attributes_for :vehicle, :payment, :owner
 
   enum status: {
     opening: 0,

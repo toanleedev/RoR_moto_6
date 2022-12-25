@@ -1,7 +1,7 @@
 class CancelUnconfirmedOrderJob < ApplicationJob
   queue_as :default
   def perform(order)
-    if order.opening?
+    if order.opening? || order.pending?
       order.status = :canceled
       order.vehicle.status = :idle
 

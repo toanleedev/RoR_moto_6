@@ -1,0 +1,4 @@
+vi:
+  orders:
+    create:
+      vehicle_not_available: Xe thuê hiện tại không có sẵn

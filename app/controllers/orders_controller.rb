@@ -3,6 +3,10 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    vehicle = Vehicle.find_by(id: order_params[:vehicle_id])
+    return redirect_to search_path, flash: { alert: t('.vehicle_not_available') } unless
+      vehicle.present? && vehicle.idle?
+
     order = BuildOrders.new(order_params, user: current_user).save
 
     if order.success?

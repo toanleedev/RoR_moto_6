@@ -15,6 +15,13 @@ vi:
         status: Trạng thái
         action: Hành động
         show: Xem
+        opening: Chờ duyệt
+        accepted: Đã duyệt
+        idle: Khả dụng
+        rented: Đã đặt trước
+        offline: Tạm ẩn
+        locked: Bị khóa
+        undefined: Không khả dụng
       accepted:
         accepted_success: Xác nhận xe thành công
         accepted_failure: Xác nhận xe thất bại

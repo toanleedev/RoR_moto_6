@@ -52,27 +52,30 @@ javascript:
   }
 
   function statusFormat(value) {
-    let className = 'badge ';
+    let i18n = '';
     switch(value) {
       case 'opening':
-        className += 'bg-secondary';
+        i18n = `<span class='badge bg-secondary'>#{t('.opening')}</span>`
         break;
       case 'accepted':
-        className += 'bg-primary';
+        i18n = `<span class='badge bg-primary'>#{t('.accepted')}</span>`
         break;
       case 'rented':
-        className += 'bg-warning';
+        i18n = `<span class='badge bg-warning'>#{t('.rented')}</span>`
         break;
       case 'locked':
-        className += 'bg-danger';
+        i18n = `<span class='badge bg-danger'>#{t('.locked')}</span>`
         break;
       case 'idle':
-        className += 'bg-info';
+        i18n = `<span class='badge bg-info'>#{t('.idle')}</span>`
+        break;
+      case 'offline':
+        i18n = `<span class='badge bg-light text-body'>#{t('.offline')}</span>`
         break;
       default:
-        className += 'bg-light'
+        i18n = `<span class='badge bg-light text-body'>#{t('.undefined')}</span>`
     }
-    return `<span class="${className}">${value}</span>`
+    return i18n
   }
 
   function actionFormat(value) {

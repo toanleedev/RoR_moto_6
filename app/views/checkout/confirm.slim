@@ -19,7 +19,7 @@
             div
               h5.text-uppercase = t('.head_user_info')
               h3 = current_user.full_name
-              p = current_user.address.full_address
+              p = current_user.address&.full_address
             .divider
             .row
               .col-3
@@ -61,8 +61,4 @@
               .price-row.mb-3
                 span = t('.amount')
                 span = number_to_currency(params[:total], precision: 0)
-              / .price-row.mb-3
-              /   span = t('.deposit')
-              /   span #{params[:total].to_i*0.3}
-
               = f.submit t('.submit'), class: 'w-100 btn btn-primary'

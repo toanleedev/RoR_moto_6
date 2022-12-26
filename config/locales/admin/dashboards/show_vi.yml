@@ -1,0 +1,12 @@
+vi:
+  admin:
+    dashboards:
+      show:
+        turnover: Doanh thu
+        order: Đơn thuê
+        vehicle: Tổng xe đăng ký
+        user: Người dùng
+        dashboard: Dashboard
+        stats: Số liệu
+        chart: Thống kê
+        home: Trang chủ

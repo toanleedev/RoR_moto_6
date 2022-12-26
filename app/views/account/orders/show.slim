@@ -12,8 +12,8 @@ div
     .col-2
       = vehicle_image(@order.vehicle, 100)
     .col-7
-      p.fw-bold = @order.vehicle.full_name
-      p = raw t('.vehicle_price', price: number_to_currency(@order.vehicle.price, precision: 0))
+      = link_to @order.vehicle.full_name, "/#{I18n.locale}/search/vehicle/#{@order.vehicle.id}", class: 'fw-bold'
+      p.mt-2 = raw t('.vehicle_price', price: number_to_currency(@order.vehicle.price, precision: 0))
     .col-3
 
   .divider

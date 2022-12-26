@@ -129,7 +129,7 @@ module Partners
         partner = current_user.partner
         balance_partner = partner.balance
         if balance_partner < priority_amount
-          return redirect_to request.referrer, alert: t('.not_enough_balance')
+          return redirect_to partners_deposit_path, alert: t('.not_enough_balance')
         end
 
         priority.status = :online
@@ -147,6 +147,7 @@ module Partners
 
       if priority.save
         flash[:notice] = t('message.success.create')
+        CancelPackageJob.set(wait_until: priority.expiry_date).perform_later(priority)
         redirect_to partners_vehicle_path(vehicle)
       else
         flash[:alert] = t('message.failure.create')

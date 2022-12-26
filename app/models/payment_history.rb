@@ -25,6 +25,7 @@ class PaymentHistory < ActiveRecord::Base
     top_up: 0,
     service_fee: 1,
     priority_fee: 2,
-    slot_fee: 3
+    slot_fee: 3,
+    order_income: 4
   }
 end

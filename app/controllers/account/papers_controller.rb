@@ -27,6 +27,7 @@ module Account
     end
 
     def update
+      current_user.paper.status = :open
       if current_user.paper.update paper_params
         flash[:notice] = t('.update_success')
         redirect_to account_paper_path

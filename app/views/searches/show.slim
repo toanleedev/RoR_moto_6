@@ -1,7 +1,7 @@
 = content_for :head do
   = javascript_include_tag params[:controller], 'data-turbolinks-track': 'reload'
 .bg-light
-  .container
+  .container.min-h-container 
     h2.text-center.py-3 = t('.title', city: params[:province])
     .row
       .col-md-4
@@ -11,3 +11,4 @@
         .row
           = render(partial: 'vehicle', collection: @vehicles) || content_tag("p") do
             p.text-center.text-muted = t('.empty_message')
+          = paginate @vehicles, theme: 'bootstrap4'

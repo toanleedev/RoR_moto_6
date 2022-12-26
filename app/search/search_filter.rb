@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-class SearchFilter < BaseFilter
+class SearchFilter
+  DEFAULT_PAGE = 1
+  DEFAULT_PER_PAGE = 10
+
   def initialize(options = {})
-    super
+    @page = [options[:page].to_i, DEFAULT_PAGE].find(&:positive?)
+    @per_page = [options[:per_page].to_i, DEFAULT_PER_PAGE].find(&:positive?)
 
     @name = options[:name].presence
     @province = options[:province].presence

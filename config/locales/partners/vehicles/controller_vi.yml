@@ -6,3 +6,5 @@ vi:
         not_enough_balance: Số dư không đủ. Vui lòng nạp thêm.
         register_vehicle_slot_success: Đăng ký mua thêm chỗ thành công.
         register_vehicle_slot_failure: Đăng ký mua thêm chỗ thất bại.
+      priority_create:
+        not_enough_balance: Số dư tài khoản không đủ

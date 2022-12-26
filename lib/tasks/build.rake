@@ -18,6 +18,16 @@ namespace :build do
     end
   end
 
+  task service_fee_order: :environment do
+    Order.all.each do |order|
+      break if order.amount_include_fee.present?
+
+      order.service_fee = o.amount * 0.05
+      order.amount_include_fee = o.amount - o.service_fee
+      order.save
+    end
+  end
+
   task add_price_vehicle_to_order: :environment do
     Order.all.each do |order|
       break if order.price.present?

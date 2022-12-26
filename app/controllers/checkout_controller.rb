@@ -53,8 +53,11 @@ class CheckoutController < ApplicationController
         order.payment.paid_at = Time.current
         order.payment.payment_security = response.id
         order.payment.status = :completed
-        order.owner.partner.balance -= order.service_fee
+        partner_new_balance = order.amount - order.service_fee
+        order.owner.partner.balance += partner_new_balance
+
         BuildPaymentHistory.new(order_payment_history_params(order)).save
+        BuildPaymentHistory.new(income_payment_history_params(order)).save
         order.save!
         SendNotification.new(order).user_paid_order
         render json: { message: t('.pay_paypal_success'),
@@ -81,8 +84,12 @@ class CheckoutController < ApplicationController
   end
 
   def validate_before_order
-    unless current_user.paper&.confirmed?
+    unless current_user.paper.present? && !current_user.paper&.rejected?
       return redirect_to account_paper_path, flash: { alert: t('.require_paper') }
+    end
+
+    unless current_user.address.present?
+      return redirect_to account_address_path, flash: { alert: t('.require_address') }
     end
 
     return unless current_user.orders.already_order.any?
@@ -96,6 +103,15 @@ class CheckoutController < ApplicationController
       money_kind: :expense,
       action_kind: :service_fee,
       amount: order.service_fee
+    }
+  end
+
+  def income_payment_history_params(order)
+    {
+      userable: order.owner.partner,
+      money_kind: :income,
+      action_kind: :order_income,
+      amount: order.amount_include_fee
     }
   end
 end

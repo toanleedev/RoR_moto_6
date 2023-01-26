@@ -1,14 +1,14 @@
 li.list-group-item.mb-3.shadow-sm
   .text-end.mb-2
     span class="badge bg-secondary" = t(".#{order.status}")
-    - if order.completed? && order.paid_at.present?
+    - if order.completed? && order.payment.paid_at.present?
       span class="badge bg-success ms-1" = t(".paid")
   .row
     .col-md-2
       = vehicle_image(order.vehicle, 100)
     .col-md-5
       h4 = order.vehicle.full_name
-      p = order.vehicle.price
+      p = number_to_currency(order.price, precision: 0)
     .col-md-5
       p = t('.rental_times', times: try_integer(order.rental_times))
       - start_date = order.processing_at.present? ? order.processing_at : order.start_date
@@ -16,10 +16,10 @@ li.list-group-item.mb-3.shadow-sm
       p #{l(start_date)} ➜ #{l(end_date)}
   .divider
   .text-end
-    p = raw t('.amount', amount: order.amount)
+    p = raw t('.amount', amount: number_to_currency(order.amount, precision: 0, unit: ''))
   .d-flex.justify-content-end.gap-2
     - unless @is_manage_page
       = link_to t('.show'), account_order_path(order), class: 'btn btn-primary'
       span.btn.btn-outline-primary = t('.contact')
     - else
-      = link_to t('.show'), account_order_manage_path(order), class: 'btn btn-primary'
+      = link_to t('.show'), partners_order_manage_path(order), class: 'btn btn-primary'

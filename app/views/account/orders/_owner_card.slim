@@ -14,4 +14,4 @@
             p = @order.owner.phone || 'N/A'
       .col-md-3
         div.text-center
-          .btn.btn-sm.btn-outline-primary = t('.contact')
+          = link_to t('.contact'), message_path(@order.owner), class: 'btn btn-sm btn-outline-primary'

@@ -1,0 +1,9 @@
+vi:
+  shared:
+    partner_sidebar:
+      balance: 'Số dư: <span class="fw-bold">%{balance}</span>'
+      order_manage: Quản lý đơn thuê
+      vehicles: Quản lý xe cho thuê
+      statistic: Quản lý thống kê
+      topup: Nạp
+      payment_histories: Lịch sử thanh toán

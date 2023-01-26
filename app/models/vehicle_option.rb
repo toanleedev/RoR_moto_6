@@ -15,14 +15,7 @@ class VehicleOption < ActiveRecord::Base
 
   # enum :key, %i[BRAND ENGINE TYPE]
 
-  before_destroy :ensure_not_referenced
-
   scope :brands, -> { where key: 'BRAND' }
   scope :engines, -> { where key: 'ENGINE' }
   scope :types, -> { where key: 'TYPE' }
-
-  private
-
-  def ensure_not_referenced
-  end
 end

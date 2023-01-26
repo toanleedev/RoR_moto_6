@@ -1,0 +1,6 @@
+vi:
+  partners:
+    vehicles:
+      new:
+        title: Thêm xe mới
+        over_vehicle_limit: Vượt quá giới hạn bài đăng

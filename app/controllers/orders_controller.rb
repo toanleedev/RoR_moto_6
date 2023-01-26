@@ -3,13 +3,18 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    order = BuildOrders.new(order_params).save
+    vehicle = Vehicle.find_by(id: order_params[:vehicle_id])
+    return redirect_to search_path, flash: { alert: t('.vehicle_not_available') } unless
+      vehicle.present? && vehicle.idle?
+
+    order = BuildOrders.new(order_params, user: current_user).save
 
     if order.success?
       flash[:notice] = t('message.success.create')
       redirect_to checkout_complete_path(uid: order.data.uid)
     else
       flash[:alert] = t('message.failure.create')
+      redirect_to root_path
     end
   end
 
@@ -31,7 +36,8 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:start_date, :end_date, :rental_times,
                                   :vehicle_id, :is_home_delivery, :price,
-                                  :delivery_address, :amount, :payment_kind, :owner_id).to_h.deep_merge(
+                                  :delivery_address, :amount, :payment_kind,
+                                  :owner_id, payment_attributes: [:payment_kind]).to_h.deep_merge(
                                     renter_id: current_user.id
                                   )
   end

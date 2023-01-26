@@ -2,7 +2,7 @@ module Admin
   class UsersController < AdminController
     before_action :set_user, except: %i[index]
     def index
-      @users = User.all
+      @users = User.all.order(created_at: :desc)
 
       respond_to do |format|
         format.html
@@ -77,7 +77,7 @@ module Admin
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :phone, :birth, :gender)
+      params.require(:user).permit(:first_name, :last_name, :phone, :birth, :gender, :is_admin)
     end
 
     def set_user

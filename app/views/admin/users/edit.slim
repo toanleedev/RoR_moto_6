@@ -20,7 +20,10 @@
           = f.radio_button :gender, 'male', label: t(".male"), inline: true
           = f.radio_button :gender, 'female', label: t(".female"), inline: true
           = f.radio_button :gender, 'other', label: t(".other"), inline: true
-        = f.primary t('.submit'), extra_class: 'offset-sm-4'
+        = f.form_group do
+          = f.check_box :is_admin, label: t('is_admin'), switch: true
+        = f.form_group do
+          = f.primary t('.submit')
       .col-md-4.text-center
         = avatar_for(@user.photo_url, 150)
         = render 'shared/rating', rating: @user.average_rating, center: true

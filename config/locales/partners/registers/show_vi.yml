@@ -1,0 +1,9 @@
+vi:
+  partners:
+    registers:
+      show:
+        title: TRỞ THÀNH ĐỐI TÁC
+        benefit: Lợi ích khi cộng tác với Chungxe
+        not_authorized: Bạn đã là đối tác với chúng tôi.
+        unconfirmed_paper: Yêu cầu cung cấp thông tin giấy tờ.
+        unconfirmed_address: Yêu cầu cung cấp địa chỉ.

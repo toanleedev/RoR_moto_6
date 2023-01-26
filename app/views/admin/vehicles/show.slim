@@ -48,5 +48,9 @@
       - if @vehicle.opening?
         = link_to t('.accepted_vehicle'), accepted_admin_vehicle_path(@vehicle),
           method: 'PATCH', class: 'btn btn-primary', data: {confirm: t('.accepted_confirm')}
-      = link_to t('.locked_vehicle'), locked_admin_vehicle_path(@vehicle),
-        method: 'PATCH', class: 'btn btn-danger', data: {confirm: t('.locked_confirm')}
+      - if @vehicle.locked?
+        = link_to t('.unlock_vehicle'), admin_vehicle_path(@vehicle, status: :idle),
+          method: 'PATCH', class: 'btn btn-success', data: {confirm: t('.unlock_confirm')}
+      - else
+        = link_to t('.locked_vehicle'), admin_vehicle_path(@vehicle, status: :locked),
+          method: 'PATCH', class: 'btn btn-danger', data: {confirm: t('.locked_confirm')}

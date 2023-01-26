@@ -7,15 +7,10 @@
 #  end_date           :datetime
 #  rental_times       :float
 #  amount             :decimal(18, )
-#  message            :string
 #  status             :integer          default("opening")
 #  confirmation_token :string
 #  is_home_delivery   :boolean          default(FALSE)
 #  delivery_address   :string
-#  is_prepaid         :boolean          default(FALSE)
-#  prepaid_discount   :decimal(18, )
-#  payment_info       :string
-#  discount           :decimal(18, )
 #  vehicle_id         :bigint           not null
 #  renter_id          :bigint
 #  owner_id           :bigint
@@ -24,21 +19,22 @@
 #  confirmed_at       :datetime
 #  processing_at      :datetime
 #  completed_at       :datetime
-#  paid_at            :datetime
 #  uid                :string
-#  payment_kind       :integer          default("cash"), not null
-#  payment_security   :string
+#  price              :decimal(18, )
+#  amount_include_fee :decimal(18, )
+#  service_fee        :decimal(18, )
 #
 class Order < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :renter, class_name: 'User'
   belongs_to :vehicle
   before_create :default_values
-  has_one :vehicle_rating, -> { where rate_kind: :vehicle },
+  has_one :vehicle_rating, -> { where ratingable_type: 'Vehicle' },
           class_name: 'Rating'
-  has_one :renter_rating, -> { where rate_kind: :user }, class_name: 'Rating'
+  has_one :renter_rating, -> { where ratingable_type: 'User' }, class_name: 'Rating'
+  has_one :payment, as: :paymentable
 
-  accepts_nested_attributes_for :vehicle
+  accepts_nested_attributes_for :vehicle, :payment, :owner
 
   enum status: {
     opening: 0,
@@ -56,6 +52,18 @@ class Order < ActiveRecord::Base
 
   scope :already_order, -> { where.not(status: %i[completed canceled]) }
   scope :has_completed, -> { where(status: :completed) }
+
+  def payment_method
+    payment.payment_kind
+  end
+
+  def bank_transfer_payment?
+    payment.bank_transfer?
+  end
+
+  def cash_payment?
+    payment.cash?
+  end
 
   protected
 

@@ -1,0 +1,9 @@
+vi:
+  users:
+    passwords:
+      edit:
+        reset_password: Đổi mật khẩu
+        new_password: Mật khẩu mới
+        new_password_help: 'Độ dài mật khẩu tói thiếu %{lenght} ký tự'
+        confirm_new_password: Xác nhận mật khẩu mới
+        submit: Đổi mật khẩu

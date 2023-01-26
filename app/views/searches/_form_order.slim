@@ -31,7 +31,7 @@
           .price-row
             = f.hidden_field :unit_price, value: @vehicle.price
             span = t('.unit_price')
-            span = @vehicle.price
+            span = number_to_currency(@vehicle.price, precision: 0)
           .price-row.is_home_delivery_price_js style="display: none"
             span = t('.is_home_delivery')
             span 50000

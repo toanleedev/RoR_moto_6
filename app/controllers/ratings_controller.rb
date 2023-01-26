@@ -12,8 +12,9 @@ class RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:rating).permit(:content, :order_id, :rating_point, :rate_kind).to_h.deep_merge(
-      reviewer_id: current_user.id
-    )
+    params.require(:rating).permit(
+      :content, :order_id, :rating_point,
+      :ratingable_id, :ratingable_type
+    ).to_h.deep_merge(reviewer_id: current_user.id)
   end
 end

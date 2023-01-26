@@ -9,7 +9,7 @@
 #  content      :text
 #  on_click_url :string
 #  checked_at   :datetime
-#  notify_type  :integer          default(0)
+#  notify_type  :integer          default("user")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -17,7 +17,7 @@ class Notification < ActiveRecord::Base
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
 
-  scope :count_unread, -> { where(checked_at: nil).count }
+  scope :count_unread, -> { where(checked_at: nil).size }
 
   enum notify_type: {
     user: 0,

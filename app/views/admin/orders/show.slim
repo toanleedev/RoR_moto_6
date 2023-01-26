@@ -72,7 +72,7 @@
           - if @order.completed_at
             .border-bottom.border-end.p-2
               span = t('.completed_at')
-          - if @order.paid_at
+          - if @order.payment.paid_at
             .border-bottom.border-end.p-2
               span = t('.paid_at')
           .border-bottom.border-end.p-2
@@ -84,7 +84,7 @@
             span = @order.uid || '-'
           .border-bottom.p-2.min-height-40
             span class="badge bg-secondary" = t(".#{@order.status}")
-            - if @order.paid_at.present?
+            - if @order.payment.paid_at.present?
               span class="badge bg-success ms-2" = t('.paid')
           .border-bottom.p-2.min-height-40
             span = l(@order.start_date)
@@ -102,10 +102,10 @@
           - if @order.completed_at
             .border-bottom.p-2.text-truncate.min-height-40
               span = l(@order.completed_at)
-          - if @order.paid_at
+          - if @order.payment.paid_at
             .border-bottom.p-2.text-truncate.min-height-40
-              span = l(@order.paid_at)
+              span = l(@order.payment.paid_at)
           .border-bottom.p-2.min-height-40
-            span = t(".#{@order.payment_kind}")
+            span = t(".#{@order.payment_method}")
           .border-bottom.p-2.min-height-40
             span.text-primary.fw-bold = try_integer(@order.amount)

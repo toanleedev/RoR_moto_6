@@ -1,0 +1,14 @@
+vi:
+  partners:
+    vehicles:
+      priority_upgrade_modal:
+        modal_title: Nâng cấp gói quảng cáo
+        modal_close: Đóng
+        silver_package: Gói bạc
+        gold_package: Gói vàng
+        diamon_package: Gói kim cương
+        f_rank: Hạng
+        f_duration: Thời hạn
+        f_amount: Tổng tiền (đ)
+        f_submit: Nâng cấp
+        duration_month: '%{month} tháng'

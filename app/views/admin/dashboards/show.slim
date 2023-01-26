@@ -1,13 +1,13 @@
 = content_for :page_header
-  h2 = t ".dashboard"
+  h2 = t(".dashboard")
   nav
     ol.breadcrumb
       li.breadcrumb-item
         = link_to t('.home'), admin_dashboard_path
-      li.breadcrumb-item.active = t ".dashboard"
+      li.breadcrumb-item.active = t(".dashboard")
 .container
   .row
-    h5 Stats
+    h5 = t('.stats')
     .col-md-3.mb-4
       = link_to admin_dashboard_path(period: params[:period]),
         class: 'text-body text-decoration-none' do
@@ -35,18 +35,18 @@
         class: 'text-body text-decoration-none' do
         div class="card border"
           .card-body
-            h6.card-title = t(".turnover")
-            p.card-text.fs-5 NaN
+            h6.card-title Doanh thu
+            p.card-text.fs-5  = number_to_currency(@turnover, precision: 0)
   .d-flex
     h5 = t('.chart')
     .d-flex.gap-2.ms-auto
       = link_to t('.day'), admin_dashboard_path(period: 'day', chart: params[:chart]),
         class: "btn btn-sm #{params[:period] == 'day' ? 'btn-primary' : 'btn-outline-primary'}"
       = link_to t('.week'), admin_dashboard_path(period: 'week', chart: params[:chart]),
-        class: "btn btn-sm #{params[:period] == 'week' ? 'btn-primary' : 'btn-outline-primary'}"
+        class: "btn btn-sm #{params[:period] == 'week' || params[:period].nil? ? 'btn-primary' : 'btn-outline-primary'}"
       = link_to t('.month'), admin_dashboard_path(period: 'month', chart: params[:chart]),
-        class: "btn btn-sm #{params[:period] == 'month' || params[:period].nil? ? 'btn-primary' : 'btn-outline-primary'}"
+        class: "btn btn-sm #{params[:period] == 'month' ? 'btn-primary' : 'btn-outline-primary'}"
   .row
     .col
       = area_chart admin_statistic_chart_path(period: params[:period], chart: params[:chart]),
-        title: 'Users'
+        title: t(".#{params[:chart] || 'user'}")

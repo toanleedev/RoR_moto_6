@@ -5,7 +5,9 @@ vi:
       about: 'Giới thiệu'
       rent: 'Tìm kiếm'
       account: 'Tài khoản'
-      partner: Trở thành đối tác
+      become_partner: Trở thành đối tác
+      admin_page: Trang quản trị
+      partner_page: Trang đối tác
       sign_out: 'Đăng xuất'
       sign_in: 'Đăng nhập'
       sign_up: 'Đăng ký'

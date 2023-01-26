@@ -1,7 +1,7 @@
 vi:
   checkout:
     confirm:
-      head_user_info: Thông tin người dùng
+      head_user_info: Thông tin người thuê
       head_confirm_info: Thông tin xác nhận
       fromto: 'Thời gian thuê từ: '
       address_delivery: 'Địa chỉ giao xe: '

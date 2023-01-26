@@ -1,0 +1,16 @@
+vi:
+  partners:
+    vehicles:
+      form:
+        name: Tên xe
+        description: Mô tả
+        price: Giá
+        year_produce: Năm sản xuất
+        vehicle_brand: Hãng sản xuất
+        vehicle_type: Loại xe
+        vehicle_engine: Phân khối xe
+        submit: Lưu
+        select_value: Vui lòng chọn
+        sure_delete: Bạn có muốn xóa ảnh này?
+        image_path: Chọn ảnh
+        back: Quay lại

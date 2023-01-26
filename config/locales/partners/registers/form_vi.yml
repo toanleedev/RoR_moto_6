@@ -1,0 +1,18 @@
+vi:
+  partners:
+    registers:
+      form:
+        form_title: Đăng ký làm đối tác
+        full_name: Tên đơn vị/chủ xe
+        phone: Số điện thoại
+        email: Email
+        address: Địa chỉ
+        title: Tiêu đề
+        description: Mô tả
+        personal: Cá nhân
+        company: Công ty
+        tax_code: Mã số thuế
+        submit: Đăng ký
+        back: Quay lại
+        pending: Đơn đăng ký của bạn đang chờ để được xét duyệt.
+        canceled: Đơn của bạn đã bị từ chối. Thử lại sau.

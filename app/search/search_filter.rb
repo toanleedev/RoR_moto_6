@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-class SearchFilter < BaseFilter
+class SearchFilter
+  DEFAULT_PAGE = 1
+  DEFAULT_PER_PAGE = 10
+
   def initialize(options = {})
-    super
+    @page = [options[:page].to_i, DEFAULT_PAGE].find(&:positive?)
+    @per_page = [options[:per_page].to_i, DEFAULT_PER_PAGE].find(&:positive?)
 
     @name = options[:name].presence
     @province = options[:province].presence
@@ -13,8 +17,10 @@ class SearchFilter < BaseFilter
   end
 
   def filter
-    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings, user: [:address])
+    records = Vehicle.includes(:brand, :type, :engine, :vehicle_images, :ratings,
+                               :priorities, user: [:address])
                      .where(status: %i[idle rented])
+                     .order('priorities.rank desc NULLS LAST, priorities.updated_at')
     if @province.present?
       records =
         records.joins(user: [:address]).where('addresses.province LIKE ?', "%#{@province}%")
@@ -35,6 +41,6 @@ class SearchFilter < BaseFilter
       records = records.where(engine_id: @engine)
     end
 
-    records.page(@page).per(@per_page).order(:status)
+    records.page(@page).per(@per_page)
   end
 end

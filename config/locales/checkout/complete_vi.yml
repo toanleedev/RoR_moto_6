@@ -2,5 +2,5 @@ vi:
   checkout:
     complete:
       heading: Tạo đơn thành công
-      message: 'Đơn hàng <span class="fw-bold">#%{uid}</span> của bạn đã được tạo thành công. Vui lòng kiểm tra hộp thư để xác nhận đơn.'
+      message: 'Đơn hàng <span class="fw-bold">#%{uid}</span> của bạn đã được tạo thành công. Vui lòng kiểm tra hộp thư để xác nhận đơn. Đơn hàng sẽ bị hủy trong vòng 15 phút nếu chưa được xác nhận hoặc duyệt từ đối tác.'
       back_home: Quay lại trang chủ

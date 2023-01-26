@@ -1,4 +1,4 @@
-- @rating = Rating.new
+- @rating = @order.vehicle.ratings.new
 
 #ratingModel.modal.fade[tabindex="-1" aria-labelledby="ratingModelLabel" aria-hidden="true"]
   .modal-dialog
@@ -9,18 +9,20 @@
           button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
         .modal-body
           .row
-            .col-2
+            .col-3
               = vehicle_image(@order.vehicle, 100)
             .col-7
               p.fw-bold = @order.vehicle.full_name
               p = @order.vehicle.price
-            .col-3
+            .col-2
           .row
             .col-12
               = f.text_area :content, label: t(".content")
               = f.number_field :rating_point, label: t(".point"), max: 5, min: 1, value: 5
               = f.hidden_field :order_id, value: @order.id
+              = f.hidden_field :ratingable_id
+              = f.hidden_field :ratingable_type
         .modal-footer
           button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
             = t('.modal_close')
-          = f.primary 'submit'
+          = f.primary t('.submit')

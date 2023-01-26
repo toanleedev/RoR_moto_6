@@ -1,0 +1,9 @@
+en:
+  users:
+    passwords:
+      edit:
+        reset_password: Reset password
+        new_password: New password
+        new_password_help: 'Password length at least %{lenght} character'
+        confirm_new_password: Confirm new password
+        submit: Change password

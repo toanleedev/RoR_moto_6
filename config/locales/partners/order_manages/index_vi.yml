@@ -1,0 +1,16 @@
+vi:
+  partners:
+    order_manages:
+      index:
+        title: Danh sách chuyến
+        all: Tất cả
+        opening: Chưa xác nhận
+        pending: Chờ duyệt
+        accepted: Đã xác nhận
+        processing: Đang tiến hành
+        canceled: Đã hủy
+        completed: Hoàn tất
+        coming: Sắp tới
+        empty_message: Không có dữ liệu để hiển thị
+        search_uid: Tìm kiếm mã đơn
+        btn_search: Tìm

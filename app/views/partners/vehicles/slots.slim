@@ -1,0 +1,27 @@
+- provide :title, t(".title")
+.d-flex.align-items-center.gap-2.border-bottom.pb-3.mb-3
+  h3 = t(".buy_more_vehicle_slots")
+  span.ms-auto = "(Khả dụng: #{current_user.vehicles.size} / #{current_user.partner.vehicle_limit})"
+
+.row
+  .col-lg-6.offset-lg-3
+    = bootstrap_form_tag(url: register_slots_partners_vehicles_path) do |f|
+      = f.number_field :slot, label: t(".slot"), value: 1, min: 1, max: 10
+      = f.static_control :amount, label: t(".amount"), value: 100000
+      = f.primary t('.submit'), extra_class: 'w-100'
+
+javascript:
+  const inputSlot = $("#slot")
+  const inputAmount = $("#amount")
+  const priceSlot = 100000
+  let amount = 0
+  calcAmount()
+
+  inputSlot.change(() => {
+    calcAmount()
+  })
+
+  function calcAmount() {
+    amount = inputSlot.val() * priceSlot
+    inputAmount.val(amount)
+  }

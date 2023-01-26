@@ -32,6 +32,7 @@
 #  provider               :string
 #  uid                    :string
 #  is_admin               :boolean
+#  status                 :integer          default("online")
 #
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :full_name, :phone

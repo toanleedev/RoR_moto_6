@@ -1,0 +1,7 @@
+vi:
+  users:
+    passwords:
+      new:
+        forgot_password: Quên mật khẩu
+        email: Email
+        submit: Gửi

@@ -19,14 +19,14 @@
             div
               h5.text-uppercase = t('.head_user_info')
               h3 = current_user.full_name
-              p = current_user.address.full_address
+              p = current_user.address&.full_address
             .divider
             .row
               .col-3
                 = vehicle_image(vehicle, 180)
               .col-9
                 p = vehicle.full_name
-                p = vehicle.price
+                p = number_to_currency(vehicle.price, precision: 0)
             .divider
             div
               h5.text-uppercase = t('.head_confirm_info')
@@ -40,16 +40,17 @@
             .divider
             div
               h5.text-uppercase = t('.payment_method')
-              = f.form_group :payment_kind
-                = f.radio_button :payment_kind, 'cash', label: t('.cash'), checked: true
-                = f.radio_button :payment_kind, 'bank_transfer', label: t('.bank_transfer')
+              = f.fields_for :payment do |ff|
+                = ff.form_group :payment_kind
+                  = ff.radio_button :payment_kind, 'cash', label: t('.cash'), checked: true
+                  = ff.radio_button :payment_kind, 'bank_transfer', label: t('.bank_transfer')
             .divider
             div
               h5.text-uppercase = t('.detail_price')
               .divider
               .price-row
                 span = t('.unit_price')
-                span = vehicle.price
+                span = number_to_currency(vehicle.price, precision: 0)
               .price-row.is_home_delivery_price_js style="display: none"
                 span = t('.is_home_delivery')
                 span 50000
@@ -59,9 +60,5 @@
               .divider
               .price-row.mb-3
                 span = t('.amount')
-                span #{params[:total]}
-              / .price-row.mb-3
-              /   span = t('.deposit')
-              /   span #{params[:total].to_i*0.3}
-
+                span = number_to_currency(params[:total], precision: 0)
               = f.submit t('.submit'), class: 'w-100 btn btn-primary'

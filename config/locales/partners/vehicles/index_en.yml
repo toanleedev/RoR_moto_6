@@ -1,0 +1,8 @@
+en:
+  partners:
+    vehicles:
+      index:
+        title: My vehicles
+        new: New vehicle
+        post_allowed: Post allowed
+        buy_slot: Buy more slots

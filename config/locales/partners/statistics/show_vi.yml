@@ -1,0 +1,20 @@
+vi:
+  partners:
+    statistics:
+      show:
+        title: Thống kê
+        stats: Chỉ số quan trọng
+        chart: Biểu đồ
+        day: Ngày
+        week: Tuần
+        month: Tháng
+        turnover: Doanh số
+        turnover_total: '%{total} vnđ'
+        order_success_count: Số đơn thuê thành công
+        order_count: Số đơn thuê
+        my_vehicle_count: Số xe sở hữu
+        turnover_chart_title: Biểu đồ doanh số
+        order_chart_title: Biểu đồ số đơn thuê
+        vehicle_chart_title: Biểu đồ đơn thuê theo xe
+        order_label: Đơn thuê
+        no_data: Không có dữ liệu

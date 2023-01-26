@@ -35,6 +35,7 @@ module TrainingShop
     config.i18n.available_locales = %i[en vi]
     config.i18n.default_locale = :vi
     config.autoload_paths += ["#{config.root}/app/serializers"]
+    config.active_job.queue_adapter = :sidekiq
 
     config.middleware.use ActionDispatch::Cookies
   end

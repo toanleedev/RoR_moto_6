@@ -1,0 +1,11 @@
+en:
+  partners:
+    order_manages:
+      renter_card:
+        title: Renter infomation
+        full_name: Fullname
+        address: Address
+        phone: Phone number
+        paper: Paper
+        contact: Contact
+        confirmed: Confirmed

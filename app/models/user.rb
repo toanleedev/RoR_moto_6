@@ -32,32 +32,29 @@
 #  provider               :string
 #  uid                    :string
 #  is_admin               :boolean
+#  status                 :integer          default("online")
 #
 class User < ActiveRecord::Base
-  devise :database_authenticatable,
-         :confirmable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable,
-         :trackable,
-         :lockable,
-         :omniauthable,
+  devise :database_authenticatable, :confirmable, :registerable,
+         :recoverable, :rememberable, :validatable, :trackable,
+         :lockable, :omniauthable,
+         authentication_keys: [:email],
          omniauth_providers: %i[facebook google_oauth2]
   mount_uploader :photo_url, PictureUploader
   before_save :downcase_email
 
   has_one :paper, dependent: :destroy
   has_one :address, dependent: :destroy
-  has_one :partner_history, dependent: :destroy
+  has_one :partner, dependent: :destroy
   has_many :vehicles, dependent: :destroy
   has_many :orders, class_name: 'Order', foreign_key: 'renter_id'
   has_many :order_manages, class_name: 'Order', foreign_key: 'owner_id'
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy
-  has_many :ratings, through: :orders, foreign_key: 'renter_id', source: :renter_rating
+  has_many :ratings, as: :ratingable, dependent: :destroy
+  has_many :payment_histories, class_name: 'Payment', dependent: :destroy
 
   validate :avatar_size
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true,
                          length: { minimum: 2 }
   validates :last_name, presence: true,
@@ -76,7 +73,7 @@ class User < ActiveRecord::Base
 
   scope :admins, -> { where(is_admin: true) }
 
-  accepts_nested_attributes_for :paper
+  accepts_nested_attributes_for :paper, :ratings, :partner
 
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first
@@ -100,6 +97,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{last_name} #{first_name}"
+  end
+
+  def partner?
+    partner.present? && partner.confirmed?
   end
 
   def average_rating

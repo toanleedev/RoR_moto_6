@@ -1,7 +1,7 @@
 vi:
   searches:
     vehicle:
-      price: '%{price}₫/<span class="fs-6">ngày</span>'
+      price: '<span class="h4 text-primary">%{price}₫</span>/ngày'
       detail: Chi tiết
       idle: Khả dụng
       rented: Đã đặt trước

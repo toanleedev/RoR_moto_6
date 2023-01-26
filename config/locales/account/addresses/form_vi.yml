@@ -8,3 +8,6 @@ vi:
         street: Số nhà, Tên đường
         submit: Lưu
         cancel: Quay Lại
+        holder_province: Chọn tỉnh/thành phố
+        holder_district: Chọn quận/huyện
+        holder_ward: Chọn Phường

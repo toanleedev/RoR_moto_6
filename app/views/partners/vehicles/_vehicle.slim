@@ -1,0 +1,28 @@
+.col-md-12
+  .card.mb-2
+    .row.g-0
+      .col-md-3
+        = vehicle_image(vehicle, 200)
+      .col-md-5
+        .card-body
+          h5.card-title = vehicle.full_name
+          h6 class="card-subtitle mb-2 text-muted"
+          p.card-text = vehicle.description
+          .row
+            .col-md-6
+              = fa_icon "cogs", text: vehicle.type.name_vi
+            .col-md-6
+              = fa_icon "bolt", text: 'Xăng'
+            .col-md-6
+              = fa_icon "tachometer", text: vehicle.engine.name_vi
+            .col-md-6
+              = fa_icon "wrench", text: '2022'
+      .col-md-4
+        .card-body.h-100.text-end.d-flex.flex-column.align-items-end
+          h4.card-text = raw t('.price', price: number_to_currency(vehicle.price, precision: 0, unit: ''))
+          span class='badge bg-primary float-end mb-2' = t(".#{vehicle.status}")
+          - if vehicle.subscribe_priority.present?
+            span class='badge bg-success float-end' = t(".#{vehicle.subscribe_priority[:rank]}")
+          .mt-auto.d-flex.gap-2
+            = link_to t('.show'), partners_vehicle_path(vehicle), class: 'btn btn-outline-success'
+            = link_to t('.edit'), edit_partners_vehicle_path(vehicle), class: 'btn btn-primary'

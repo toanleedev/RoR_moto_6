@@ -7,6 +7,7 @@ class CheckoutController < ApplicationController
     # check params lai cho nay
     @vehicle_params = params
     @order = Order.new
+    @order.build_payment unless @order.build_payment.present?
     render 'confirm', locals: { vehicle: @vehicle }, collection: @order
   end
 
@@ -26,6 +27,7 @@ class CheckoutController < ApplicationController
 
       if order.save
         flash[:notice] = t('.order_confirmed_success')
+        return redirect_to account_order_path(order)
       else
         flash[:alert] = t('.order_confirmed_failure')
       end
@@ -48,9 +50,14 @@ class CheckoutController < ApplicationController
       response = client.execute(request).result
 
       if response.status == 'COMPLETED'
-        order.paid_at = Time.current
-        order.payment_security = response.id
-        order.payment_info = response.status
+        order.payment.paid_at = Time.current
+        order.payment.payment_security = response.id
+        order.payment.status = :completed
+        partner_new_balance = order.amount - order.service_fee
+        order.owner.partner.balance += partner_new_balance
+
+        BuildPaymentHistory.new(order_payment_history_params(order)).save
+        BuildPaymentHistory.new(income_payment_history_params(order)).save
         order.save!
         SendNotification.new(order).user_paid_order
         render json: { message: t('.pay_paypal_success'),
@@ -77,12 +84,34 @@ class CheckoutController < ApplicationController
   end
 
   def validate_before_order
-    unless current_user.paper&.confirmed?
+    unless current_user.paper.present? && !current_user.paper&.rejected?
       return redirect_to account_paper_path, flash: { alert: t('.require_paper') }
+    end
+
+    unless current_user.address.present?
+      return redirect_to account_address_path, flash: { alert: t('.require_address') }
     end
 
     return unless current_user.orders.already_order.any?
 
     redirect_to request.referrer, flash: { alert: t('.already_order') }
+  end
+
+  def order_payment_history_params(order)
+    {
+      userable: order.owner.partner,
+      money_kind: :expense,
+      action_kind: :service_fee,
+      amount: order.service_fee
+    }
+  end
+
+  def income_payment_history_params(order)
+    {
+      userable: order.owner.partner,
+      money_kind: :income,
+      action_kind: :order_income,
+      amount: order.amount_include_fee
+    }
   end
 end

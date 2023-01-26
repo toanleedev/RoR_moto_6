@@ -1,8 +1,8 @@
 class SendNotification
   ORDER_URL = 'account/orders'.freeze
-  ORDER_MANAGE_URL = 'account/order_manages'.freeze
+  ORDER_MANAGE_URL = 'partners/order_manages'.freeze
   ACCOUNT_PAPER = 'account/paper'.freeze
-  ACCOUNT_VEHICLES = 'account/vehicles'.freeze
+  ACCOUNT_VEHICLES = 'partners/vehicles'.freeze
   PARTNER_URL = 'partner'.freeze
 
   def initialize(params)
@@ -73,17 +73,6 @@ class SendNotification
       on_click_url: ACCOUNT_PAPER,
       title: 'notification.title.paper_reject',
       content: 'notification.content.paper_reject'
-    }
-
-    SendNotificationJob.perform_now(notification_param)
-  end
-
-  def partner_confirm
-    notification_param = {
-      receiver_id: params[:id],
-      on_click_url: ACCOUNT_VEHICLES,
-      title: 'notification.title.partner_confirm',
-      content: 'notification.content.partner_confirm'
     }
 
     SendNotificationJob.perform_now(notification_param)

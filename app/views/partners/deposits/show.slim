@@ -1,0 +1,25 @@
+.row
+  .col-md-6.offset-md-3
+    .card
+      = bootstrap_form_tag(url: partners_deposit_path) do |f|
+        .card-header = t('.topup_packages')
+        ul class="list-group list-group-flush"
+          = f.form_group :price, label: { hidden: true } do
+            - @price_deposits.each_with_index do |price, index|
+              .list-group-item
+                = f.radio_button :price, price, label: number_to_currency(price, precision: 0), checked: index.zero?
+            .list-group-item
+                = f.radio_button :price, 0, class: 'radio-other-price',
+                  label: "<input type='number' class='input-other-price form-control' placeholder='#{t('.input_other_holder')}'/>".html_safe
+        .card-body.d-flex.justify-content-center.gap-2
+          .btn.btn-outline-secondary = t('.withdraw')
+          = f.primary t('.topup_now'), class: 'btn btn-primary', name: nil
+
+javascript:
+  const radioOtherPrice = $('.radio-other-price')
+  const inputOtherPrice = $('.input-other-price')
+  radioOtherPrice.val(inputOtherPrice.val())
+
+  inputOtherPrice.change((e) => {
+    radioOtherPrice.val(e.target.value)
+  })

@@ -1,0 +1,11 @@
+- provide :title, t(".title")
+.d-flex.align-items-center.gap-2.border-bottom.pb-3.mb-3
+  h3 = t(".title")
+  span.ms-auto = "(#{t('.post_allowed')}: #{current_user.vehicles.size} / #{current_user.partner.vehicle_limit})"
+  - if current_user.vehicles.size < current_user.partner.vehicle_limit
+    = link_to t(".new"), new_partners_vehicle_path, class: 'btn btn-sm btn-primary '
+  - else
+    = link_to t(".buy_slot"), slots_partners_vehicles_path, class: 'btn btn-sm btn-primary '
+
+.row
+  = render @vehicles

@@ -6,7 +6,9 @@ en:
       rent: Search
       admin: Go to Admin
       account: Account
-      partner: Become out partner
+      become_partner: Become out partner
+      admin_page: Admin page
+      partner_page: Partner page
       sign_out: Logout
       sign_in: Sign in
       sign_up: Sign up

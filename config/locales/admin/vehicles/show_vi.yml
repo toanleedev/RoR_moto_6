@@ -9,10 +9,12 @@ vi:
         accepted_vehicle: Duyệt xe thuê
         accepted_confirm: Xác nhận duyệt xe này
         locked_vehicle: Khóa xe thuê
+        unlock_vehicle: Mở khóa xe thuê
         locked_confirm: Xác nhận khóa xe này?
+        unlock_confirm: Xác nhận mở khóa xe này?
         opening: Đang mở
         accepted: Đã duyệt
         idle: Rảnh
         rented: Đã thuê
         locked: Đã khóa
-        offline: Nghỉ
+        offline: Tạm ẩn

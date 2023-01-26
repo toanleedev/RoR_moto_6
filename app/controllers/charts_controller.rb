@@ -30,7 +30,7 @@ class ChartsController < ApplicationController
   def admin_statistic # rubocop:disable Metrics/CyclomaticComplexity
     data_chart = []
     chart = params[:chart] || 'users'
-    period = params[:period] || 'month'
+    period = params[:period] || 'week'
 
     case chart
     when 'users' || nil
@@ -50,9 +50,9 @@ class ChartsController < ApplicationController
              .count
     when 'turnover'
       data_chart =
-        Order.has_completed
-             .group_by_period(period, :completed_at, permit: PERMIT_PERIOD)
-             .sum(:amount)
+        PaymentHistory.all
+                      .group_by_period(period, :created_at, permit: PERMIT_PERIOD)
+                      .sum(:amount)
     end
     render json: data_chart
   end
